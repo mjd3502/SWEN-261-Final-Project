@@ -8,7 +8,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - MEMBER1
 - Michael DiBiase
 - Carla Lopez
-- MEMBER4
+- Rachel Adkins
 - Cheyenne Zhang
 
 ## Prerequisites

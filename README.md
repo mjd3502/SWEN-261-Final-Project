@@ -5,7 +5,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
   
 ## Team
 
-- MEMBER1
+- Garrett Geyer
 - Michael DiBiase
 - Carla Lopez
 - Rachel Adkins

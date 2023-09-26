@@ -9,7 +9,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 - MEMBER2
 - MEMBER3
 - MEMBER4
-
+- Cheyenne Zhang
 
 ## Prerequisites
 

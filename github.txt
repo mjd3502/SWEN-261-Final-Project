@@ -1,0 +1,35 @@
+commit e5f2ea43e2803eed8984702cffaa1bb2baaa3839
+Author: Garrett Geyer <ggg5483@g.rit.edu>
+Date:   Tue Sep 26 19:02:55 2023 -0400
+
+    added 'Garrett Geyer' to members
+
+commit a0a287df5fea7e60a2aa9c3d59835f7abf73e141
+Author: Rachel Adkins <rachelalaina1504@gmail.com>
+Date:   Tue Sep 26 11:23:54 2023 -0400
+
+    Added my name to the README file.
+
+commit 618ae463703dd01a2ecab57720c6098d35988330
+Author: carlaLopez <carla.lopezsanchez20@gmail.com>
+Date:   Tue Sep 26 10:57:05 2023 -0400
+
+    added my name to the README.md file
+
+commit 90d64b7a2fe0ded700cf022f8ee5c3d95e5e2c30
+Author: mjd3502 <84356983+Mikey3266@users.noreply.github.com>
+Date:   Tue Sep 26 09:45:37 2023 -0400
+
+    Update README.md
+
+commit d430b86c475d755516326b6fa7bdb543a53f7f1a
+Author: cheyzhangg <cheyzhangg@gmail.com>
+Date:   Tue Sep 26 09:17:58 2023 -0400
+
+    Cheyenne Zhang checked in
+
+commit 3511a432200d51dccf055b0f45a8b5a81a2a75de
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Tue Sep 26 13:11:50 2023 +0000
+
+    Initial commit

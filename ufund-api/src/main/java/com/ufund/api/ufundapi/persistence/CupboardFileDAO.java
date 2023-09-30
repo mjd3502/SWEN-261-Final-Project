@@ -3,6 +3,8 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -169,9 +171,9 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public Need[] getEntireCupboard() throws IOException {
+    public List<Need> getEntireCupboard() throws IOException {
        synchronized(cupboard){
-        return getcupboardArray();
+        return  Arrays.asList(getcupboardArray());
        }
     }
     

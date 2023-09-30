@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Need {
 
-    static final String STRING_FORMAT = "Need [name =%s, quantity = %d, description = %s, cost = %d, type = %s]";
+    static final String STRING_FORMAT = "Need [id=%d,name =%s, quantity = %d, description = %s, cost = %d, type = %s]";
 
+    @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
     @JsonProperty("description") private String description;
@@ -15,16 +16,21 @@ public class Need {
     @JsonProperty("type")private String type;
     
 
-    public Need(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("description") String description, @JsonProperty("cost") int cost, @JsonProperty("type") String type ){
+    public Need(@JsonProperty("id")int id , @JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("description") String description, @JsonProperty("cost") int cost, @JsonProperty("type") String type ){
+        this.id=id;
         this.name = name;
         this.quantity = quantity;
         this.description = description;
         this.cost = cost;
         this.type = type;
+
     }
 
 
-    
+    public int getId(){
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -74,9 +80,11 @@ public class Need {
         this.type = type;
     }
 
+
+
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,name,quantity,description,cost,type);
+        return String.format(STRING_FORMAT,id,name,quantity,description,cost,type);
     }
 
 }

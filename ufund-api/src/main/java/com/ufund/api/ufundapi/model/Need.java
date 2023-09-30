@@ -3,6 +3,9 @@ package com.ufund.api.ufundapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Need {
+
+    static final String STRING_FORMAT = "Need [name =%s, quantity = %d, description = %s, cost = %d, type = %s]";
+
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
     @JsonProperty("description") private String description;
@@ -10,6 +13,7 @@ public class Need {
 
     //represents the type of need, voluteer opprotunity or good
     @JsonProperty("type")private String type;
+    
 
     public Need(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("description") String description, @JsonProperty("cost") int cost, @JsonProperty("type") String type ){
         this.name = name;
@@ -68,6 +72,11 @@ public class Need {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(STRING_FORMAT,name,quantity,description,cost,type);
     }
 
 }

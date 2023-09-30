@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -15,8 +16,6 @@ import com.ufund.api.ufundapi.model.Need;
 
 @Component
 public class CupboardFileDAO implements CupboardDAO{
-
-
     private static final Logger LOG = Logger.getLogger(CupboardFileDAO.class.getName());
     Map<Integer,Need> cupboard;   // Provides a local cache of the Cupbaord objects
                                 // so that we don't need to read from the file
@@ -169,7 +168,7 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public Need[] getEntireCupboard() throws IOException {
+    public List<Need> getEntireCupboard() throws IOException {
         // add implementation
         throw new UnsupportedOperationException("Unimplemented method 'getEntireCupboard'");
     }

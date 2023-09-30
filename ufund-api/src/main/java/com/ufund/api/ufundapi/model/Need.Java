@@ -2,7 +2,7 @@ package com.ufund.api.ufundapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public abstract class Need {
+public class Need {
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
     @JsonProperty("description") private String description;

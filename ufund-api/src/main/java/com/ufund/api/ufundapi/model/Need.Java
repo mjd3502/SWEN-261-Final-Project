@@ -20,24 +20,54 @@ public abstract class Need {
     }
 
 
-    public String get_name(){
+    
+    public String getName() {
         return name;
     }
 
-    public int get_quatity(){
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public String get_descripiton(){
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
+    public String getDescription() {
         return description;
     }
 
-    public int get_cost(){
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public int getCost() {
         return cost;
     }
 
-    public String get_type(){
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+
+    public String getType() {
         return type;
+    }
+
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

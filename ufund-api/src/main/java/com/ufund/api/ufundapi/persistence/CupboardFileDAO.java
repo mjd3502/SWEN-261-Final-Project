@@ -37,10 +37,10 @@ public class CupboardFileDAO implements CupboardDAO{
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public CupboardFileDAO(@Value("${cupboard.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public CupboardFileDAO(@Value("${cupboard.file}")String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the needs from the file
+        load();
     }
 
     /**
@@ -131,6 +131,7 @@ public class CupboardFileDAO implements CupboardDAO{
         // Make the next id one greater than the maximum from the file
         ++nextId;
         return true;
+
     }
 
 

@@ -170,8 +170,9 @@ public class CupboardFileDAO implements CupboardDAO{
 
     @Override
     public Need[] getEntireCupboard() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'getEntireCupboard'");
+       synchronized(cupboard){
+        return getcupboardArray();
+       }
     }
     
 }

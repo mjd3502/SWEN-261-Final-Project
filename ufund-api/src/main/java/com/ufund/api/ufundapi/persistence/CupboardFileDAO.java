@@ -175,8 +175,9 @@ public class CupboardFileDAO implements CupboardDAO{
 
     @Override
     public Need updateNeed(Need need) throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'updateNeed'");
+        synchronized(cupboard){
+            return updateNeed(need);
+        }
     }
 
     @Override
@@ -185,5 +186,6 @@ public class CupboardFileDAO implements CupboardDAO{
         return  Arrays.asList(getcupboardArray());
        }
     }
+    
     
 }

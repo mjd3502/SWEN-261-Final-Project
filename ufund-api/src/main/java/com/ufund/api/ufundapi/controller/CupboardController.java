@@ -130,9 +130,9 @@ public class CupboardController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("/needs")
     public ResponseEntity<Need[]> searchCupboard(@RequestParam String name){
-        LOG.info("GET /need/?name="+name);
+        LOG.info("GET /cupboard/?name="+name);
 
         Need[] need;
 
@@ -142,7 +142,7 @@ public class CupboardController {
 
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         
     }

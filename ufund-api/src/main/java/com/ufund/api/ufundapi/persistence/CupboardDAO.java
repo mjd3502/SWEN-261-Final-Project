@@ -12,7 +12,7 @@ public interface CupboardDAO {
 
     Need getSingleNeed(int id) throws IOException;
 
-    Need getNeedbyName(String name) throws IOException;
+    Need[] getNeedbyName(String name) throws IOException;
 
     boolean deleteNeed(int Id) throws IOException;
 

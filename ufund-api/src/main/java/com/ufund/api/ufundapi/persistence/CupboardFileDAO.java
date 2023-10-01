@@ -159,9 +159,10 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public Need getNeedbyName(String name) throws IOException {
-         // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'getNeedbyName'");
+    public Need[] getNeedbyName(String name) throws IOException {
+        synchronized(cupboard) {
+            return getcupboardArray(name);
+        }
     }
 
     @Override

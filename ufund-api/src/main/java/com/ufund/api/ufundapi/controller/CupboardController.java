@@ -137,7 +137,7 @@ public class CupboardController {
         Need[] need;
 
         try {
-            need = cupboardDAO.getNeedbyName(name);
+            need = cupboardDao.getNeedbyName(name);
             return new ResponseEntity<Need[]>(need, HttpStatus.OK);
 
         } catch (IOException e) {

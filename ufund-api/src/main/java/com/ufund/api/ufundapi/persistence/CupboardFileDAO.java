@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -34,10 +35,10 @@ public class CupboardFileDAO implements CupboardDAO{
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public CupboardFileDAO(@Value("${cupboard.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public CupboardFileDAO(@Value("${cupboard.file}")String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the needs from the file
+        load();
     }
 
     /**
@@ -128,6 +129,7 @@ public class CupboardFileDAO implements CupboardDAO{
         // Make the next id one greater than the maximum from the file
         ++nextId;
         return true;
+
     }
 
 
@@ -138,9 +140,13 @@ public class CupboardFileDAO implements CupboardDAO{
 
 
     @Override
-    public Need createNeed() throws IOException {
+    public Need createNeed(Need need) throws IOException {
         // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'createNeed'");
+        Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
+        //throw new UnsupportedOperationException("Unimplemented method 'createNeed'");
+        save();
+        cupboard.put(new_need.getId(),new_need);
+        return new_need;
     }
 
     @Override
@@ -156,9 +162,15 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public boolean deleteNeed() throws IOException {
+    public boolean deleteNeed(int Id) throws IOException {
+        if(cupboard.containsKey(Id)){
+            cupboard.remove(Id);
+            return save();
+        } else {
+            return false;
+        }
         // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'deleteneed'");
+        //throw new UnsupportedOperationException("Unimplemented method 'deleteneed'");
     }
 
     @Override
@@ -170,8 +182,9 @@ public class CupboardFileDAO implements CupboardDAO{
 
     @Override
     public List<Need> getEntireCupboard() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'getEntireCupboard'");
+       synchronized(cupboard){
+        return  Arrays.asList(getcupboardArray());
+       }
     }
     
     

@@ -17,8 +17,6 @@ import com.ufund.api.ufundapi.model.Need;
 
 @Component
 public class CupboardFileDAO implements CupboardDAO{
-
-
     private static final Logger LOG = Logger.getLogger(CupboardFileDAO.class.getName());
     Map<Integer,Need> cupboard;   // Provides a local cache of the Cupbaord objects
                                 // so that we don't need to read from the file

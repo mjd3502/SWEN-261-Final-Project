@@ -1,5 +1,4 @@
 package com.ufund.api.ufundapi.controller;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
@@ -26,25 +34,7 @@ public class CupboardController {
     public CupboardController(CupboardDAO cupboardDAO){
         this.cupbaordDAO = cupboardDAO;
     }
-
-
-    @GetMapping("")
-    public ResponseEntity<List<Need>> getEntireCupboard(){
-        
-        List<Need> response = new ArrayList<>();
-
-        try {
-            response = cupbaordDAO.getEntireCupboard();
-
-            if(!response.isEmpty()){
-                return new ResponseEntity<List<Need>>(response, HttpStatus.OK);
-            }else{
-                return new ResponseEntity<List<Need>>(response, HttpStatus.OK);
-            }
-        } catch (IOException e) {
-            return null;
-        }
-    }
+  
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         //LOG.info("POST /needs " + need);
@@ -82,4 +72,20 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-}
+          
+    @GetMapping(" ")
+    public ResponseEntity<List<Need>> getEntireCupboard(){
+       List<Need> responseEntity = new ArrayList<>();
+
+        try {
+            responseEntity = cupboardDAO.getEntireCupboard();
+            if(!responseEntity.isEmpty()){
+                return new ResponseEntity<List<Need>>(responseEntity,HttpStatus.OK);
+            }else{
+                return new ResponseEntity<List<Need>>(responseEntity,HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }

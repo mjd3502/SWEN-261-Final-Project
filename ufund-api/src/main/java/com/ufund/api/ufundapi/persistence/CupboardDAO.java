@@ -8,13 +8,13 @@ import com.ufund.api.ufundapi.model.Need;
 public interface CupboardDAO {
 
 
-    Need createNeed() throws IOException;
+    Need createNeed(Need need) throws IOException;
 
-    Need getSingleNeed() throws IOException;
+    Need getSingleNeed(int id) throws IOException;
 
     Need[] getNeedbyName(String name) throws IOException;
 
-    boolean deleteNeed() throws IOException;
+    boolean deleteNeed(int Id) throws IOException;
 
     Need updateNeed(Need need) throws IOException;
 

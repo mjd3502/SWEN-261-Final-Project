@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,10 +36,10 @@ public class CupboardFileDAO implements CupboardDAO{
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public CupboardFileDAO(@Value("${cupboard.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public CupboardFileDAO(@Value("${cupboard.file}")String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the needs from the file
+        load();
     }
 
     /**
@@ -129,6 +130,7 @@ public class CupboardFileDAO implements CupboardDAO{
         // Make the next id one greater than the maximum from the file
         ++nextId;
         return true;
+
     }
 
 
@@ -139,15 +141,21 @@ public class CupboardFileDAO implements CupboardDAO{
 
 
     @Override
-    public Need createNeed() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'createNeed'");
+    public Need createNeed(Need need) throws IOException {
+        Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
+        save();
+        cupboard.put(new_need.getId(),new_need);
+        return new_need;
     }
 
     @Override
-    public Need getSingleNeed() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'getSingleNeed'");
+    public Need getSingleNeed(int id) throws IOException {
+        synchronized(cupboard) {
+            if (cupboard.containsKey(id))
+                return cupboard.get(id);
+            else
+                return null;
+        }
     }
 
     @Override
@@ -158,22 +166,30 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public boolean deleteNeed() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'deleteneed'");
+    public boolean deleteNeed(int Id) throws IOException {
+        if(cupboard.containsKey(Id)){
+            cupboard.remove(Id);
+            return save();
+        } else {
+            return false;
+        }
     }
 
     @Override
     public Need updateNeed(Need need) throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'updateNeed'");
+        synchronized(cupboard) {
+            if (cupboard.containsKey(need.getId()) == false)
+                return null;  
+            cupboard.put(need.getId(),need);
+            save(); 
+            return need;
+        }
     }
 
     @Override
     public List<Need> getEntireCupboard() throws IOException {
        synchronized(cupboard){
-        return Arrays.asList(getcupboardArray());
+        return  Arrays.asList(getcupboardArray());
        }
-    }
-    
+    }    
 }

@@ -138,8 +138,12 @@ public class CupboardController {
 
         try {
             need = cupboardDao.getNeedbyName(name);
-            return new ResponseEntity<Need[]>(need, HttpStatus.OK);
-
+            if(need.length == 0){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }else{
+                return new ResponseEntity<Need[]>(need, HttpStatus.OK);
+            }
+            
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

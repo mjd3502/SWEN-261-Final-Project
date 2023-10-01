@@ -20,48 +20,46 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
+@RestController
+@RequestMapping("/cupboard")
 public class CupboardController {
     private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private CupboardDAO cupboardDao;
 
-    @GetMapping("")
-    public ResponseEntity<Need> getSingleNeed() {
-        int id = Need.getId();
-        LOG.info("GET /needs" + id);
+
+    public CupboardController(CupboardDAO cupboardDAO){
+        this.cupboardDao = cupboardDAO;
+    }
+
+    @GetMapping("/singleNeed")
+    public ResponseEntity<Need> getSingleNeed(@RequestBody Need need) {
+        int id = need.getId();
+        LOG.info("GET /cupboard/singleNeed");
         try {
-            Need need = cupboardDao.getSingleNeed();
-            if (need != null){
-                return new ResponseEntity<Need>(need,HttpStatus.OK);
+            Need foundNeed = cupboardDao.getSingleNeed(id);
+            if(foundNeed != null){
+                return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
             }else{
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                 return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
             }
-        }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+}
 
-    @RestController
-    @RequestMapping("/cupboard")
-    public class CupboardController {
-
-        private CupboardDAO cupbaordDAO;
-
-        public CupboardController(CupboardDAO cupboardDAO){
-            this.cupbaordDAO = cupboardDAO;
-        }
-  
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
-        //LOG.info("POST /needs " + need);
-
-        // Replace below with your implementation
+        LOG.info("POST /cupboard " + need);
         try {
             
-            Need need1 = cupbaordDAO.createNeed(need);
+            Need need1 = cupboardDao.createNeed(need);
             if (need1 != null)
                 return new ResponseEntity<Need>(need1,HttpStatus.CREATED);
             else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         catch(IOException e) {
-            //LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -69,11 +67,10 @@ public class CupboardController {
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Need> deleteNeed(@PathVariable int id) {
-        //LOG.info("DELETE /heroes/" + id);
+        LOG.info("DELETE /cupboard/" + id);
 
-        // Replace below with your implementation
         try {
-            boolean didit = cupbaordDAO.deleteNeed(id);
+            boolean didit = cupboardDao.deleteNeed(id);
             if (didit){
                 
                 return new ResponseEntity<Need>(HttpStatus.OK); 
@@ -82,17 +79,18 @@ public class CupboardController {
             }
         }
         catch(IOException e) {
-            //LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
           
     @GetMapping(" ")
     public ResponseEntity<List<Need>> getEntireCupboard(){
+        LOG.info("GET /cupbaord/" );
        List<Need> responseEntity = new ArrayList<>();
 
         try {
-            responseEntity = cupboardDAO.getEntireCupboard();
+            responseEntity = cupboardDao.getEntireCupboard();
             if(!responseEntity.isEmpty()){
                 return new ResponseEntity<List<Need>>(responseEntity,HttpStatus.OK);
             }else{
@@ -118,7 +116,7 @@ public class CupboardController {
         LOG.info("PUT /need " + need);
 
         try {
-            Need checkNeed = cupboardDAO.updateNeed(need);
+            Need checkNeed = cupboardDao.updateNeed(need);
             
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);

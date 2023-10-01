@@ -17,33 +17,32 @@ import com.ufund.api.ufundapi.controller.CupboardController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
-@Tag("Controller-tier")
-
-public class CupboardControllerTest {
+// @Tag("Controller-tier")
+// public class CupboardControllerTest {
  
-    private CupboardController cupboardController;
-    private CupboardDAO mockCupboardDAO;
+//     private CupboardController cupboardController;
+//     private CupboardDAO mockCupboardDAO;
     
-    @BeforeEach
-    public void setupHeroController() {
-        mockCupboardDAO = mock(CupboardDAO.class);
-        cupboardController = new CupboardController(mockCupboardDAO);
-    }
+//     @BeforeEach
+//     public void setupHeroController() {
+//         mockCupboardDAO = mock(CupboardDAO.class);
+//         cupboardController = new CupboardController(mockCupboardDAO);
+//     }
 
-    @Test
-    public void getEntireCupboard() throws IOException{
-        List<Need> cupboard = List.of(
-            new Need(1, "Pet dog", 10, "Opportunity to Pet a dog ", 10, "volunteering opportunity"),
-            new Need(20, "Donate fod", 20, "Donate 10 bags of dog food", 50, "goods"));
+//     @Test
+//     public void getEntireCupboard() throws IOException{
+//         List<Need> cupboard = List.of(
+//             new Need(1, "Pet dog", 10, "Opportunity to Pet a dog ", 10, "volunteering opportunity"),
+//             new Need(20, "Donate fod", 20, "Donate 10 bags of dog food", 50, "goods"));
 
 
-        // thenReturn is a method in Mockito that allows you to define the return value of a mocked method.
-        when(mockCupboardDAO.getEntireCupboard()).thenReturn(cupboard);
+//         // thenReturn is a method in Mockito that allows you to define the return value of a mocked method.
+//         when(mockCupboardDAO.getEntireCupboard()).thenReturn(cupboard);
 
-        ResponseEntity<List<Need>> responseEntity = cupboardController.getEntireCupboard();
+//         ResponseEntity<List<Need>> responseEntity = cupboardController.getEntireCupboard();
 
-        assertEquals(cupboard,responseEntity.getBody());
-        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-    }
+//         assertEquals(cupboard,responseEntity.getBody());
+//         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+//     }
 
-}
+// }

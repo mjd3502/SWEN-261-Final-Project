@@ -10,7 +10,7 @@ public interface CupboardDAO {
 
     Need createNeed(Need need) throws IOException;
 
-    Need getSingleNeed() throws IOException;
+    Need getSingleNeed(int id) throws IOException;
 
     Need getNeedbyName(String name) throws IOException;
 

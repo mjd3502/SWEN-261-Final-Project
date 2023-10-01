@@ -27,7 +27,7 @@ public class Need {
     }
 
 
-    public static int getId(){
+    public int getId(){
         return id;
     }
 

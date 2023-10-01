@@ -8,7 +8,7 @@ import com.ufund.api.ufundapi.model.Need;
 public interface CupboardDAO {
 
 
-    Need createNeed() throws IOException;
+    Need createNeed(String name, int quantity, String description, int cost, String type) throws IOException;
 
     Need getSingleNeed() throws IOException;
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
-import com.ufund.api.ufundapi.persistence.CupboardFileDAO;
 
 @Controller
 @RequestMapping("/cupboard")

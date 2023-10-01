@@ -17,32 +17,72 @@ import com.ufund.api.ufundapi.controller.CupboardController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
-// @Tag("Controller-tier")
-// public class CupboardControllerTest {
- 
-//     private CupboardController cupboardController;
-//     private CupboardDAO mockCupboardDAO;
-    
-//     @BeforeEach
-//     public void setupHeroController() {
-//         mockCupboardDAO = mock(CupboardDAO.class);
-//         cupboardController = new CupboardController(mockCupboardDAO);
-//     }
+@Tag("Controller-tier")
+public class CupboardControllerTest {
+    private CupboardController cupboardController;
+    private CupboardDAO mockcupboardDAO;
 
-//     @Test
-//     public void getEntireCupboard() throws IOException{
-//         List<Need> cupboard = List.of(
-//             new Need(1, "Pet dog", 10, "Opportunity to Pet a dog ", 10, "volunteering opportunity"),
-//             new Need(20, "Donate fod", 20, "Donate 10 bags of dog food", 50, "goods"));
+    /**
+     * Before each test, create a new cupboardController object and inject
+     * a mock need DAO
+     */
+    @BeforeEach
+    public void setupcupboardController() {
+       mockcupboardDAO = mock(CupboardDAO.class);
+        cupboardController = new CupboardController(mockcupboardDAO);
+    }
 
 
-//         // thenReturn is a method in Mockito that allows you to define the return value of a mocked method.
-//         when(mockCupboardDAO.getEntireCupboard()).thenReturn(cupboard);
+    /**
+     * Method for 
+     */
+    @Test 
+    public void getASingleNeedTest(){
 
-//         ResponseEntity<List<Need>> responseEntity = cupboardController.getEntireCupboard();
+    }
 
-//         assertEquals(cupboard,responseEntity.getBody());
-//         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-//     }
+     /**
+     * Method for 
+     */
+    @Test
+    public void getEntireCupboardTest(){
 
-// }
+    }
+
+
+     /**
+     * Method for 
+     */
+    @Test
+    public void getNeedbyName(){
+
+    }
+
+
+     /**
+     * Method for 
+     */
+    @Test
+    public void deleteNeed(){
+
+    }
+
+
+     /**
+     * Method for 
+     */
+    @Test
+    public void updateNeed(){
+
+    }
+
+
+     /**
+     * Testing method for creating 
+     */ 
+    @Test
+    public void createNeed(){
+
+    }
+   
+}

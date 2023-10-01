@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -146,8 +147,12 @@ public class CupboardFileDAO implements CupboardDAO{
 
     @Override
     public Need getSingleNeed() throws IOException {
-        // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'getSingleNeed'");
+        synchronized(needs) {
+            if (needs.containsKey(id))
+                return needs.get(id);
+            else
+                return null;
+        }
     }
 
     @Override

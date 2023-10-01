@@ -142,10 +142,11 @@ public class CupboardFileDAO implements CupboardDAO{
 
 
     @Override
-    public Need createNeed(String name, int quantity, String description, int cost, String type) throws IOException {
+    public Need createNeed(Need need) throws IOException {
         // add implementation
-        Need new_need = new Need(nextId(), name, quantity, description, cost, type);
+        Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
         //throw new UnsupportedOperationException("Unimplemented method 'createNeed'");
+        save();
         cupboard.put(new_need.getId(),new_need);
         return new_need;
     }
@@ -163,9 +164,15 @@ public class CupboardFileDAO implements CupboardDAO{
     }
 
     @Override
-    public boolean deleteNeed() throws IOException {
+    public boolean deleteNeed(int Id) throws IOException {
+        if(cupboard.containsKey(Id)){
+            cupboard.remove(Id);
+            return save();
+        } else {
+            return false;
+        }
         // add implementation
-        throw new UnsupportedOperationException("Unimplemented method 'deleteneed'");
+        //throw new UnsupportedOperationException("Unimplemented method 'deleteneed'");
     }
 
     @Override

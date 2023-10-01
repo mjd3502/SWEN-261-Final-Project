@@ -11,12 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,15 +20,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
-@RestController
-@RequestMapping("/cupboard")
 public class CupboardController {
-    
-    private CupboardDAO cupbaordDAO;
+    private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
+    private CupboardDAO cupboardDao;
 
-    public CupboardController(CupboardDAO cupboardDAO){
-        this.cupbaordDAO = cupboardDAO;
-    }
+    @GetMapping("")
+    public ResponseEntity<Need> getSingleNeed() {
+        int id = Need.getId();
+        LOG.info("GET /needs" + id);
+        try {
+            Need need = cupboardDao.getSingleNeed();
+            if (need != null){
+                return new ResponseEntity<Need>(need,HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+
+    @RestController
+    @RequestMapping("/cupboard")
+    public class CupboardController {
+
+        private CupboardDAO cupbaordDAO;
+
+        public CupboardController(CupboardDAO cupboardDAO){
+            this.cupbaordDAO = cupboardDAO;
+        }
   
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
@@ -52,6 +65,8 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Need> deleteNeed(@PathVariable int id) {
         //LOG.info("DELETE /heroes/" + id);

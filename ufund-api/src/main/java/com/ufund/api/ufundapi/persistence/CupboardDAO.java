@@ -11,7 +11,6 @@ import com.ufund.api.ufundapi.model.Need;
  * @author Cheyenne Zhang, Carla Lopez, Rachel Atkins, Garrett Geyer, Michael Dibiase
  */
 public interface CupboardDAO {
-
     /**
      * Creates a need
      * 

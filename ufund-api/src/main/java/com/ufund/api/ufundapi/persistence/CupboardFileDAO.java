@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -136,18 +135,23 @@ public class CupboardFileDAO implements CupboardDAO{
 
 
     /*
-     * CRUD METHODS for U Fund Website:
+     * CRUD METHODS for U-Fund Website:
      */
 
-
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public Need createNeed(Need need) throws IOException {
         Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
-        save();
+        save(); // may throw an IOException
         cupboard.put(new_need.getId(),new_need);
         return new_need;
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public Need getSingleNeed(int id) throws IOException {
         synchronized(cupboard) {
@@ -158,6 +162,9 @@ public class CupboardFileDAO implements CupboardDAO{
         }
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public Need[] getNeedbyName(String name) throws IOException {
         synchronized(cupboard) {
@@ -165,6 +172,9 @@ public class CupboardFileDAO implements CupboardDAO{
         }
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public boolean deleteNeed(int Id) throws IOException {
         if(cupboard.containsKey(Id)){
@@ -175,17 +185,23 @@ public class CupboardFileDAO implements CupboardDAO{
         }
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public Need updateNeed(Need need) throws IOException {
         synchronized(cupboard) {
             if (cupboard.containsKey(need.getId()) == false)
-                return null;  
+                return null;  // need does not exist
             cupboard.put(need.getId(),need);
-            save(); 
+            save(); // may throw an IOException
             return need;
         }
     }
 
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public List<Need> getEntireCupboard() throws IOException {
        synchronized(cupboard){

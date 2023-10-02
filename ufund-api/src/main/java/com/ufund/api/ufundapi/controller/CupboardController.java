@@ -46,7 +46,7 @@ public class CupboardController {
      * @param need the need used to access the id in order to get a single need
      * 
      * @return ResponseEntity with need object and HTTP status of CREATED if found
-     * ResponseEntity with HTTP tatus of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("/singleNeed")
@@ -65,6 +65,15 @@ public class CupboardController {
         }  
 }
 
+    /**
+     * Creates a need with a need object
+     * 
+     * @param need the need to be created
+     * 
+     * @return ResponseEntity with created need object and HTTP status of CREATED
+     * ResponseEntity with HTTP status of CONFLICT if need object already exists
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
@@ -82,7 +91,15 @@ public class CupboardController {
         }
     }
     
-    
+    /**
+     * Deletes a need with the provided id
+     * 
+     * @param id The id of the need to delete
+     * 
+     * @return ResponseEntity HTTP status of OK if deleted
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Need> deleteNeed(@PathVariable int id) {
         LOG.info("DELETE /cupboard/" + id);
@@ -101,7 +118,14 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-          
+    
+    /**
+     * Responds to the GET request for all needs in the entire Cupboard
+     * 
+     * @return ResponseEntity with array of need objects (can be empty) and
+     * HTTP status of OK
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @GetMapping(" ")
     public ResponseEntity<List<Need>> getEntireCupboard(){
         LOG.info("GET /cupbaord/" );
@@ -120,7 +144,7 @@ public class CupboardController {
         }
     }
     
-        /**
+    /**
      * Updates the {@linkplain Need need} with the provided {@linkplain Need need} object, if it exists
      * 
      * @param need The {@link Need need} to update

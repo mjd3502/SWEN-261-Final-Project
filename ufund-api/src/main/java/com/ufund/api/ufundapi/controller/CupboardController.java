@@ -14,23 +14,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
+/**
+ * Handles REST API requests for the Cupboard
+ * 
+ * @author Cheyenne Zhang, Carla Lopez, Rachel Atkins, Garrett Geyer, Michael Dibiase
+ */
 @RestController
 @RequestMapping("/cupboard")
 public class CupboardController {
     private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private CupboardDAO cupboardDao;
 
-
+    /**
+     * Create a REST API controller object to handle requests
+     * 
+     * @param cupboardDAO the Cupboard Data Access Object to perform CRUD operations
+     * 
+     * This dependency is added using the Spring Framework
+     */
     public CupboardController(CupboardDAO cupboardDAO){
         this.cupboardDao = cupboardDAO;
     }
 
+    /**
+     * Responds to the GET request for a single need 
+     * 
+     * @param need the need used to access the id in order to get a single need
+     * 
+     * @return ResponseEntity with need object and HTTP status of CREATED if found
+     * ResponseEntity with HTTP tatus of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @GetMapping("/singleNeed")
     public ResponseEntity<Need> getSingleNeed(@RequestBody Need need) {
         int id = need.getId();

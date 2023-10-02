@@ -24,11 +24,11 @@ public interface CupboardDAO {
     Need createNeed(Need need) throws IOException;
 
     /**
-     * GETS a need with the given id
+     * GETS a single need with the given id
      * 
      * @param id The id of the need to retrieve
      * 
-     * @return a need object with the matching id
+     * @return a single need object with the matching id
      * 
      * null if no need with a matching id is found
      * 
@@ -49,6 +49,17 @@ public interface CupboardDAO {
      */
     Need[] getNeedbyName(String name) throws IOException;
 
+    /**
+     * Deletes a need with the given id
+     * 
+     * @param id The id of the need
+     * 
+     * @return true if the need was deleted
+     * 
+     * false if the need with the given id does not exist
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
     boolean deleteNeed(int Id) throws IOException;
 
     Need updateNeed(Need need) throws IOException;

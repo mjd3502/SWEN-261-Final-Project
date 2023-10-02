@@ -13,9 +13,11 @@ import com.ufund.api.ufundapi.model.Need;
 public interface CupboardDAO {
 
     /**
-     * Retrieves all needs
+     * Creates a need
      * 
-     * @return An array of need objects (can be empty)
+     * @param need need object to create and save
+     * 
+     * @return new need if successful, false otherwise 
      * 
      * @throws IOException if an issue with underlying storage
      */

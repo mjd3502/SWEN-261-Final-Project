@@ -62,6 +62,16 @@ public interface CupboardDAO {
      */
     boolean deleteNeed(int Id) throws IOException;
 
+    /**
+     * Updates a need
+     * 
+     * @param need need object to update and save
+     * 
+     * @return updated need if successful, null if
+     * need could not be found
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
     Need updateNeed(Need need) throws IOException;
 
     List<Need> getEntireCupboard() throws IOException;

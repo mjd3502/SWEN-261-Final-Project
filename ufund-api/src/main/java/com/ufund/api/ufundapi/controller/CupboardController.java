@@ -145,12 +145,12 @@ public class CupboardController {
     }
     
     /**
-     * Updates the {@linkplain Need need} with the provided {@linkplain Need need} object, if it exists
+     * Updates the need with the provided need object, if it exists
      * 
-     * @param need The {@link Need need} to update
+     * @param need The need to be updated
      * 
-     * @return ResponseEntity with updated {@link Need need} object and HTTP status of OK if updated<br>
-     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * @return ResponseEntity with updated need object and HTTP status of OK if updated
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
@@ -172,6 +172,16 @@ public class CupboardController {
         }
     }
 
+    /**
+     * Responds to the GET request for all needs whose name contains
+     * the text in the name parameter
+     * 
+     * @param name The name parameter which contains the text used to find the needs
+     * 
+     * @return ResponseEntity with array of need objects (can be empty) and
+     * HTTP status of OK
+     * ResponseEntity with HTTP status of NOT_FOUND otherwise
+     */
     @GetMapping("/needs")
     public ResponseEntity<Need[]> searchCupboard(@RequestParam String name){
         LOG.info("GET /cupboard/?name="+name);

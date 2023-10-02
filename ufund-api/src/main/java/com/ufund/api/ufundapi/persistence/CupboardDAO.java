@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.ufund.api.ufundapi.model.Need;
 
+/**
+ * Defines the interface for Cupboard object persistence
+ * 
+ * @author Cheyenne Zhang, Carla Lopez, Rachel Atkins, Garrett Geyer, Michael Dibiase
+ */
 public interface CupboardDAO {
 
 

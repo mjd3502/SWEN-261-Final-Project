@@ -143,7 +143,6 @@ This section describes the web interface flow; this is how the user views and in
 ## Testing
 > _This section will provide information about the testing performed
 > and the results of the testing._
-
 ### Acceptance Testing
 > _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
 > acceptance criteria tests, the number that have some acceptance
@@ -159,3 +158,7 @@ This section describes the web interface flow; this is how the user views and in
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
+
+
+## Use of Postman API Platform for Sprint 1 RestAPI Demo
+> The Postman API Platform will be used to manage and document the Restful API's of our application. Postman is a development tool which helps build, test and modify API's. Postman offers a usr-friendly graphical interface that makes it easier for the team of developers, as well as the product owner, to interact with API's. The team "Sultans of Scrum" has a "workspace" in which the Restful API's of our applciation will be stored. The workspace facilitates collaboration in the team by allowing us to share our collection of API's and maintain a record of them.

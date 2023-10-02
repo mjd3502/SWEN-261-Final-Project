@@ -40,7 +40,7 @@ public class CupboardController {
             if(foundNeed != null){
                 return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
             }else{
-                 return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
+                 return new ResponseEntity<Need>(foundNeed,HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

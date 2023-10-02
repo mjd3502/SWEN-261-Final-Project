@@ -23,6 +23,17 @@ public interface CupboardDAO {
      */
     Need createNeed(Need need) throws IOException;
 
+    /**
+     * GETS a need with the given id
+     * 
+     * @param id The id of the need to retrieve
+     * 
+     * @return a need object with the matching id
+     * 
+     * null if no need with a matching id is found
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
     Need getSingleNeed(int id) throws IOException;
 
     Need[] getNeedbyName(String name) throws IOException;

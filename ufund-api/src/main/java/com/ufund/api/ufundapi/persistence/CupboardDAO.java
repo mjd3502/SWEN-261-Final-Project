@@ -41,7 +41,7 @@ public interface CupboardDAO {
      * 
      * @param name The name of the need to be retrieved
      * 
-     * @return a need object with the matching name
+     * @return a need with the matching name
      * 
      * null if no need with a matching name is found
      * 
@@ -74,6 +74,13 @@ public interface CupboardDAO {
      */
     Need updateNeed(Need need) throws IOException;
 
+    /**
+     * Retrieves entire Cupboard of needs
+     * 
+     * @return A list of need objects (can be empty)
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
     List<Need> getEntireCupboard() throws IOException;
 
     

@@ -74,31 +74,20 @@ public class CupboardController {
      * ResponseEntity with HTTP status of CONFLICT if need object already exists
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
+
+    private boolean validateFields(String  value){
+
+        return value == null || value.isEmpty();
+
+    }
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
 
-        if(need.getName() == null){
+        if(validateFields(need.getName()) || validateFields(need.getDescription()) || validateFields(need.getType()) ){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(need.getName().equals("")){
-             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        if(need.getType() == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(need.getType().equals("")){
-             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        if(need.getDescription() == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        if(need.getDescription().equals("")){
-             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        
         try {
             
             Need need1 = cupboardDao.createNeed(need);

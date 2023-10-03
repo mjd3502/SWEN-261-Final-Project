@@ -113,6 +113,27 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
+     @Test
+    public void createNeedQuantytZero() throws IOException{
+        
+        Need need = new Need(0, "Volunteer to pet a dog", 0, "donate dog fod", 10, "volunteerring ");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
+
+     @Test
+    public void createNeedCosttZero() throws IOException{
+        
+        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", 0, "volunteerring ");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
 
 
      /**

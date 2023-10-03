@@ -186,7 +186,7 @@ public class CupboardController {
      */
     @GetMapping(" ")
     public ResponseEntity<List<Need>> getEntireCupboard(){
-        LOG.info("GET /cupbaord/" );
+        LOG.info("GET /cupboard/" );
        List<Need> responseEntity = new ArrayList<>();
 
         try {

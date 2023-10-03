@@ -238,6 +238,7 @@ public class CupboardControllerTest {
      * Method for updating a need 
      * @throws IOException
      */
+    
     @Test
     public void updateNeed() throws IOException{
 
@@ -250,6 +251,7 @@ public class CupboardControllerTest {
 
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
     }
+
 
     @Test
     public void updateNeedFailed() throws IOException{

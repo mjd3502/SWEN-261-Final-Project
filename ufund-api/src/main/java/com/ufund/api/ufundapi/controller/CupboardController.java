@@ -41,11 +41,11 @@ public class CupboardController {
     }
 
     /**
-     * Responds to the GET request for a single need 
+     * Responds to the GET request for a single need when given a need object as a request body
      * 
-     * @param need the need used to access the id in order to get a single need
+     * @param need The need used to access the id in order to get a single need
      * 
-     * @return ResponseEntity with need object and HTTP status of CREATED if found
+     * @return ResponseEntity with need object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
@@ -73,8 +73,14 @@ public class CupboardController {
      * @return ResponseEntity with created need object and HTTP status of CREATED
      * ResponseEntity with HTTP status of CONFLICT if need object already exists
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     *  ResponseEntity with HTTP status of BAD_REQUEST if fields are null or zero( for attributes with an integer value)
      */
 
+
+
+     /**
+         * Private methods to validate the values in the need object 
+    */
     private boolean validateStringFields(String  value){
 
         return value == null || value.isEmpty();
@@ -90,7 +96,7 @@ public class CupboardController {
         LOG.info("POST /cupboard " + need);
 
         /**
-         * Needs will only be created if the fields of name,description and type have a value
+         * Needs will only be created if all fields have a value
          */
         if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

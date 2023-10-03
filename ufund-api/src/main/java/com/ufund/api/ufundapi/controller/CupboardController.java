@@ -77,6 +77,28 @@ public class CupboardController {
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
+
+        if(need.getName() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(need.getName().equals("")){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if(need.getType() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(need.getType().equals("")){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if(need.getDescription() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(need.getDescription().equals("")){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
         try {
             
             Need need1 = cupboardDao.createNeed(need);

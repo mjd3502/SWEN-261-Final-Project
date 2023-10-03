@@ -92,6 +92,29 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
     }
 
+     @Test
+    public void createNeedEmptyName() throws IOException{
+        
+        Need need = new Need(0, "", 10, "donate dog fod", 0, "goods");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
+
+     @Test
+    public void createNeedEmptyType() throws IOException{
+        
+        Need need = new Need(0, "Carla", 10, "donate dog fod", 0, "");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
+
+
      /**
      * Method for getting entire cupboard
      * @throws IOException

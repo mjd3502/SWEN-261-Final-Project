@@ -1,7 +1,7 @@
-# U-Fund:  _____ _replace with your particular fundraising type_ _____
+# U-Fund: The Mia Foundation (Animal shelter)
 # Modify this document to expand any and all sections that are applicable for a better understanding from your users/testers/collaborators (remove this comment and other instructions areas for your FINAL release)
 
-An online U-Fund system built in Java 17=> and ___ _replace with other platform requirements_ ___
+An online U-Fund system built in Java 17=> and Angular 16.2.3
   
 ## Team
 
@@ -14,8 +14,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 ## Prerequisites
 
 - Java 11=>17 (Make sure to have correct JAVA_HOME setup in your environment)
-- Maven
--  _add any other tech stack requirements_
+- Maven 3.8
+- Angular 16.2.3
 
 
 ## How to run it
@@ -30,6 +30,8 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 
 Document any known bug or nuisance.
 If any shortcomings, make clear what these are and where they are located.
+
+Our team had issues with the curl commands to test our functions from the terminal or command prompt. During development we referred to the slide show and materials found in the SWEN website as well as other outside documentation to try and understand the command. For all team members the curl commands did not work as expected as we had issues with proper syntax in the terminal. To overcome this we decided to use the Postman application, this software allows us to by pass the command line. Postman directly interacts with our api and uses GET, POST etc. and the proper url to show what the system outputs and the codes associated with it. This made testing far easier and better streamlined for the team!
 
 ## How to test it
 

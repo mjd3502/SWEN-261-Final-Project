@@ -41,11 +41,11 @@ public class CupboardController {
     }
 
     /**
-     * Responds to the GET request for a single need 
+     * Responds to the GET request for a single need when given a need object as a request body
      * 
-     * @param need the need used to access the id in order to get a single need
+     * @param need The need used to access the id in order to get a single need
      * 
-     * @return ResponseEntity with need object and HTTP status of CREATED if found
+     * @return ResponseEntity with need object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
@@ -56,7 +56,7 @@ public class CupboardController {
         try {
             Need foundNeed = cupboardDao.getSingleNeed(id);
             if(foundNeed != null){
-                return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
+                return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
             }else{
                  return new ResponseEntity<Need>(foundNeed,HttpStatus.NOT_FOUND);
             }
@@ -73,13 +73,43 @@ public class CupboardController {
      * @return ResponseEntity with created need object and HTTP status of CREATED
      * ResponseEntity with HTTP status of CONFLICT if need object already exists
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     *  ResponseEntity with HTTP status of BAD_REQUEST if fields are null or zero( for attributes with an integer value)
      */
+
+
+
+     /**
+         * Private methods to validate the values in the need object 
+    */
+    private boolean validateStringFields(String  value){
+
+        return value == null || value.isEmpty();
+
+    }
+
+    private boolean validateIntegerFields(int  value){
+        return value == 0;
+    }
+
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
+
+        /**
+         * Needs will only be created if all fields have a value
+         */
+        if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         try {
-            
+
             Need need1 = cupboardDao.createNeed(need);
+
             if (need1 != null)
                 return new ResponseEntity<Need>(need1,HttpStatus.CREATED);
             else
@@ -118,6 +148,34 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    /**
+     * Deletes a need with the provided name
+     * 
+     * @param name The name of the need to delete
+     * 
+     * @return ResponseEntity HTTP status of OK if deleted
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @DeleteMapping("/name/{name}")
+    public ResponseEntity<Need> deleteNeedbyName(@PathVariable String name) {
+        LOG.info("DELETE /cupboard/" + name);
+
+        try {
+            boolean didit = cupboardDao.deleteNeedbyName(name);
+            if (didit){
+                return new ResponseEntity<Need>(HttpStatus.OK); 
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
     /**
      * Responds to the GET request for all needs in the entire Cupboard
@@ -128,7 +186,7 @@ public class CupboardController {
      */
     @GetMapping(" ")
     public ResponseEntity<List<Need>> getEntireCupboard(){
-        LOG.info("GET /cupbaord/" );
+        LOG.info("GET /cupboard/" );
        List<Need> responseEntity = new ArrayList<>();
 
         try {

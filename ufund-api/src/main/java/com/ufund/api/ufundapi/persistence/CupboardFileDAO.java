@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -180,9 +181,23 @@ public class CupboardFileDAO implements CupboardDAO{
         if(cupboard.containsKey(Id)){
             cupboard.remove(Id);
             return save();
-        } else {
+        }else {
             return false;
         }
+    }
+
+     /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public boolean deleteNeedbyName(String name) throws IOException {
+        for(Need need: cupboard.values()){
+            if(need.getName().equals(name)){
+                cupboard.remove(need.getId());
+                return save();
+            }
+        }
+        return false;
     }
 
     /**

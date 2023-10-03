@@ -77,3 +77,10 @@ To run tests on all the tiers in isolation do this:
 MIT License
 
 See LICENSE for details.
+
+## Release 1.1
+In this release we delivered the correct our RESTAPI and fixed the HTPP status response for our methods
+
+## Release 1.2
+In this release we delivered our RestAPI, fixed the HTTP status response of our POST METHOD to create a need in which we considered the cases 
+when empty fields are given in the need object. Furthermore, we addded a CRUD DELETE method that deletes a need from the cupboard by name

@@ -56,7 +56,7 @@ public class CupboardController {
         try {
             Need foundNeed = cupboardDao.getSingleNeed(id);
             if(foundNeed != null){
-                return new ResponseEntity<Need>(foundNeed,HttpStatus.CREATED);
+                return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
             }else{
                  return new ResponseEntity<Need>(foundNeed,HttpStatus.NOT_FOUND);
             }

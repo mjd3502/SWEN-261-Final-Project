@@ -75,22 +75,35 @@ public class CupboardController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
 
-    private boolean validateFields(String  value){
+    private boolean validateStringFields(String  value){
 
         return value == null || value.isEmpty();
 
     }
+
+    private boolean validateIntegerFields(int  value){
+        return value == 0;
+    }
+
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
 
-        if(validateFields(need.getName()) || validateFields(need.getDescription()) || validateFields(need.getType()) ){
+        /**
+         * Needs will only be created if the fields of name,description and type have a value
+         */
+        if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         try {
-            
+
             Need need1 = cupboardDao.createNeed(need);
+
             if (need1 != null)
                 return new ResponseEntity<Need>(need1,HttpStatus.CREATED);
             else

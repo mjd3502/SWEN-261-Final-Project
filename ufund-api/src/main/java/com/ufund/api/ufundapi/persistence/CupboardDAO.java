@@ -48,6 +48,8 @@ public interface CupboardDAO {
      */
     Need[] getNeedbyName(String name) throws IOException;
 
+     boolean deleteNeedbyName(String name) throws IOException;
+
     /**
      * Deletes a need with the given id
      * 

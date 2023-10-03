@@ -148,6 +148,34 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    /**
+     * Deletes a need with the provided name
+     * 
+     * @param name The name of the need to delete
+     * 
+     * @return ResponseEntity HTTP status of OK if deleted
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
+    @DeleteMapping("/name/{name}")
+    public ResponseEntity<Need> deleteNeedbyName(@PathVariable String name) {
+        LOG.info("DELETE /cupboard/" + name);
+
+        try {
+            boolean didit = cupboardDao.deleteNeedbyName(name);
+            if (didit){
+                return new ResponseEntity<Need>(HttpStatus.OK); 
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
     /**
      * Responds to the GET request for all needs in the entire Cupboard

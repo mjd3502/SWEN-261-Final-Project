@@ -209,6 +209,31 @@ public class CupboardControllerTest {
     }
 
 
+    @Test
+    public void deleteNeedbyName() throws IOException{
+
+
+        String name = "Dog volunteering";
+        when(mockcupboardDAO.deleteNeedbyName(name)).thenReturn(true);
+        
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeedbyName(name);
+
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void deleteNeedbyNameNotFound() throws IOException{
+
+
+        String name = "Dog volunteering";
+        when(mockcupboardDAO.deleteNeedbyName(name)).thenReturn(false);
+        
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeedbyName(name);
+
+        assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
+    }
+
+
      /**
      * Method for updating a need 
      * @throws IOException

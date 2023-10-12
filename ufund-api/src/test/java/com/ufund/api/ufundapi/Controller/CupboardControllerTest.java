@@ -261,10 +261,8 @@ public class CupboardControllerTest {
         ResponseEntity<Need> responseEntity = cupboardController.updateNeed(need);
 
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
+    
     }
-
-
-    
-    
-   
 }
+
+

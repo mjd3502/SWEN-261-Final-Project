@@ -58,7 +58,6 @@ export class NeedsService {
         catchError(this.handleError<Need>('updateNeed')))
     }
 
-
     searchCupboardByName(name:string):Observable<Need[]>{
       if(!name.trim()){
         return of([]);
@@ -70,11 +69,11 @@ export class NeedsService {
 
     }
 
-private handleError<T>(operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
-
-    console.error(error);
-    return of(result as T);
-  };
-}
+    private handleError<T>(operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(error);
+        return of(result as T);
+      };
+    }
+    
 }

@@ -154,7 +154,7 @@ public class CupboardFileDAO implements CupboardDAO{
     ** {@inheritDoc}
      */
     @Override
-    public Need getSingleNeed(int id) throws IOException {
+    public Need getSingleNeedById(int id) throws IOException {
         synchronized(cupboard) {
             if (cupboard.containsKey(id))
                 return cupboard.get(id);
@@ -162,6 +162,8 @@ public class CupboardFileDAO implements CupboardDAO{
                 return null;
         }
     }
+
+
 
     /**
     ** {@inheritDoc}
@@ -222,5 +224,7 @@ public class CupboardFileDAO implements CupboardDAO{
        synchronized(cupboard){
         return  Arrays.asList(getcupboardArray());
        }
-    }    
+    }
+
+    
 }

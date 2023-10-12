@@ -33,7 +33,8 @@ public interface CupboardDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Need getSingleNeed(int id) throws IOException;
+    Need getSingleNeedById(int id) throws IOException;
+
 
     /**
      * GETS a need with the given name

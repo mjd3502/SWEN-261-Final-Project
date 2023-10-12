@@ -41,13 +41,13 @@ public class CupboardControllerTest {
     public void getASingleNeedFoundTest() throws IOException{
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
 
-        when(mockcupboardDAO.getSingleNeed(need.getId())).thenReturn(need);
+        when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(need);
 
         // Invoke
         ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
 
         // Analyze
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals(need,response.getBody());
     }
 
@@ -56,7 +56,7 @@ public class CupboardControllerTest {
     public void getSingleNeedNotFound() throws IOException{
         //  int needId = 99;
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
-          when(mockcupboardDAO.getSingleNeed(need.getId())).thenReturn(null);
+          when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(null);
  
          // Invoke
          ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
@@ -68,7 +68,7 @@ public class CupboardControllerTest {
 
     @Test
     public void createNeed() throws IOException{
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
         // when createneed is called, return true simulating successful
         // creation and save
         when(mockcupboardDAO.createNeed(need)).thenReturn(need);
@@ -85,7 +85,7 @@ public class CupboardControllerTest {
     @Test
     public void createNeedFailed() throws IOException{
         
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -95,7 +95,7 @@ public class CupboardControllerTest {
      @Test
     public void createNeedEmptyName() throws IOException{
         
-        Need need = new Need(0, "", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "", 10, "donate dog fod", 10, "goods");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -106,7 +106,7 @@ public class CupboardControllerTest {
      @Test
     public void createNeedEmptyType() throws IOException{
         
-        Need need = new Need(0, "Carla", 10, "donate dog fod", 0, "");
+        Need need = new Need(0, "Carla", 10, "donate dog fod", 10, "");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);

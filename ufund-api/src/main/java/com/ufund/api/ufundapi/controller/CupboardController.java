@@ -54,7 +54,22 @@ public class CupboardController {
         int id = need.getId();
         LOG.info("GET /cupboard/singleNeed");
         try {
-            Need foundNeed = cupboardDao.getSingleNeed(id);
+            Need foundNeed = cupboardDao.getSingleNeedById(id);
+            if(foundNeed != null){
+                return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
+            }else{
+                 return new ResponseEntity<Need>(foundNeed,HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+}
+
+@GetMapping("/{id}")
+    public ResponseEntity<Need> getSingleNeedbyId(@RequestParam int id) {
+        LOG.info("GET /cupboard/{id}");
+        try {
+            Need foundNeed = cupboardDao.getSingleNeedById(id);
             if(foundNeed != null){
                 return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
             }else{

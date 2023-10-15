@@ -104,7 +104,7 @@ public class CupboardController {
     }
 
     private boolean validateIntegerFields(int  value){
-        return value == 0;
+        return value <= 0;
     }
 
     @PostMapping("")
@@ -137,7 +137,7 @@ public class CupboardController {
         }
     }
     
-    
+
     /**
      * Deletes a need with the provided id
      * 

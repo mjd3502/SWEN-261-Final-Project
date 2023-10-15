@@ -184,7 +184,7 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void deleteNeed() throws IOException{
+    public void deleteNeebyId() throws IOException{
 
 
         int needId = 99;
@@ -197,7 +197,7 @@ public class CupboardControllerTest {
 
 
     @Test
-    public void deleteNeedNotFound() throws IOException{
+    public void deleteNeedbyIdNotFound() throws IOException{
 
 
         int needId = 20;

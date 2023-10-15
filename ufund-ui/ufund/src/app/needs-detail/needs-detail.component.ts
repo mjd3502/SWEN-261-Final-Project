@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NeedsService } from '../needs.service';
 
 @Component({
   selector: 'app-needs-detail',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./needs-detail.component.css']
 })
 export class NeedsDetailComponent {
+
+  
 
 }

@@ -152,7 +152,6 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
-
     /**
      * Tests: createNeed (fail case)
      * 
@@ -161,7 +160,24 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void createNeedQuantytZero() throws IOException{
+    public void createNeedQuantityNegative() throws IOException{
+        
+        Need need = new Need(0, "Volunteer to pet a dog", -1, "donate dog fod", 10, "volunteerring ");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
+
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need quantity and that resulting status code is 
+     * BAD REQUEST because quantity is zero.
+     * @throws IOException
+     */
+    @Test
+    public void createNeedQuantityZero() throws IOException{
         
         Need need = new Need(0, "Volunteer to pet a dog", 0, "donate dog fod", 10, "volunteerring ");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
@@ -169,7 +185,6 @@ public class CupboardControllerTest {
         ResponseEntity<Need> response = cupboardController.createNeed(need);
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
-
 
     /**
      * Tests: createNeed (fail case)
@@ -201,8 +216,8 @@ public class CupboardControllerTest {
     public void getEntireCupboardTest() throws IOException{
 
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
-        Need need1 = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
-        Need need2 = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need1 = new Need(0, "Donate toys", 1, "donate dog toys", 0, "goods");
+        Need need2 = new Need(0, "Adopt a dog", 15, "donate dog fod", 0, "volunteering");
 
         List<Need> listOfNeeds = List.of(need,need1,need2);
 
@@ -225,7 +240,7 @@ public class CupboardControllerTest {
     @Test
     public void getNeedbyName() throws IOException{
 
-        Need need = new Need(0, "Carla", 0, "new need ", 0, "volunteer opportunity");
+        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer opportunity");
         Need[] needArray = new Need[1];
         needArray[0] = need;
 
@@ -246,7 +261,7 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void deleteNeed() throws IOException{
+    public void deleteNeebyId() throws IOException{
 
 
         int needId = 99;
@@ -266,7 +281,8 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void deleteNeedNotFound() throws IOException{
+    public void deleteNeedbyIdNotFound() throws IOException{
+
 
         int needId = 20;
         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(false);
@@ -351,6 +367,7 @@ public class CupboardControllerTest {
         ResponseEntity<Need> responseEntity = cupboardController.updateNeed(need);
 
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
+    
     }
 
 }

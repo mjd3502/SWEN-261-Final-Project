@@ -48,6 +48,7 @@ public class CupboardController {
      * @return ResponseEntity with need object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
      */
     @GetMapping("/singleNeed")
     public ResponseEntity<Need> getSingleNeed(@RequestBody Need need) {
@@ -103,7 +104,7 @@ public class CupboardController {
     }
 
     private boolean validateIntegerFields(int  value){
-        return value == 0;
+        return value <= 0;
     }
 
     @PostMapping("")
@@ -136,6 +137,7 @@ public class CupboardController {
         }
     }
     
+
     /**
      * Deletes a need with the provided id
      * 

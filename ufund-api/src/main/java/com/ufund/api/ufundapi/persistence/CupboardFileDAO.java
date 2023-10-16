@@ -98,7 +98,6 @@ public class CupboardFileDAO implements CupboardDAO{
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
         // with the file or reading from the file
-
         objectMapper.writeValue(new File(filename),needArray);
         return true;
     }
@@ -144,10 +143,14 @@ public class CupboardFileDAO implements CupboardDAO{
      */
     @Override
     public Need createNeed(Need need) throws IOException {
-        Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
-        save(); // may throw an IOException
-        cupboard.put(new_need.getId(),new_need);
-        return new_need;
+        synchronized(cupboard){
+             Need new_need = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
+             cupboard.put(new_need.getId(),new_need);
+             save(); // may throw an IOException
+            return new_need;
+        }
+
+       
     }
 
     /**

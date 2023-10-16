@@ -16,5 +16,13 @@
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
     }
+    // },
+    // {
+    //   "type":"java",
+    //   "name": "UfundApiApplication",
+    //   "request": "launch",
+    //   "mainClass": "com.ufund.api.ufundapi.UfundApiApplication",
+    //   "cwd": "${workspaceFolder}/ufund-api"
+    // }
   ]
 }

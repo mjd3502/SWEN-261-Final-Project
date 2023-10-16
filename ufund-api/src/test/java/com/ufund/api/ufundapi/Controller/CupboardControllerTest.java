@@ -17,6 +17,10 @@ import com.ufund.api.ufundapi.controller.CupboardController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
+/*
+ * Author: Carla Lopez @csl5623 
+ */
+
 @Tag("Controller-tier")
 public class CupboardControllerTest {
     private CupboardController cupboardController;

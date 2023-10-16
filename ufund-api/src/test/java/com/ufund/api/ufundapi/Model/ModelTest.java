@@ -8,6 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import com.ufund.api.ufundapi.model.Need;
 
+/**
+ * File: ModelTest.java
+ * Authors: Rachel Adkins and Cheyenne Zhang
+ * Purpose: Provides basic JUnit testing for Need.java class as well as invalid 
+ * input testing for setQuantity, setCost, and setType functions. 
+ */
+
 @Tag("Model-tier")
 public class ModelTest {
     private Need need;

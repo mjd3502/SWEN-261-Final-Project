@@ -109,7 +109,9 @@ public class Need {
      * @param cost The cost of the need
      */
     public void setCost(int cost) {
-        this.cost = cost;
+        if (cost >= 0) {
+            this.cost = cost;
+        }
     }
 
     /**

@@ -1,1 +1,20 @@
-<p>helper-dashboard works!</p>
+<nav class="navbar">
+    <div>Mia Foundation </div>
+    <app-search-bar></app-search-bar>
+    <span class="fa" (click)="iconClicked()">
+        <fa-icon [icon]="shoppingBasket"></fa-icon>
+        <h6>Funding Basket</h6>
+    </span>
+   <span class="fa" (click)="logOut()">
+    <fa-icon [icon]="logOutLogo"> </fa-icon>
+    <h6>Log out</h6>
+   </span>
+   
+</nav>
+<section>
+    <div>Needs and volunteer opportunities</div>
+    <div>
+        <app-browse-needs></app-browse-needs>
+    </div> 
+</section>
+

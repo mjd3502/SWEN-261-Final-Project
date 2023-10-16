@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private service: service) { }
+  constructor(private needsService: NeedsService) { }
   login(): void{
-
+      this.needsService.login()
   }
 }

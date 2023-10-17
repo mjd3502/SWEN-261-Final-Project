@@ -38,7 +38,7 @@ public class Need {
         this.type = type;
 
     }
-
+    
     /**
      * Retrieves the id of the need
      * @return the id of the need

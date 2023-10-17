@@ -1,0 +1,71 @@
+  /* General Styles */ 
+body {
+    font-family: Arial, sans-serif;
+    color: #000;
+    background-color: #fff;
+    padding: 20px;
+}
+
+  /* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+  /* Main Content Styles */
+main {
+    margin-top: 20px;
+}
+
+  /* Box Styles */
+.box {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+  /* Button Styles */
+button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+  /* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+  /* Input Styles */
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+  /* Label Styles */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}

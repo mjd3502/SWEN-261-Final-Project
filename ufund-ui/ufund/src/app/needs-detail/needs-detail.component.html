@@ -1,1 +1,38 @@
 <p>needs-detail works!</p>
+
+<div *ngIf="need">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Needs Page</title>
+</head>
+<body>
+    <header>
+        <h1>Need: <span th:text="${need.name}"></span></h1>
+    </header>
+    <main>
+        <div class="box">
+            <h2><span th:text="${need.name}"></span></h2>
+            <p>Example Need</p>
+        </div>
+        <div class="box">
+            <h2>Description</h2>
+            <p><span th:text="${need.description}"></span></p>
+        </div>
+        <div class="box">
+            <button class="button">Add a Need</button>
+            <button class="button">Drop a Need</button>
+        </div>
+        <div class="box">
+            <h2>Cost</h2>
+            <p>$<span th:text="${need.cost}"></span></p>
+        </div>
+        <div class="box">
+            <button class="button">Add to Cart</button>
+        </div>
+        <div class="box">
+            <img src="null-link" alt="Need Image">
+        </div>
+    </main>
+</body>
+</div>

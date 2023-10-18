@@ -167,8 +167,8 @@ public class ModelTest {
      */
     @Test
     public void testSetType() {
-        need.setType("Goods");
-        assertEquals("Goods", need.getType());
+        need.setType("Volunteer");
+        assertEquals("Volunteer", need.getType());
     }
 
     /**
@@ -177,8 +177,8 @@ public class ModelTest {
      */
     @Test
     public void testSetTypeInvalidInput() {
-        need.setType("Volunteer");
-        assertEquals("Volunteer", need.getType());
+        need.setType("Dog Food");
+        assertEquals("Goods", need.getType());
     }
 
     /**

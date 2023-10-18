@@ -167,8 +167,8 @@ public class ModelTest {
      */
     @Test
     public void testSetType() {
-        need.setType("New Goods");
-        assertEquals("New Goods", need.getType());
+        need.setType("Goods");
+        assertEquals("Goods", need.getType());
     }
 
     /**

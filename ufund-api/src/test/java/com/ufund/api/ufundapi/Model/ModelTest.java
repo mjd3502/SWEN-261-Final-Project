@@ -187,7 +187,7 @@ public class ModelTest {
      */
     @Test
     public void testToString() {
-        //TODO: implement!
+        assertEquals("1, New Name, 10, New Description, 200, Goods", need.toString());
     }
 
 }

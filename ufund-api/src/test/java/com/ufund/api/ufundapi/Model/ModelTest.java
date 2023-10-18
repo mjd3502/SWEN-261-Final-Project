@@ -162,12 +162,13 @@ public class ModelTest {
     }
 
     /**
-     * Tests: setType()
+     * Tests: setType(String type)
      * Author:  Cheyenne Zhang
      */
     @Test
     public void testSetType() {
-        //TODO: implement!
+        need.setType("New Goods");
+        assertEquals("New Goods", need.getType());
     }
 
     /**

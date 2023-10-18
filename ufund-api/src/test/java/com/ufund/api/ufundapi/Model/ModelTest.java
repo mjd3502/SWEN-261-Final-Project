@@ -187,7 +187,7 @@ public class ModelTest {
      */
     @Test
     public void testToString() {
-        assertEquals("1, New Name, 10, New Description, 200, Goods", need.toString());
+        assertEquals("Need [id=1,name =Need, quantity = 10, description = Description, cost = 100, type = Goods]", need.toString());
     }
 
 }

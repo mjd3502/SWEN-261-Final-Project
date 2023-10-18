@@ -153,17 +153,17 @@ public class ModelTest {
     }
 
     /**
-     * Tests: 
-     * Author:  
+     * Tests: getType()
+     * Author:  Cheyenne Zhang
      */
     @Test
     public void testGetType() {
-        //TODO: implement!
+        assertEquals("Goods", need.getType());
     }
 
     /**
-     * Tests: 
-     * Author:  
+     * Tests: setType()
+     * Author:  Cheyenne Zhang
      */
     @Test
     public void testSetType() {
@@ -181,8 +181,8 @@ public class ModelTest {
     }
 
     /**
-     * Tests: 
-     * Author:  
+     * Tests: toString()
+     * Author:  Cheyenne Zhang
      */
     @Test
     public void testToString() {

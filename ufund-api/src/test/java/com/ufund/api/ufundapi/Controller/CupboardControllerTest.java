@@ -221,10 +221,6 @@ public class CupboardControllerTest {
     ResponseEntity<Need> response = cupboardController.createNeed(need);
     assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
-
-
-
-
     /**
      * Tests: getEntireCupboard
      * 
@@ -271,8 +267,6 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 
     }
-
-
     /**
      * Tests: deleteNeed (success case)
      * 
@@ -282,8 +276,6 @@ public class CupboardControllerTest {
      */
     @Test
     public void deleteNeebyId() throws IOException{
-
-
         int needId = 99;
         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
@@ -389,5 +381,4 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     
     }
-
 }

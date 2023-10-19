@@ -8,6 +8,6 @@ import { NeedsService } from '../needs.service';
 })
 export class NeedsDetailComponent {
 
-  
+    
 
 }

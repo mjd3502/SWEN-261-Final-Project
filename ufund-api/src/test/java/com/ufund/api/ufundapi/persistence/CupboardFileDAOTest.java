@@ -35,9 +35,9 @@ public class CupboardFileDAOTest {
     public void setup() throws IOException{
         mockObjectMapper = mock(ObjectMapper.class);
         testNeeds = new Need[3];
-        testNeeds[0] = new Need(99,"food",1,"a thing",20,"good");
-        testNeeds[1] = new Need(100,"f",1,"a thing",20,"good");
-        testNeeds[2] = new Need(99,"Something",1,"a different thing",20,"good");
+        testNeeds[0] = new Need(99,"food",1,"a thing",20,"goods");
+        testNeeds[1] = new Need(100,"f",1,"a thing",20,"goods");
+        testNeeds[2] = new Need(99,"Something",1,"a different thing",20,"goods");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
@@ -113,7 +113,7 @@ public class CupboardFileDAOTest {
     
     @Test
     public void testCreateValidNeed(){
-        Need need = new Need(73,"Hello!!", 1, "Lorem Ipsum", 1, "good");
+        Need need = new Need(73,"Hello!!", 1, "Lorem Ipsum", 1, "goods");
         
 
         // Invoke
@@ -153,7 +153,7 @@ public class CupboardFileDAOTest {
     @Test
     public void testDeleteExistingNeed(){
         // Setup
-        Need need = new Need(1000,"Delete me!", 1, "Lorem Ipsum", 1, "good");
+        Need need = new Need(1000,"Delete me!", 1, "Lorem Ipsum", 1, "goods");
         
         try {
             cupboardFileDAO.createNeed(need);
@@ -201,7 +201,7 @@ public class CupboardFileDAOTest {
     @Test
     public void testGetSingleNeed() throws IOException{
         // Setup
-        Need need = new Need(20,"Get this need by ID", 1, "Lorem Ipsum", 1, "good");
+        Need need = new Need(20,"Get this need by ID", 1, "Lorem Ipsum", 1, "goods");
 
         cupboardFileDAO.createNeed(need);
 
@@ -242,7 +242,7 @@ public class CupboardFileDAOTest {
     @Test
     public void getOneNeedbyName() throws IOException{
         // Setup
-        Need need = new Need(999,"Get this need!", 1, "Lorem Ipsum", 1, "good");
+        Need need = new Need(999,"Get this need!", 1, "Lorem Ipsum", 1, "goods");
 
         cupboardFileDAO.createNeed(need);
 
@@ -267,7 +267,7 @@ public class CupboardFileDAOTest {
     @Test
     public void get2NeedsByName() throws IOException{
         // Setup
-        Need need1 = new Need(124,"Dog food!", 1, "Lorem Ipsum", 1, "good");
+        Need need1 = new Need(124,"Dog food!", 1, "Lorem Ipsum", 1, "goods");
         Need need2 = new Need(123,"Dog walking", 1, "Lorem Ipsum", 1, "volunteer");
 
         cupboardFileDAO.createNeed(need1);

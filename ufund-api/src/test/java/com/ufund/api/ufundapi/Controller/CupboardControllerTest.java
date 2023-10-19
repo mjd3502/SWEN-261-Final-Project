@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.Controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -214,7 +215,7 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void createNeedCosttZero() throws IOException{
+    public void createNeedCostZero() throws IOException{
         
         Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", 0, "volunteerring ");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
@@ -232,6 +233,10 @@ public class CupboardControllerTest {
     ResponseEntity<Need> response = cupboardController.createNeed(need);
     assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
+
+
+
+
     /**
      * Tests: getEntireCupboard
      * 
@@ -256,6 +261,18 @@ public class CupboardControllerTest {
 
     }
 
+     @Test
+    public void getEntireCupboardInternalServerError() throws IOException {
+    
+
+        when(mockcupboardDAO.getEntireCupboard()).thenThrow(new RuntimeException("Internal Server Error"));
+
+        ResponseEntity<List<Need>> responseEntity = cupboardController.getEntireCupboard();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
+
+
 
     /**
      * Tests: searchCupboard
@@ -278,6 +295,22 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 
     }
+
+
+    @Test
+    public void getNeedByNameInternalServerError() throws IOException {
+    
+        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer opportunity");
+
+        when(mockcupboardDAO.getNeedbyName(anyString())).thenThrow(new IOException("Internal Server Error"));
+
+        ResponseEntity<Need[]> responseEntity = cupboardController.searchCupboard(need.getName());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
+
+
+
     /**
      * Tests: deleteNeed (success case)
      * 

@@ -49,63 +49,28 @@ public class CupboardFileDAOTest {
 
 
     /*---------------------------------TESTS----------------------- 
-     * make sure to Tag tests with @Test
+     * @author garrett Geyer
     */
 
+    @Test
+    public void testUpdateNeed(){
+        try{
+        // Setup
+        Need need = new Need(99,"food but better", 1, "even more food", 10, "goods");
 
+        // Invoke
+        Need result = assertDoesNotThrow(() -> cupboardFileDAO.updateNeed(need),"Unexpected exception thrown");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Analyze
+        assertNotNull(result);
+        Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
+        assertEquals(actual,need);
+        } catch (IOException e) {
+            //if error was thrown assert false, test failed
+            assertFalse(true);
+        }
+    }
+    
 
 /*---------------------------------TESTS----------------------- 
      * @author Michael DiBiase mjd3502@rit.edu

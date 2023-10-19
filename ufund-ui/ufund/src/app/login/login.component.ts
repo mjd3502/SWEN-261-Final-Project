@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+//import { User } from '../User';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +23,7 @@ export class LoginComponent {
     if(username === 'admin'){
       this.changeRoute('/helperDashboard')
     }else{
-      
+
       this.changeRoute('/checkout')
     }
 

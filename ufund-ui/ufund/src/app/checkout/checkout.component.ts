@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Need } from '../Need';
+import { NeedsService } from '../needs.service'
 
 @Component({
   selector: 'app-checkout',
@@ -6,23 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  constructor(){
+  needs: Need[] = [];
+
+  constructor(private needsService: NeedsService){}
+
+  calculateTotal(): void{
 
   }
 
-  calculateTotal(){
+  addQuantity(): void{
 
   }
 
-  addQuantity(){
+  removeQuantity(): void{
 
   }
 
-  removeQuantity(){
-
-  }
-
-  deleteNeed(){
+  deleteNeed(need: Need): void{
 
   }
 }

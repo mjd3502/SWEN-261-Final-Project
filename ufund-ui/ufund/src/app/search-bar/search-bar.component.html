@@ -4,9 +4,11 @@
 
     <ul>
         <li *ngFor="let need of needs$ | async" > 
-            {{need.name}}
+            <a routerLink="/detail/{{need.id}}">
+                {{need.name}}
+              </a>
         </li>
-            
+       
     </ul>
 
 </div>

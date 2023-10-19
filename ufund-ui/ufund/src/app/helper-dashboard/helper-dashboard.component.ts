@@ -23,10 +23,16 @@ export class HelperDashboardComponent {
   }
 
   redirectToPage(){
-    this.router.navigate(["login"])
+    this.router.navigate(["/login"])
   }
 
-  logOut(){
+  const = "/login";
+
+  hello():string{
+      return this.const;
+  }
+
+  logOut() {
     Swal.fire({
       title:"Ready to leave?",
       text:"Click below if you are ready to end your current session.",

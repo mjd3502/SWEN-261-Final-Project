@@ -258,6 +258,40 @@ public class CupboardFileDAOTest {
         }
     }
 
+    @Test
+    public void test_deleteByName() throws IOException{
+        Need deleteme = new Need(145, "Delete this!", 1, "Lorem Ipsum", 10, "goods");
+        
+        
+        cupboardFileDAO.createNeed(deleteme);
+        
+        // Invoke
+        try {
+            boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
+
+            assertTrue(result);
+
+        } catch (IOException e) {
+            //if error was thrown assert false, test failed
+            assertFalse(true);
+        }
+    }
+
+    @Test
+    public void test_deleteInvalidByName() throws IOException{
+        // Invoke
+        try {
+            boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
+
+            //result should be false
+            assertTrue(!result);
+
+        } catch (IOException e) {
+            //if error was thrown assert false, test failed
+            assertFalse(true);
+        }
+    }
+
 
 
 

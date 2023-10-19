@@ -5,23 +5,23 @@ label {
     margin-top: 1rem;
     margin-bottom: .5rem;
   
-  }
-  input {
+}input {
     padding: .5rem;
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
     display: block;
-  }
+}
   
-  input:focus {
+input:focus {
     outline: #336699 auto 1px;
-  }
+}
   
-  li {
+li {
     list-style-type: none;
-  }
-  .search-result li a {
+}
+
+.search-result li a {
     background-color: #f0f4f6;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
@@ -33,18 +33,18 @@ label {
     box-sizing: border-box;
     text-decoration: none;
     color: rgb(196, 173, 173);
-  }
+}
   
-  .search-result li a:hover {
+.search-result li a:hover {
     background-color: #9aacb1;
     color: white;
-  }
+}
   
-  ul.search-result {
+ul.search-result {
     margin-top: 0;
     padding-left: 0;
     list-style: none;
-  }
+}
 
 #search-content{
   text-align: center;

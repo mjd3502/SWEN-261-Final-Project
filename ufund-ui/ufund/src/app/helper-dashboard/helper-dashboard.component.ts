@@ -23,28 +23,29 @@ export class HelperDashboardComponent {
 
   redirectToPage(){
     this.router.navigate(["/login"])
-  }
-
-  const = "/login";
-
-  hello():string{
-      return this.const;
+  
   }
 
   logOut() {
+    
     Swal.fire({
       title:"Ready to leave?",
       text:"Click below if you are ready to end your current session.",
       showCancelButton:true,
       showConfirmButton:true,
       confirmButtonText:"Log out",
+
     }).then((result =>{
 
       if(result.isConfirmed){
         this.redirectToPage();
         console.log("log out")
       }
+    
     }))
+    
     console.log("button working")
+
+
   }
 }

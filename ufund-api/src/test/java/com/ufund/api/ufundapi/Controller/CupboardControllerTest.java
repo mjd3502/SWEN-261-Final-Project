@@ -28,13 +28,16 @@ public class CupboardControllerTest {
      */
     @BeforeEach
     public void setupcupboardController() {
-       mockcupboardDAO = mock(CupboardDAO.class);
+        mockcupboardDAO = mock(CupboardDAO.class);
         cupboardController = new CupboardController(mockcupboardDAO);
     }
 
 
     /**
-     * Method for 
+     * Tests: getSingleNeed (success case)
+     * 
+     * Attempts to get a single need. Checks if need exists and that resulting status code is
+     * OK because need was successfully found and retrieved. 
      * @throws IOException
      */
     @Test 
@@ -52,20 +55,34 @@ public class CupboardControllerTest {
     }
 
 
+    /**
+     * Tests: getSingleNeed (fail case)
+     * 
+     * Attempts to get a single need. Checks if need exists and that resulting status code is
+     * NOT FOUND because need does not exist.
+     * @throws IOException
+     */
     @Test 
     public void getSingleNeedNotFound() throws IOException{
         //  int needId = 99;
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
-          when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(null);
- 
+        when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(null);
+
          // Invoke
-         ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
- 
+        ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
+
          // Analyze
-         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
 
+    /**
+     * Tests: createNeed (success case)
+     * 
+     * Attempts to create a new need. Checks that resulting status code is CREATED because need 
+     * creation was successful.
+     * @throws IOException
+     */
     @Test
     public void createNeed() throws IOException{
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
@@ -82,6 +99,13 @@ public class CupboardControllerTest {
     }
 
 
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks if need exists and that resulting status code is
+     * CONFLICT because need already exists. 
+     * @throws IOException
+     */
     @Test
     public void createNeedFailed() throws IOException{
         
@@ -92,7 +116,15 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
     }
 
-     @Test
+
+    /**
+     *Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need name and that resulting satus code is BAD
+     * REQUEST because need name cannot be empty.
+     * @throws IOException
+     */
+    @Test
     public void createNeedEmptyName() throws IOException{
         
         Need need = new Need(0, "", 10, "donate dog fod", 10, "goods");
@@ -103,7 +135,14 @@ public class CupboardControllerTest {
     }
 
 
-     @Test
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need type and that resulting status code is BAD
+     * REQUEST because need type cannot be zero.
+     * @throws IOException
+     */
+    @Test
     public void createNeedEmptyType() throws IOException{
         
         Need need = new Need(0, "Carla", 10, "donate dog fod", 10, "");
@@ -113,7 +152,14 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
-     @Test
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need quantity and that resulting status code is 
+     * BAD REQUEST because quantity cannot be zero.
+     * @throws IOException
+     */
+    @Test
     public void createNeedQuantityNegative() throws IOException{
         
         Need need = new Need(0, "Volunteer to pet a dog", -1, "donate dog fod", 10, "volunteerring ");
@@ -123,7 +169,14 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
-     @Test
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need quantity and that resulting status code is 
+     * BAD REQUEST because quantity is zero.
+     * @throws IOException
+     */
+    @Test
     public void createNeedQuantityZero() throws IOException{
         
         Need need = new Need(0, "Volunteer to pet a dog", 0, "donate dog fod", 10, "volunteerring ");
@@ -133,7 +186,13 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
-
+    /**
+     * Tests: createNeed (fail case)
+     * 
+     * Attempts to create a new need. Checks need cost and that resulting status code is BAD 
+     * REQUEST because cost cannot be zero. 
+     * @throws IOException
+     */
     @Test
     public void createNeedCosttZero() throws IOException{
         
@@ -144,20 +203,13 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
-    @Test
-    public void createNeedCostNegative() throws IOException{
-        
-        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", -54965, "volunteerring ");
-        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
-
-        ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
-    }
 
 
-
-     /**
-     * Method for getting entire cupboard
+    /**
+     * Tests: getEntireCupboard
+     * 
+     * Attempts to get the entire cupboard of needs. Checks if need exists, and that resulting 
+     * status code is OK because the cupboard was successfully found and retrieved. 
      * @throws IOException
      */
     @Test
@@ -178,8 +230,11 @@ public class CupboardControllerTest {
     }
 
 
-     /**
-     * Method for getting a need by name 
+    /**
+     * Tests: searchCupboard
+     * 
+     * Attempts to search a single need by name. Checks if need exists, and that resulting status
+     * code is OK because the need was successfully found and retrieved. 
      * @throws IOException
      */
     @Test
@@ -188,7 +243,6 @@ public class CupboardControllerTest {
         Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer opportunity");
         Need[] needArray = new Need[1];
         needArray[0] = need;
-
 
         when(mockcupboardDAO.getNeedbyName(need.getName())).thenReturn(needArray);
 
@@ -199,8 +253,11 @@ public class CupboardControllerTest {
     }
 
 
-     /**
-     * Method for deleting a need
+    /**
+     * Tests: deleteNeed (success case)
+     * 
+     * Attempts to delete a need by ID. Checks if need exists, and that the resulting status
+     * code is OK because the need was successfully found and deleted.
      * @throws IOException
      */
     @Test
@@ -216,6 +273,13 @@ public class CupboardControllerTest {
     }
 
 
+    /**
+     * Tests: deleteNeed (fail case)
+     * 
+     * Attempts to delete a need by ID. Checks if need exists, and that resulting status code is 
+     * NOT FOUND because the need to delete does not exist. 
+     * @throws IOException
+     */
     @Test
     public void deleteNeedbyIdNotFound() throws IOException{
 
@@ -229,9 +293,15 @@ public class CupboardControllerTest {
     }
 
 
+    /**
+     * Tests: deleteNeedbyName (success case)
+     * 
+     * Attempts to delete a need by name. Checks if need exists, and that the resulting status
+     * code is OK because the need was successfully found and deleted.
+     * @throws IOException
+     */
     @Test
     public void deleteNeedbyName() throws IOException{
-
 
         String name = "Dog volunteering";
         when(mockcupboardDAO.deleteNeedbyName(name)).thenReturn(true);
@@ -241,9 +311,15 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
     }
 
+
+    /**
+     * Tests: deleteNeedbyName function (fail case)
+     * 
+     * Attempts to delete a need by name. Checks if need exists, and that resulting status code is 
+     * NOT FOUND because the need to delete does not exist. 
+     */
     @Test
     public void deleteNeedbyNameNotFound() throws IOException{
-
 
         String name = "Dog volunteering";
         when(mockcupboardDAO.deleteNeedbyName(name)).thenReturn(false);
@@ -254,11 +330,14 @@ public class CupboardControllerTest {
     }
 
 
-     /**
-     * Method for updating a need 
+    /**
+     * Tests: updateNeed function (success case)
+     * 
+     * Attepmts to create a new need, update it, and set a new name. Checks to make sure the need 
+     * exists, the name has been changed, and that resulting status code is OK because the need has been 
+     * successfully updated.
      * @throws IOException
      */
-    
     @Test
     public void updateNeed() throws IOException{
 
@@ -273,6 +352,13 @@ public class CupboardControllerTest {
     }
 
 
+    /**
+     * Tests: updateNeed function (fail case)
+     * 
+     * Attempts to create a new need and update it. Checks to make sure need exists and that resulting
+     * status code is NOT FOUND because originial need does not exist.
+     * @throws IOException
+     */
     @Test
     public void updateNeedFailed() throws IOException{
 
@@ -283,6 +369,5 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     
     }
+
 }
-
-

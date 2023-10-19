@@ -1,4 +1,3 @@
 
-
-
-[{"id":3,"name":"carla","quantity":10,"description":"hello","cost":10,"type":"volunteer"}]
+[{"id":3,"name":"carla","quantity":10,"description":"hello","cost":10,"type":"volunteer"},
+{"id":5,"name":"Micael","quantity":10,"description":"WHATS UP!","cost":300,"type":"good"}

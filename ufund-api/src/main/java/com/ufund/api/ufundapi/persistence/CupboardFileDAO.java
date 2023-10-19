@@ -29,10 +29,10 @@ public class CupboardFileDAO implements CupboardDAO{
 
     /**
      * Creates a Cupboard File Data Access Object
-     * 
+     *
      * @param filename Filename to read from and write to
      * @param objectMapper Provides JSON Object to/from Java Object serialization and deserialization
-     * 
+     *
      * @throws IOException when file cannot be accessed or read from
      */
     public CupboardFileDAO(@Value("${cupboard.file}")String filename,ObjectMapper objectMapper) throws IOException {
@@ -43,7 +43,7 @@ public class CupboardFileDAO implements CupboardDAO{
 
     /**
      * Generates the next id for a new need
-     * 
+     *
      * @return The next id
      */
     private synchronized static int nextId() {
@@ -54,7 +54,7 @@ public class CupboardFileDAO implements CupboardDAO{
 
     /**
      * Generates an array of needs from the tree map
-     * 
+     *
      * @return  The array of needs, may be empty
      */
     private Need[] getcupboardArray() {
@@ -67,7 +67,7 @@ public class CupboardFileDAO implements CupboardDAO{
      * <br>
      * If containsText is null, the array contains all of the needs
      * in the tree map
-     * 
+     *
      * @return  The array of needs, may be empty
      */
     private Need[] getcupboardArray(String containsText) { // if containsText == null, no filter
@@ -86,9 +86,9 @@ public class CupboardFileDAO implements CupboardDAO{
 
     /**
      * Saves the needs from the map into the file as an array of JSON objects
-     * 
+     *
      * @return true if the needs were written successfully
-     * 
+     *
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
@@ -105,9 +105,9 @@ public class CupboardFileDAO implements CupboardDAO{
      * Loads needs from the JSON file into the map
      * <br>
      * Also sets next id to one more than the greatest id found in the file
-     * 
+     *
      * @return true if the file was read successfully
-     * 
+     *
      * @throws IOException when file cannot be accessed or read from
      */
     private boolean load() throws IOException {
@@ -149,7 +149,7 @@ public class CupboardFileDAO implements CupboardDAO{
             return new_need;
         }
 
-       
+
     }
 
     /**
@@ -228,5 +228,5 @@ public class CupboardFileDAO implements CupboardDAO{
        }
     }
 
-    
+
 }

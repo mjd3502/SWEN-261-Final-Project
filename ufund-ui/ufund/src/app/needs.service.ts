@@ -58,14 +58,17 @@ export class NeedsService {
         catchError(this.handleError<Need>('updateNeed')))
     }
 
-    searchCupboardByName(name:string):Observable<Need[]>{
+    searchCupboardByName(name:string): Observable<Need[]>{
       if(!name.trim()){
         return of([]);
       }
-      return this.http.get<Need[]>(`${this.cupBoardURL}/?name=${name}`)
-      .pipe(
-        catchError(this.handleError<Need[]>('searchNeeds', []))
-      );
+
+      const url = `${this.cupBoardURL}/needs/?name=${name}`
+      
+      console.log('im working' + url)
+      return this.http.get<Need[]>(url).pipe(
+        catchError(this.handleError<Need[]>('searcNeed', []))
+        );
 
     }
 

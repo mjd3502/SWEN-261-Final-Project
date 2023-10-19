@@ -21,7 +21,7 @@ public class Need {
     @JsonProperty("type")private String type;
     
     /**
-     * Create a hero with the given id, name quantity, description, cost, and type
+     * Create a need with the given id, name quantity, description, cost, and type
      * @param id The id of the need
      * @param name The name of the need
      * @param quantity The quantity of the need
@@ -36,7 +36,6 @@ public class Need {
         this.description = description;
         this.cost = cost;
         this.type = type;
-
     }
 
     /**
@@ -72,11 +71,13 @@ public class Need {
     }
 
     /**
-     * Sets the quantity of the need - necessary for Java object deserialization
+     * Sets the quantity of the need if > or = 0; necessary for Java object deserialization
      * @param quantity The quantity of the need
      */
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        if (quantity >= 0) {
+            this.quantity = quantity;
+        }
     }
 
     /**
@@ -100,7 +101,7 @@ public class Need {
      * @return The cost of the need
      */
     public int getCost() {
-        return cost;
+        return this.cost;
     }
 
     /**
@@ -108,7 +109,9 @@ public class Need {
      * @param cost The cost of the need
      */
     public void setCost(int cost) {
-        this.cost = cost;
+        if (cost >= 0) {
+            this.cost = cost;
+        }
     }
 
     /**
@@ -124,7 +127,11 @@ public class Need {
      * @param type The type of the need
      */
     public void setType(String type) {
-        this.type = type;
+        if (type.equalsIgnoreCase("goods")) {
+            this.type = type;
+        } else if (type.equalsIgnoreCase("volunteer")) {
+            this.type = type;
+        }
     }
 
     /**

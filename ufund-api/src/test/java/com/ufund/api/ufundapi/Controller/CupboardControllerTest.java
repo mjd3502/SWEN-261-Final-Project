@@ -1,6 +1,8 @@
 package com.ufund.api.ufundapi.Controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -51,7 +53,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(need);
 
         // Invoke
-        ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
+        ResponseEntity<Need> response = cupboardController.getSingleNeedbyId(need.getId());
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -73,12 +75,23 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(null);
 
          // Invoke
-        ResponseEntity<Need> response = cupboardController.getSingleNeed(need);
+        ResponseEntity<Need> response = cupboardController.getSingleNeedbyId(need.getId());
 
          // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+
+    @Test
+    public void getSingleNeedInternalServerError() throws IOException {
+        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+
+        when(mockcupboardDAO.getSingleNeedById(anyInt())).thenThrow(new RuntimeException("Internal Server Error"));
+
+        ResponseEntity<Need> responseEntity = cupboardController.getSingleNeedbyId(need.getId());
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 
     /**
      * Tests: createNeed (success case)

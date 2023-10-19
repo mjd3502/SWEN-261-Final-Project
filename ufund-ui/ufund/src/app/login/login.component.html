@@ -1,7 +1,6 @@
-<p>login works!</p>
 <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input id="username" #username required>
+    <input type="text" placeholder="Username" name="username"/>
+    <button class="log-in" (click)="login()"> </button>
 
-    <button type="button" (click)="login(username.value);username.value=''">Login</button>
 </div>

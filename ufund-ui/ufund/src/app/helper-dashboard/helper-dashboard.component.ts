@@ -13,7 +13,6 @@ export class HelperDashboardComponent {
 
   constructor(private router:Router){}
 
-
   shoppingBasket= faBasketShopping;
   logOutLogo = faArrowRightFromBracket;
 
@@ -44,7 +43,6 @@ export class HelperDashboardComponent {
       if(result.isConfirmed){
         this.redirectToPage();
         console.log("log out")
-        
       }
     }))
     console.log("button working")

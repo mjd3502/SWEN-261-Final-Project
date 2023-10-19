@@ -10,23 +10,34 @@ import { NeedsService } from '../needs.service'
 export class CheckoutComponent {
   needs: Need[] = [];
 
-  constructor(private needsService: NeedsService){}
+  constructor(
+    private needsService: NeedsService
+    ){}
+
+  getNeeds(): void {
+    this.needsService.getEntireNeedsCupboard().subscribe(needs => this.needs = needs);
+  }
+
+  ngOnInit(): void {
+    this.getNeeds();
+  }
 
   calculateTotal(): void{
-
+    //add up total of funding basket
   }
 
   addQuantity(): void{
-
+    //increment item quantity by 1
   }
 
-  removeQuantity(): void{
-
+  subtractQuantity(): void{
+    //increment item quantity by -1
   }
 
   deleteNeed(need: Need): void{
-
+    //remove need from checkout basket
   }
+
 }
 
 

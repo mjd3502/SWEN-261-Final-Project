@@ -26,6 +26,10 @@ export class CheckoutComponent {
 
   calculateTotal(): void{
     //add up total of funding basket
+    let total = 0;
+    for (let needs of this.needs) {
+      total += needs.cost; // add up costs of needs
+    }
   }
 
   addQuantity(): void{
@@ -36,7 +40,7 @@ export class CheckoutComponent {
     //increment item quantity by -1
   }
 
-  deleteNeed(need: Need): void{
+  deleteNeed(): void{
     //remove need from checkout basket
   }
 

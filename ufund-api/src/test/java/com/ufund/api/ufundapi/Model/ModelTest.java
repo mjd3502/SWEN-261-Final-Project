@@ -85,7 +85,8 @@ public class ModelTest {
      */
     @Test
     public void testSetQuantity() {
-        assertEquals(10, need.getQuantity());
+        need.setQuantity(15);
+        assertEquals(15, need.getQuantity());
     }
 
     /**
@@ -97,7 +98,7 @@ public class ModelTest {
         try {
             need.setQuantity(-5);
         } catch (IllegalArgumentException e) {
-            assertEquals(10, need.getQuantity());
+            assertEquals(0, need.getQuantity());
         }
     }
 

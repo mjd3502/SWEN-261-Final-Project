@@ -107,10 +107,8 @@ public class CupboardControllerTest {
     // creation and save
     when(mockcupboardDAO.createNeed(need)).thenReturn(need);
     
-    
     // Invoke
     ResponseEntity<Need> response = cupboardController.createNeed(need);
-    
     
     // Analyze
     assertEquals(HttpStatus.CREATED,response.getStatusCode());
@@ -317,6 +315,18 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     }
 
+        @Test
+    public void deleteNeedInternalServerError() throws IOException {
+        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+
+        when(mockcupboardDAO.deleteNeed(anyInt())).thenThrow(new IOException("Internal Server Error"));
+
+        // Call the method and check the response
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(1);
+
+        // Verify that the response has INTERNAL_SERVER_ERROR status
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 
     /**
      * Tests: deleteNeedbyName (success case)

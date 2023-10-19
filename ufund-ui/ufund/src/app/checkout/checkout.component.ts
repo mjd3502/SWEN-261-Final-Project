@@ -12,12 +12,14 @@ export class CheckoutComponent {
 
   constructor(
     private needsService: NeedsService
-    ){}
+  ){}
 
+  // retreive all needs
   getNeeds(): void {
     this.needsService.getEntireNeedsCupboard().subscribe(needs => this.needs = needs);
   }
 
+  //create list of needs on initialization
   ngOnInit(): void {
     this.getNeeds();
   }

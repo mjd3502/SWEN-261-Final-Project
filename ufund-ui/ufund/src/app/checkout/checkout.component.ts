@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+  constructor(){
 
+  }
+
+  calculateTotal(){
+
+  }
+
+  addQuantity(){
+
+  }
+
+  removeQuantity(){
+
+  }
+
+  deleteNeed(){
+
+  }
 }
+
+

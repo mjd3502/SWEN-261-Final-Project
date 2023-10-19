@@ -11,7 +11,7 @@ import { NeedsService } from '../needs.service';
   styleUrls: ['./needs-detail.component.css']
 })
 export class NeedsDetailComponent implements OnInit {
-  need: Need | undefined; // Initialize the property to null
+  need!:Need; // Initialize the property to null
 
   constructor(
     private route: ActivatedRoute,

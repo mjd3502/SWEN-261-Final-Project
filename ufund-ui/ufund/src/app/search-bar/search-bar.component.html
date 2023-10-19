@@ -1,8 +1,8 @@
 <div id="search-component">
     <label for="search-box"></label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+    <input class="input-form" #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Look for a need"/>
 
-    <ul>
+    <ul class="search-result">
         <li *ngFor="let need of needs$ | async" > 
             <a routerLink="/detail/{{need.id}}">
                 {{need.name}}

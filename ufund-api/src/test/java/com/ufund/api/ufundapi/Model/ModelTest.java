@@ -93,7 +93,7 @@ public class ModelTest {
      * Author: Rachel Adkins 
      */
     @Test
-    public void testSetQuantityInvalidInput() {
+    public void testSetQuantityInvalidInputNumber() {
         try {
             need.setQuantity(-5);
         } catch (IllegalArgumentException e) {
@@ -166,9 +166,19 @@ public class ModelTest {
      * Author:  Cheyenne Zhang
      */
     @Test
-    public void testSetType() {
+    public void testSetTypeVolunteer() {
         need.setType("Volunteer");
         assertEquals("Volunteer", need.getType());
+    }
+
+    /**
+     * Tests: setType(String type)
+     * Author:  Rachel Adkins
+     */
+    @Test
+    public void testSetTypeGoods() {
+        need.setType("Goods");
+        assertEquals("Goods", need.getType());
     }
 
     /**

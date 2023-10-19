@@ -8,7 +8,6 @@ import { NeedsService } from '../needs.service'
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  needs: Need[] = [];
   basket: Need[] = [];
 
   constructor(
@@ -18,7 +17,7 @@ export class CheckoutComponent {
   calculateTotal(): void{
     //add up total of checkout basket
     let total = 0;
-    for (let needs of this.needs) {
+    for (let needs of this.basket) {
       total += needs.cost; // add up costs of needs
     }
   }
@@ -37,7 +36,7 @@ export class CheckoutComponent {
 
   deleteNeed(need: Need): void{
     //remove need from checkout basket
-    
+    this.basket = this.basket.filter(n => n !== need);
   }
 
 }

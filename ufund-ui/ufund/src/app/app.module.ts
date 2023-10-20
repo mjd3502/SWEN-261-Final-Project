@@ -9,8 +9,11 @@ import { HelperDashboardComponent } from './helper-dashboard/helper-dashboard.co
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -20,12 +23,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowseNeedsComponent,
     NeedsDetailComponent,
     CheckoutComponent,
-    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule
   ],
   providers: [],

@@ -17,8 +17,6 @@ export class LoginComponent implements OnInit{
     }
   )
 
-
-
   constructor(private router:Router){
 
   }
@@ -39,12 +37,11 @@ export class LoginComponent implements OnInit{
     console.log(username);
     
     if(username === 'admin'){
-      this.changeRoute('/helperDashboard')
+      this.changeRoute('/adminrDashboard')
     }else{
 
-      this.changeRoute('/checkout')
+      this.changeRoute('/helperDashboard')
     }
 
   }
-
 }

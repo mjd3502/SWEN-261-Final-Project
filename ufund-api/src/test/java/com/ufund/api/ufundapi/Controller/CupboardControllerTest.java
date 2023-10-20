@@ -17,6 +17,10 @@ import com.ufund.api.ufundapi.controller.CupboardController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
 
+/*
+ * Author: Carla Lopez @csl5623 
+ */
+
 @Tag("Controller-tier")
 public class CupboardControllerTest {
     private CupboardController cupboardController;
@@ -85,18 +89,21 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeed() throws IOException{
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
-        // when createneed is called, return true simulating successful
-        // creation and save
-        when(mockcupboardDAO.createNeed(need)).thenReturn(need);
-
-        // Invoke
-        ResponseEntity<Need> response = cupboardController.createNeed(need);
-
-        // Analyze
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertEquals(need,response.getBody());
+    Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
+    // when createneed is called, return true simulating successful
+    // creation and save
+    when(mockcupboardDAO.createNeed(need)).thenReturn(need);
+    
+    
+    // Invoke
+    ResponseEntity<Need> response = cupboardController.createNeed(need);
+    
+    
+    // Analyze
+    assertEquals(HttpStatus.CREATED,response.getStatusCode());
+    assertEquals(need,response.getBody());
     }
+    
 
 
     /**
@@ -108,13 +115,14 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeedFailed() throws IOException{
-        
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
-        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
-
-        ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
+    Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
+    when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+    
+    
+    ResponseEntity<Need> response = cupboardController.createNeed(need);
+    assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
     }
+    
 
 
     /**
@@ -126,13 +134,14 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeedEmptyName() throws IOException{
-        
-        Need need = new Need(0, "", 10, "donate dog fod", 10, "goods");
-        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
-
-        ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    Need need = new Need(0, "", 10, "donate dog fod", 10, "goods");
+    when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+    
+    
+    ResponseEntity<Need> response = cupboardController.createNeed(need);
+    assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
+    
 
 
     /**
@@ -203,8 +212,15 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
+    @Test
+    public void createNeedCostNegative() throws IOException{
+    Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", -54965, "volunteerring ");
+    when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
 
+    ResponseEntity<Need> response = cupboardController.createNeed(need);
+    assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+    }
     /**
      * Tests: getEntireCupboard
      * 
@@ -251,8 +267,6 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
 
     }
-
-
     /**
      * Tests: deleteNeed (success case)
      * 
@@ -262,8 +276,6 @@ public class CupboardControllerTest {
      */
     @Test
     public void deleteNeebyId() throws IOException{
-
-
         int needId = 99;
         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
@@ -369,5 +381,4 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     
     }
-
 }

@@ -6,6 +6,7 @@
         <li *ngFor="let need of needs$ | async" > 
             <a routerLink="/detail/{{need.id}}">
                 {{need.name}}
+                {{need.description}}
               </a>
         </li>
        

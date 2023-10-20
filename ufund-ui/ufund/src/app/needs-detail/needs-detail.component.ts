@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
 import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
 
@@ -17,7 +16,9 @@ export class NeedsDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private needsService: NeedsService,
     private location: Location
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit(): void {
     // Assuming getNeed() returns a Need object or fetches it from an API
@@ -25,7 +26,7 @@ export class NeedsDetailComponent implements OnInit {
   }
 
   getNeed(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.needsService.getNeedbyId(id)
       .subscribe(need => this.need = need);
   }
@@ -34,11 +35,11 @@ export class NeedsDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
-    if (this.need) {
-      this.needsService.updateNeed(this.need)
-        .subscribe(() => this.goBack());
-    }
-  }
+  // save(): void {
+  //   if (this.need) {
+  //     this.needsService.updateNeed(this.need)
+  //       .subscribe(() => this.goBack());
+  //   }
+  // }
 
 }

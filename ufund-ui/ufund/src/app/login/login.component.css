@@ -1,6 +1,12 @@
-button{
-    height:fit-content;
-    font-size:12px;
-    margin:auto 1rem;
-    color:black;
+.form-container{
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    background:#eceff1;
+    padding: 48px;
+    border-radius: 16px;
+}
+
+input{
+    
 }

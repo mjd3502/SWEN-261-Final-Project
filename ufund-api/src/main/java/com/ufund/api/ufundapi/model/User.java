@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class User {
-    public static final String STRING_FORMAT_USER = "User [id=%d, userName=%s, fundingBasket=%s]";
+    public static final String STRING_FORMAT_USER = "User [id=%d, userName=%s, fundingBasket=%s] ";
 
     @JsonProperty("id") private int id;
     @JsonProperty("userName") private String userName;
@@ -43,10 +43,14 @@ public class User {
     @Override
     public String toString() {
         StringBuilder needs = new StringBuilder();
-        for (Need item: fundingBasket) {
-            needs.append(item.toString()).append(", ");
+        for (int i = 0; i < fundingBasket.size(); i++) {
+            Need item = fundingBasket.get(i);
+            needs.append(item.toString());
+            if (i < fundingBasket.size() - 1) {
+                needs.append(", ");
+            }
         }
-        return String.format(STRING_FORMAT, id, userName, needs.toString());
+        return String.format(STRING_FORMAT_USER, id, userName, needs.toString());
     }
     
 }

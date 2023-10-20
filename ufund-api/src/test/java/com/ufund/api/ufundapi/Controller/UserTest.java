@@ -16,11 +16,11 @@ public class UserTest {
 
         int id = 1;
         String userName = "carla";
-        List<Need> list = List.of(new Need(1, "carla", 10, "null", 10, "null"));
+        List<Need> list = List.of(new Need(1, "carla", 10, "null", 10, "null "));
 
         String expectedString = String.format(User.STRING_FORMAT_USER,id,userName,list);
 
-        User user = new User(1, "carla",List.of(new Need(1, "carla", 10, "null", 10, "null")));
+        User user = new User(1, "carla",List.of(new Need(1, "carla", 10, "null", 10, "null ")));
 
         String actual = user.toString();
 

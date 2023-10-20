@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #000;
+    background-color: #b7c9d5;
+    padding: 20px;
+}
+
+.mainText {
+  color:#000;
+}
+
+header {
+    background-color: #72A0C1;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    text-shadow: -2px 2px 2px #2d536d;
+}
+
+  /* Main Content Styles */
+main {
+    margin-top: 20px;
+}
+
+  /* Box Styles */
+.box {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    text-shadow: -2px 2px 2px #2d536d;
+}
+
+.box2 {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  width: 45%;
+  height: 50vh;
+  text-shadow: -2px 2px 2px #2d536d;
+}
+
+.titleBox {
+  background-color: #72A0C1;
+  border: 1px solid #2d536d;
+  padding: 20px;
+  margin: 10px;
+}
+
+  /* Button Styles */
+button {
+    background-color: #72A0C1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2d536d;
+}
+
+button:disabled {
+    background-color: #13212b;
+    cursor: not-allowed;
+}
+
+img {
+    max-width: 50%;
+    height: 50%;
+    width: 50%;
+    display: block;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+#goodFont {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  letter-spacing: 0.6px;
+  word-spacing: 0.8px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  }

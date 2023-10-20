@@ -23,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowseNeedsComponent,
     NeedsDetailComponent,
     CheckoutComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

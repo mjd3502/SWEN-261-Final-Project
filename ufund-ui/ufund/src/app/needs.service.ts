@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable, catchError, of, tap } from 'rxjs';
+
 import { Need } from './Need';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NeedsService {
 
   httpOptions = {
@@ -18,7 +18,8 @@ export class NeedsService {
     ) 
     { }
 
-    getNeedyId(id:number):Observable<Need>{
+    /** GET needs from the server */
+    getNeedbyId(id:number):Observable<Need>{
       const url = `${this.cupBoardURL}/${id}`
       return this.http.get<Need>(url,this.httpOptions)
       .pipe(
@@ -57,14 +58,17 @@ export class NeedsService {
         catchError(this.handleError<Need>('updateNeed')))
     }
 
-    searchCupboardByName(name:string):Observable<Need[]>{
+    searchCupboardByName(name:string): Observable<Need[]>{
       if(!name.trim()){
         return of([]);
       }
-      return this.http.get<Need[]>(`${this.cupBoardURL}/?name=${name}`)
-      .pipe(
-        catchError(this.handleError<Need[]>('searchNeeds', []))
-      );
+
+      const url = `${this.cupBoardURL}/needs/?name=${name}`
+      
+      console.log('im working' + url)
+      return this.http.get<Need[]>(url).pipe(
+        catchError(this.handleError<Need[]>('searcNeed', []))
+        );
 
     }
 

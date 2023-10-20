@@ -1,0 +1,17 @@
+<div class="checkout-container">
+<!--title of the page-->
+<h2>Funding Basket</h2>
+
+    <ul>
+        <!-- creates an list basket for each need -->
+        <li *ngFor="let need of basket">
+            <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
+            <button (click)="addQuantity(need)">+</button>
+            <button (click)="subtractQuantity(need)">-</button>
+            <button (click)="deleteNeed(need)">Delete</button>
+        </li>
+    </ul>
+    <p>Total: {{calculateTotal()}}</p>
+</div>
+
+  

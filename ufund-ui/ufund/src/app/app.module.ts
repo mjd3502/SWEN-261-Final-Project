@@ -9,6 +9,7 @@ import { HelperDashboardComponent } from './helper-dashboard/helper-dashboard.co
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
     HelperDashboardComponent,
     BrowseNeedsComponent,
     NeedsDetailComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

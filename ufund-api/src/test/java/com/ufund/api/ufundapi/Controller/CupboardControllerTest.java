@@ -1,13 +1,14 @@
 package com.ufund.api.ufundapi.Controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -49,7 +50,7 @@ public class CupboardControllerTest {
      */
     @Test 
     public void getASingleNeedFoundTest() throws IOException{
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "Donate food", 10, "donate dog food", 0, "goods");
 
         when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(need);
 
@@ -72,7 +73,7 @@ public class CupboardControllerTest {
     @Test 
     public void getSingleNeedNotFound() throws IOException{
         //  int needId = 99;
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "Donate food", 10, "donate dog food", 0, "goods");
         when(mockcupboardDAO.getSingleNeedById(need.getId())).thenReturn(null);
 
          // Invoke
@@ -85,7 +86,7 @@ public class CupboardControllerTest {
 
     @Test
     public void getSingleNeedInternalServerError() throws IOException {
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        Need need = new Need(0, "Donate food", 10, "donate dog food", 0, "goods");
 
         when(mockcupboardDAO.getSingleNeedById(anyInt())).thenThrow(new RuntimeException("Internal Server Error"));
 
@@ -103,7 +104,7 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeed() throws IOException{
-    Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
+    Need need = new Need(0, "Donate food", 10, "donate dog food", 10, "goods");
     // when createneed is called, return true simulating successful
     // creation and save
     when(mockcupboardDAO.createNeed(need)).thenReturn(need);
@@ -127,7 +128,7 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeedFailed() throws IOException{
-    Need need = new Need(0, "Donate food", 10, "donate dog fod", 10, "goods");
+    Need need = new Need(0, "Donate food", 10, "donate dog food", 10, "goods");
     when(mockcupboardDAO.createNeed(need)).thenReturn(null);
     
     
@@ -146,15 +147,13 @@ public class CupboardControllerTest {
      */
     @Test
     public void createNeedEmptyName() throws IOException{
-    Need need = new Need(0, "", 10, "donate dog fod", 10, "goods");
+    Need need = new Need(0, "", 10, "donate dog food", 10, "goods");
     when(mockcupboardDAO.createNeed(need)).thenReturn(null);
     
     
     ResponseEntity<Need> response = cupboardController.createNeed(need);
     assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
-    
-
 
     /**
      * Tests: createNeed (fail case)
@@ -166,7 +165,7 @@ public class CupboardControllerTest {
     @Test
     public void createNeedEmptyType() throws IOException{
         
-        Need need = new Need(0, "Carla", 10, "donate dog fod", 10, "");
+        Need need = new Need(0, "Carla", 10, "donate dog food", 10, "");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -183,7 +182,7 @@ public class CupboardControllerTest {
     @Test
     public void createNeedQuantityNegative() throws IOException{
         
-        Need need = new Need(0, "Volunteer to pet a dog", -1, "donate dog fod", 10, "volunteerring ");
+        Need need = new Need(0, "Volunteer to pet a dog", -1, "donate dog food", 10, "volunteer");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -200,7 +199,7 @@ public class CupboardControllerTest {
     @Test
     public void createNeedQuantityZero() throws IOException{
         
-        Need need = new Need(0, "Volunteer to pet a dog", 0, "donate dog fod", 10, "volunteerring ");
+        Need need = new Need(0, "Volunteer to pet a dog", 0, "donate dog food", 10, "volunteer");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -217,7 +216,7 @@ public class CupboardControllerTest {
     @Test
     public void createNeedCostZero() throws IOException{
         
-        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", 0, "volunteerring ");
+        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog food", 0, "volunteer");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
@@ -226,15 +225,24 @@ public class CupboardControllerTest {
 
     @Test
     public void createNeedCostNegative() throws IOException{
-    Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog fod", -54965, "volunteerring ");
-    when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog food", -54965, "volunteer");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
-
-    ResponseEntity<Need> response = cupboardController.createNeed(need);
-    assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+        
+        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
     }
 
+    @Test
+    public void createNeedInternalServerError() throws IOException{
+        Need need = new Need(0, "Volunteer to pet a dog", 10, "donate dog food", 10, "volunteer");
 
+        when(mockcupboardDAO.createNeed(need)).thenThrow(new IOException("Internal Server Error"));
+
+        ResponseEntity<Need> responseEntity = cupboardController.createNeed(need);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 
 
     /**
@@ -249,7 +257,7 @@ public class CupboardControllerTest {
 
         Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
         Need need1 = new Need(0, "Donate toys", 1, "donate dog toys", 0, "goods");
-        Need need2 = new Need(0, "Adopt a dog", 15, "donate dog fod", 0, "volunteering");
+        Need need2 = new Need(0, "Adopt a dog", 15, "donate dog food", 0, "volunteer");
 
         List<Need> listOfNeeds = List.of(need,need1,need2);
 
@@ -261,9 +269,18 @@ public class CupboardControllerTest {
 
     }
 
-     @Test
+    @Test
+    public void getEntireCupboardEmpty() throws IOException {
+        when(mockcupboardDAO.getEntireCupboard()).thenReturn(Collections.emptyList());
+
+        ResponseEntity<List<Need>> responseEntity = cupboardController.getEntireCupboard();
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(Collections.emptyList(), responseEntity.getBody());
+    }
+
+    @Test
     public void getEntireCupboardInternalServerError() throws IOException {
-    
 
         when(mockcupboardDAO.getEntireCupboard()).thenThrow(new RuntimeException("Internal Server Error"));
 
@@ -284,7 +301,7 @@ public class CupboardControllerTest {
     @Test
     public void getNeedbyName() throws IOException{
 
-        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer opportunity");
+        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer");
         Need[] needArray = new Need[1];
         needArray[0] = need;
 
@@ -296,11 +313,20 @@ public class CupboardControllerTest {
 
     }
 
+    @Test
+    public void getNeedByNameLengthZero()throws IOException {
+        String searchName = "nonExistentNeed";
+        when(mockcupboardDAO.getNeedbyName(searchName)).thenReturn(new Need[0]);
+
+        ResponseEntity<Need[]> responseEntity = cupboardController.searchCupboard(searchName);
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+    }
 
     @Test
     public void getNeedByNameInternalServerError() throws IOException {
     
-        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer opportunity");
+        Need need = new Need(0, "Carla", 0, "new need ", 10, "volunteer");
 
         when(mockcupboardDAO.getNeedbyName(anyString())).thenThrow(new IOException("Internal Server Error"));
 
@@ -319,7 +345,7 @@ public class CupboardControllerTest {
      * @throws IOException
      */
     @Test
-    public void deleteNeebyId() throws IOException{
+    public void deleteNeedbyId() throws IOException{
         int needId = 99;
         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
@@ -327,7 +353,6 @@ public class CupboardControllerTest {
 
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
     }
-
 
     /**
      * Tests: deleteNeed (fail case)
@@ -339,7 +364,6 @@ public class CupboardControllerTest {
     @Test
     public void deleteNeedbyIdNotFound() throws IOException{
 
-
         int needId = 20;
         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(false);
         
@@ -348,16 +372,14 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     }
 
-        @Test
+    @Test
     public void deleteNeedInternalServerError() throws IOException {
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+        
+        int needId = 77;
+        when(mockcupboardDAO.deleteNeed(needId)).thenThrow(new IOException("Internal Server Error"));
 
-        when(mockcupboardDAO.deleteNeed(anyInt())).thenThrow(new IOException("Internal Server Error"));
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
 
-        // Call the method and check the response
-        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(1);
-
-        // Verify that the response has INTERNAL_SERVER_ERROR status
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
 
@@ -397,6 +419,16 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     }
 
+    @Test
+    public void deleteNeedbyNameInternalServerError() throws IOException {
+
+        String name = "Dog volunteering";
+        when(mockcupboardDAO.deleteNeedbyName(name)).thenThrow(new IOException("Simulated IOException"));
+
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeedbyName(name);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 
     /**
      * Tests: updateNeed function (success case)
@@ -419,7 +451,6 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
     }
 
-
     /**
      * Tests: updateNeed function (fail case)
      * 
@@ -436,5 +467,15 @@ public class CupboardControllerTest {
 
         assertEquals(HttpStatus.NOT_FOUND,responseEntity.getStatusCode());
     
+    }
+
+    @Test
+    public void updateNeedInternalServerError() throws IOException{
+        Need need = new Need(0, "Messi", 10, "donate food", 20, "goods");
+        when(mockcupboardDAO.updateNeed(need)).thenThrow(new IOException("Internal Server Error"));
+
+        ResponseEntity<Need> responseEntity = cupboardController.updateNeed(need);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
 }

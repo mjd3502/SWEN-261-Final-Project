@@ -10,6 +10,7 @@ import { NeedsService } from '../needs.service';
   styleUrls: ['./needs-detail.component.css']
 })
 export class NeedsDetailComponent implements OnInit {
+
   need!:Need; // Initialize the property to null
 
   constructor(
@@ -21,12 +22,11 @@ export class NeedsDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Assuming getNeed() returns a Need object or fetches it from an API
     this.getNeed();
   }
 
   getNeed(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!);
+    const id = Number(this.route.snapshot.paramMap.get('id')!);
     this.needsService.getNeedbyId(id)
       .subscribe(need => this.need = need);
   }
@@ -34,6 +34,8 @@ export class NeedsDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+
 
   // save(): void {
   //   if (this.need) {

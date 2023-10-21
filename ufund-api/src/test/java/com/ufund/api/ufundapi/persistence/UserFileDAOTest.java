@@ -62,7 +62,7 @@ public class UserFileDAOTest {
         assertNotNull(result);
         User actual = mockUserFileDao.getUserbyId(user.getId());
         assertEquals(actual.getId(),user.getId());
-        assertEquals(actual.getName(),user.getName());
+        assertEquals(actual.getUserName(),user.getUserName());
     }
 
     @Test

@@ -24,7 +24,7 @@ public class User {
      * Retrieves the name of the user
      * @return The name of the user
      */
-    public String getName() {
+    public String getUserName() {
         return userName;
     }
     

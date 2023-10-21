@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
-        if(!validateHelperLogin(user.getName())){
+        if(!validateHelperLogin(user.getUserName())){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
 

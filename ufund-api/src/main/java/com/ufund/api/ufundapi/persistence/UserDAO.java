@@ -19,7 +19,5 @@ public interface UserDAO {
     List<Need> getFundinBasket(int id) throws IOException;
 
 
-
-
     
 }

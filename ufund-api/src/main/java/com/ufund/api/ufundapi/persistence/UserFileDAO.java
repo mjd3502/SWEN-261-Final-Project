@@ -118,7 +118,7 @@ public class UserFileDAO implements UserDAO{
                  LOG.info("not added :( ");
             }
         }
-        LOG.info("helloooooooooooo ");
+        // LOG.info("");
         return user;
     }
 
@@ -130,6 +130,8 @@ public class UserFileDAO implements UserDAO{
                 fundingBasketMap.put(need.getId(),need);
             }
              return fundingBasketMap;
+
+
         }
         
     }
@@ -139,9 +141,20 @@ public class UserFileDAO implements UserDAO{
     @Override
     public boolean removeNeedFromFundingBasket(int userId, int id) throws IOException {
        synchronized(users){
-        Map<Integer,Need> fundingBasket = this.getFundingBasketMap(userId);
-        fundingBasket.remove(id);
-        return save();
+        User user = this.getUserbyId(userId);
+        if(user != null){
+            LOG.info("user is not null");
+            List<Need> basket = user.getFundingBasket();
+            for(Need need: basket){
+                if(need.getId() == id){
+                    basket.remove(need);
+                    LOG.info("delteeeeeeed");
+                    return save();
+                }
+            }
+        }
+        LOG.info("not deleteeed");
+        return false;
        }
     }
 

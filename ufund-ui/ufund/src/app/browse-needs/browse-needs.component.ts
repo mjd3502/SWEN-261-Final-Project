@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Need} from '../Need';
 import { NeedsService } from '../needs.service';
+import { UserHelperService } from '../user-helper.service';
 
 @Component({
   selector: 'app-browse-needs',
@@ -10,7 +11,7 @@ import { NeedsService } from '../needs.service';
 export class BrowseNeedsComponent {
   needs: Need[] = [];
 
-  constructor(private needsService: NeedsService){}
+  constructor(private needsService: NeedsService,private userService:UserHelperService){}
 
   //Retrieves all needs using the service
   getNeeds(): void{
@@ -22,8 +23,13 @@ export class BrowseNeedsComponent {
     this.getNeeds();
   }
 
+  number = 7
+
   //adds the need to user's basket
-  addToBasket(need: Need): void{
-    //add given need to the checkout basket 
+  fucntion_add(need: Need): void{
+    this.userService.addNeedToBasket(14,need).subscribe(user =>{
+      console.log(user);
+    })
   }
+
 }

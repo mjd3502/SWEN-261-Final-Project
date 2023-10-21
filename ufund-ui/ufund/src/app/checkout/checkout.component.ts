@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Need } from '../Need';
+import { UserHelperService } from '../user-helper.service';
 
 @Component({
   selector: 'app-checkout',
@@ -7,11 +8,22 @@ import { Need } from '../Need';
   styleUrls: ['./checkout.component.css']
 })
 
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
   basket: Need[] = [];
 
-  calculateTotal(): void{
-    
+  constructor(private userService:UserHelperService){}
+
+  ngOnInit(): void {
+    this.getFundingBasket(14);
+  }
+
+  getFundingBasket(id:number):void{
+    this.userService.getFundingBasket(id).subscribe(needs => this.basket = needs);
+  }
+
+
+
+  calculateTotal(): void{ 
     let total = 0;
     for (let needs of this.basket) {
       total += needs.cost;
@@ -28,9 +40,8 @@ export class CheckoutComponent {
     }
   }
 
-  deleteNeed(need: Need): void{
-   
-    this.basket = this.basket.filter(n => n !== need);
+  deleteNeed(needId: number): void{
+    this.userService.removeNeedFromBasket(9,needId);
   }
 
 }

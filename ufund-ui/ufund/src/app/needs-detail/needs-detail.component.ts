@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
+import { UserHelperService } from '../user-helper.service';
 
 @Component({
   selector: 'app-needs-detail',
@@ -16,7 +17,8 @@ export class NeedsDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private needsService: NeedsService,
-    private location: Location
+    private location: Location,
+    private userService:UserHelperService
   ) { 
 
   }
@@ -35,7 +37,11 @@ export class NeedsDetailComponent implements OnInit {
     this.location.back();
   }
 
-
+  functionAddNeed(need: Need): void{
+    this.userService.addNeedToBasket(14,need).subscribe(user =>{
+      console.log(user);
+    })
+  }
 
   // save(): void {
   //   if (this.need) {

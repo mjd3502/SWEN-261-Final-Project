@@ -11,7 +11,8 @@ import { User } from '../User';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent{
+  user:User = new User();
   
   logInSection = new FormGroup(
     {
@@ -20,13 +21,12 @@ export class LoginComponent implements OnInit{
   )
 
   constructor(private router:Router,private userService:UserHelperService){
-
   }
 
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
 
 
@@ -35,13 +35,7 @@ export class LoginComponent implements OnInit{
   }
 
 
-  createUser(name:string):void{
-    name = name.trim();
-    if(!name) {return};
-    this.userService.createUser({name} as unknown as User).subscribe();
-  }
-
-
+  
   login(){
     const username = this.logInSection.get("username")?.value;
     console.log(username);
@@ -49,8 +43,12 @@ export class LoginComponent implements OnInit{
     if(username === 'admin'){
       this.changeRoute('/adminDashboard')
     }else if(username && typeof username === 'string'){
-        this.createUser(username);
+      this.user.setUsername(username);
+      this.userService.createUser(this.user).subscribe(us=>{
         this.changeRoute('/helperDashboard')
+        return us;
+      }); 
     }
+
   }
 }

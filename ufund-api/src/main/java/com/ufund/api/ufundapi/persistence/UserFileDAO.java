@@ -7,13 +7,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.User;
 
+@Component
 public class UserFileDAO implements UserDAO{
-
 
     Map<Integer,User> users;
 
@@ -91,7 +92,7 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
-            User newUser =  new User(nextId(), user.getName(), user.getFundingBasket());
+            User newUser =  new User(nextId(), user.getName());
             users.put(user.getId(), newUser);
             save();
             return user;
@@ -104,7 +105,7 @@ public class UserFileDAO implements UserDAO{
         User user = this.getUserbyId(userId);
         synchronized(users){
             if(user != null){
-                user.getFundingBasket().add(need);
+                user.setFundingBasket(need);
                 save();
             }
         }

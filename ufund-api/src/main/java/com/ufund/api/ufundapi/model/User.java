@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,10 +14,10 @@ public class User {
     @JsonProperty("userName") private String userName;
     @JsonProperty("fundingBasket") private List<Need> fundingBasket;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("name") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
+    public User(@JsonProperty("id") int id, @JsonProperty("name") String userName){
         this.userName = userName;
         this.id=id;
-        this.fundingBasket = fundingBasket;
+        this.fundingBasket = new ArrayList<Need>();
     }
     /**
      * Retrieves the name of the user
@@ -36,8 +37,8 @@ public class User {
     public List<Need> getFundingBasket() {
         return fundingBasket;
     }
-    public void setFundingBasket(List<Need> fundingBasket) {
-        this.fundingBasket = fundingBasket;
+    public void setFundingBasket(Need need) {
+        this.fundingBasket.add(need);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class User {
                 needs.append(", ");
             }
         }
-        return String.format(STRING_FORMAT_USER, id, userName, needs.toString());
+        return String.format(STRING_FORMAT_USER, id, userName, needs);
     }
     
 }

@@ -3,6 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,7 +26,7 @@ public class UserFileDAO implements UserDAO{
     private  String filename;
 
 
-    public UserFileDAO(@Value("$users.file")String filename,ObjectMapper objectMapper) throws IOException{
+    public UserFileDAO(@Value("${users.file}")String filename, ObjectMapper objectMapper) throws IOException{
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -40,22 +41,20 @@ public class UserFileDAO implements UserDAO{
     }
 
     private User[] getUsersArray(){
+        ArrayList<User> userList = new ArrayList<>();
+        for(User user: users.values()){
+            userList.add(user);
+        }
 
-    ArrayList<User> userList = new ArrayList<>();
-
-    for(User user: users.values()){
-        userList.add(user);
-    }
-
-    User[] userArray = new User[userList.size()];
-    userList.toArray(userArray);
-    return userArray;
+        User[] userArray = new User[userList.size()];
+        userList.toArray(userArray);
+        return userArray;
 
     }
 
     private boolean save() throws IOException{
-        User[] users = getUsersArray();
-        objectMapper.writeValue(new File(filename),users);
+        User[] userArray = getUsersArray();
+        objectMapper.writeValue(new File(filename),userArray);
         return true;
 
     }
@@ -64,8 +63,8 @@ public class UserFileDAO implements UserDAO{
         users = new TreeMap<>();
         nextId = 0;
 
+        
         User[] userArray = objectMapper.readValue(new File(filename),User[].class);
-
         for(User user: userArray){
             users.put(user.getId(),user);
             if (user.getId() > nextId)
@@ -92,7 +91,7 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
-            User newUser =  new User(nextId(), user.getName());
+            User newUser =  new User(nextId(), user.getName(), new ArrayList<>());
             users.put(user.getId(), newUser);
             save();
             return user;
@@ -124,5 +123,14 @@ public class UserFileDAO implements UserDAO{
        }
        return user;
     }
+
+
+    @Override
+    public List<Need> getFundinBasket(int id) throws IOException {
+        User user = this.getUserbyId(id);
+        return user.getFundingBasket();
+    }
+
+
     
 }

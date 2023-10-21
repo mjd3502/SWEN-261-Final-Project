@@ -8,16 +8,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class User {
-    public static final String STRING_FORMAT_USER = "User [id=%d, userName=%s, fundingBasket=%s] ";
+    
+    public static final String STRING_FORMAT_USER = "User [ id=%d, userName=%s, fundingBasket=%s ]  ";
 
     @JsonProperty("id") private int id;
     @JsonProperty("userName") private String userName;
     @JsonProperty("fundingBasket") private List<Need> fundingBasket;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("name") String userName){
+    public User(@JsonProperty("id") int id, @JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
         this.userName = userName;
         this.id=id;
-        this.fundingBasket = new ArrayList<Need>();
+        this.fundingBasket = fundingBasket;
     }
     /**
      * Retrieves the name of the user
@@ -27,7 +28,6 @@ public class User {
         return userName;
     }
     
-
     public int getId() {
         return id;
     }
@@ -51,7 +51,7 @@ public class User {
                 needs.append(", ");
             }
         }
-        return String.format(STRING_FORMAT_USER, id, userName, needs);
+        return String.format(STRING_FORMAT_USER, id, userName, needs.toString());
     }
     
 }

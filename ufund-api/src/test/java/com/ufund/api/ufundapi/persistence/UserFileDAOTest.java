@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,9 +32,9 @@ public class UserFileDAOTest {
     public void setUpUserFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testUsers = new User[3];
-        testUsers[0] = new User(1,"Wi-Fire");
-        testUsers[1] = new User(2,"Galactic Agent");
-        testUsers[2] = new User(3,"Ice Gladiator");
+        testUsers[0] = new User(1,"Wi-Fire", new ArrayList<>());
+        testUsers[1] = new User(2,"Galactic Agent", new ArrayList<>());
+        testUsers[2] = new User(3,"Ice Gladiator", new ArrayList<>());
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
@@ -53,7 +54,7 @@ public class UserFileDAOTest {
 
     @Test 
     public void createNewUser(){
-        User user = new User(4,"Carla");
+        User user = new User(4,"Carla", new ArrayList<>());
 
         User result = assertDoesNotThrow(() -> mockUserFileDao.createUser(user),
                                 "Unexpected exception thrown");

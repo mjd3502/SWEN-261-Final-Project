@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.persistence;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.User;
@@ -14,6 +15,9 @@ public interface UserDAO {
     User addNeedToFundingBasket(int userId, Need need) throws IOException;
 
     User removeNeedFromFundingBasket(int userId,Need need) throws  IOException;
+
+    List<Need> getFundinBasket(int id) throws IOException;
+
 
 
 

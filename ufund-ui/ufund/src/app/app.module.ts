@@ -11,6 +11,7 @@ import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowseNeedsComponent,
     NeedsDetailComponent,
     CheckoutComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

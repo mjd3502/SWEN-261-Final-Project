@@ -27,17 +27,29 @@ public class UserController {
         this.userDao = userDao;
     }
 
-
+    private boolean validateHelperLogin(String value) {
+       
+        if (value == null) {
+            return false;
+        }
+        
+        if(value.equalsIgnoreCase("admin")) {
+            return false;
+        }
+        
+        return true;
+    }
+    
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
-        
+
+        if(!validateHelperLogin(user.getName())){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
         try {
             User new_user = userDao.createUser(user);
-
-            if (user != null)
-                return new ResponseEntity<User>(new_user,HttpStatus.CREATED);
-            else
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<User>(new_user,HttpStatus.CREATED);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,7 +73,7 @@ public class UserController {
     }
 
     @PutMapping("/addNeed/{id}")
-    public  ResponseEntity<User> addNeedToBasket(@PathVariable("id")int id , @RequestBody Need need){
+    public  ResponseEntity<User> addNeedToBasket(@PathVariable("id")int id, @RequestBody Need need){
 
         try {
             User user = userDao.addNeedToFundingBasket(id, need);
@@ -69,10 +81,9 @@ public class UserController {
             if(user != null){
                 return new ResponseEntity<User>(user,HttpStatus.ACCEPTED);
             }else{
-                 return new ResponseEntity<User>(user,HttpStatus.NOT_FOUND);
+                 return new ResponseEntity<User>(user,HttpStatus.NOT_ACCEPTABLE);
             }
             
-
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 
@@ -80,7 +91,7 @@ public class UserController {
     }
 
     @DeleteMapping("/removeNeed/{id}")
-    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("id")int id,@RequestBody Need need){
+    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("id")int id, @RequestBody Need need){
 
         try {
             User user = userDao.removeNeedFromFundingBasket(id, need);
@@ -88,7 +99,7 @@ public class UserController {
             if(user != null){
                 return new ResponseEntity<User>(user,HttpStatus.OK);
             }else{
-                 return new ResponseEntity<User>(user,HttpStatus.NOT_FOUND);
+                 return new ResponseEntity<User>(user,HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {
@@ -96,7 +107,6 @@ public class UserController {
 
         }
     }
-
 
     @GetMapping("/fundingBasket/{id}")
     public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("id") int id){

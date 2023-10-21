@@ -1,1 +1,1 @@
-[{"id":2,"userName":"michael","fundingBasket":[{"id":4,"name":"yo","quantity":10,"description":"hello","cost":10,"type":"volunteer"}],"name":"michael"},{"id":4,"userName":"michael","fundingBasket":[],"name":"michael"},{"id":6,"userName":"leo","fundingBasket":[{"id":4,"name":"yo","quantity":10,"description":"hello","cost":10,"type":"volunteer"},{"id":4,"name":"hello","quantity":10,"description":"hello","cost":10,"type":"volunteer"}],"name":"leo"}]
+[{"id":1,"userName":"hello","fundingBasket":[],"name":"hello"},{"id":2,"userName":"hello","fundingBasket":[],"name":"hello"}]

@@ -14,7 +14,7 @@ export class CheckoutComponent implements OnInit{
   constructor(private userService:UserHelperService){}
 
   ngOnInit(): void {
-    this.getFundingBasket(14);
+    this.getFundingBasket(2);
   }
 
   getFundingBasket(id:number):void{
@@ -41,7 +41,9 @@ export class CheckoutComponent implements OnInit{
   }
 
   deleteNeed(needId: number): void{
-    this.userService.removeNeedFromBasket(9,needId);
+    this.userService.removeNeedFromBasket(2,needId).subscribe(user =>{
+      console.log(user);
+    })
   }
 
 }

@@ -27,7 +27,7 @@ export class BrowseNeedsComponent {
 
   //adds the need to user's basket
   fucntion_add(need: Need): void{
-    this.userService.addNeedToBasket(14,need).subscribe(user =>{
+    this.userService.addNeedToBasket(2,need).subscribe(user =>{
       console.log(user);
     })
   }

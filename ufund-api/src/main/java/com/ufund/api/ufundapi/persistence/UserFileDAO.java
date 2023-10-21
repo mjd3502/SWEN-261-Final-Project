@@ -3,19 +3,23 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.controller.UserController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.User;
 
 @Component
 public class UserFileDAO implements UserDAO{
+     private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
 
     Map<Integer,User> users;
 
@@ -51,6 +55,8 @@ public class UserFileDAO implements UserDAO{
         return userArray;
 
     }
+
+   
 
     private boolean save() throws IOException{
         User[] userArray = getUsersArray();
@@ -91,7 +97,8 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
-            User newUser =  new User(nextId(), user.getUserName(), new ArrayList<>());
+            List<Need> listOFNeeds = new ArrayList<>();
+            User newUser =  new User(nextId(), user.getUserName(),listOFNeeds);
             users.put(user.getId(), newUser);
             save();
             return user;
@@ -106,22 +113,36 @@ public class UserFileDAO implements UserDAO{
             if(user != null){
                 user.setFundingBasket(need);
                 save();
+                LOG.info("added to file");
+            }else{
+                 LOG.info("not added :( ");
             }
         }
+        LOG.info("helloooooooooooo ");
         return user;
     }
 
+    private Map<Integer,Need> getFundingBasketMap(int userId){
+        synchronized(users){
+            Map<Integer,Need> fundingBasketMap = new HashMap<>();
+            List<Need> fundingBasket = users.get(userId).getFundingBasket();
+            for(Need need: fundingBasket){
+                fundingBasketMap.put(need.getId(),need);
+            }
+             return fundingBasketMap;
+        }
+        
+    }
+
+
 
     @Override
-    public User removeNeedFromFundingBasket(int userId, Need need) throws IOException {
-       User user = this.getUserbyId(userId);
+    public boolean removeNeedFromFundingBasket(int userId, int id) throws IOException {
        synchronized(users){
-        if(user != null){
-            user.getFundingBasket().remove(need);
-            save();
-        }
+        Map<Integer,Need> fundingBasket = this.getFundingBasketMap(userId);
+        fundingBasket.remove(id);
+        return save();
        }
-       return user;
     }
 
 
@@ -132,5 +153,4 @@ public class UserFileDAO implements UserDAO{
     }
 
 
-    
 }

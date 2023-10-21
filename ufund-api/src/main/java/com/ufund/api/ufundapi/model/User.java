@@ -18,8 +18,10 @@ public class User {
     public User(@JsonProperty("id") int id, @JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
         this.userName = userName;
         this.id=id;
-        this.fundingBasket = fundingBasket;
+        this.fundingBasket = this.fundingBasket = (fundingBasket != null) ? fundingBasket : new ArrayList<>();
     }
+
+    
     /**
      * Retrieves the name of the user
      * @return The name of the user
@@ -44,14 +46,21 @@ public class User {
     @Override
     public String toString() {
         StringBuilder needs = new StringBuilder();
-        for (int i = 0; i < fundingBasket.size(); i++) {
-            Need item = fundingBasket.get(i);
-            needs.append(item.toString());
-            if (i < fundingBasket.size() - 1) {
-                needs.append(", ");
+        
+        if (!fundingBasket.isEmpty()) {
+            for (int i = 0; i < fundingBasket.size(); i++) {
+                Need item = fundingBasket.get(i);
+                needs.append(item.toString());
+                if (i < fundingBasket.size() - 1) {
+                    needs.append(", ");
+                }
             }
+        } else {
+            needs.append("No items in the funding basket");
         }
+        
         return String.format(STRING_FORMAT_USER, id, userName, needs.toString());
     }
+
     
 }

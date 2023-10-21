@@ -14,7 +14,7 @@ public interface UserDAO {
 
     User addNeedToFundingBasket(int userId, Need need) throws IOException;
 
-    User removeNeedFromFundingBasket(int userId,Need need) throws  IOException;
+    boolean removeNeedFromFundingBasket(int userId,int need) throws  IOException;
 
     List<Need> getFundinBasket(int id) throws IOException;
 

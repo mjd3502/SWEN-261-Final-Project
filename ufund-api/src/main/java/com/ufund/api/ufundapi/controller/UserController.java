@@ -1,6 +1,8 @@
 package com.ufund.api.ufundapi.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import com.ufund.api.ufundapi.persistence.UserDAO;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     
     private UserDAO userDao;
 
@@ -42,6 +45,7 @@ public class UserController {
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
+        LOG.info("POST /user " + user);
 
         if(!validateHelperLogin(user.getUserName())){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -52,6 +56,7 @@ public class UserController {
             return new ResponseEntity<User>(new_user,HttpStatus.CREATED);
 
         } catch (Exception e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -74,7 +79,7 @@ public class UserController {
 
     @PutMapping("/addNeed/{id}")
     public  ResponseEntity<User> addNeedToBasket(@PathVariable("id")int id, @RequestBody Need need){
-
+        LOG.info("PUT /user/addNeed/" + id);
         try {
             User user = userDao.addNeedToFundingBasket(id, need);
 
@@ -90,16 +95,18 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/removeNeed/{id}")
-    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("id")int id, @RequestBody Need need){
+    @DeleteMapping("/{id}/needId/{needId}")
+    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("id")int id, @PathVariable("needId") int needId){
 
         try {
-            User user = userDao.removeNeedFromFundingBasket(id, need);
+            boolean deleted = userDao.removeNeedFromFundingBasket(id, needId);
 
-            if(user != null){
-                return new ResponseEntity<User>(user,HttpStatus.OK);
+            if(deleted){
+                 LOG.info("deleteeeeeeeeeed");
+                return new ResponseEntity<User>(HttpStatus.OK);
             }else{
-                 return new ResponseEntity<User>(user,HttpStatus.NOT_ACCEPTABLE);
+                 LOG.info("nooooooooo");
+                 return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {

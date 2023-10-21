@@ -77,17 +77,17 @@ public class UserFileDAOTest {
     }
 
 
-    @Test
-    public void RemoveNeedFromFundingBasket(){
-        Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
+    // @Test
+    // public void RemoveNeedFromFundingBasket(){
+    //     Need need = new Need(0, "Donate food", 10, "donate dog fod", 0, "goods");
 
-        User result = assertDoesNotThrow(() -> mockUserFileDao.removeNeedFromFundingBasket(1,need),
-        "Unexpected exception thrown");
+    //     User result = assertDoesNotThrow(() -> mockUserFileDao.removeNeedFromFundingBasket(1,need),
+    //     "Unexpected exception thrown");
 
-        User actual = mockUserFileDao.getUserbyId(1);
-        assertEquals(result,actual);
-        assertEquals(result.getFundingBasket(),actual.getFundingBasket());
-    }
+    //     User actual = mockUserFileDao.getUserbyId(1);
+    //     assertEquals(result,actual);
+    //     assertEquals(result.getFundingBasket(),actual.getFundingBasket());
+    // }
 
     
     

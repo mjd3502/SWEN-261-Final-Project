@@ -6,10 +6,10 @@
             <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
             <button (click)="addQuantity(need)">+</button>
             <button (click)="subtractQuantity(need)">-</button>
-            <!-- <button (click)="deleteNeed(need.id)">Delete</button> -->
+            <button (click)="deleteNeed(need.id)">Delete</button>
         </li>
     </ul>
-    <p>Total: {{calculateTotal()}}</p>
+    <!-- <p>Total: {{calculateTotal()}}</p> -->
 </div>
 
   

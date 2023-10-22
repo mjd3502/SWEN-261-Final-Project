@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Need } from '../Need';
 import { UserHelperService } from '../user-helper.service';
+import { CurrentUserService } from '../current-user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,16 +11,31 @@ import { UserHelperService } from '../user-helper.service';
 
 export class CheckoutComponent implements OnInit{
   basket: Need[] = [];
+  username!:string
 
-  constructor(private userService:UserHelperService){}
+
+  constructor(
+    private userService:UserHelperService,
+    private currentUser:CurrentUserService
+    
+  ){}
 
   ngOnInit(): void {
-    // this.getFundingBasket(2);
+    this.currentUser.getCurrentUser().subscribe(user =>{
+      if (user) {
+        this.username = user.getUserName();
+      }
+    })
+
+    
+    this.getFundingBasket(this.username);
+    
   }
 
-  // getFundingBasket(id:number):void{
-  //   this.userService.getFundingBasket(id).subscribe(needs => this.basket = needs);
-  // }
+
+  getFundingBasket(name:string):void{
+    this.userService.getFundingBasket(name).subscribe(needs => this.basket = needs);
+  }
 
 
 
@@ -40,11 +56,11 @@ export class CheckoutComponent implements OnInit{
     }
   }
 
-  // deleteNeed(needId: number): void{
-  //   this.userService.removeNeedFromBasket(2,needId).subscribe(user =>{
-  //     console.log(user);
-  //   })
-  // }
+  deleteNeed(needId: number): void{
+    this.userService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
+      console.log(user);
+    })
+  }
 
 }
 

@@ -23,28 +23,28 @@ export class BrowseNeedsComponent implements OnInit{
   userName!:string ;
 
 
-  user:BehaviorSubject<User | null> = this.currentUser.getCurrentUser();
+  // user:BehaviorSubject<User | null> = this.currentUser.getCurrentUser();
 
 
-  //Retrieves all needs using the service
   getNeeds(): void{
     this.needsService.getEntireNeedsCupboard().subscribe(needs => this.needs = needs)
+    
   }
 
-  //On intialization, create proper list of needs
+ 
   ngOnInit(): void{
     this.getNeeds();
-
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
         this.userName = user.getUserName();
       }
     })
+    
   }
 
-  number = 7
+  // number = 7
 
-  // adds the need to user's basket
+  // adds the need to user's funding basket
   functionAddNeed(need: Need): void{
     this.userService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);

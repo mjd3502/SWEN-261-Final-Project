@@ -4,6 +4,9 @@ import { Location } from '@angular/common';
 import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
 import { UserHelperService } from '../user-helper.service';
+import { CurrentUserService } from '../current-user.service';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../User';
 
 @Component({
   selector: 'app-needs-detail',
@@ -18,13 +21,25 @@ export class NeedsDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private needsService: NeedsService,
     private location: Location,
-    private userService:UserHelperService
+    private userService:UserHelperService,
+    private currentUser:CurrentUserService
   ) { 
 
   }
+  username!:string;
+
+  user!: BehaviorSubject<User|null>; 
 
   ngOnInit(): void {
     this.getNeed();
+
+    
+    this.currentUser.getCurrentUser().subscribe(user =>{
+      if (user) {
+        this.username = user.getUserName();
+      }
+    })
+
   }
 
   getNeed(): void {
@@ -37,11 +52,11 @@ export class NeedsDetailComponent implements OnInit {
     this.location.back();
   }
 
-  // functionAddNeed(need: Need): void{
-  //   this.userService.addNeedToBasket(2,need).subscribe(user =>{
-  //     console.log(user);
-  //   })
-  // }
+  functionAddNeed(need: Need): void{
+    this.userService.addNeedToBasket(this.username,need).subscribe(user =>{
+      console.log(user);
+    })
+  }
 
   // save(): void {
   //   if (this.need) {

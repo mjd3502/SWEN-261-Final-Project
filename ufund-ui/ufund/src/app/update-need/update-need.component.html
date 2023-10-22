@@ -1,0 +1,89 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-group .type-buttons button {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .form-group .type-buttons button:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+        </div>
+        <div class="form-group">
+            <label for="cost">Cost:</label>
+            <input type="text" id="cost" name="cost" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="text" id="quantity" name="quantity" required>
+        </div>
+        <div class="form-group">
+            <label>Type:</label>
+            <div class="type-buttons">
+                <button type="button" onclick="setType('volunteer')">Volunteer</button>
+                <button type="button" onclick="setType('goods')">Goods</button>
+            </div>
+        </div>
+        <button type="button" onclick="updateForm()">Update</button>
+    </div>
+
+    <script>
+        var selectedType = '';
+
+        function setType(type) {
+            selectedType = type;
+        }
+
+        function updateForm() {
+            var title = document.getElementById('title').value;
+            var description = document.getElementById('description').value;
+            var cost = document.getElementById('cost').value;
+            var quantity = document.getElementById('quantity').value;
+
+            if (selectedType === '') {
+                alert('Please select a type (Volunteer/Goods)');
+                return;
+            }
+
+            // Perform update logic here with the form values and selected type
+            console.log('Title:', title);
+            console.log('Description:', description);
+            console.log('Cost:', cost);
+            console.log('Quantity:', quantity);
+            console.log('Type:', selectedType);
+        }
+    </script>
+</body>

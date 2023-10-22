@@ -11,6 +11,7 @@ import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     NeedsDetailComponent,
     CheckoutComponent,
     SearchBarComponent,
+    UpdateNeedComponent
     AdminDashboardComponent
   ],
   imports: [

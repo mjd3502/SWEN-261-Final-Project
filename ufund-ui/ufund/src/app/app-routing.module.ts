@@ -8,7 +8,7 @@ import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 
 
 const routes: Routes = [
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path:'checkout',component:CheckoutComponent},
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path:'helperDashboard',component:HelperDashboardComponent},

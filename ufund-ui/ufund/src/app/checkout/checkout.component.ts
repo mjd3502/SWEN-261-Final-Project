@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component,OnInit } from '@angular/core';
 import { Need } from '../Need';
 import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-checkout',
@@ -13,31 +14,31 @@ export class CheckoutComponent implements OnInit{
   basket: Need[] = [];
   username!:string
 
+  user!:User;
+
 
   constructor(
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
-    private cd:ChangeDetectorRef
-    
+    // private cd:ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
+        this.user = user;
         this.username = user.getUserName();
       }
     })
 
-
     this.getFundingBasket(this.username);
-    
+
   }
 
 
   getFundingBasket(name:string):void{
     this.userService.getFundingBasket(name).subscribe(needs => this.basket = needs);
   }
-
 
 
   calculateTotal(): void{ 
@@ -58,8 +59,9 @@ export class CheckoutComponent implements OnInit{
   }
 
   deleteNeed(needId: number): void{
+    this.basket = this.basket.filter(need => need .id != needId)
     this.userService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
-      this.cd.detectChanges();
+      // this.cd.detectChanges();
       console.log(user);
     })
   }

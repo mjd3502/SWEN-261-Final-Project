@@ -52,8 +52,10 @@ public class UserController {
         }
 
         try {
-            User new_user = userDao.createUser(user);
-            return new ResponseEntity<User>(new_user,HttpStatus.CREATED);
+            
+            User newUser = userDao.createUser(user);
+            return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
+            
 
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
@@ -61,12 +63,12 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserbyId(@PathVariable("id") int id ){
+    @GetMapping("/{name}")
+    public ResponseEntity<User> getUserbyId(@PathVariable("id") String name ){
 
         try {
             
-            User user = userDao.getUserbyId(id);
+            User user = userDao.getUserbyName(name);
             if(user != null){
                 return new ResponseEntity<User>(user,HttpStatus.ACCEPTED);
             }else{
@@ -77,11 +79,11 @@ public class UserController {
         }
     }
 
-    @PutMapping("/addNeed/{id}")
-    public  ResponseEntity<User> addNeedToBasket(@PathVariable("id")int id, @RequestBody Need need){
-        LOG.info("PUT /user/addNeed/" + id);
+    @PutMapping("/addNeed/{name}")
+    public  ResponseEntity<User> addNeedToBasket(@PathVariable("name")String name, @RequestBody Need need){
+        LOG.info("PUT /user/addNeed/" + name);
         try {
-            User user = userDao.addNeedToFundingBasket(id, need);
+            User user = userDao.addNeedToFundingBasket(name, need);
 
             if(user != null){
                 return new ResponseEntity<User>(user,HttpStatus.ACCEPTED);
@@ -95,11 +97,11 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}/needId/{needId}")
-    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("id")int id, @PathVariable("needId") int needId){
+    @DeleteMapping("/{name}/needId/{needId}")
+    public ResponseEntity<User> removeNeedfromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
 
         try {
-            boolean deleted = userDao.removeNeedFromFundingBasket(id, needId);
+            boolean deleted = userDao.removeNeedFromFundingBasket(name, needId);
 
             if(deleted){
                  LOG.info("deleteeeeeeeeeed");
@@ -115,11 +117,11 @@ public class UserController {
         }
     }
 
-    @GetMapping("/fundingBasket/{id}")
-    public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("id") int id){
+    @GetMapping("/fundingBasket/{name}")
+    public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("name") String name){
 
         try {
-            List<Need> fundingBasket = userDao.getFundinBasket(id);
+            List<Need> fundingBasket = userDao.getFundinBasket(name);
             return new ResponseEntity<List<Need>>(fundingBasket,HttpStatus.OK);
 
         } catch (Exception e) {

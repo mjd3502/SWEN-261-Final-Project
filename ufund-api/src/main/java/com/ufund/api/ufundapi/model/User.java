@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
     
-    public static final String STRING_FORMAT_USER = "User [ id=%d, userName=%s, fundingBasket=%s ]  ";
+    public static final String STRING_FORMAT_USER = "User [userName=%s, fundingBasket=%s ]  ";
 
-    @JsonProperty("id") private int id;
+    // @JsonProperty("id") private int id;
     @JsonProperty("userName") private String userName;
     @JsonProperty("fundingBasket") private List<Need> fundingBasket;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
+    public User(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
         this.userName = userName;
-        this.id=id;
+        // this.id=id;
         this.fundingBasket = this.fundingBasket = (fundingBasket != null) ? fundingBasket : new ArrayList<>();
     }
 
@@ -30,12 +30,6 @@ public class User {
         return userName;
     }
     
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
     public List<Need> getFundingBasket() {
         return fundingBasket;
     }
@@ -59,7 +53,7 @@ public class User {
             needs.append("No items in the funding basket");
         }
         
-        return String.format(STRING_FORMAT_USER, id, userName, needs.toString());
+        return String.format(STRING_FORMAT_USER,userName, needs.toString());
     }
 
     

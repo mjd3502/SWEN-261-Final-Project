@@ -21,11 +21,11 @@ import com.ufund.api.ufundapi.model.User;
 public class UserFileDAO implements UserDAO{
      private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
 
-    Map<Integer,User> users;
+    Map<String,User> users;
 
     private ObjectMapper objectMapper;
 
-    private static int nextId;
+    private static String nextUserName;
 
     private  String filename;
 
@@ -38,11 +38,11 @@ public class UserFileDAO implements UserDAO{
     }
 
 
-    private synchronized static int nextId() {
-        int id = nextId;
-        ++nextId;
-        return id;
-    }
+    // private synchronized static int nextId() {
+    //     int id = nextId;
+    //     ++nextId;
+    //     return id;
+    // }
 
     private User[] getUsersArray(){
         ArrayList<User> userList = new ArrayList<>();
@@ -62,44 +62,37 @@ public class UserFileDAO implements UserDAO{
         User[] userArray = getUsersArray();
         objectMapper.writeValue(new File(filename),userArray);
         return true;
-
+        
     }
 
     private boolean load() throws IOException{
         users = new TreeMap<>();
-        nextId = 0;
 
-        
         User[] userArray = objectMapper.readValue(new File(filename),User[].class);
         for(User user: userArray){
-            users.put(user.getId(),user);
-            if (user.getId() > nextId)
-                nextId = user.getId();
+            users.put(user.getUserName(),user);
         }
-        ++nextId;
         return true;
 
     }
 
     @Override
-    public User getUserbyId(int id){
+    public User getUserbyName(String name){
         synchronized(users){
-            if(users.containsKey(id)){
-                return users.get(id);
+            if(users.containsKey(name)){
+                return users.get(name);
             }else{
                 return null;
             }
         }
-
     }
-
 
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
             List<Need> listOFNeeds = new ArrayList<>();
-            User newUser =  new User(nextId(), user.getUserName(),listOFNeeds);
-            users.put(user.getId(), newUser);
+            User newUser =  new User(user.getUserName(),listOFNeeds);
+            users.put(user.getUserName(), newUser);
             save();
             return user;
         }
@@ -107,8 +100,8 @@ public class UserFileDAO implements UserDAO{
     }
 
     @Override
-    public User addNeedToFundingBasket(int userId,Need need) throws IOException {
-        User user = this.getUserbyId(userId);
+    public User addNeedToFundingBasket(String userName,Need need) throws IOException {
+        User user = this.getUserbyName(userName);
         synchronized(users){
             if(user != null){
                 user.setFundingBasket(need);
@@ -122,26 +115,12 @@ public class UserFileDAO implements UserDAO{
         return user;
     }
 
-    private Map<Integer,Need> getFundingBasketMap(int userId){
-        synchronized(users){
-            Map<Integer,Need> fundingBasketMap = new HashMap<>();
-            List<Need> fundingBasket = users.get(userId).getFundingBasket();
-            for(Need need: fundingBasket){
-                fundingBasketMap.put(need.getId(),need);
-            }
-             return fundingBasketMap;
-
-
-        }
-        
-    }
-
 
 
     @Override
-    public boolean removeNeedFromFundingBasket(int userId, int id) throws IOException {
+    public boolean removeNeedFromFundingBasket(String userName, int id) throws IOException {
        synchronized(users){
-        User user = this.getUserbyId(userId);
+        User user = this.getUserbyName(userName);
         if(user != null){
             LOG.info("user is not null");
             List<Need> basket = user.getFundingBasket();
@@ -160,8 +139,8 @@ public class UserFileDAO implements UserDAO{
 
 
     @Override
-    public List<Need> getFundinBasket(int id) throws IOException {
-        User user = this.getUserbyId(id);
+    public List<Need> getFundinBasket(String name) throws IOException {
+        User user = this.getUserbyName(name);
         return user.getFundingBasket();
     }
 

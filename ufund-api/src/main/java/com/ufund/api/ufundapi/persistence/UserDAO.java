@@ -10,13 +10,13 @@ public interface UserDAO {
 
     User createUser(User user) throws IOException;
 
-    User getUserbyId(int id) throws IOException;
+    User getUserbyName(String name) throws IOException;
 
-    User addNeedToFundingBasket(int userId, Need need) throws IOException;
+    User addNeedToFundingBasket(String name, Need need) throws IOException;
 
-    boolean removeNeedFromFundingBasket(int userId,int need) throws  IOException;
+    boolean removeNeedFromFundingBasket(String name,int need) throws  IOException;
 
-    List<Need> getFundinBasket(int id) throws IOException;
+    List<Need> getFundinBasket(String name) throws IOException;
 
 
     

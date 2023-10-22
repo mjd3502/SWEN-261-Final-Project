@@ -38,12 +38,6 @@ public class UserFileDAO implements UserDAO{
     }
 
 
-    // private synchronized static int nextId() {
-    //     int id = nextId;
-    //     ++nextId;
-    //     return id;
-    // }
-
     private User[] getUsersArray(){
         ArrayList<User> userList = new ArrayList<>();
         for(User user: users.values()){
@@ -111,7 +105,6 @@ public class UserFileDAO implements UserDAO{
                  LOG.info("not added :( ");
             }
         }
-        // LOG.info("");
         return user;
     }
 
@@ -143,6 +136,4 @@ public class UserFileDAO implements UserDAO{
         User user = this.getUserbyName(name);
         return user.getFundingBasket();
     }
-
-
 }

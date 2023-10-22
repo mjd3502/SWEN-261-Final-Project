@@ -4,4 +4,5 @@ export interface Need{
     quantity:number;
     description:string;
     cost:number
+    type:string;
 }

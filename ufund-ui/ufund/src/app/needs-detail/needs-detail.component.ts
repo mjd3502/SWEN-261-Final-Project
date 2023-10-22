@@ -58,11 +58,5 @@ export class NeedsDetailComponent implements OnInit {
     })
   }
 
-  // save(): void {
-  //   if (this.need) {
-  //     this.needsService.updateNeed(this.need)
-  //       .subscribe(() => this.goBack());
-  //   }
-  // }
 
 }

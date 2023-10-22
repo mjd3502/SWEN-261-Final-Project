@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,OnInit } from '@angular/core';
 import { Need } from '../Need';
 import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
@@ -16,7 +16,8 @@ export class CheckoutComponent implements OnInit{
 
   constructor(
     private userService:UserHelperService,
-    private currentUser:CurrentUserService
+    private currentUser:CurrentUserService,
+    private cd:ChangeDetectorRef
     
   ){}
 
@@ -27,7 +28,7 @@ export class CheckoutComponent implements OnInit{
       }
     })
 
-    
+
     this.getFundingBasket(this.username);
     
   }
@@ -58,6 +59,7 @@ export class CheckoutComponent implements OnInit{
 
   deleteNeed(needId: number): void{
     this.userService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
+      this.cd.detectChanges();
       console.log(user);
     })
   }

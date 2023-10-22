@@ -13,6 +13,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     NeedsDetailComponent,
     CheckoutComponent,
     SearchBarComponent,
-    UpdateNeedComponent
-    AdminDashboardComponent
+    UpdateNeedComponent,
+    AdminDashboardComponent,
+    AdminBrowseNeedsComponent
   ],
   imports: [
     BrowserModule,

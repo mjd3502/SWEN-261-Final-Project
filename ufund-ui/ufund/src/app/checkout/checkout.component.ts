@@ -67,6 +67,7 @@ export class CheckoutComponent implements OnInit{
   deleteNeed(needId: number): void{
     this.basket = this.basket.filter(need => need .id != needId)
     this.userService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
+      
       // this.cd.detectChanges();
       console.log(user);
     })

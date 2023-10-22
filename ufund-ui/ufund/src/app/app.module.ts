@@ -11,8 +11,10 @@ import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddNeedComponent } from './add-need/add-need.component';
 import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     NeedsDetailComponent,
     CheckoutComponent,
     SearchBarComponent,
-    UpdateNeedComponent
-    AdminDashboardComponent
+    AddNeedComponent,
+    UpdateNeedComponent,
+    AdminDashboardComponent,
+    AdminBrowseNeedsComponent
   ],
   imports: [
     BrowserModule,

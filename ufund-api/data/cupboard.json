@@ -1,4 +1,1 @@
-[
-    {"id":3,"name":"carla","quantity":10,"description":"hello","cost":10,"type":"volunteer"},
-    {"id":4,"name":"Michael","quantity":5,"description":"I'm a need!","cost":1,"type":"goods"}
-]
+[{"id":4,"name":"Michael","quantity":5,"description":"I'm a need!","cost":1,"type":"goods"}]

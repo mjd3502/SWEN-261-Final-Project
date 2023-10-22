@@ -26,23 +26,23 @@ export class UserHelperService {
   }
 
 
-  getFundingBasket(id:number):Observable<Need[]>{
-    const url = `${this.userURL}/fundingBasket/${id}`
+  getFundingBasket(name:string):Observable<Need[]>{
+    const url = `${this.userURL}/fundingBasket/${name}`
     return this.http.get<Need[]>(url,this.httpOptions)
     .pipe(
       catchError(this.handleError<Need[]>('fundingBasket'))
     );
   }
 
-  addNeedToBasket(id:number,need:Need):Observable<User>{
-    const url = `${this.userURL}/addNeed/${id}`
+  addNeedToBasket(name:string,need:Need):Observable<User>{
+    const url = `${this.userURL}/addNeed/${name}`
     return this.http.put<User>(url,need,this.httpOptions).pipe(
       catchError(this.handleError<User>('createUser'))
     );
   }
   
-  removeNeedFromBasket(id:number,needId:Number):Observable<User>{
-    const url = `${this.userURL}/${id}/needId/${needId}`
+  removeNeedFromBasket(name:string,needId:Number):Observable<User>{
+    const url = `${this.userURL}/${name}/needId/${needId}`
     return this.http.delete<User>(url,this.httpOptions).pipe(
       catchError(this.handleError<User>('createUser'))
     );

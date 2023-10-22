@@ -37,11 +37,11 @@ export class NeedsDetailComponent implements OnInit {
     this.location.back();
   }
 
-  functionAddNeed(need: Need): void{
-    this.userService.addNeedToBasket(2,need).subscribe(user =>{
-      console.log(user);
-    })
-  }
+  // functionAddNeed(need: Need): void{
+  //   this.userService.addNeedToBasket(2,need).subscribe(user =>{
+  //     console.log(user);
+  //   })
+  // }
 
   // save(): void {
   //   if (this.need) {

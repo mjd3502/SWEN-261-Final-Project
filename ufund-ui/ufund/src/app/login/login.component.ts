@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserHelperService } from '../user-helper.service';
 import { User } from '../User';
+import { CurrentUserService } from '../current-user.service';
 
 //import { User } from '../User';
 
@@ -20,15 +21,16 @@ export class LoginComponent{
     }
   )
 
-  constructor(private router:Router,private userService:UserHelperService){
+  constructor(
+    private router:Router,
+    private userService:UserHelperService,
+    private currentUser:CurrentUserService){
   }
 
 
   // ngOnInit(): void {
   //   throw new Error('Method not implemented.');
   // }
-
-
 
   changeRoute(url:string){
     this.router.navigate([url])
@@ -43,14 +45,15 @@ export class LoginComponent{
     if(username === 'admin'){
       this.changeRoute('/adminDashboard')
     }else if(username && typeof username === 'string'){
-
-      
-      this.user.setUsername(username);
+      this.user.setUsername(username)
+      // this.user.setId()
+      this.currentUser.setCurrentUser(this.user);
       this.userService.createUser(this.user).subscribe(us=>{
         this.changeRoute('/helperDashboard')
-        return us;
+        console.log(this.user.getUserName())
       }); 
     }
+   
 
   }
 }

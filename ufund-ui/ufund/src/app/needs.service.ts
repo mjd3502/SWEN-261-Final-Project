@@ -79,5 +79,4 @@ export class NeedsService {
         return of(result as T);
       };
     }
-
 }

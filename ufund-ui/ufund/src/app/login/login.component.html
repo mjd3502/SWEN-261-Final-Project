@@ -1,13 +1,18 @@
-<div class="form-container" >
-    <form [formGroup]="logInSection" (ngSubmit)="login()">
-        <h1 class="text-3xl font-bold underline"> Log in </h1>
-        <label> 
-            Username:
-            <input type="text" placeholder="Username" formControlName="username" />
-        </label>
-    
-        <button type="submit">Log in </button>
-    </form>
+
+<div class="body">
+    <div class="form-container" >
+        <form [formGroup]="logInSection" (ngSubmit)="login()">
+            <h1> Log in </h1>
+            <div class="inputBox">
+                <label>Username</label>
+                <input type="text"  formControlName="username" />
+               
+                <i></i>
+            </div>
+            <input (click)="login()" type="submit" />
+        </form>
+    </div>
 </div>
+
 
  

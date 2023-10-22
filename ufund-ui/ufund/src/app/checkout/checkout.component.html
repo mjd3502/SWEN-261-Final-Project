@@ -1,6 +1,7 @@
 <div class="checkout-container">
 
 <h2>Funding Basket</h2>
+<button (click)="goBack()"> Return to Dashboard</button>
     <ul>
         <li *ngFor="let need of basket">
             <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>

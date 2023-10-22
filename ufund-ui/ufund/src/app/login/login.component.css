@@ -1,12 +1,109 @@
-.form-container{
-    display: block;
-    max-width: 300px;
-    margin: auto;
-    background:#eceff1;
-    padding: 48px;
-    border-radius: 16px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-input{
-    
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #eeeeee; 
 }
+
+
+.form-container{
+
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background: #929aab;
+    border-radius: 8px;
+}
+
+
+
+.form-container form{
+    position: absolute;
+    inset: 4px;
+    background: #393e46;
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.form-container form h1{
+    color:#f7f7f7;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+
+.form-container form .inputBox{
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+
+}
+
+.form-container form .inputBox input{
+
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.form-container form .inputBox label{
+    color: #8f8f8f;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+} 
+
+
+.form-container form .inputBox input:valid ~label,
+.form-container form .inputBox input:focus ~label
+{
+
+    color: #fff;
+    font-size: 0.75em;
+    transform:translate(-34px) ;
+}
+
+.form-container form input[type="submit"]{
+    border: none;
+    outline: none;
+    padding: 9px;
+    background: #eeeeee;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-top: 10px;
+
+}
+
+.form-container form input[type="submit"]:active{
+    opacity: 0.8;
+
+}
+
+
+

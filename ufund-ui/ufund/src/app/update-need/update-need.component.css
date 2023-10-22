@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #000;
+    background-color: #b7c9d5;
+    padding: 20px;
+}
+
+.mainText {
+    color: #000;
+}
+
+header {
+    background-color: #72A0C1;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    text-shadow: -2px 2px 2px #2d536d;
+}
+
+/* Main Content Styles */
+main {
+    margin-top: 20px;
+}
+
+/* Box Styles */
+.box {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    text-shadow: -2px 2px 2px #2d536d;
+}
+
+.box2 {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    width: 45%;
+    height: 50vh;
+    text-shadow: -2px 2px 2px #2d536d;
+}
+
+.titleBox {
+    background-color: #72A0C1;
+    border: 1px solid #2d536d;
+    padding: 20px;
+    margin: 10px;
+}
+
+/* Button Styles */
+button {
+    background-color: #72A0C1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2d536d;
+}
+
+button:disabled {
+    background-color: #13212b;
+    cursor: not-allowed;
+}
+
+/* Form Styles */
+.form-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-group .type-buttons button {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.form-group .type-buttons button:last-child {
+    margin-right: 0;
+}

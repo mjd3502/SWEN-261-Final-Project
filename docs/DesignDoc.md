@@ -31,6 +31,7 @@ This is a summary of the project.
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| Helper | A user using the application with intent to give support|
 
 
 ## Requirements
@@ -42,10 +43,18 @@ This section describes the features of the application.
 > maybe Epics and critical Stories._
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+>  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
+>  A user logs in with a username, going to their page
+>  A U-fund Manager logs in with username 'admin'
+>  A Helper can see a list of needs
+>  A Helper can search through the list of needs
+>  A Helper can add/remove a need from their Funding Basket
+>  A Helper can Check-out and fund all needs in their Funding Basket
+>  A U-fund Manager can add, remove, and edit the list of needs
+>  A U-fund manager cannot see each user's funding basket
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._

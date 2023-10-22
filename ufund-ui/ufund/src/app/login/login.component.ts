@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserHelperService } from '../user-helper.service';
 import { User } from '../User';
 import { CurrentUserService } from '../current-user.service';
+import { faDog } from '@fortawesome/free-solid-svg-icons';
 
 //import { User } from '../User';
 
@@ -20,6 +21,8 @@ export class LoginComponent{
       username: new FormControl('',[Validators.required]),
     }
   )
+
+  faDog = faDog;
 
   constructor(
     private router:Router,

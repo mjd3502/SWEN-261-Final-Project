@@ -6,7 +6,7 @@ body {
 }
 
 .mainText {
-    color:#000;
+    color: #000;
 }
 
 header {
@@ -17,12 +17,12 @@ header {
     text-shadow: -2px 2px 2px #2d536d;
 }
 
-  /* Main Content Styles */
+/* Main Content Styles */
 main {
     margin-top: 20px;
 }
 
-  /* Box Styles */
+/* Box Styles */
 .box {
     background-color: #eee;
     border: 1px solid #ccc;
@@ -48,7 +48,7 @@ main {
     margin: 10px;
 }
 
-  /* Button Styles */
+/* Button Styles */
 button {
     background-color: #72A0C1;
     color: #fff;
@@ -67,28 +67,36 @@ button:disabled {
     cursor: not-allowed;
 }
 
-img {
-    max-width: 50%;
-    height: 50%;
-    width: 50%;
+/* Form Styles */
+.form-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
     display: block;
-    margin: 10px;
-    border-radius: 8px;
+    margin-bottom: 5px;
 }
 
-.row {
-    display: flex;
-    justify-content: space-around;
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
-#goodFont {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    letter-spacing: 0.6px;
-    word-spacing: 0.8px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: none solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
+.form-group .type-buttons button {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.form-group .type-buttons button:last-child {
+    margin-right: 0;
 }

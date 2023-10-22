@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NeedsService } from '../needs.service';
+import { Need } from '../Need';
 
 @Component({
   selector: 'app-update-need',
@@ -8,5 +10,13 @@ import { Component } from '@angular/core';
 export class UpdateNeedComponent {
 
 
-  
+  constructor(private cupboardService:NeedsService){
+  }
+
+  updateNeed(need:Need):void{
+    
+  }
+
+
+
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HelperDashboardComponent } from './helper-dashboard/helper-dashboard.component';
@@ -9,7 +9,8 @@ const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
   {path:'helperDashboard',component:HelperDashboardComponent},
   {path:'login',component:LoginComponent},
-  {path:'updateNeed',component:UpdateNeedComponent}
+  {path:'updateNeed',component:UpdateNeedComponent}.
+  {path:'adminDashboard',component:AdminDashboardComponent}
 ];
 
 @NgModule({

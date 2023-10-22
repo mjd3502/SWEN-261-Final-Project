@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Need} from '../Need';
 import { NeedsService } from '../needs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-browse-needs',
@@ -10,7 +11,9 @@ import { NeedsService } from '../needs.service';
 export class AdminBrowseNeedsComponent {
   needs: Need[] = [];
 
-  constructor(private needsService: NeedsService){}
+  constructor(private needsService: NeedsService,
+    private route:Router
+    ){}
 
   //retrieves all needs using the service
   getNeeds(): void{
@@ -30,5 +33,11 @@ export class AdminBrowseNeedsComponent {
       console.log(user);
     })
   }
+
+
+  // editNeed(id:number):void{
+  //   this.route.navigate(['/updateNeed',id]);
+  //   console.log(id);
+  // }
 
 }

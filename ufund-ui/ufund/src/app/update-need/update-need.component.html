@@ -1,4 +1,13 @@
-<head>
+
+
+
+
+
+
+
+
+
+<!-- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
@@ -79,11 +88,55 @@
             }
 
             // Perform update logic here with the form values and selected type
-            console.log('Title:', title);
+            console.log('Title<:', title);
             console.log('Description:', description);
             console.log('Cost:', cost);
             console.log('Quantity:', quantity);
             console.log('Type:', selectedType);
         }
     </script>
-</body>
+</body> -->
+
+<h1> hello</h1>
+<div>
+    <h3>Update Need</h3>
+    <form class="form-container"  (ngSubmit)="onSubmit()">
+            <div class="formGroup">
+                <label>Name:</label>
+                <input type="text" class="form-input" id="name"
+                [(ngModel)] = "Need.name" name="name">
+            </div>
+
+            <div class="formGroup">
+                <label>Description:</label>
+                <input type="text" class="form-input" id="description"
+                [(ngModel)] = "Need.description" name="description">
+            
+            </div>
+
+
+            <div class="formGroup">
+                <label>quantity</label>
+                <input type="text" class="form-input" id="quantity"
+                [(ngModel)] = "Need.quantity" name="quantity">
+            
+            </div>
+
+            <div class="formGroup">
+                <label>Cost</label>
+                <input type="text" class="form-input" id="cost"
+                [(ngModel)] = "Need.cost" name="cost">
+            
+            </div>
+
+            <div class="formGroup">
+                <label>Type:</label>
+                <input type="text" class="form-input" id="type"
+                [(ngModel)] = "Need.type" name="type">
+            
+            </div>
+
+            <button class="update-button" type="submit"> Update Need </button>
+
+    </form>
+</div>

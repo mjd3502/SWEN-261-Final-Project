@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
   {path:'helperDashboard',component:HelperDashboardComponent},
   {path:'login',component:LoginComponent},
-  {path:'updateNeed',component:UpdateNeedComponent},
+  {path:'updateNeed/:id',component:UpdateNeedComponent},
   {path:'adminDashboard',component:AdminDashboardComponent},
   {path:'admin-browse', component: AdminBrowseNeedsComponent}
 ];

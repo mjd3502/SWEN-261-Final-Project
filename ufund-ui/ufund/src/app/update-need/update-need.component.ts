@@ -1,6 +1,6 @@
 // update-need.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Need } from '../Need';
@@ -12,74 +12,33 @@ import { NeedsService } from '../needs.service';
   styleUrls: ['./update-need.component.css']
 })
 export class UpdateNeedComponent implements OnInit {
-  need: Need = { id: 0, name: '', quantity: 0, description: '', cost: 0};
-  oldNeed: Need | undefined;
+  Need!:Need;
 
-  constructor(
-    private needsService: NeedsService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) {}
-
-  /**
-   * Fetch the old need based on the provided ID
-   */
-  ngOnInit() {
+  constructor(private needsService:NeedsService,
+    private route:ActivatedRoute,
+    private router:Router
+    ){
+    
+  }
+  
+  ngOnInit(): void {
     this.getNeed();
   }
 
-  /**
-   * Call service to get the old need based on the ID
-   * Initialize the form with the old need values
-   * @param id id of need to get
-   */
-  
-  getNeed(): void {
+  getNeed():void{
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.needsService.getNeedyId(id).subscribe(need => {
-      this.oldNeed = need;
-      this.need = { ...this.oldNeed! }; // Use non-null assertion operator here
-    });
+    this.needsService.getNeedyId(id).subscribe(need =>
+      this.Need = need
+    )
   }
 
-  /**
-   * Go back to last location in route
-   */
-  goBack(): void {
-    this.location.back();
+  onSubmit(){
+    if(this.Need){
+      this.needsService.updateNeed(this.Need).subscribe(response =>{
+        this.router.navigate(['/adminDashboard'])
+        console.log(response);
+      })
+    }
+    
   }
-
-  /**
-   * Combine unchanged values from old need and changed values from the form
-   * Call service to update the need with updatedNeed object
-   */
-  updateNeed() {
-    const updatedNeed: Need = {
-      ...this.oldNeed!,
-      ...this.need
-    };
-
-    this.needsService.updateNeed(updatedNeed).subscribe(need => {
-      console.log('Need Updated:', need);
-      this.resetForm();
-    });
-  }
-
-  /**
-   * If update successful, reset form to blank need
-   */
-  resetForm() {
-    this.need = { id: 0, name: '', quantity: 0, description: '', cost: 0};
-  }
-
-  /**
-   * FROM HEROES, might not need 
-   */
-  // save(): void {
-  //   if (this.need) {
-  //     this.needsService.updateNeed(this.need)
-  //       .subscribe(() => this.goBack());
-  //   }
-  // }
-
 }

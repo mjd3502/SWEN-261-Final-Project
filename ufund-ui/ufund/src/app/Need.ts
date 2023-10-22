@@ -3,5 +3,6 @@ export interface Need{
     name:string;
     quantity:number;
     description:string;
-    cost:number
+    cost:number,
+    type:string
 }

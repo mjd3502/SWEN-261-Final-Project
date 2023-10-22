@@ -51,10 +51,10 @@ export class NeedsService {
       );
     }
 
-    updateNeed(need:Need):Observable<Need>{
+    updateNeed(need:Need):Observable<any>{
       return this.http.put<Need>(this.cupBoardURL,need,this.httpOptions)
       .pipe(
-        catchError(this.handleError<Need>('updateNeed')))
+        catchError(this.handleError<any>('updateNeed')))
     }
 
     searchCupboardByName(name:string): Observable<Need[]>{

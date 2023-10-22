@@ -53,7 +53,7 @@ public class CupboardController {
 
 
 @GetMapping("/{id}")
-    public ResponseEntity<Need> getSingleNeedbyId(@RequestParam int id) {
+    public ResponseEntity<Need> getSingleNeedbyId(@PathVariable int id) {
         LOG.info("GET /cupboard/{id}");
         try {
             Need foundNeed = cupboardDao.getSingleNeedById(id);
@@ -220,7 +220,6 @@ public class CupboardController {
 
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
-            
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);
             } else {

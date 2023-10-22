@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+// update-need.component.ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
 
 @Component({
@@ -6,43 +11,73 @@ import { NeedsService } from '../needs.service';
   templateUrl: './update-need.component.html',
   styleUrls: ['./update-need.component.css']
 })
-export class UpdateNeedComponent {
-  need: any = {};
-  oldNeed: any = {};
+export class UpdateNeedComponent implements OnInit {
+  need: Need = { id: 0, name: '', quantity: 0, description: '', cost: 0};
+  oldNeed: Need | undefined;
 
-  constructor(private needsService:NeedsService) {}
+  constructor(
+    private needsService: NeedsService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
+  /**
+   * Fetch the old need based on the provided ID
+   */
   ngOnInit() {
-    // Fetch the old need based on the provided ID
-    const id = 1; // Replace this with the actual ID or fetch it from the route params
-    this.getNeed(id);
+    this.getNeed();
   }
 
-  getNeed(id: number) {
-    // Call service to get the old need based on the ID
-    this.needsService.getNeedyId(id).subscribe((data: any) => {
-      this.oldNeed = data;
-      // Initialize the form with the old need values
-      this.need = { ...this.oldNeed };
+  /**
+   * Call service to get the old need based on the ID
+   * Initialize the form with the old need values
+   * @param id id of need to get
+   */
+  getNeed(): void {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.needsService.getNeedyId(id).subscribe(need => {
+      this.oldNeed = need;
+      this.need = { ...this.oldNeed! }; // Use non-null assertion operator here
     });
   }
 
+  /**
+   * Go back to last location in route
+   */
+  goBack(): void {
+    this.location.back();
+  }
+
+  /**
+   * Combine unchanged values from old need and changed values from the form
+   * Call service to update the need with updatedNeed object
+   */
   updateNeed() {
-    // Combine unchanged values from old need and changed values from the form
-    const updatedNeed = {
-      ...this.oldNeed,
+    const updatedNeed: Need = {
+      ...this.oldNeed!,
       ...this.need
     };
 
-    // Call service to update the need with updatedNeed object
-    this.needsService.updateNeed(updatedNeed).subscribe((data: any) => {
-      console.log('Need Updated:', data);
-      // Reset the form after successful update if needed
+    this.needsService.updateNeed(updatedNeed).subscribe(need => {
+      console.log('Need Updated:', need);
       this.resetForm();
     });
   }
 
+  /**
+   * If update successful, reset form to blank need
+   */
   resetForm() {
-    this.need = {};
+    this.need = { id: 0, name: '', quantity: 0, description: '', cost: 0};
   }
+
+  /**
+   * FROM HEROES, might not need 
+   */
+  // save(): void {
+  //   if (this.need) {
+  //     this.needsService.updateNeed(this.need)
+  //       .subscribe(() => this.goBack());
+  //   }
+  // }
 }

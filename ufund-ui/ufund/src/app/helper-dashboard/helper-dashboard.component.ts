@@ -47,7 +47,6 @@ export class HelperDashboardComponent implements OnInit{
       showCancelButton:true,
       showConfirmButton:true,
       confirmButtonText:"Log out",
-
     }).then((result =>{
 
       if(result.isConfirmed){

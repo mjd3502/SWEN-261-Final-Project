@@ -1,7 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
     color: #000;
-    background-color: #b7c9d5;
+    background-color: #c4dbf6;
     padding: 20px;
 }
 
@@ -10,11 +10,13 @@ body {
 }
 
 header {
-    background-color: #72A0C1;
+    background-color: #86bade;
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    text-shadow: -2px 2px 2px #2d536d;
+    /* text-shadow: -2px 2px 2px #426d8a; */
+    border: 1px solid #426d8a;
+    border-radius: 5px;
 }
 
   /* Main Content Styles */
@@ -25,45 +27,51 @@ main {
   /* Box Styles */
 .box {
     background-color: #eee;
-    border: 1px solid #ccc;
+    border: 1px solid #b4b4b4;
     padding: 20px;
     margin: 10px;
-    text-shadow: -2px 2px 2px #2d536d;
+    /* text-shadow: -2px 2px 2px #426d8a; */
+    border-radius: 5px;
 }
 
 .box2 {
   background-color: #eee;
-  border: 1px solid #ccc;
+  border: 1px solid #b4b4b4;
   padding: 20px;
   margin: 10px;
   width: 45%;
   height: 50vh;
-  text-shadow: -2px 2px 2px #2d536d;
+  /* text-shadow: -2px 2px 2px #426d8a; */
+  border-radius: 5px;
 }
 
 .titleBox {
-  background-color: #72A0C1;
-  border: 1px solid #2d536d;
+  background-color: #86bade;
+  border: 1px solid #426d8a;
   padding: 20px;
   margin: 10px;
+  border-radius: 5px;
 }
 
   /* Button Styles */
 button {
-    background-color: #72A0C1;
-    color: #fff;
+    background-color: #86bade;
+    color: #000;
     padding: 10px 20px;
-    border: none;
+    border: 1px solid #426d8a;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    padding-bottom: 40 px;
 }
 
 button:hover {
-    background-color: #2d536d;
+    background-color: #426d8a;
 }
 
 button:disabled {
-    background-color: #13212b;
+    background-color: #214159;
     cursor: not-allowed;
 }
 
@@ -82,7 +90,7 @@ img {
 }
 
 #goodFont {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: 'Poppins', sans-serif;
   letter-spacing: 0.6px;
   word-spacing: 0.8px;
   color: #000000;

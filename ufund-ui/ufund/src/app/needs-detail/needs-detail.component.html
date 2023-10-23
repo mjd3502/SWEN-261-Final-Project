@@ -1,7 +1,6 @@
 <!-- <div *ngIf="need"> -->
     <body>
         <header>
-            <button (click)="goBack()"> Return to Dashboard</button>
             <div id="goodFont">
             <h1>Need:{{need.name}}</h1>
             <h1>Need:</h1>
@@ -22,17 +21,17 @@
             </div>
             <div id="goodFont" class="box">
                 <div class="titleBox">
-                <h2>Cost:</h2>
+                <h2>Cost :</h2>
                 </div>
                 <p>{{need.cost}}</p>
                 <p>{{need.type}}</p>
             </div>
             <div id="goodFont" class="box">
                 <div class="mainText">
-                <button (click)="functionAddNeed(need)">Add to Cart</button>
+                <button (click)="functionAddNeed(need)">Add to Cart</button><br><br>
+                <button (click)="goBack()"> Return to Dashboard</button>
                 </div>
             </div>
-
         </main>
     </body>
 

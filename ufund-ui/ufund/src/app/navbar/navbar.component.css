@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+.navbar {
+    background-color:#354d62;
+    padding: 0px ;
+    border-radius: 1px;
+    width: 100%;
+}
+  
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff; /* Text color for the navbar */
+    clip-rule: pointer;
+}
+
+.navbar .navbar-content ol {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .navbar-content ol li {
+    margin-right: 50px; 
+    padding: 5px 10px;
+}
+
+.navbar .navbar-content ol li.home {
+    font-size: 24px; 
+}
+  
+.navbar .navbar-content ol li.fa {
+    font-size: 24px; 
+}
+

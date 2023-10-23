@@ -1,0 +1,27 @@
+<div class="navbar">
+    <nav class="navbar-content">
+      <h2>U Fund Website</h2>
+      <app-search-bar></app-search-bar>
+      <ol>
+        <li class="home"  routerLink="/helperDashboard" >Home</li>
+        <li class= "fa" routerLink="/checkout" >
+            <fa-icon [icon]="shoppingBasket"></fa-icon>
+        </li>
+        <li (click)="logOut()"  class= "fa" routerLink="/checkout" >
+            <fa-icon [icon]="logOutLogo"></fa-icon>
+        </li>
+      </ol>
+    </nav>
+</div>    
+      <!-- <span class="fa" (click)="iconClicked()">
+        <fa-icon [icon]="shoppingBasket"></fa-icon>
+        <h6>Funding Basket</h6>
+      </span>
+      <span class="fa" (click)="logOut()">
+        <fa-icon [icon]="logOutLogo"></fa-icon>
+        <h6>Log out</h6>
+      </span>
+      <div>
+        Username: {{username}}
+      </div> -->
+

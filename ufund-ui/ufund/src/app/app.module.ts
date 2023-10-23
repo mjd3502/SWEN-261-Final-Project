@@ -13,6 +13,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowseNeedsComponent,
     NeedsDetailComponent,
     CheckoutComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

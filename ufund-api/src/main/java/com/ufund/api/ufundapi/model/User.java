@@ -9,15 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
 
-    static final String STRING_FORMAT = "User [userName=%s, pasword =%s]";
+    static final String STRING_FORMAT = "User [userName=%s ]";
     
     @JsonProperty("username") String username;
-    @JsonProperty("password") String password;
 
 
-    public User(@JsonProperty("username") String username, @JsonProperty("password")String password ){
+    public User(@JsonProperty("username") String username){
         this.username = username;
-        this.password = password;
+        
     }
 
 
@@ -31,18 +30,9 @@ public class User {
     }
 
 
-    public String getPassword() {
-        return password;
-    }
-
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString(){
-        return String.format(STRING_FORMAT, username,password);
+        return String.format(STRING_FORMAT, username);
     }
 
 

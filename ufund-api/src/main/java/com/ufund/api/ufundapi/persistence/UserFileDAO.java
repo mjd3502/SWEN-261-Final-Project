@@ -73,7 +73,7 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
-            User newUser = new User(user.getUsername(),user.getPassword());
+            User newUser = new User(user.getUsername());
             users.put(newUser.getUsername(),user);
             save();
             return newUser;
@@ -81,16 +81,6 @@ public class UserFileDAO implements UserDAO{
     }
 
 
-    @Override
-    public String getUsernamePassword(String username)  throws IOException{
-       synchronized(users){
-            if(users.containsKey(username)){
-                User user = users.get(username);
-                return user.getPassword();
-            }
-            return null;
-       }
-    }
 
 
     @Override

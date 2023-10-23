@@ -12,5 +12,4 @@ public interface UserDAO {
     
     String getUserName(String username)  throws IOException;
 
-    String getUsernamePassword(String username)  throws IOException;
 }

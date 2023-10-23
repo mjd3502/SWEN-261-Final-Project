@@ -16,45 +16,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.persistence.FundingBasketDAO;
 import com.ufund.api.ufundapi.model.FundingBasket;
-import com.ufund.api.ufundapi.persistence.fundingBasketDAO;
+// import com.ufund.api.ufundapi.persistence.fundingBasketDAO;
 
 @RestController
 @RequestMapping("/fundingBasket")
 public class FundingBasketController {
      private static final Logger LOG = Logger.getLogger(FundingBasketController.class.getName());
     
-    private fundingBasketDAO fundingBasketDao;
+    private FundingBasketDAO fundingBasketDao;
 
-    public FundingBasketController(fundingBasketDAO fundingBasketDao){
+    public FundingBasketController(FundingBasketDAO fundingBasketDao){
         this.fundingBasketDao = fundingBasketDao;
-    }
-
-    private boolean validateHelperLogin(String value) {
-       
-        if (value == null) {
-            return false;
-        }
-        
-        if(value.equalsIgnoreCase("admin")) {
-            return false;
-        }
-        
-        return true;
     }
     
     @PostMapping(" ")
-    public ResponseEntity<fundingBasket> createfundingBasket(@RequestBody fundingBasket fundingBasket){
+    public ResponseEntity<FundingBasket> createfundingBasket(@RequestBody FundingBasket fundingBasket){
         LOG.info("POST /fundingBasket " + fundingBasket);
-
-        if(!validateHelperLogin(fundingBasket.getfundingBasketName())){
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
 
         try {
             
-            fundingBasket newfundingBasket = fundingBasketDao.createfundingBasket(fundingBasket);
-            return new ResponseEntity<fundingBasket>(newfundingBasket,HttpStatus.CREATED);
+            FundingBasket newfundingBasket = fundingBasketDao.createFundingBasket(fundingBasket);
+            return new ResponseEntity<FundingBasket>(newfundingBasket,HttpStatus.CREATED);
             
 
         } catch (Exception e) {
@@ -63,32 +47,17 @@ public class FundingBasketController {
         }
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<fundingBasket> getfundingBasketbyId(@PathVariable("id") String name ){
-
-        try {
-            
-            fundingBasket fundingBasket = fundingBasketDao.getfundingBasketbyName(name);
-            if(fundingBasket != null){
-                return new ResponseEntity<fundingBasket>(fundingBasket,HttpStatus.ACCEPTED);
-            }else{
-                 return new ResponseEntity<fundingBasket>(fundingBasket,HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @PutMapping("/addNeed/{name}")
-    public  ResponseEntity<fundingBasket> addNeedToBasket(@PathVariable("name")String name, @RequestBody Need need){
+    public  ResponseEntity<FundingBasket> addNeedToBasket(@PathVariable("name")String name, @RequestBody Need need){
         LOG.info("PUT /fundingBasket/addNeed/" + name);
         try {
-            fundingBasket fundingBasket = fundingBasketDao.addNeedToFundingBasket(name, need);
+            FundingBasket fundingBasket = fundingBasketDao.addNeedToFundingBasket(name,need);
 
             if(fundingBasket != null){
-                return new ResponseEntity<fundingBasket>(fundingBasket,HttpStatus.ACCEPTED);
+                return new ResponseEntity<FundingBasket>(fundingBasket,HttpStatus.ACCEPTED);
             }else{
-                 return new ResponseEntity<fundingBasket>(fundingBasket,HttpStatus.NOT_ACCEPTABLE);
+                 return new ResponseEntity<FundingBasket>(fundingBasket,HttpStatus.NOT_ACCEPTABLE);
             }
             
         } catch (Exception e) {
@@ -98,17 +67,17 @@ public class FundingBasketController {
     }
 
     @DeleteMapping("/{name}/needId/{needId}")
-    public ResponseEntity<fundingBasket> removeNeedfromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
+    public ResponseEntity<FundingBasket> removeNeedfromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
 
         try {
             boolean deleted = fundingBasketDao.removeNeedFromFundingBasket(name, needId);
 
             if(deleted){
                  LOG.info("deleteeeeeeeeeed");
-                return new ResponseEntity<fundingBasket>(HttpStatus.OK);
+                return new ResponseEntity<FundingBasket>(HttpStatus.OK);
             }else{
                  LOG.info("nooooooooo");
-                 return new ResponseEntity<fundingBasket>(HttpStatus.NOT_ACCEPTABLE);
+                 return new ResponseEntity<FundingBasket>(HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {
@@ -117,16 +86,17 @@ public class FundingBasketController {
         }
     }
 
-    @GetMapping("/fundingBasket/{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("name") String name){
 
         try {
-            List<Need> fundingBasket = fundingBasketDao.getFundinBasket(name);
+            List<Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
             return new ResponseEntity<List<Need>>(fundingBasket,HttpStatus.OK);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+
 
 }

@@ -6,12 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import com.ufund.api.ufundapi.controller.FundingBasketController;
+// import com.ufund.api.ufundapi.controller.FundingBasketController;
 import com.ufund.api.ufundapi.persistence.FundingBasketDAO;
 
 @Tag("Controller-tier")
 public class UserControllerTest {
-    private FundingBasketController userController;
+    // private FundingBasketController userController;
     private FundingBasketDAO mockUserDAO;
 
     /**
@@ -21,7 +21,7 @@ public class UserControllerTest {
     @BeforeEach
     public void setupcupboardController() {
         mockUserDAO = mock(FundingBasketDAO.class);
-        userController = new FundingBasketController(mockUserDAO);
+        // userController = new FundingBasketController(mockUserDAO);
     }
 
     @Test

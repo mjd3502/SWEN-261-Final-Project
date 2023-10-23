@@ -11,8 +11,6 @@ public interface FundingBasketDAO {
 
     FundingBasket createFundingBasket(FundingBasket fundingBasket) throws IOException;
 
-    // User getUserbyName(String name) throws IOException;
-
     FundingBasket addNeedToFundingBasket(String userName, Need need) throws IOException;
 
     boolean removeNeedFromFundingBasket(String userName,int need) throws  IOException;

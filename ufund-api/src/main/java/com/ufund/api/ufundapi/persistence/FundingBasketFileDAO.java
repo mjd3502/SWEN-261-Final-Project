@@ -16,17 +16,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.controller.FundingBasketController;
 import com.ufund.api.ufundapi.model.FundingBasket;
 import com.ufund.api.ufundapi.model.Need;
-import com.ufund.api.ufundapi.model.User;
+
 
 @Component
 public class FundingBasketFileDAO implements FundingBasketDAO{
      private static final Logger LOG = Logger.getLogger(FundingBasketFileDAO.class.getName());
 
-    Map<String,FundingBasket> fundingBasket;
+    Map<String,FundingBasket> fundingBaskets;
 
     private ObjectMapper objectMapper;
 
-    private static String nextUserName;
 
     private  String filename;
 
@@ -41,7 +40,7 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
 
     private FundingBasket[] getFundingBasketsArray(){
         ArrayList<FundingBasket> fundingBasketList = new ArrayList<>();
-        for(FundingBasket FundingBasket: FundingBaskets.values()){
+        for(FundingBasket FundingBasket: fundingBaskets.values()){
             fundingBasketList.add(FundingBasket);
         }
 
@@ -61,65 +60,54 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
     }
 
     private boolean load() throws IOException{
-        FundingBaskets = new TreeMap<>();
+        fundingBaskets = new TreeMap<>();
 
         FundingBasket[] fundingBasketArray = objectMapper.readValue(new File(filename),FundingBasket[].class);
         for(FundingBasket fundingBasket: fundingBasketArray){
-            FundingBaskets.put(fundingBasket.ge,user);
+            fundingBaskets.put(fundingBasket.getUserName(),fundingBasket);
         }
         return true;
 
     }
 
-    // @Override
-    // public User getUserbyName(String name){
-    //     synchronized(users){
-    //         if(users.containsKey(name)){
-    //             return users.get(name);
-    //         }else{
-    //             return null;
-    //         }
-    //     }
-    // }
-
-
-
     @Override
-    public FundingBasket createFundingBasket(User user) throws IOException {
-        synchronized(users){
+    public FundingBasket createFundingBasket(FundingBasket fundingBasket) throws IOException {
+        synchronized(fundingBaskets){
             List<Need> listOFNeeds = new ArrayList<>();
-            User newUser =  new User(user.getUserName(),listOFNeeds);
-            users.put(user.getUserName(), newUser);
+            FundingBasket newFundingBasket =  new FundingBasket(fundingBasket.getUserName(),listOFNeeds);
+            fundingBaskets.put(fundingBasket.getUserName(), newFundingBasket);
             save();
-            return user;
+            return newFundingBasket;
         }
        
     }
 
     @Override
     public FundingBasket addNeedToFundingBasket(String userName,Need need) throws IOException {
-        User user = this.getUserbyName(userName);
-        synchronized(users){
-            if(user != null){
-                user.setFundingBasket(need);
+
+        synchronized(fundingBaskets){
+            FundingBasket fundingBasket = fundingBaskets.get(userName);
+            if(fundingBasket != null){
+                fundingBasket.setFundingBasket(need);
                 save();
                 LOG.info("added to file");
             }else{
                  LOG.info("not added :( ");
             }
+            return fundingBasket;
         }
-        return user;
+       
     }
 
 
 
     @Override
     public boolean removeNeedFromFundingBasket(String userName, int id) throws IOException {
-       synchronized(users){
-        FundingBasket user = this.getUserbyName(userName);
-        if(user != null){
+       synchronized(fundingBaskets){
+        FundingBasket fundingBasket = fundingBaskets.get(userName);
+        if(fundingBasket != null){
             LOG.info("user is not null");
-            List<Need> basket = user.getFundingBasket();
+            List<Need> basket = fundingBasket.getFundingBasket();
             for(Need need: basket){
                 if(need.getId() == id){
                     basket.remove(need);
@@ -136,10 +124,12 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
 
     @Override
     public List<Need> getFundingBasket(String name) throws IOException {
-        synchronized(fundingBasket){
-            if(fundingBasket.containsKey(name)){
-                return fundingBasket.get(name);
+        synchronized(fundingBaskets){
+            if(fundingBaskets.containsKey(name)){
+                FundingBasket fundingBasket = fundingBaskets.get(name);
+                return fundingBasket.getFundingBasket();
             }
         }
+        return null;
     }
 }

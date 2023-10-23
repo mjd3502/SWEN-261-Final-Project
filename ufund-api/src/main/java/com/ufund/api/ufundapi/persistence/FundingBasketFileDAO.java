@@ -13,15 +13,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.controller.UserController;
+import com.ufund.api.ufundapi.controller.FundingBasketController;
+import com.ufund.api.ufundapi.model.FundingBasket;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.User;
 
 @Component
-public class UserFileDAO implements UserDAO{
-     private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
+public class FundingBasketFileDAO implements FundingBasketDAO{
+     private static final Logger LOG = Logger.getLogger(FundingBasketFileDAO.class.getName());
 
-    Map<String,User> users;
+    Map<String,FundingBasket> fundingBasket;
 
     private ObjectMapper objectMapper;
 
@@ -30,7 +31,7 @@ public class UserFileDAO implements UserDAO{
     private  String filename;
 
 
-    public UserFileDAO(@Value("${users.file}")String filename, ObjectMapper objectMapper) throws IOException{
+    public FundingBasketFileDAO(@Value("${fundingBasket.file}") String filename, ObjectMapper objectMapper) throws IOException{
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -38,51 +39,53 @@ public class UserFileDAO implements UserDAO{
     }
 
 
-    private User[] getUsersArray(){
-        ArrayList<User> userList = new ArrayList<>();
-        for(User user: users.values()){
-            userList.add(user);
+    private FundingBasket[] getFundingBasketsArray(){
+        ArrayList<FundingBasket> fundingBasketList = new ArrayList<>();
+        for(FundingBasket FundingBasket: FundingBaskets.values()){
+            fundingBasketList.add(FundingBasket);
         }
 
-        User[] userArray = new User[userList.size()];
-        userList.toArray(userArray);
-        return userArray;
+        FundingBasket[] fundingBasketArray = new FundingBasket[fundingBasketList.size()];
+        fundingBasketList.toArray(fundingBasketArray);
+        return fundingBasketArray;
 
     }
 
    
 
     private boolean save() throws IOException{
-        User[] userArray = getUsersArray();
-        objectMapper.writeValue(new File(filename),userArray);
+        FundingBasket[] fundingBasketArray = getFundingBasketsArray();
+        objectMapper.writeValue(new File(filename),fundingBasketArray);
         return true;
         
     }
 
     private boolean load() throws IOException{
-        users = new TreeMap<>();
+        FundingBaskets = new TreeMap<>();
 
-        User[] userArray = objectMapper.readValue(new File(filename),User[].class);
-        for(User user: userArray){
-            users.put(user.getUserName(),user);
+        FundingBasket[] fundingBasketArray = objectMapper.readValue(new File(filename),FundingBasket[].class);
+        for(FundingBasket fundingBasket: fundingBasketArray){
+            FundingBaskets.put(fundingBasket.ge,user);
         }
         return true;
 
     }
 
-    @Override
-    public User getUserbyName(String name){
-        synchronized(users){
-            if(users.containsKey(name)){
-                return users.get(name);
-            }else{
-                return null;
-            }
-        }
-    }
+    // @Override
+    // public User getUserbyName(String name){
+    //     synchronized(users){
+    //         if(users.containsKey(name)){
+    //             return users.get(name);
+    //         }else{
+    //             return null;
+    //         }
+    //     }
+    // }
+
+
 
     @Override
-    public User createUser(User user) throws IOException {
+    public FundingBasket createFundingBasket(User user) throws IOException {
         synchronized(users){
             List<Need> listOFNeeds = new ArrayList<>();
             User newUser =  new User(user.getUserName(),listOFNeeds);
@@ -94,7 +97,7 @@ public class UserFileDAO implements UserDAO{
     }
 
     @Override
-    public User addNeedToFundingBasket(String userName,Need need) throws IOException {
+    public FundingBasket addNeedToFundingBasket(String userName,Need need) throws IOException {
         User user = this.getUserbyName(userName);
         synchronized(users){
             if(user != null){
@@ -113,7 +116,7 @@ public class UserFileDAO implements UserDAO{
     @Override
     public boolean removeNeedFromFundingBasket(String userName, int id) throws IOException {
        synchronized(users){
-        User user = this.getUserbyName(userName);
+        FundingBasket user = this.getUserbyName(userName);
         if(user != null){
             LOG.info("user is not null");
             List<Need> basket = user.getFundingBasket();
@@ -132,8 +135,11 @@ public class UserFileDAO implements UserDAO{
 
 
     @Override
-    public List<Need> getFundinBasket(String name) throws IOException {
-        User user = this.getUserbyName(name);
-        return user.getFundingBasket();
+    public List<Need> getFundingBasket(String name) throws IOException {
+        synchronized(fundingBasket){
+            if(fundingBasket.containsKey(name)){
+                return fundingBasket.get(name);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { User } from '../User';
 import { Location } from '@angular/common';
+import { FundingBasketService } from '../funding-basket.service';
 
 @Component({
   selector: 'app-checkout',
@@ -19,7 +20,7 @@ export class CheckoutComponent implements OnInit{
 
 
   constructor(
-    private userService:UserHelperService,
+    private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private location:Location
     // private cd:ChangeDetectorRef
@@ -29,7 +30,7 @@ export class CheckoutComponent implements OnInit{
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
         this.user = user;
-        this.username = user.getUserName();
+        this.username = user.getUsername();
       }
     })
 
@@ -43,7 +44,7 @@ export class CheckoutComponent implements OnInit{
 
 
   getFundingBasket(name:string):void{
-    this.userService.getFundingBasket(name).subscribe(needs => this.basket = needs);
+    this.fundingBasketService.getFundingBasket(name).subscribe(needs => this.basket = needs);
   }
 
 
@@ -66,9 +67,7 @@ export class CheckoutComponent implements OnInit{
 
   deleteNeed(needId: number): void{
     this.basket = this.basket.filter(need => need .id != needId)
-    this.userService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
-      
-      // this.cd.detectChanges();
+    this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
       console.log(user);
     })
   }

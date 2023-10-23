@@ -5,6 +5,8 @@ import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { User } from '../User';
 import { BehaviorSubject } from 'rxjs';
+import { FundingBasket } from '../FundingBasket';
+import { FundingBasketService } from '../funding-basket.service';
 
 @Component({
   selector: 'app-browse-needs',
@@ -16,14 +18,11 @@ export class BrowseNeedsComponent implements OnInit{
 
   constructor(
     private needsService: NeedsService,
-    private userService:UserHelperService,
+    private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService
     ){}
 
-  userName!:string ;
-
-
-  // user:BehaviorSubject<User | null> = this.currentUser.getCurrentUser();
+  userName!:string;
 
 
   getNeeds(): void{
@@ -31,12 +30,12 @@ export class BrowseNeedsComponent implements OnInit{
     
   }
 
- 
+
   ngOnInit(): void{
     this.getNeeds();
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
-        this.userName = user.getUserName();
+        this.userName = user.getUsername();
       }
     })
     
@@ -45,8 +44,9 @@ export class BrowseNeedsComponent implements OnInit{
   // number = 7
 
   // adds the need to user's funding basket
+  
   functionAddNeed(need: Need): void{
-    this.userService.addNeedToBasket(this.userName,need).subscribe(user =>{
+    this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
     })
   }

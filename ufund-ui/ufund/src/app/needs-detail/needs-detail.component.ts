@@ -7,6 +7,7 @@ import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../User';
+import { FundingBasketService } from '../funding-basket.service';
 
 @Component({
   selector: 'app-needs-detail',
@@ -21,7 +22,7 @@ export class NeedsDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private needsService: NeedsService,
     private location: Location,
-    private userService:UserHelperService,
+    private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService
   ) { 
 
@@ -36,7 +37,7 @@ export class NeedsDetailComponent implements OnInit {
     
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
-        this.username = user.getUserName();
+        this.username = user.getUsername();
       }
     })
 
@@ -53,7 +54,7 @@ export class NeedsDetailComponent implements OnInit {
   }
 
   functionAddNeed(need: Need): void{
-    this.userService.addNeedToBasket(this.username,need).subscribe(user =>{
+    this.fundingBasketService.addNeedToBasket(this.username,need).subscribe(user =>{
       console.log(user);
     })
   }

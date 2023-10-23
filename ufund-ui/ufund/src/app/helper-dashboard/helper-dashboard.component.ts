@@ -13,6 +13,7 @@ import { CurrentUserService } from '../current-user.service';
 export class HelperDashboardComponent implements OnInit{
 
   username!:string;
+
   constructor(
     private router:Router,
     private currentUser:CurrentUserService
@@ -20,7 +21,7 @@ export class HelperDashboardComponent implements OnInit{
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
-        this.username = user.getUserName();
+        this.username = user.getUsername();
       }
     })
     
@@ -31,7 +32,7 @@ export class HelperDashboardComponent implements OnInit{
 
   iconClicked(){
     this.router.navigate(["/checkout"])
-    console.log("checkbox clicked")
+    console.log("checkbox clicked");
   }
 
   redirectToPage(){

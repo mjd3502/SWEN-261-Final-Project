@@ -1,25 +1,15 @@
 import { Need } from "./Need";
 
 export class User{
-    private  userName:string;
-    private fundingBasket:Need[];
-
-    constructor(){
-        this.userName = "";
-        this.fundingBasket = [];
-    }
     
+    private username:string;
 
-    getUserName():string{
-        return this.userName;
+    constructor(username:string){
+        this.username = username;
     }
 
-    getFundingBasket():Need[]{
-        return this.fundingBasket;
-    }
-
-    setUsername(userName:string){
-        this.userName = userName;
+    getUsername(){
+        return this.username;
     }
 
 }

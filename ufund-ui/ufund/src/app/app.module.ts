@@ -29,7 +29,8 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
     AddNeedComponent,
     UpdateNeedComponent,
     AdminDashboardComponent,
-    AdminBrowseNeedsComponent
+    AdminBrowseNeedsComponent,
+    AddNeedComponent
   ],
   imports: [
     BrowserModule,

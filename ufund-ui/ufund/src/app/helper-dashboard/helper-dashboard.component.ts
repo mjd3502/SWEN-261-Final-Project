@@ -46,8 +46,11 @@ export class HelperDashboardComponent implements OnInit{
       title:"Ready to leave?",
       text:"Click below if you are ready to end your current session.",
       showCancelButton:true,
+
       showConfirmButton:true,
       confirmButtonText:"Log out",
+      confirmButtonColor:'#86badel'
+      
 
     }).then((result =>{
 

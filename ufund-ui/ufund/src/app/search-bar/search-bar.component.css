@@ -8,9 +8,8 @@
 label {
     display: block;
     font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
+    font-size: 1rem;
+    margin: 1rem;
   
 }input {
     padding: .5rem;
@@ -18,14 +17,11 @@ label {
     max-width: 600px;
     box-sizing: border-box;
     display: block;
+    font-family: 'Poppins', sans-serif;
 }
   
 input:focus {
-    outline: #336699 auto 1px;
-}
-  
-li {
-    list-style-type: none;
+    outline: #426d8a auto 1px;
 }
 
 .search-result li a {
@@ -48,13 +44,13 @@ li {
 }
   
 ul.search-result {
-    margin-top: 0;
-    padding-left: 0;
+    margin-top: 0.1;
+    padding-left: 0.1;
     list-style: none;
 }
 
 #search-content{
-  text-align: center;
+  text-align: left;
 }
 
 .input-form {

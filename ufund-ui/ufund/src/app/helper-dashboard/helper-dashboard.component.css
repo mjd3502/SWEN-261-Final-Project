@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/* 
   .navbar {
     background-color: #86bade;
     padding: 5px 0;
@@ -49,7 +49,7 @@
 
   h6{
     font-size: 12px;
-  }
+  } */
 
   .subheader {
     display: flex;

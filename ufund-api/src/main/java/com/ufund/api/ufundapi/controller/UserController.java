@@ -79,23 +79,5 @@ public class UserController {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-    @GetMapping("password/{password}")
-    public ResponseEntity<String> getPassword(@PathVariable("password") String password){
-
-        try {
-
-            String user = userDAO.getUserName(password);
-            if(user != null){
-                return new ResponseEntity<String>(user,HttpStatus.OK);
-            }else{
-                return new ResponseEntity<String>("No pasword available",HttpStatus.OK);
-            }
-            
-        } catch (Exception e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+    
 }

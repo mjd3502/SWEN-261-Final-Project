@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit{
     return this.location.back()
   }
 
-
+  
   getFundingBasket(name:string):void{
     this.fundingBasketService.getFundingBasket(name).subscribe(needs => this.basket = needs);
   }

@@ -49,7 +49,8 @@ export class HelperDashboardComponent implements OnInit{
 
       showConfirmButton:true,
       confirmButtonText:"Log out",
-      confirmButtonColor:'#86badel'
+      confirmButtonColor:'#86badel',
+      customClass: ".sweet-alert button"
       
 
     }).then((result =>{

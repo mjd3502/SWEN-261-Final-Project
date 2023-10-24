@@ -1,10 +1,10 @@
-<body>
+<app-navbar></app-navbar>
 <div class="checkout-container">
 <div class="titleBox">
 <h2>Funding Basket</h2>
 </div>
 <div class = "body">
-<button (click)="goBack()"> Return to Dashboard</button>
+<!-- <button (click)="goBack()"> Return to Dashboard</button> -->
     <ul>
         <li *ngFor="let need of basket">
             <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
@@ -13,6 +13,5 @@
             <button (click)="deleteNeed(need.id)">Delete</button>
         </li>
     </ul>
-    <!-- <p>Total: {{calculateTotal()}}</p> -->
 </div>
 </div>

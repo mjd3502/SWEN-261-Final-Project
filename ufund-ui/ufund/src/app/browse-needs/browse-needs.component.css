@@ -5,23 +5,29 @@
     box-sizing: border-box;
 }
 
-h2{
+#container button{
     font-size: 18pt;
+    color: #fff;
+    background-color: #86bade;
+    border: none;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: -10px;
+    width: fill;
+    max-width: 500px;
 }
 
 #container{
-    background-color: #B9D6F2;
+    background-color: #ffffff;
     position: relative;
     left: 10%;
     width: 60%;
-
+    height: 50vh;
+    border-radius: 10px;
     font-size: 14pt;
-    border-radius: 12px;
-}
+    box-shadow: 0 10px 40px #9f9f9f;
 
-#container > h2{
-    display: flex;
-    justify-content: center;
 }
 
 #item {

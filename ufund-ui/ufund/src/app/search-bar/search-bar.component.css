@@ -6,8 +6,6 @@ label {
   
 }input {
     padding: .5rem;
-    width: 100%;
-    max-width: 600px;
     box-sizing: border-box;
     display: block;
     font-family: 'Poppins', sans-serif;
@@ -23,8 +21,6 @@ input:focus {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     display: inline-block;
-    width: 100%;
-    max-width: 600px;
     padding: .5rem;
     box-sizing: border-box;
     text-decoration: none;
@@ -48,11 +44,12 @@ ul.search-result {
 
 .input-form {
   padding: 10px;
-  width: 100%;
-  max-width: 400px; 
   box-sizing: border-box;
   margin: 10px auto; 
   border: 1px solid #ccc;
   border-radius: 15px; 
   font-size: 16px;
+  width: 600px; /* temporary */
+  /* width: 100%;
+  max-width: 600px; */
 }

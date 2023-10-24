@@ -12,8 +12,8 @@ import {Need} from '../Need';
 
 
 export class AddNeedComponent {
-  Need: Need = {id:0, name:"null",quantity:0,description:"null",cost:0,type:"goods"};
-
+  // Need: Need = {id:0, name:"null",quantity:0,description:"null",cost:0,type:"goods"};
+  Need: Need =  new Need();
   //default values for all the criteria for need
   // id: Number = 0;
   // name: string = "null";

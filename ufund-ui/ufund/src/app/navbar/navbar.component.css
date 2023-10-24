@@ -8,6 +8,7 @@
     .navbar {
       background-color: #86bade;
       padding: 5px 0;
+      box-shadow: 0 10px 30px #9f9f9f;
     }
     
     .navbar-content {

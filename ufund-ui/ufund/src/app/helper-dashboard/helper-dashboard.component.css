@@ -69,3 +69,7 @@
     margin-top: 50px;
     gap: 100px;
 }
+
+.sweet-alert button{
+  background: 'black';
+}

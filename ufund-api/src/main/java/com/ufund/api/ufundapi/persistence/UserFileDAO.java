@@ -13,9 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.controller.UserController;
-import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.User;
+
 
 @Component
 public class UserFileDAO implements UserDAO{
@@ -64,76 +63,37 @@ public class UserFileDAO implements UserDAO{
 
         User[] userArray = objectMapper.readValue(new File(filename),User[].class);
         for(User user: userArray){
-            users.put(user.getUserName(),user);
+            users.put(user.getUsername(),user);
         }
         return true;
 
     }
 
-    @Override
-    public User getUserbyName(String name){
-        synchronized(users){
-            if(users.containsKey(name)){
-                return users.get(name);
-            }else{
-                return null;
-            }
-        }
-    }
 
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){
-            List<Need> listOFNeeds = new ArrayList<>();
-            User newUser =  new User(user.getUserName(),listOFNeeds);
-            users.put(user.getUserName(), newUser);
+            User newUser = new User(user.getUsername());
+            users.put(newUser.getUsername(),user);
             save();
-            return user;
+            return newUser;
         }
-       
     }
 
+
+
+
     @Override
-    public User addNeedToFundingBasket(String userName,Need need) throws IOException {
-        User user = this.getUserbyName(userName);
+    public String getUserName(String username) throws IOException{
         synchronized(users){
-            if(user != null){
-                user.setFundingBasket(need);
-                save();
-                LOG.info("added to file");
-            }else{
-                 LOG.info("not added :( ");
+            if(users.containsKey(username)){
+                User user = users.get(username);
+                return user.getUsername();
             }
+            return null;
         }
-        return user;
     }
 
 
 
-    @Override
-    public boolean removeNeedFromFundingBasket(String userName, int id) throws IOException {
-       synchronized(users){
-        User user = this.getUserbyName(userName);
-        if(user != null){
-            LOG.info("user is not null");
-            List<Need> basket = user.getFundingBasket();
-            for(Need need: basket){
-                if(need.getId() == id){
-                    basket.remove(need);
-                    LOG.info("delteeeeeeed");
-                    return save();
-                }
-            }
-        }
-        LOG.info("not deleteeed");
-        return false;
-       }
-    }
-
-
-    @Override
-    public List<Need> getFundinBasket(String name) throws IOException {
-        User user = this.getUserbyName(name);
-        return user.getFundingBasket();
-    }
 }

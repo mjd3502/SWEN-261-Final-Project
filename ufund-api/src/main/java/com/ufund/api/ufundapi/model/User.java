@@ -8,53 +8,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class User {
+
+    static final String STRING_FORMAT = "User [userName=%s ]";
     
-    public static final String STRING_FORMAT_USER = "User [userName=%s, fundingBasket=%s ]  ";
+    @JsonProperty("username") String username;
 
-    // @JsonProperty("id") private int id;
-    @JsonProperty("userName") private String userName;
-    @JsonProperty("fundingBasket") private List<Need> fundingBasket;
 
-    public User(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
-        this.userName = userName;
-        // this.id=id;
-        this.fundingBasket = this.fundingBasket = (fundingBasket != null) ? fundingBasket : new ArrayList<>();
+    public User(@JsonProperty("username") String username){
+        this.username = username;
+        
     }
 
-    
-    /**
-     * Retrieves the name of the user
-     * @return The name of the user
-     */
-    public String getUserName() {
-        return userName;
+
+    public String getUsername() {
+        return username;
     }
-    
-    public List<Need> getFundingBasket() {
-        return fundingBasket;
+
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public void setFundingBasket(Need need) {
-        this.fundingBasket.add(need);
-    }
+
 
     @Override
-    public String toString() {
-        StringBuilder needs = new StringBuilder();
-        
-        if (!fundingBasket.isEmpty()) {
-            for (int i = 0; i < fundingBasket.size(); i++) {
-                Need item = fundingBasket.get(i);
-                needs.append(item.toString());
-                if (i < fundingBasket.size() - 1) {
-                    needs.append(", ");
-                }
-            }
-        } else {
-            needs.append("No items in the funding basket");
-        }
-        
-        return String.format(STRING_FORMAT_USER,userName, needs.toString());
+    public String toString(){
+        return String.format(STRING_FORMAT, username);
     }
 
-    
+
+
+
 }

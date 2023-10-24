@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
+import { AddNeedComponent } from './add-need/add-need.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'updateNeed/:id',component:UpdateNeedComponent},
   {path:'adminDashboard',component:AdminDashboardComponent},
-  {path:'admin-browse', component: AdminBrowseNeedsComponent}
+  {path:'admin-browse', component: AdminBrowseNeedsComponent},
+  {path:'admin-create-need', component: AddNeedComponent}
 ];
 
 @NgModule({

@@ -1,31 +1,71 @@
-<!-- <div class="body">
-    <div class="form-container" >
-        
-        <form [formGroup]="AddNeedSection">
-            <div class="inputBoxes">
-                <label>Name</label>
-                <input type="text"  formControlName="name" />
-   
-                <i></i>
-            </div>
-            <div class="inputBox">
-                <label>Description</label>
-                <input type="text"  formControlName="description" />
+<h1>Add a New Need!</h1>
+<div>
+    <!-- <label for="needId">Need Id:</label>
+    <input type="number" id="needId" name="needId" #needId><br><br>
 
-                <i></i>
-            </div>
-            <div class="inputBox">
-                <label>Quantity</label>
-                <input type="text"  formControlName="quantity" />
-                
-                <i></i>
-            </div>
-            <div class="inputBox">
-                <label>Cost</label>
-                <input type="text"  formControlName="cost" />
-                
-                <i></i>
-            </div>
-        </form>
-    </div>
-</div> -->
+    <label for="needName">Need Name:</label>
+    <input type="text" id="needName" name="needName"><br><br>
+
+    <label for="needQuantity">Need Id:</label>
+    <input type="number" id="needQuantity" name="needQuantity"><br><br>
+
+    <label for="needDescr">Need Description:</label>
+    <input type="text" id="needDescr" name="needDescr"><br><br>
+
+    <label for="needCost">Need cost ($ or # of hours):</label>
+    <input type="number" id="needCost" name="needCost"><br><br>
+
+    <label for="needType">Need Type (goods or volunteer):</label>
+    <input type="needType" id="needType" name="needType"><br><br>
+
+    <button (click) ="submitValues(needId,needName,needQuantity,needDescr,needCost,needType)">Submit values</button> -->
+
+
+
+    <form class="form-container"  (ngSubmit)="onSubmit()">
+        
+        <div class="formGroup">
+            <label>Need Id:</label>
+            <input type="text" class="form-input" id="id"
+            [(ngModel)] = "Need.id" name="id">
+        </div>
+        
+        <div class="formGroup">
+            <label>Need Name:</label>
+            <input type="text" class="form-input" id="name"
+            [(ngModel)] = "Need.name" name="name">
+        </div>
+
+        <div class="formGroup">
+            <label>Need Description:</label>
+            <input type="text" class="form-input" id="description"
+            [(ngModel)] = "Need.description" name="description">
+        
+        </div>
+
+
+        <div class="formGroup">
+            <label>Need Quantity</label>
+            <input type="text" class="form-input" id="quantity"
+            [(ngModel)] = "Need.quantity" name="quantity">
+        
+        </div>
+
+        <div class="formGroup">
+            <label>Need's Cost: </label>
+            <input type="text" class="form-input" id="cost"
+            [(ngModel)] = "Need.cost" name="cost">
+        
+        </div>
+
+        <div class="formGroup">
+            <label>Type (goods or volunteer):</label>
+            <input type="text" class="form-input" id="type"
+            [(ngModel)] = "Need.type" name="type">
+        
+        </div>
+
+        <button class="update-button" type="submit"> Create Need! </button>
+
+    </form>
+</div>

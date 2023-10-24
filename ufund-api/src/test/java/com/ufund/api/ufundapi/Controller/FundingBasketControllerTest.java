@@ -29,5 +29,34 @@ public class FundingBasketControllerTest {
         fundingBasketController = new FundingBasketController(mockFundingBasketDAO);
     }
     
+    @Test
+    public void createFundingBasket(){
+
+    }
+
+    @Test
+    public void addNeedToBasket(){
+        
+    }
+
+    @Test
+    public void addNeedToBasketInvalid(){
+        
+    }
+
+    @Test
+    public void removeNeedFromBasket(){
+        
+    }
+
+    @Test
+    public void removeNeedFromBasketInvalid(){
+        
+    }
+
+    @Test
+    public void getFundingBasket(){
+        
+    }
 }
 

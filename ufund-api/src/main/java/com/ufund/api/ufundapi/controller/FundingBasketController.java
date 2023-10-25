@@ -32,7 +32,7 @@ public class FundingBasketController {
     }
     
     @PostMapping(" ")
-    public ResponseEntity<FundingBasket> createfundingBasket(@RequestBody FundingBasket fundingBasket){
+    public ResponseEntity<FundingBasket> createFundingBasket(@RequestBody FundingBasket fundingBasket){
         LOG.info("POST /fundingBasket " + fundingBasket);
 
         try {

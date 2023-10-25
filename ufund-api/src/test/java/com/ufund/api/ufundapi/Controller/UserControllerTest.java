@@ -8,9 +8,12 @@ import org.junit.jupiter.api.Test;
 
 import com.ufund.api.ufundapi.controller.UserController;
 import com.ufund.api.ufundapi.persistence.UserDAO;
-/*
- * Author: Cheyenne Xinyin Zhang @xz3322
+/**
+ * Tests for the User Controller Class
+ * 
+ * @author Cheyenne Xinyin Zhang @xz3322
  */
+
 
 @Tag("Controller-tier")
 public class UserControllerTest {
@@ -22,19 +25,19 @@ public class UserControllerTest {
      * a mock need DAO
      */
     @BeforeEach
-    public void setupcupboardController() {
+    public void setupUserController() {
         mockUserDAO = mock(UserDAO.class);
         userController = new UserController(mockUserDAO);
     }
 
     @Test
     public void createUser(){
-
+        //TODO: implement
     }
 
     @Test
     public void getUsername(){
-
+        //TODO: implement
     }
 
 }

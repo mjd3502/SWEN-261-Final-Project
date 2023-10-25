@@ -1,5 +1,5 @@
 <div id = "container">
-<button>Our Needs</button>
+<h1>Our Needs</h1>
 
 <ul>
     <!--cerates an list item for each need-->
@@ -7,12 +7,14 @@
         <!--Link to detail page of the need "/detail/{{need.id}}" could be used-->
         <a routerLink="/detail/{{need.id}}">
             <b>{{need.name}}</b>
-        </a>
-        <p>
-            <b><u>Description:</u></b>{{need.description}}<br>
-            <b><u>Cost:</u></b> {{need.cost}}
-        </p>
-      
+        </a><br>
+        <div class="info">
+            <p>
+                <b><u>Description: </u></b>{{need.description}}<br>
+                <b><u>Cost: </u></b> {{need.cost}}<br>
+                <b><u>Type of need: </u></b> {{need.type}}
+            </p>
+        </div>
       
         <!-- add button to add need to checkout -->
         <button  (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>

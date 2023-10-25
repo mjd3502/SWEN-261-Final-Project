@@ -66,8 +66,8 @@
     flex-direction: column;
     align-items: right;
     justify-content: space-around;
-    margin-top: 50px;
-    gap: 100px;
+    margin: auto;   
+    width: 70%;
 }
 
 .sweet-alert button{

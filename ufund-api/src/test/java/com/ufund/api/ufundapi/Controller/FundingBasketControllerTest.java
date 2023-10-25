@@ -102,29 +102,45 @@ public class FundingBasketControllerTest {
 
         //Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(null,response.getBody());
     }
 
     @Test
     public void removeNeedFromBasketInvalid() throws IOException{
         //Setup
         Need need = new Need(0, "donate toys", 10, "donate dog toys", 0, "goods");
-        List<Need> listOfNeeds = List.of(need);
+        Need need1 = new Need(1, "donate food", 10, "donate dog fod", 0, "goods");
+        List<Need> listOfNeeds = List.of(need, need1);
         FundingBasket fundingBasket = new FundingBasket("helper", listOfNeeds);
-        when(mockFundingBasketDAO.removeNeedFromFundingBasket("helper", 1)).thenReturn(false);
+        when(mockFundingBasketDAO.removeNeedFromFundingBasket("helper", 2)).thenReturn(false);
 
         //Invoke
-        ResponseEntity<FundingBasket> response = fundingBasketController.removeNeedFromBasket("helper", 1);
+        ResponseEntity<FundingBasket> response = fundingBasketController.removeNeedFromBasket("helper", 2);
 
         //Analyze
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+    }
+
+    @Test
+    public void removeNeedFromBasketEmpty() throws IOException{
+        //Setup
+        FundingBasket fundingBasket = null;
+        when(mockFundingBasketDAO.removeNeedFromFundingBasket(null, 3)).thenReturn(false);
+
+        //Invoke
+        ResponseEntity<FundingBasket> response = fundingBasketController.removeNeedFromBasket(null, 2);
+
+        //Analyze
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+        assertEquals(fundingBasket, response.getBody());
     }
 
     @Test 
     public void getFundingBasket() throws IOException{
         //Setup
         Need need = new Need(0, "donate food", 10, "donate dog fod", 0, "goods");
-        Need need1 = new Need(0, "donate toys", 1, "donate dog toys", 0, "goods");
-        Need need2 = new Need(0, "walk a dog", 15, "donate dog food", 0, "volunteering");
+        Need need1 = new Need(1, "donate toys", 1, "donate dog toys", 0, "goods");
+        Need need2 = new Need(2, "walk a dog", 15, "donate dog food", 0, "volunteering");
         List<Need> listOfNeeds = List.of(need,need1,need2);
         FundingBasket fundingBasket = new FundingBasket("user", listOfNeeds);
         when(mockFundingBasketDAO.getFundingBasket("user")).thenReturn(fundingBasket.getFundingBasket());

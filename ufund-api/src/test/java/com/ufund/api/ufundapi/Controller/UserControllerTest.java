@@ -36,7 +36,7 @@ public class UserControllerTest {
         mockUserDAO = mock(UserDAO.class);
         userController = new UserController(mockUserDAO);
     }
-
+    
     @Test
     public void createUser() throws IOException{
         //Setup

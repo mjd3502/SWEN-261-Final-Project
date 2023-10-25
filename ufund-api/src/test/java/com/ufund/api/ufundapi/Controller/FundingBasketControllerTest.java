@@ -119,8 +119,22 @@ public class FundingBasketControllerTest {
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
-    public void getFundingBasket(){
-        //TODO: implement
+    @Test 
+    public void getFundingBasket() throws IOException{
+        //Setup
+        Need need = new Need(0, "donate food", 10, "donate dog fod", 0, "goods");
+        Need need1 = new Need(0, "donate toys", 1, "donate dog toys", 0, "goods");
+        Need need2 = new Need(0, "walk a dog", 15, "donate dog food", 0, "volunteering");
+        List<Need> listOfNeeds = List.of(need,need1,need2);
+        FundingBasket fundingBasket = new FundingBasket("user", listOfNeeds);
+        when(mockFundingBasketDAO.getFundingBasket("user")).thenReturn(fundingBasket.getFundingBasket());
+
+        //Invoke
+        ResponseEntity<List<Need>> response = fundingBasketController.getFundingBasket("user");
+
+        //Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(listOfNeeds,response.getBody());
     }
 }
 

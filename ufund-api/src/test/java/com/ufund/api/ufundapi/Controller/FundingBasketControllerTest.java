@@ -44,7 +44,7 @@ public class FundingBasketControllerTest {
     public void createFundingBasket() throws IOException{
         // Setup
         Need need = new Need(0, "donate food", 10, "donate dog food", 0, "goods");
-        Need need1 = new Need(0, "donate toys", 1, "donate dog toys", 0, "goods");
+        Need need1 = new Need(1, "donate toys", 1, "donate dog toys", 0, "goods");
         List<Need> listOfNeeds = List.of(need,need1);
         FundingBasket fundingBasket = new FundingBasket("user", listOfNeeds);
         when(mockFundingBasketDAO.createFundingBasket(fundingBasket)).thenReturn(fundingBasket);
@@ -61,7 +61,7 @@ public class FundingBasketControllerTest {
     public void addNeedToBasket() throws IOException{
         //Setup
         Need need = new Need(0, "donate toys", 10, "donate dog toys", 0, "goods");
-        Need need1 = new Need(0, "donate food", 10, "donate dog food", 0, "goods");
+        Need need1 = new Need(1, "donate food", 10, "donate dog food", 0, "goods");
         List<Need> listOfNeeds = List.of(need);
         FundingBasket fundingBasket = new FundingBasket("helper", listOfNeeds);
         when(mockFundingBasketDAO.addNeedToFundingBasket("helper", need1)).thenReturn(fundingBasket);
@@ -90,16 +90,23 @@ public class FundingBasketControllerTest {
     }
 
     @Test
-    public void removeNeedFromBasket(){
-        //TODO: implement
+    public void removeNeedFromBasket() throws IOException{
+        Need need = new Need(0, "donate toys", 10, "donate dog toys", 0, "goods");
+        List<Need> listOfNeeds = List.of(need);
+        FundingBasket fundingBasket = new FundingBasket("helper", listOfNeeds);
+        when(mockFundingBasketDAO.removeNeedFromFundingBasket("helper", 0)).thenReturn(true);
+
+        //Invoke
+        ResponseEntity<FundingBasket> response = fundingBasketController.removeNeedFromBasket("helper", 0);
+
+        //Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
-    @Test
     public void removeNeedFromBasketInvalid(){
         //TODO: implement
     }
 
-    @Test
     public void getFundingBasket(){
         //TODO: implement
     }

@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AdminDashboardComponent,
     AdminBrowseNeedsComponent,
     AddNeedComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule,

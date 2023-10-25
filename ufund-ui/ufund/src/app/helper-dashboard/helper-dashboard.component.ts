@@ -12,57 +12,6 @@ import { CurrentUserService } from '../current-user.service';
   styleUrls: ['./helper-dashboard.component.css']
 })
 
-export class HelperDashboardComponent implements OnInit{
-  username!:string;
+export class HelperDashboardComponent {
 
-  constructor(
-    private router:Router,
-    private currentUser:CurrentUserService
-    ){}
-  ngOnInit(): void {
-    this.currentUser.getCurrentUser().subscribe(user =>{
-      if (user) {
-        this.username = user.getUsername();
-      }
-    })
-    
-  }
-
-
-  shoppingBasket= faBasketShopping;
-  logOutLogo = faArrowRightFromBracket;
-
-  iconClicked(){
-    this.router.navigate(["/checkout"])
-    console.log("checkbox clicked")
-
-  }
-
-  redirectToPage(){
-    this.router.navigate(["/login"])
-  
-  }
-
-  logOut() {
-    
-    Swal.fire({
-      title:"Ready to leave?",
-      text:"Click below if you are ready to end your current session.",
-      showCancelButton:true,
-      showConfirmButton:true,
-      confirmButtonText:"Log out",
-
-
-    }).then((result =>{
-
-      if(result.isConfirmed){
-        this.redirectToPage();
-        console.log("log out")
-      }
-    
-    }))
-    
-    console.log("button working")
-
-  }
 }

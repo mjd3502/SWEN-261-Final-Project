@@ -1,4 +1,5 @@
 <h1>Add a New Need!</h1>
+<h3>Please fill out all fields</h3>
 <div>
     <!-- <label for="needId">Need Id:</label>
     <input type="number" id="needId" name="needId" #needId><br><br>
@@ -22,19 +23,19 @@
 
 
 
-    <form class="form-container"  (ngSubmit)="onSubmit()">
+    <form class="form-container"  (ngSubmit)="onSubmit()" action="/admin-browse">
        
         
         <div class="formGroup">
             <label>Need Name:</label>
             <input type="text" class="form-input" id="name"
-            [(ngModel)] = "Need.name" name="name">
+            [(ngModel)] = "Need.name" name="name" ng-required="true">
         </div>
 
         <div class="formGroup">
             <label>Need Description:</label>
             <input type="text" class="form-input" id="description"
-            [(ngModel)] = "Need.description" name="description">
+            [(ngModel)] = "Need.description" name="description" ng-required="true">
         
         </div>
 
@@ -42,21 +43,21 @@
         <div class="formGroup">
             <label>Need Quantity</label>
             <input type="text" class="form-input" id="quantity"
-            [(ngModel)] = "Need.quantity" name="quantity">
+            [(ngModel)] = "Need.quantity" name="quantity" ng-required="true">
         
         </div>
 
         <div class="formGroup">
             <label>Need's Cost: </label>
             <input type="text" class="form-input" id="cost"
-            [(ngModel)] = "Need.cost" name="cost">
+            [(ngModel)] = "Need.cost" name="cost" ng-required="true">
         
         </div>
 
         <div class="formGroup">
             <label>Type (goods or volunteer):</label>
             <input type="text" class="form-input" id="type"
-            [(ngModel)] = "Need.type" name="type">
+            [(ngModel)] = "Need.type" name="type" ng-required="true">
         
         </div>
 

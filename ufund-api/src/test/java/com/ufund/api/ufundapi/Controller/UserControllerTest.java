@@ -51,9 +51,13 @@ public class UserControllerTest {
         assertEquals(user,response.getBody());
     }
 
-    @Test
-    public void getUsername(){
-        //TODO: implement
-    }
+    // @Test
+    // public void getUsername() throws IOException{
+    //     //TODO: implement
+    // }
 
+    // @Test
+    // public void getUsernameNotFound(){
+    //     //TODO: implement
+    // }
 }

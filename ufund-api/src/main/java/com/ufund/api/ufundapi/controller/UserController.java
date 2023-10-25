@@ -29,18 +29,18 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-       private boolean validateHelperLogin(String value) {
+    //    private boolean validateHelperLogin(String value) {
        
-        if (value == null) {
-            return false;
-        }
+    //     if (value == null) {
+    //         return false;
+    //     }
         
-        if(value.equalsIgnoreCase("admin")) {
-            return false;
-        }
+    //     if(value.equalsIgnoreCase("admin")) {
+    //         return false;
+    //     }
         
-        return true;
-    }
+    //     return true;
+    // }
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){

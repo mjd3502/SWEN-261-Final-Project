@@ -9,13 +9,12 @@ public class FundingBasket {
  
     public static final String STRING_FORMAT_FundingBasket = "FundingBasket [userName=%s, fundingBasket=%s ]  ";
 
-    // @JsonProperty("id") private int id;
+ 
     @JsonProperty("userName") private String userName;
     @JsonProperty("fundingBasket") private List<Need> fundingBasket;
 
     public FundingBasket(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
         this.userName = userName;
-        // this.id=id;
         this.fundingBasket = this.fundingBasket = (fundingBasket != null) ? fundingBasket : new ArrayList<>();
     }
 
@@ -32,7 +31,9 @@ public class FundingBasket {
         return fundingBasket;
     }
     public void setFundingBasket(Need need) {
-        this.fundingBasket.add(need);
+        if(!this.fundingBasket.contains(need)){
+             this.fundingBasket.add(need);
+        }
     }
 
     @Override

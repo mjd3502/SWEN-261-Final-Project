@@ -11,10 +11,8 @@ import { CurrentUserService } from '../current-user.service';
   templateUrl: './helper-dashboard.component.html',
   styleUrls: ['./helper-dashboard.component.css']
 })
+
 export class HelperDashboardComponent implements OnInit{
-
-
-  constructor(private router:Router){}
   username!:string;
 
   constructor(
@@ -38,7 +36,7 @@ export class HelperDashboardComponent implements OnInit{
     this.router.navigate(["/checkout"])
     console.log("checkbox clicked")
 
-
+  }
 
   redirectToPage(){
     this.router.navigate(["/login"])

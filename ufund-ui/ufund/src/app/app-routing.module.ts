@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
+import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},

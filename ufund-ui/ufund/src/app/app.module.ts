@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,10 +14,7 @@ import { AddNeedComponent } from './add-need/add-need.component';
 import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 
 

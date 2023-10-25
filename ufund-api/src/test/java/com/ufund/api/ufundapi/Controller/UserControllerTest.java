@@ -1,12 +1,19 @@
 package com.ufund.api.ufundapi.Controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.ufund.api.ufundapi.controller.UserController;
+import com.ufund.api.ufundapi.model.User;
 import com.ufund.api.ufundapi.persistence.UserDAO;
 /**
  * Tests for the User Controller Class
@@ -31,8 +38,17 @@ public class UserControllerTest {
     }
 
     @Test
-    public void createUser(){
-        //TODO: implement
+    public void createUser() throws IOException{
+        //Setup
+        User user = new User("Cheyenne");
+        when(mockUserDAO.createUser(user)).thenReturn(user);
+
+        // Invoke
+        ResponseEntity<User> response = userController.createUser(user);
+    
+        // Analyze
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(user,response.getBody());
     }
 
     @Test

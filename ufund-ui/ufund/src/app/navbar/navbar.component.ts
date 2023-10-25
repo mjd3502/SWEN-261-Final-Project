@@ -18,7 +18,7 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
-        this.username = user.getUserName();
+        this.username = user.getUsername();
       }
     })
     

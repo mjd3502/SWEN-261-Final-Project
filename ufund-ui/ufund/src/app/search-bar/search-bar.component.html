@@ -10,13 +10,8 @@
         <li *ngFor="let need of needs$ | async" > 
             <a routerLink="/detail/{{need.id}}">
                 {{need.name}}
-
-              </a>
-        </li>
-       
-    </ul>
-          {{need.description}}
-              </a>
+                {{need.description}}
+            </a>
         </li>
     </ul>
 

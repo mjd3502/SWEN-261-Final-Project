@@ -27,7 +27,7 @@ export class UpdateNeedComponent implements OnInit {
 
   getNeed():void{
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.needsService.getNeedyId(id).subscribe(need =>
+    this.needsService.getNeedbyId(id).subscribe(need =>
       this.Need = need
     )
   }

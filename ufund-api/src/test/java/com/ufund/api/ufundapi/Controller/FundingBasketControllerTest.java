@@ -55,7 +55,23 @@ public class FundingBasketControllerTest {
         // Analyze
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
         assertEquals(fundingBasket,response.getBody());
-    } 
+    }
+
+    @Test
+    public void createFundingBasketInternalServerError() throws IOException {
+        //Setup
+        Need need = new Need(0, "donate food", 10, "donate dog food", 0, "goods");
+        Need need1 = new Need(1, "donate toys", 1, "donate dog toys", 0, "goods");
+        List<Need> listOfNeeds = List.of(need,need1);
+        FundingBasket fundingBasket = new FundingBasket("user", listOfNeeds);
+        when(mockFundingBasketDAO.createFundingBasket(fundingBasket)).thenThrow(new RuntimeException("Internal Server Error"));
+
+        //Invoke
+        ResponseEntity<FundingBasket> responseEntity = fundingBasketController.createFundingBasket(fundingBasket);
+
+        //Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 
     @Test
     public void addNeedToBasket() throws IOException{

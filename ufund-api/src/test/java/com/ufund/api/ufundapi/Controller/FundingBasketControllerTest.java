@@ -46,26 +46,47 @@ public class FundingBasketControllerTest {
         Need need = new Need(0, "donate food", 10, "donate dog food", 0, "goods");
         Need need1 = new Need(0, "donate toys", 1, "donate dog toys", 0, "goods");
         List<Need> listOfNeeds = List.of(need,need1);
-        FundingBasket fb1 = new FundingBasket("user", listOfNeeds);
-        when(mockFundingBasketDAO.createFundingBasket(fb1)).thenReturn(fb1);
+        FundingBasket fundingBasket = new FundingBasket("user", listOfNeeds);
+        when(mockFundingBasketDAO.createFundingBasket(fundingBasket)).thenReturn(fundingBasket);
 
         // Invoke
-        ResponseEntity<FundingBasket> response = fundingBasketController.createFundingBasket(fb1);
-    
+        ResponseEntity<FundingBasket> response = fundingBasketController.createFundingBasket(fundingBasket);
     
         // Analyze
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertEquals(fb1,response.getBody());
+        assertEquals(fundingBasket,response.getBody());
     } 
 
     @Test
-    public void addNeedToBasket(){
-        //TODO: implement
+    public void addNeedToBasket() throws IOException{
+        //Setup
+        Need need = new Need(0, "donate toys", 10, "donate dog toys", 0, "goods");
+        Need need1 = new Need(0, "donate food", 10, "donate dog food", 0, "goods");
+        List<Need> listOfNeeds = List.of(need);
+        FundingBasket fundingBasket = new FundingBasket("helper", listOfNeeds);
+        when(mockFundingBasketDAO.addNeedToFundingBasket("helper", need1)).thenReturn(fundingBasket);
+
+        //Invoke
+        ResponseEntity<FundingBasket> response = fundingBasketController.addNeedToBasket("helper", need1);
+
+        //Analyze
+        assertEquals(HttpStatus.ACCEPTED,response.getStatusCode());
+        assertEquals(fundingBasket,response.getBody());
     }
 
     @Test
-    public void addNeedToBasketInvalid(){
-        //TODO: implement
+    public void addNeedToBasketInvalid() throws IOException{
+        //Setup
+        Need need = new Need(0, "donate toys", 10, "donate dog toys", 0, "goods");
+        FundingBasket fundingBasket = null;
+        when(mockFundingBasketDAO.addNeedToFundingBasket(null, need)).thenReturn(fundingBasket);
+
+        //Invoke
+        ResponseEntity<FundingBasket> response = fundingBasketController.addNeedToBasket(null, need);
+
+        //Analyze
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+        assertEquals(null,response.getBody());
     }
 
     @Test

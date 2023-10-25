@@ -50,21 +50,7 @@ public class CupboardController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
      */
-    @GetMapping("/singleNeed")
-    public ResponseEntity<Need> getSingleNeed(@RequestBody Need need) {
-        int id = need.getId();
-        LOG.info("GET /cupboard/singleNeed");
-        try {
-            Need foundNeed = cupboardDao.getSingleNeedById(id);
-            if(foundNeed != null){
-                return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
-            }else{
-                 return new ResponseEntity<Need>(foundNeed,HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }  
-}
+
 
 @GetMapping("/{id}")
     public ResponseEntity<Need> getSingleNeedbyId(@PathVariable int id) {
@@ -234,7 +220,6 @@ public class CupboardController {
 
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
-            
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);
             } else {
@@ -273,7 +258,7 @@ public class CupboardController {
             
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }

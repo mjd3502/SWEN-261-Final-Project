@@ -1,3 +1,27 @@
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+  
+}input {
+    padding: .5rem;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    display: block;
+}
+  
+input:focus {
+    outline: #336699 auto 1px;
+}
+  
+li {
+    list-style-type: none;
+
+  
 *{
     margin:0;
     padding:0;
@@ -20,6 +44,7 @@ label {
   
 input:focus {
     outline: #426d8a auto 1px;
+
 }
 
 .search-result li a {
@@ -28,6 +53,8 @@ input:focus {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     display: inline-block;
+    width: 100%;
+    max-width: 600px;
     padding: .5rem;
     box-sizing: border-box;
     text-decoration: none;
@@ -40,17 +67,26 @@ input:focus {
 }
   
 ul.search-result {
+
+    margin-top: 0;
+    padding-left: 0;
     margin-top: 0.1;
     padding-left: 0.1;
     list-style: none;
 }
 
 #search-content{
+  text-align: center;
   text-align: left;
 }
 
+  
 .input-form {
   padding: 10px;
+
+  width: 100%;
+  max-width: 400px; 
+
   box-sizing: border-box;
   margin: 10px auto; 
   border: 1px solid #ccc;

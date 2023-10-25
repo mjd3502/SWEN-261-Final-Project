@@ -1,0 +1,23 @@
+<div>
+    <h2>My Cupboard!</h2>
+    
+    <ul>
+        <!--creates the list item for each need-->
+        <li *ngFor="let need of needs" >
+            <!-- updateNeed/{{need.id}}             The link that should be used-->
+            <b>{{need.name}}, ID: {{need.id}}</b>
+            <p>
+                <b><u>Description:</u></b>{{need.description}}<br>
+                <b><u>Cost:</u></b> {{need.cost}}
+                <b><u>Quantity: </u></b> {{need.quantity}}
+                <b><u>Quantity: </u></b> {{need.type}}
+            </p>
+            
+            
+            <!-- add button to delete need from the cupboard -->
+            <button (click)="deleteNeed(need.id)" id="button" type="button" title ="Delete need">Delete Need</button>
+            <button routerLink="/updateNeed/{{need.id}}">Update Need</button>
+        </li>
+    </ul>
+    </div>
+    

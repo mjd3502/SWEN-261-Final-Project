@@ -1,3 +1,4 @@
+
 import { Component ,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +13,8 @@ import { CurrentUserService } from '../current-user.service';
 })
 export class HelperDashboardComponent implements OnInit{
 
+
+  constructor(private router:Router){}
   username!:string;
 
   constructor(
@@ -27,13 +30,15 @@ export class HelperDashboardComponent implements OnInit{
     
   }
 
+
   shoppingBasket= faBasketShopping;
   logOutLogo = faArrowRightFromBracket;
 
   iconClicked(){
     this.router.navigate(["/checkout"])
-    console.log("checkbox clicked");
-  }
+    console.log("checkbox clicked")
+
+
 
   redirectToPage(){
     this.router.navigate(["/login"])
@@ -46,9 +51,10 @@ export class HelperDashboardComponent implements OnInit{
       title:"Ready to leave?",
       text:"Click below if you are ready to end your current session.",
       showCancelButton:true,
-
       showConfirmButton:true,
       confirmButtonText:"Log out",
+
+
     }).then((result =>{
 
       if(result.isConfirmed){
@@ -59,6 +65,6 @@ export class HelperDashboardComponent implements OnInit{
     }))
     
     console.log("button working")
-    
+
   }
 }

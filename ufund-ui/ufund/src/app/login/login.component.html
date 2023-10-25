@@ -1,1 +1,18 @@
-<p>login works!</p>
+
+<div class="body">
+    <div class="form-container" >
+        <form [formGroup]="logInSection" (ngSubmit)="login()">
+            <fa-icon [icon]="faDog" class="fa-dog"></fa-icon>
+            <h1> Log in </h1>
+            <div class="inputBox">
+                <label>Username</label>
+                <input type="text"  formControlName="username" />
+                <i></i>
+            </div>            
+            <input (click)="login()" type="submit" />
+        </form>
+    </div>
+</div>
+
+
+ 

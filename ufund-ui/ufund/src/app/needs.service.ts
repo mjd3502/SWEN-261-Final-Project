@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable, catchError, of, tap } from 'rxjs';
+
 import { Need } from './Need';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class NeedsService {
 
   httpOptions = {
@@ -18,7 +18,8 @@ export class NeedsService {
     ) 
     { }
 
-    getNeedyId(id:number):Observable<Need>{
+    /** GET needs from the server */
+    getNeedbyId(id:number):Observable<Need>{
       const url = `${this.cupBoardURL}/${id}`
       return this.http.get<Need>(url,this.httpOptions)
       .pipe(
@@ -51,10 +52,10 @@ export class NeedsService {
       );
     }
 
-    updateNeed(need:Need):Observable<Need>{
+    updateNeed(need:Need):Observable<any>{
       return this.http.put<Need>(this.cupBoardURL,need,this.httpOptions)
       .pipe(
-        catchError(this.handleError<Need>('updateNeed')))
+        catchError(this.handleError<any>('updateNeed')))
     }
 
     searchCupboardByName(name:string): Observable<Need[]>{
@@ -71,11 +72,11 @@ export class NeedsService {
 
     }
 
+  
     private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
         console.error(error);
         return of(result as T);
       };
     }
-
 }

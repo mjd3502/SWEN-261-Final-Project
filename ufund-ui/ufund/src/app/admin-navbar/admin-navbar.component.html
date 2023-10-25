@@ -1,0 +1,12 @@
+<div class="navbar">
+    <nav class="navbar-content">
+      <div class="title">Mia Foundation</div>
+
+      <button routerLink="/adminDashboard"> Home </button>
+      <button routerLink="/admin-create-need"> Add a new need </button>
+      <span class="fa" (click)="logOut()">
+        <fa-icon [icon]="logOutLogo"></fa-icon>
+        <h6>Log out</h6>
+      </span>
+    </nav>
+</div>

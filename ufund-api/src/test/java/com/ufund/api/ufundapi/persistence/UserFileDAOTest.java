@@ -33,8 +33,7 @@ public class UserFileDAOTest {
     @BeforeEach
     public void setUpUserFileDAO() throws IOException {
         testUsers = new User[1];
-        // ArrayList<Need> needs = new ArrayList<>();
-        // needs.add(new Need(99, "Random Need", 10, "lorem ipsum", 10, "goods"));
+       
         testUsers[0] = new User("Michael");
 
 

@@ -1,1 +1,23 @@
-<p>browse-needs works!</p>
+<div id = "container">
+<button>Our Needs</button>
+
+<ul>
+    <!--cerates an list item for each need-->
+    <li *ngFor="let need of needs" id = "item">
+        <!--Link to detail page of the need "/detail/{{need.id}}" could be used-->
+        <a routerLink="/detail/{{need.id}}">
+            <b>{{need.name}}</b>
+        </a>
+        <p>
+            <b><u>Description:</u></b>{{need.description}}<br>
+            <b><u>Cost:</u></b> {{need.cost}}
+        </p>
+      
+      
+        <!-- add button to add need to checkout -->
+        <button  (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
+        <!-- call function for adding to the basket on click 
+            use  -->
+    </li>
+</ul>
+</div>

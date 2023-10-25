@@ -5,4 +5,5 @@ export class Need{
     description!: string;
     cost!: number;
     type!: string;
+
 }

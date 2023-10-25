@@ -7,6 +7,7 @@ import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 import { AddNeedComponent } from './add-need/add-need.component';
+import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -15,11 +16,14 @@ const routes: Routes = [
   {path:'updateNeed/:id',component:UpdateNeedComponent},
   {path:'adminDashboard',component:AdminDashboardComponent},
   {path:'admin-browse', component: AdminBrowseNeedsComponent},
-  {path:'admin-create-need', component: AddNeedComponent}
+  {path:'admin-create-need', component: AddNeedComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: 'detail/:id', component: NeedsDetailComponent },
+  {path: 'browse-needs', component: BrowseNeedsComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

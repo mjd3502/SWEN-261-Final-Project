@@ -1,15 +1,27 @@
 
+
 .navbar {
     background-color: #72A0C1;
     padding: 10px 0;
 }
-  
-  .navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    color: #fff; /* Text color for the navbar */
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+    color: #fff;
+  }
+
+  .basket:hover {
+    color: #426d8a;
+  }
+
+  .logout:hover {
+    color: #426d8a;
+
   }
   
   .navbar-content .fa {
@@ -19,24 +31,47 @@
     cursor: pointer;
   }
 
-  .navbar-content .fa-icon {
-    font-size: 24px; 
-  }
-  
-
-  .title{
-    font-size: 24px;
+  .header{
+    font-size: 35px;
     font-weight: bold;
-    margin-bottom: 20px;
-    /* background-color: #007FFF; */
+    color:#fff;
+    text-shadow: 2px 2px 4px #426d8a;
+    margin-bottom: -5px;
   }
   
- 
-  .centered-container {
+  .subtitle{
+    font-size: 12px;
+    color: #426d8a;
+    margin-bottom: 10px;
+  }
+
+  h6{
+    font-size: 12px;
+  }
+
+  .subheader {
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     margin-top: 50px;
     gap: 100px;
+    margin: 30px;
+    gap: 100px;
+    font-size: 23px;
+}
+
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: space-around;
+    margin-top: 50px;
+    gap: 100px;
+}
+
+.sweet-alert button{
+  background: 'black';
 }

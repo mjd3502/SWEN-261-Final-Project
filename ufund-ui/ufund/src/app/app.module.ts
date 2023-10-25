@@ -17,6 +17,12 @@ import { UpdateNeedComponent } from './update-need/update-need.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-needs.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,19 +32,20 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
     NeedsDetailComponent,
     CheckoutComponent,
     SearchBarComponent,
-    AddNeedComponent,
     UpdateNeedComponent,
     AdminDashboardComponent,
     AdminBrowseNeedsComponent,
-    AddNeedComponent
+    AddNeedComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule
-    
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

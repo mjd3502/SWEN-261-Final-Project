@@ -1,3 +1,4 @@
+
 label {
     display: block;
     font-weight: bold;
@@ -19,6 +20,31 @@ input:focus {
   
 li {
     list-style-type: none;
+
+  
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+  
+}input {
+    padding: .5rem;
+    box-sizing: border-box;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+  
+input:focus {
+    outline: #426d8a auto 1px;
+
 }
 
 .search-result li a {
@@ -41,22 +67,32 @@ li {
 }
   
 ul.search-result {
+
     margin-top: 0;
     padding-left: 0;
+    margin-top: 0.1;
+    padding-left: 0.1;
     list-style: none;
 }
 
 #search-content{
   text-align: center;
+  text-align: left;
 }
 
+  
 .input-form {
   padding: 10px;
+
   width: 100%;
   max-width: 400px; 
+
   box-sizing: border-box;
   margin: 10px auto; 
   border: 1px solid #ccc;
   border-radius: 15px; 
   font-size: 16px;
+  width: 600px; /* temporary */
+  /* width: 100%;
+  max-width: 600px; */
 }

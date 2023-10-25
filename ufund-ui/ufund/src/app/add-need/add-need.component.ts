@@ -38,7 +38,7 @@ export class AddNeedComponent {
   onSubmit(){
     if(this.Need){
       this.needsService.createNeed(this.Need).subscribe(response =>{
-        this.router.navigate(['/admin-browse'])
+        this.router.navigate(['/adminDashboard'])
         console.log(response);
       })
     }

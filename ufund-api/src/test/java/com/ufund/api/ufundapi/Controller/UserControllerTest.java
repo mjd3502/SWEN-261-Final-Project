@@ -51,6 +51,19 @@ public class UserControllerTest {
         assertEquals(user,response.getBody());
     }
 
+    @Test
+    public void createUserInternalServerError() throws IOException {
+        //Setup
+        User user = new User("Cheyenne");
+        when(mockUserDAO.createUser(user)).thenThrow(new RuntimeException("Internal Server Error"));
+
+        //Invoke
+        ResponseEntity<User> responseEntity = userController.createUser(user);
+
+        //Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
+
     // @Test
     // public void getUsername() throws IOException{
     //     //TODO: implement

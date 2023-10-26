@@ -1,3 +1,7 @@
+#container{
+    margin-top: 10px;
+}
+
 body {
     font-family: Arial, sans-serif;
     color: #000;
@@ -49,6 +53,7 @@ main {
 
 /* Button Styles */
 button {
+    margin-top: 10px;
     background-color: #72A0C1;
     color: #fff;
     padding: 10px 20px;

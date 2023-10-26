@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 
 import { Need } from './Need';
 
@@ -26,10 +26,16 @@ export class NeedsService {
         catchError(this.handleError<Need>('getNeedbyId')))
     }
     
-    createNeed(need:Need):Observable<Need>{
-      return this.http.post<Need>(this.cupBoardURL,need,this.httpOptions)
-      .pipe(
-        catchError(this.handleError<Need>('addNeed'))
+    createNeed(need: Need): Observable<Need> {
+      return this.http.post<Need>(this.cupBoardURL, need, this.httpOptions).pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            console.error("Enter valid data type",error.message);
+          } else if (error.status > 400 && error.status < 500) {
+            console.error("Enter valid valid input fields", error.message);
+          }
+          return throwError(error);
+        })
       );
     }
 

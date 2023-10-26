@@ -15,6 +15,8 @@ export class AddNeedComponent {
  
   Need: Need =  new Need();
 
+  errorMesage = " ";
+
 
   constructor(private needsService: NeedsService, private router: Router){
     
@@ -26,7 +28,17 @@ export class AddNeedComponent {
       this.needsService.createNeed(this.Need).subscribe(response =>{
         this.router.navigate(['/adminDashboard'])
         console.log(response);
-      })
+      },(error) =>{
+        console.error('An error occurred:', error);
+
+        if(error.status == 400){
+          this.errorMesage = "Please enter a valid type of need";
+        }else{
+          this.errorMesage = "Please fill out every input";
+        }
+
+      }
+      )
     }
     
   }

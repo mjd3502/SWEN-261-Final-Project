@@ -24,8 +24,7 @@ This is a summary of the project.
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
-The manager of the Ufund system can add, remove, and edit needs stored in their cupboard.
-The Helper can browse through a list of needs and select individuals needs to support.
+The Mia foundation is a animal shelter dedicated to helping pets with disabilities. The manager is able to asses the needs of the shelter, and provide an up to date list of needs into the website to recieve funding from various helpers. Helpers can paruse the available needs and can add to their funding baskets any needs they have an interest in.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -46,8 +45,9 @@ This section describes the features of the application.
 
 ### Definition of MVP
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
-Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
-The manager can add, remove and change needs stored in their cupboard and a helper can view that cupboard and select needs to add to their funding basket, and checkout, funding their selected needs. 
+Each user logs in with their username, the manager of the system can log in with the username 'admin'.
+The manager can add, remove and change needs stored in their cupboard.
+A helper can view that cupboard and select needs to add to their funding basket.
 
 
 ### MVP Features
@@ -84,7 +84,7 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
 
-![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
+![The Tiers & Layers of the Architecture](ArchitectureDiagram.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 

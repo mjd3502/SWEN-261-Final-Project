@@ -50,15 +50,21 @@ public class FundingBasketDAOTest {
     @Test
     public void test_createBasket(){
         //setup
-        ArrayList<Need> needs = new ArrayList<>();
-        needs.add(new Need(2,"Fake need", 10, "lorem ipsum", 10, "goods"));
-        
-        //invoke
-        FundingBasket result = new FundingBasket("Jessica", needs);
+        List<Need> needs = new ArrayList<>();
+        FundingBasket fb = new FundingBasket("Jessica", needs);
+        FundingBasket result;
+        try {
+            result = fundingBasket.createFundingBasket(fb);
+            
+            //assert
+            assertEquals(result.getUserName(), "Jessica");
+            assertEquals(result.toString(),"FundingBasket [userName=Jessica, fundingBasket=No items in the funding basket ]  ");
+        } catch (IOException e) {
+            //should not throw an error
+            assertFalse(true);
+        }
 
-        //assert
-        assertEquals(result.getUserName(), "Jessica");
-        assertEquals(result.toString(),"FundingBasket [userName=Jessica, fundingBasket=" + needs.get(0).toString()+ " ]  ");
+        
     }
 
 

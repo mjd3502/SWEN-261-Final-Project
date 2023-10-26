@@ -29,18 +29,18 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-       private boolean validateHelperLogin(String value) {
+    //    private boolean validateHelperLogin(String value) {
        
-        if (value == null) {
-            return false;
-        }
+    //     if (value == null) {
+    //         return false;
+    //     }
         
-        if(value.equalsIgnoreCase("admin")) {
-            return false;
-        }
+    //     if(value.equalsIgnoreCase("admin")) {
+    //         return false;
+    //     }
         
-        return true;
-    }
+    //     return true;
+    // }
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
@@ -62,22 +62,22 @@ public class UserController {
         }
     }
 
-    @GetMapping("userName/{username}")
-    public ResponseEntity<String> getUsername(@PathVariable("username") String username){
+//     @GetMapping("userName/{username}")
+//     public ResponseEntity<String> getUsername(@PathVariable("username") String username){
 
-        try {
+//         try {
 
-            String user = userDAO.getUserName(username);
-            if(user != null){
-                return new ResponseEntity<String>(user,HttpStatus.OK);
-            }else{
-                return new ResponseEntity<String>("No username available",HttpStatus.OK);
-            }
+//             String user = userDAO.getUserName(username);
+//             if(user != null){
+//                 return new ResponseEntity<String>(user,HttpStatus.OK);
+//             }else{
+//                 return new ResponseEntity<String>("No username available",HttpStatus.OK);
+//             }
             
-        } catch (Exception e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//         } catch (Exception e) {
+//             LOG.log(Level.SEVERE,e.getLocalizedMessage());
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//         }
+//     }
     
 }

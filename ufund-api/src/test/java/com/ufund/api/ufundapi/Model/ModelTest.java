@@ -15,6 +15,8 @@ import com.ufund.api.ufundapi.model.Need;
  * input testing for setQuantity, setCost, and setType functions. 
  */
 
+
+
 @Tag("Model-tier")
 public class ModelTest {
     private Need need;

@@ -31,9 +31,7 @@ public class FundingBasket {
         return fundingBasket;
     }
     public void setFundingBasket(Need need) {
-        if(!this.fundingBasket.contains(need)){
-             this.fundingBasket.add(need);
-        }
+        this.fundingBasket.add(need);
     }
 
     @Override

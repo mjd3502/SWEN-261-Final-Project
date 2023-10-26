@@ -14,13 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.FundingBasket;
 import com.ufund.api.ufundapi.model.Need;
-import com.ufund.api.ufundapi.model.User;
 
+
+@Tag("Persistence-tier")
 public class FundingBasketDAOTest {
     private FundingBasketFileDAO fundingBasket;
 

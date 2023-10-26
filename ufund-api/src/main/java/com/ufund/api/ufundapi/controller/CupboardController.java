@@ -227,6 +227,10 @@ public class CupboardController {
     public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /need " + need);
 
+        if(!validateTypeField(need.getType())){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
             if (checkNeed != null){

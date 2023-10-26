@@ -24,6 +24,8 @@ This is a summary of the project.
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
+The manager of the Ufund system can add, remove, and edit needs stored in their cupboard.
+The Helper can browse through a list of needs and select individuals needs to support.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -31,6 +33,7 @@ This is a summary of the project.
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
+| Helper | A user using the application with intent to give support|
 
 
 ## Requirements
@@ -42,10 +45,20 @@ This section describes the features of the application.
 > maybe Epics and critical Stories._
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+>  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
+The manager can add, remove and change needs stored in their cupboard and a helper can view that cupboard and select needs to add to their funding basket, and checkout, funding their selected needs. 
+
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
+>  A user logs in with a username, going to their page
+>  A U-fund Manager logs in with username 'admin'
+>  A Helper can see a list of needs
+>  A Helper can search through the list of needs
+>  A Helper can add/remove a need from their Funding Basket
+>  A Helper can Check-out and fund all needs in their Funding Basket
+>  A U-fund Manager can add, remove, and edit the list of needs
+>  A U-fund manager cannot see each user's funding basket
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
@@ -129,6 +142,8 @@ This section describes the web interface flow; this is how the user views and in
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+High Cohesion
+Single Responsibility
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
@@ -149,6 +164,7 @@ This section describes the web interface flow; this is how the user views and in
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+19 user stories will be finished.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage

@@ -48,13 +48,15 @@ public class CupboardController {
      * @return ResponseEntity with need object and HTTP status of OK if found
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
      */
-    @GetMapping("/singleNeed")
-    public ResponseEntity<Need> getSingleNeed(@RequestBody Need need) {
-        int id = need.getId();
-        LOG.info("GET /cupboard/singleNeed");
+
+
+@GetMapping("/{id}")
+    public ResponseEntity<Need> getSingleNeedbyId(@PathVariable int id) {
+        LOG.info("GET /cupboard/{id}");
         try {
-            Need foundNeed = cupboardDao.getSingleNeed(id);
+            Need foundNeed = cupboardDao.getSingleNeedById(id);
             if(foundNeed != null){
                 return new ResponseEntity<Need>(foundNeed,HttpStatus.OK);
             }else{
@@ -88,7 +90,7 @@ public class CupboardController {
     }
 
     private boolean validateIntegerFields(int  value){
-        return value == 0;
+        return value <= 0;
     }
 
     @PostMapping("")
@@ -121,6 +123,7 @@ public class CupboardController {
         }
     }
     
+
     /**
      * Deletes a need with the provided id
      * 
@@ -217,7 +220,6 @@ public class CupboardController {
 
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
-            
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);
             } else {
@@ -256,7 +258,7 @@ public class CupboardController {
             
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }

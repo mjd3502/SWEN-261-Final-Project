@@ -61,7 +61,14 @@ export class NeedsService {
     updateNeed(need:Need):Observable<any>{
       return this.http.put<Need>(this.cupBoardURL,need,this.httpOptions)
       .pipe(
-        catchError(this.handleError<any>('updateNeed')))
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            console.error("Enter valid data type",error.message);
+          } else if (error.status > 400 && error.status < 500) {
+            console.error("Enter valid valid input fields", error.message);
+          }
+          return throwError(error);
+        }));
     }
 
     searchCupboardByName(name:string): Observable<Need[]>{

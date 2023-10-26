@@ -1,5 +1,4 @@
-package com.ufund.api.ufundapi.Model;
+// package com.ufund.api.ufundapi.Model;
 
-public class FundingBasket {
+// public class FundingBasket {
     
-}

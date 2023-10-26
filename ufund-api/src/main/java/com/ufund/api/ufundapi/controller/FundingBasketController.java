@@ -32,7 +32,7 @@ public class FundingBasketController {
     }
     
     @PostMapping(" ")
-    public ResponseEntity<FundingBasket> createfundingBasket(@RequestBody FundingBasket fundingBasket){
+    public ResponseEntity<FundingBasket> createFundingBasket(@RequestBody FundingBasket fundingBasket){
         LOG.info("POST /fundingBasket " + fundingBasket);
 
         try {
@@ -67,7 +67,7 @@ public class FundingBasketController {
     }
 
     @DeleteMapping("/{name}/needId/{needId}")
-    public ResponseEntity<FundingBasket> removeNeedfromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
+    public ResponseEntity<FundingBasket> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
 
         try {
             boolean deleted = fundingBasketDao.removeNeedFromFundingBasket(name, needId);

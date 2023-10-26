@@ -4,8 +4,6 @@
         <header>
             <div id="goodFont">
             <h1>Need:{{need.name}}</h1>
-            <h1>Need:</h1>
-            <h2>{{need.name}}</h2>
             </div>
         </header>
         <main>
@@ -18,6 +16,7 @@
                     <h2><span class="bold-text"> Description:</span></h2>
                     </div>
                     <p>{{need.description}}</p>
+                    <p><b><u>Type:</u></b> {{need.type}}</p>
                 </div>
             </div>
             <div id="goodFont" class="box">
@@ -25,11 +24,11 @@
                 <h2>Cost :</h2>
                 </div>
                 <p>{{need.cost}}</p>
-                <p>{{need.type}}</p>
+    
             </div>
             <div id="goodFont" class="box">
                 <div class="mainText">
-                <button (click)="functionAddNeed(need)">Add to Cart</button><br><br>
+                <button (click)="functionAddNeed(need)">Add to Basket</button><br><br>
                 <button (click)="goBack()"> Return to Dashboard</button>
                 </div>
             </div>

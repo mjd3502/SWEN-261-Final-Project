@@ -24,6 +24,7 @@ This is a summary of the project.
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
+
 The manager of the Ufund system can add, remove, and edit needs stored in their cupboard.
 The Helper can browse through a list of needs and select individuals needs to support.
 
@@ -40,12 +41,19 @@ The Helper can browse through a list of needs and select individuals needs to su
 
 This section describes the features of the application.
 
-> _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
+> The MIA Foundation U Fund website focuses on providing both helpers of the organizations and managers an 
+optimal way of collaborating for an important cause such us supporting animals in need.
+> In our website the Administrator of the Funding website will be able to:
+> Log in to the "Admin dashboard" to see the list of needs of their organization
+>Add,remove, and edit the needs which are either goods or volunteer opportunities
+> The helper will be able to:
+>Log in to their "Helper" Dashboard to access the cupboard of the organization
+> Search for a need by name
+> A personalized funding basket where they can add/delete the needs they want to checkout
 
 ### Definition of MVP
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+
 Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
 The manager can add, remove and change needs stored in their cupboard and a helper can view that cupboard and select needs to add to their funding basket, and checkout, funding their selected needs. 
 
@@ -101,6 +109,11 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
+> Our web application's user interface offers a clear and structured  for the user roles of Manager and Helper. All users can log in and access their personal "dashboard". If the user decides to have the role of "Helper", their personal page or dahsboard will display a list of available needs in the organization. Furthermore, they will be able to view and manage their Funding Basket ,which includes adding and removing needs. The Helper view also contains a feature which allows users to search needs by a specific name type and access a detail description of said need. 
+
+> On the other, the 'admin" or " U-fund manager, logs in to an administrative dashboard where they can oversee and and modify the needs in their cupboard. 
+> Both user roles have the opportunity to log out of the site whenever it is convenient.
+
 
 ### View Tier
 > _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
@@ -135,6 +148,17 @@ This section describes the web interface flow; this is how the user views and in
 > section will follow the same instructions that are given for the View
 > Tier above._
 
+> The model tier of our application contains three main entities:
+- Need
+- Funding Basket
+- User
+Each on of them has a specific function within the application.
+The Need entity represents a good/volunteer opportunity that admin users can create and modify and that helper users can checkout to support the organization
+Funding Basket entity represent a unique basket that associated to a a particular username.
+User entity represents a helper user that logs in to the application. User are identified by a unique username. 
+The model tier forms the backbone of our application's architecture with the Need, Funding Basket and User entities playing distinct but interconnected roles. 
+
+
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
@@ -142,8 +166,16 @@ This section describes the web interface flow; this is how the user views and in
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
-High Cohesion
-Single Responsibility
+
+The MIA Foundation U Fund website has been thoughtfully designed to align with two fundamental Object-Oriented (OO) design principles: High Cohesion and the Single Responsibility Principle (SRP). These principles are reflected in both the frontend (Angular) and backend (Java) components and modules. 
+
+
+> High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
+
+> The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
+
+By following these OO design principles, the MIA Foundation U Fund website has a maintainable and extensible code, enhancing the overall quality of the project.
+
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
@@ -178,3 +210,8 @@ Single Responsibility
 
 ## Use of Postman API Platform for Sprint 1 RestAPI Demo
 > The Postman API Platform will be used to manage and document the Restful API's of our application. Postman is a development tool which helps build, test and modify API's. Postman offers a usr-friendly graphical interface that makes it easier for the team of developers, as well as the product owner, to interact with API's. The team "Sultans of Scrum" has a "workspace" in which the Restful API's of our applciation will be stored. The workspace facilitates collaboration in the team by allowing us to share our collection of API's and maintain a record of them.
+
+### Use of Sweet Alert Library
+> The team of developers has chosen to incorporate the SweetAlert JavaScript library to enhance the user experience by offering visually appealing and user-friendly pop-up dialogs for web development. This choice not only elevates the user experience but also improves the presentation of important information and messages to users. 
+
+

@@ -24,7 +24,7 @@ This is a summary of the project.
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
-The Mia foundation is a animal shelter dedicated to helping pets with disabilities. The manager is able to asses the needs of the shelter, and provide an up to date list of needs into the website to recieve funding from various helpers. Helpers can paruse the available needs and can add to their funding baskets any needs they have an interest in.
+The Mia foundation is a animal shelter dedicated to helping pets with disabilities. The manager is able to asses the needs of the shelter, and provide an up to date list of needs into the website to recieve funding from various helpers. Helpers can browse the available needs and can add to their funding baskets any needs they have an interest in and would like to support.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -33,6 +33,7 @@ The Mia foundation is a animal shelter dedicated to helping pets with disabiliti
 |------|------------|
 | SPA | Single Page |
 | Helper | A user using the application with intent to give support|
+| Manager | A user using the application with intent to manage the organization|
 
 
 ## Requirements
@@ -45,9 +46,13 @@ This section describes the features of the application.
 
 ### Definition of MVP
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
-Each user logs in with their username, the manager of the system can log in with the username 'admin'.
-The manager can add, remove and change needs stored in their cupboard.
-A helper can view that cupboard and select needs to add to their funding basket.
+Each user logs in with their username, the manager of the system can log in with the username 'admin' which is reserved for them.
+
+The manager can add, remove and change needs stored in their cupboard to reflect the needs
+of the organization.
+
+A helper can view that cupboard and select needs to add to their funding basket, which is 
+hidden from the manager. 
 
 
 ### MVP Features
@@ -68,7 +73,7 @@ A helper can view that cupboard and select needs to add to their funding basket.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+[Domain Model](./DomainAnalysis.pdf)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -84,7 +89,7 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
 
-![The Tiers & Layers of the Architecture](ArchitectureDiagram.png)
+[The Tiers & Layers of the Architecture](./ArchitectureDiagram.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
@@ -142,8 +147,10 @@ This section describes the web interface flow; this is how the user views and in
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
-High Cohesion
-Single Responsibility
+
+Principles Chosen for Sprint 2:
+    High Cohesion
+    Single Responsibility
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 

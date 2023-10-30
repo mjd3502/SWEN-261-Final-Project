@@ -16,7 +16,6 @@
 
 
 .form-container{
-
     position: relative;
     display: flex;
     justify-self: center;
@@ -27,10 +26,8 @@
 }
 
 .fa-dog{
-    
     font-size: 3em;
     align-items: center;
-
 }
 
 
@@ -44,7 +41,6 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-
 }
 
 
@@ -60,11 +56,9 @@
     position: relative;
     width: 300px;
     margin-top: 35px;
-
 }
 
 .form-container form .inputBox input{
-
     position: relative;
     width: 100%;
     padding: 20px 10px 10px;
@@ -90,11 +84,9 @@
 .form-container form .inputBox input:valid ~label,
 .form-container form .inputBox input:focus ~label
 {
-
     color: #fff;
     font-size: 0.75em;
     transform:translate(-34px) ;
-    
 }
 
 .form-container form .inputBox i {
@@ -108,7 +100,6 @@
     overflow: hidden;
     transition: 0.5s;
     pointer-events: none;
-
 }
 
 .form-container form input[type="submit"]{
@@ -122,10 +113,8 @@
     font-weight: 600;
     width: 100px;
     margin-top: 10px;
-
 }
 
 .form-container form input[type="submit"]:active{
     opacity: 0.8;
-
 }

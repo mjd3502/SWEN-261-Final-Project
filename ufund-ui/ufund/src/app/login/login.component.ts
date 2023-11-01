@@ -62,7 +62,9 @@ export class LoginComponent{
       })
       this.changeRoute('/helperDashboard')
     }
-
-   
+    
+  }
+  signUpRedirect(){
+    this.changeRoute('/signup')
   }
 }

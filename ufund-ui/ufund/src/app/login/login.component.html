@@ -1,16 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="body">
-    <div class="form-container" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classy Login Screen</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <fa-icon [icon]="faDog" class="fa-dog center-dog fa-2xl"></fa-icon>
+
+        <h2 class="text-2xl font-semibold mb-6 text-center">Welcome Back!</h2>
+
         <form [formGroup]="logInSection" (ngSubmit)="login()">
-            <fa-icon [icon]="faDog" class="fa-dog"></fa-icon>
-            <h1 class="mb-4 text-4xl font-extrabold text-gray-700"> Log in </h1>
-            <div class="inputBox">
-                <label>Username</label>
-                <input type="text"  formControlName="username" />
-            </div>            
-            <input (click)="login()" type="submit" />
+
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium">Username</label>
+                <input type="text" id="username" formControlName="username" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+            </div>
+
+            <button (click)="login()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">Log In</button>
         </form>
+
+        <p class="text-sm mt-4 text-gray-400 text-center">Don't have an account? <a href="#" class="text-blue-400 hover:underline">Sign Up</a></p>
     </div>
-</div>
 
+</body>
 
+</html>

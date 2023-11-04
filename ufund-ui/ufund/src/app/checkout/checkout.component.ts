@@ -14,7 +14,8 @@ import { FundingBasketService } from '../funding-basket.service';
 
 export class CheckoutComponent implements OnInit{
   basket: Map<number,Need> = new Map();
-  username!:string
+  username!:string;
+  fundingBasket!: Need[];
 
   user!:User;
   
@@ -44,8 +45,13 @@ export class CheckoutComponent implements OnInit{
 
   
   getFundingBasket(name:string):void{
-    this.fundingBasketService.getFundingBasket(name).subscribe(needs => this.basket = needs);
+    this.fundingBasketService.getFundingBasket(name).subscribe(needs => 
+    this.basket = needs
+    );
+    console.log(this.fundingBasket);
   }
+
+  
 
 
   // calculateTotal(): void{ 

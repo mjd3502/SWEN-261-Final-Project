@@ -4,13 +4,12 @@
 <h2>Funding Basket</h2>
 </div>
 <div class = "body">
-<!-- <button (click)="goBack()"> Return to Dashboard</button> -->
     <ul>
-        <li *ngFor="let need of basket.values()">
-            <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
-            <button (click)="addQuantity(need)">+</button>
-            <button (click)="subtractQuantity(need)">-</button>
-            <button (click)="deleteNeed(need.id)">Delete</button>
+        <li *ngFor="let need of basket|keyvalue">
+            <span>{{need.value.name}} - Quantity: {{need.value.name}} - Cost: {{need.value.name}}</span>
+            <button (click)="addQuantity(need.value)">+</button>
+            <button (click)="subtractQuantity(need.value)">-</button>
+            <button (click)="deleteNeed(need.value.id)">Delete</button>
         </li>
     </ul>
 </div>

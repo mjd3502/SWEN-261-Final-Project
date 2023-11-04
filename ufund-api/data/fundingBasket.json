@@ -1,4 +1,1 @@
-[{"userName":"carla",
-"fundingBasket":{"12":{"id":12,"name":"Donate food","quantity":1,"description":"Provide food for dogs in need","cost":10,"type":"goods"}}},
-
-{"userName":"messi","fundingBasket":{"11":{"id":11,"name":"cr7","quantity":10,"description":"hello","cost":10,"type":"volunteer"}}}]
+[{"userName":"carla","fundingBasket":{"12":{"id":12,"name":"Donate food","quantity":1,"description":"Provide food for dogs in need","cost":10,"type":"goods"}}},{"userName":"maria becerra","fundingBasket":{"12":{"id":12,"name":"Donate food","quantity":1,"description":"Provide food for dogs in need","cost":10,"type":"goods"}}},{"userName":"messi","fundingBasket":{"11":{"id":11,"name":"cr7","quantity":10,"description":"hello","cost":10,"type":"volunteer"}}},{"userName":"tini","fundingBasket":{"12":{"id":12,"name":"Donate food","quantity":1,"description":"Provide food for dogs in need","cost":10,"type":"goods"}}}]

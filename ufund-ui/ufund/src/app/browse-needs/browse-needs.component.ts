@@ -40,11 +40,7 @@ export class BrowseNeedsComponent implements OnInit{
     })
     
   }
-
-  // number = 7
-
-  // adds the need to user's funding basket
-  
+ 
   functionAddNeed(need: Need): void{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);

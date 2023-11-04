@@ -18,6 +18,6 @@ public interface FundingBasketDAO {
 
     Map<Integer, Need> getFundingBasket(String userName) throws IOException;
 
-
+    boolean clearFundingBasket(String userName) throws IOException;
     
 }

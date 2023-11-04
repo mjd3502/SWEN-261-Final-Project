@@ -130,4 +130,21 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
         }
         return new HashMap<>();
     }
+
+
+    @Override
+    public boolean clearFundingBasket(String userName) throws IOException {
+      
+        synchronized(fundingBaskets){
+            if(fundingBaskets.containsKey(userName)){
+               Map<Integer,Need> listOFNeeds = new HashMap<>();
+                FundingBasket newFundingBasket =  new FundingBasket(userName,listOFNeeds);
+                fundingBaskets.replace(userName, newFundingBasket);
+                return save();
+            }else{
+                return false;
+            }
+        }
+
+    }
 }

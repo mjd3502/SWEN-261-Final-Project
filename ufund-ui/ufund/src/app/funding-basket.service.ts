@@ -50,6 +50,13 @@ export class FundingBasketService {
     );
   }
 
+  clearBasket(userName:string):Observable<Map<number,Need>>{
+    const url = `${this.fundingBasketURL}/clearFundingBasket/${userName}`
+    return this.http.delete<Map<number,Need>>(url,this.httpOptions).pipe(
+      catchError(this.handleError<Map<number,Need>>('clearBasket'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

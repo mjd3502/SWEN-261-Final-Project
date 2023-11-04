@@ -70,6 +70,12 @@ export class CheckoutComponent implements OnInit{
     }
   }
 
+  checkoutNeeds():void{
+    this.fundingBasketService.clearBasket(this.username).subscribe(
+      fundingbasket => this.basket = fundingbasket
+    )
+  }
+
  
 
 }

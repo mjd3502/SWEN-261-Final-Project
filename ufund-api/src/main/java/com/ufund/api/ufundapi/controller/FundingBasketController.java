@@ -100,4 +100,24 @@ public class FundingBasketController {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+
+    @DeleteMapping("/clearFundingBasket/{userName}")
+    public ResponseEntity<Map<Integer,Need>> clearFundingBasket(@PathVariable("userName") String username){
+
+        try {
+            
+            boolean clearbasket = fundingBasketDao.clearFundingBasket(username);
+            if(clearbasket){
+                LOG.info("clear basket");
+                 Map<Integer,Need> basket = fundingBasketDao.getFundingBasket(username);
+                return new ResponseEntity<Map<Integer,Need>>(basket,HttpStatus.OK);
+            }else{
+                 LOG.info("nooooooooo");
+                 return new ResponseEntity<Map<Integer,Need>>(HttpStatus.NOT_ACCEPTABLE);
+            }
+        } catch (Exception e) {
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+
+    }
 }

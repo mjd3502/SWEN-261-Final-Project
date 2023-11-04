@@ -68,17 +68,19 @@ public class FundingBasketController {
     }
 
     @DeleteMapping("/{name}/needId/{needId}")
-    public ResponseEntity<FundingBasket> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
+    public ResponseEntity<Map<Integer,Need>> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
 
         try {
             boolean deleted = fundingBasketDao.removeNeedFromFundingBasket(name, needId);
+            Map<Integer,Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
 
             if(deleted){
-                 LOG.info("deleteeeeeeeeeed " );
-                return new ResponseEntity<FundingBasket>(HttpStatus.OK);
+                LOG.info("deleteeeeeeeeeed " );
+                
+                return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.OK);
             }else{
                  LOG.info("nooooooooo");
-                 return new ResponseEntity<FundingBasket>(HttpStatus.NOT_ACCEPTABLE);
+                 return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {

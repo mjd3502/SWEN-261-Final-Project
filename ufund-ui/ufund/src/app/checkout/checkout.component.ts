@@ -13,10 +13,8 @@ import { FundingBasketService } from '../funding-basket.service';
 })
 
 export class CheckoutComponent implements OnInit{
-  basket: Map<number,Need> = new Map();
+  basket: Map<number,Need> = new Map<number, Need>();
   username!:string;
-  fundingBasket!: Need[];
-
   user!:User;
   
 
@@ -34,32 +32,33 @@ export class CheckoutComponent implements OnInit{
         this.username = user.getUsername();
       }
     })
-
     this.getFundingBasket(this.username);
 
   }
 
-  goBack():void{
-    return this.location.back()
-  }
-
   
   getFundingBasket(name:string):void{
-    this.fundingBasketService.getFundingBasket(name).subscribe(needs => 
-    this.basket = needs
+    this.fundingBasketService.getFundingBasket(name).subscribe(fundingBasket => 
+    this.basket = fundingBasket
     );
-    console.log(this.fundingBasket);
+
   }
 
-  
+  deleteNeed(needId: number): void{
+    this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(fundingBasket =>
+      this.basket = fundingBasket
+    );
+  }
 
+  updateBasket(needId:number):void{
+    if(this.basket.has(needId)){
+      console.log(this.basket.get(needId))
+      this.basket.delete(needId);
+    }else {
+      console.error(`Item with ID ${needId} not found in the basket.`);
+    }
 
-  // calculateTotal(): void{ 
-  //   let total = 0;
-  //   for (let needs of this.basket) {
-  //     total += needs.cost;
-  //   }
-  // }
+  }
 
   addQuantity(need: Need): void{
     need.quantity += 1;
@@ -71,12 +70,7 @@ export class CheckoutComponent implements OnInit{
     }
   }
 
-  deleteNeed(needId: number): void{
-    this.basket.delete(needId);
-    this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
-      console.log(user);
-    })
-  }
+ 
 
 }
 

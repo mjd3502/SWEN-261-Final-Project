@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import {Need} from '../Need';
 import { NeedsService } from '../needs.service';
-import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { User } from '../User';
 import { BehaviorSubject } from 'rxjs';
@@ -45,6 +44,7 @@ export class BrowseNeedsComponent implements OnInit{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
     })
+    
   }
 
 }

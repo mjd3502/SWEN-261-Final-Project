@@ -43,10 +43,10 @@ export class FundingBasketService {
     );
   }
   
-  removeNeedFromBasket(name:string,needId:number):Observable<FundingBasket>{
+  removeNeedFromBasket(name:string,needId:number):Observable<Map<number,Need>>{
     const url = `${this.fundingBasketURL}/${name}/needId/${needId}`
-    return this.http.delete<FundingBasket>(url,this.httpOptions).pipe(
-      catchError(this.handleError<FundingBasket>('removeNeedFromBasket'))
+    return this.http.delete<Map<number,Need>>(url,this.httpOptions).pipe(
+      catchError(this.handleError<Map<number,Need>>('removeNeedFromBasket'))
     );
   }
 

@@ -6,7 +6,7 @@
 <div class = "body">
 <!-- <button (click)="goBack()"> Return to Dashboard</button> -->
     <ul>
-        <li *ngFor="let need of basket">
+        <li *ngFor="let need of basket.values()">
             <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
             <button (click)="addQuantity(need)">+</button>
             <button (click)="subtractQuantity(need)">-</button>

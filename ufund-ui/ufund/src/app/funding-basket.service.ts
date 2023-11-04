@@ -28,11 +28,11 @@ export class FundingBasketService {
   }
 
 
-  getFundingBasket(name:string):Observable<Need[]>{
+  getFundingBasket(name:string):Observable<Map<number,Need>>{
     const url = `${this.fundingBasketURL}/${name}`
-    return this.http.get<Need[]>(url,this.httpOptions)
+    return this.http.get<Map<number,Need>>(url,this.httpOptions)
     .pipe(
-      catchError(this.handleError<Need[]>('fundingBasket'))
+      catchError(this.handleError<Map<number,Need>>('fundingBasket'))
     );
   }
 

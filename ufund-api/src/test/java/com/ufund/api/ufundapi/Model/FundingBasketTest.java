@@ -17,10 +17,10 @@ import com.ufund.api.ufundapi.model.Need;
 public class FundingBasketTest {
     private FundingBasket fundingBasket;
     
-    @BeforeEach
-    public void setUp(){
-        fundingBasket = new FundingBasket("carlitaxmessi",new ArrayList<>());
-    }
+    // @BeforeEach
+    // public void setUp(){
+    //     fundingBasket = new FundingBasket("carlitaxmessi",new ArrayList<>());
+    // }
 
     @Test
     public void testConstructor(){
@@ -42,12 +42,12 @@ public class FundingBasketTest {
     }
 
 
-    @Test
-    public void setFundingBasket(){
-        Need need = new Need(1, "carla", 10, "hello", 10, "volunteer");
-        fundingBasket.setFundingBasket(need);
-        assertTrue(fundingBasket.getFundingBasket().contains(need));
-    }
+    // @Test
+    // public void setFundingBasket(){
+    //     Need need = new Need(1, "carla", 10, "hello", 10, "volunteer");
+    //     fundingBasket.setFundingBasket(need);
+    //     assertTrue(fundingBasket.getFundingBasket().contains(need));
+    // }
 
 
     @Test

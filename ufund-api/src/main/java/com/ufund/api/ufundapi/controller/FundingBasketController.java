@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,7 +74,7 @@ public class FundingBasketController {
             boolean deleted = fundingBasketDao.removeNeedFromFundingBasket(name, needId);
 
             if(deleted){
-                 LOG.info("deleteeeeeeeeeed");
+                 LOG.info("deleteeeeeeeeeed " );
                 return new ResponseEntity<FundingBasket>(HttpStatus.OK);
             }else{
                  LOG.info("nooooooooo");
@@ -84,19 +85,17 @@ public class FundingBasketController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 
         }
-    }
+    } 
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("name") String name){
+    public ResponseEntity<Map<Integer,Need>> getFundingBasket(@PathVariable("name") String name){
 
         try {
-            List<Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
-            return new ResponseEntity<List<Need>>(fundingBasket,HttpStatus.OK);
+            Map<Integer,Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
+            return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.OK);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
-
-
 }

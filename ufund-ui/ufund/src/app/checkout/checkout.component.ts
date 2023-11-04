@@ -13,17 +13,17 @@ import { FundingBasketService } from '../funding-basket.service';
 })
 
 export class CheckoutComponent implements OnInit{
-  basket: Need[] = [];
+  basket: Map<number,Need> = new Map();
   username!:string
 
   user!:User;
-
+  
 
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private location:Location
-    // private cd:ChangeDetectorRef
+    
   ){}
 
   ngOnInit(): void {
@@ -48,12 +48,12 @@ export class CheckoutComponent implements OnInit{
   }
 
 
-  calculateTotal(): void{ 
-    let total = 0;
-    for (let needs of this.basket) {
-      total += needs.cost;
-    }
-  }
+  // calculateTotal(): void{ 
+  //   let total = 0;
+  //   for (let needs of this.basket) {
+  //     total += needs.cost;
+  //   }
+  // }
 
   addQuantity(need: Need): void{
     need.quantity += 1;
@@ -66,7 +66,7 @@ export class CheckoutComponent implements OnInit{
   }
 
   deleteNeed(needId: number): void{
-    this.basket = this.basket.filter(need => need .id != needId)
+    this.basket.delete(needId);
     this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
       console.log(user);
     })

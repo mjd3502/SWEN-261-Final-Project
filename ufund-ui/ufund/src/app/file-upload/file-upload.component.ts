@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FileUploadService } from '../file-upload.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,11 +9,9 @@ import { FileUploadService } from '../file-upload.service';
 })
 
 export class FileUploadComponent {
-  link: string = "";
-  loading: boolean = false;
-  files: File[] = [];
+  file!: File;
 
-  constructor(private fileUploadService: FileUploadService){}
+  constructor(private http:HttpClient){}
 
   ngOnInit():void{
 
@@ -20,24 +19,21 @@ export class FileUploadComponent {
 
   //when a file is selected
   onChange(event: any){
-    this.files = event.target.files;
+    console.log(event);
+    this.file= <File>event.target.files[0];
   }
 
   //when button to upload is clicked
   onUpload(){
-    this.loading = !this.loading
-
-    console.log(this.files[0]);
-
-    this.fileUploadService.upload(this.files[0]).subscribe(
-      (event:any)=> {
-        if(typeof (event) === 'object'){
-          this.link = event.link;
-
-          this.loading = false;
-        }
-      }
-    )
-
+    //created form data
+    const data = new FormData();
+    //adds the image to form data
+    data.append('image',this.file, this.file.name)
+    
+    //sends post request with the form data
+    this.http.post('http://localhost:4200/upload',data)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }

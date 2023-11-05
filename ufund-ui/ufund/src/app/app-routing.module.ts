@@ -9,6 +9,7 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'admin-create-need', component: AddNeedComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'detail/:id', component: NeedsDetailComponent },
-  {path: 'browse-needs', component: BrowseNeedsComponent}
+  {path: 'browse-needs', component: BrowseNeedsComponent},
+  {path: 'upload',component: FileUploadComponent}
 ];
 
 @NgModule({

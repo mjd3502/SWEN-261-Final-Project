@@ -15,6 +15,9 @@ import { FundingBasket } from '../FundingBasket';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  user!:User;
+  fundingBasket:FundingBasket = new FundingBasket();
+
   signUpSection = new FormGroup(
     {username: new FormControl('',[Validators.required])}
   )
@@ -22,17 +25,34 @@ export class SignupComponent {
   constructor(
     private router:Router,
     private userService:UserHelperService,
-    private currentUser:CurrentUserService
-  ){}
-  
+    private currentUser:CurrentUserService,
+    private fundingBasketService:FundingBasketService
+    ){
+  }
+  changeRoute(url:string){
+    this.router.navigate([url])
+  }
   signup(){
     const username = this.signUpSection.get("username")?.value;
     console.log(username);
 
     //check given username against all current and admin
 
-    //if new name, create new user
-
+    
+    if(username && typeof username === 'string'){
+      if(this.userService.doesUserExist(username)){
+        //if new name, create new user
+        this.user = new User(username);
+        this.userService.createUser(this.user).subscribe(us=>{
+          this.currentUser.setCurrentUser(this.user);
+        });
+        this.fundingBasket.setUsername(username);
+        this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
+        console.log(basket);
+        })
+        this.changeRoute('/helperDashboard')
+      }
+    }
     //if not new, clear box
   }
 }

@@ -16,7 +16,7 @@ public interface FundingBasketDAO {
     boolean removeNeedFromFundingBasket(String userName,int need) throws  IOException;
 
     List<Need> getFundingBasket(String userName) throws IOException;
-
+    FundingBasket getFundingBasketObject(String username) throws IOException;
 
     
 }

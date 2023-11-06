@@ -97,6 +97,19 @@ public class FundingBasketController {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+    @GetMapping("/fundingBasket/{name}")
+    public ResponseEntity<FundingBasket> getFundingBasketObject(@PathVariable("name") String name){
+        try{
+            FundingBasket fundingBasket = fundingBasketDao.getFundingBasketObject(name);
+            if (fundingBasket != null){
+                return new ResponseEntity<FundingBasket>(fundingBasket,HttpStatus.OK);
 
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 
 }

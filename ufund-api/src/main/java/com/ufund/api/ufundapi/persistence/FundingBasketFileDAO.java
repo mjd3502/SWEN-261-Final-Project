@@ -130,4 +130,15 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
         }
         return null;
     }
+    @Override
+    public FundingBasket getFundingBasketObject(String name) throws IOException {
+        synchronized(fundingBaskets){
+            if(fundingBaskets.containsKey(name)){
+                FundingBasket fundingBasket = fundingBaskets.get(name);
+                return fundingBasket;
+            }
+
+        }
+        return null;
+    }
 }

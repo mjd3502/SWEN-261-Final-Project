@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './User';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, ObservedValueOf, catchError, of } from 'rxjs';
 import { Need } from './Need';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FundingBasket } from './FundingBasket';
@@ -35,6 +35,13 @@ export class FundingBasketService {
       catchError(this.handleError<Need[]>('fundingBasket'))
     );
   }
+  getFundingBasketObject(name:string):Observable<FundingBasket>{
+    const url = `${this.fundingBasketURL}/fundingBasket/${name}`
+    return this.http.get<FundingBasket>(url,this.httpOptions)
+    .pipe(
+      catchError(this.handleError<FundingBasket>('fundingBasket'))
+    );
+  }
 
   addNeedToBasket(name:string,need:Need):Observable<FundingBasket>{
     const url = `${this.fundingBasketURL}/addNeed/${name}`
@@ -49,6 +56,7 @@ export class FundingBasketService {
       catchError(this.handleError<FundingBasket>('removeNeedFromBasket'))
     );
   }
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

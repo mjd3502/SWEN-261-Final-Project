@@ -51,7 +51,8 @@ export class LoginComponent{
       
       this.changeRoute('/adminDashboard')
 
-    }else if(username && typeof username === 'string'){
+    }else if(username  && typeof username === 'string'){
+      /** 
         this.user = new User(username);
         this.userService.createUser(this.user).subscribe(us=>{
         this.currentUser.setCurrentUser(this.user);
@@ -60,10 +61,23 @@ export class LoginComponent{
       this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
         console.log(basket);
       })
-      this.changeRoute('/helperDashboard')
+      */
+     var exists;
+     this.userService.doesUserExist(username)
+        .subscribe(exists => exists = exists)
+     if(exists){
+        this.userService.getUserByName(username)
+          .subscribe(user => this.user = user);
+        this.currentUser.setCurrentUser(this.user);
+        this.fundingBasketService.getFundingBasketObject(this.user.getUsername())
+          .subscribe(fundingBasket => this.fundingBasket = fundingBasket)
+
+        this.changeRoute('/helperDashboard')
+     }
     }
     
   }
+
   signUpRedirect(){
     this.changeRoute('/signup')
   }

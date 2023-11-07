@@ -40,7 +40,9 @@ export class SignupComponent {
 
     
     if(username && typeof username === 'string'){
-      if(this.userService.doesUserExist(username)){
+      
+      if(!this.userExists(username)){
+        
         //if new name, create new user
         this.user = new User(username);
         this.userService.createUser(this.user).subscribe(us=>{
@@ -55,4 +57,10 @@ export class SignupComponent {
     }
     //if not new, clear box
   }
+  userExists(username:string): boolean{
+    this.userService.doesUserExist(username).subscribe(doesexist => {
+      return doesexist
+    })
+    return false;
+}
 }

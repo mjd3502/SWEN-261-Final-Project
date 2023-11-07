@@ -31,7 +31,7 @@ export class FileUploadComponent {
     data.append('image',this.file, this.file.name)
     
     //sends post request with the form data
-    this.http.post('http://localhost:4200/upload',data)
+    this.http.post('http://localhost:8080/upload',this.file)
       .subscribe(response => {
         console.log(response);
       });

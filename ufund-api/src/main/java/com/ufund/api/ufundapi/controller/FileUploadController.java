@@ -32,8 +32,8 @@ public class FileUploadController {
     @PostMapping("")
     public ResponseEntity<File> addFile(@RequestBody File file){
         LOG.info("POST /upload " + file.getName());
-
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
 }

@@ -135,7 +135,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
     
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     /**
@@ -152,7 +152,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     /**
@@ -169,7 +169,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     /**
@@ -186,7 +186,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     /**
@@ -203,7 +203,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
-        assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
     @Test

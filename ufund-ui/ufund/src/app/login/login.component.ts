@@ -72,6 +72,8 @@ export class LoginComponent{
      if(this.userExists(username)){
         this.userService.getUserByName(username)
           .subscribe(user => {
+            console.log("user fetched:");
+            console.log(user);
             this.user = user;
             this.currentUser.setCurrentUser(this.user);
           });
@@ -79,7 +81,7 @@ export class LoginComponent{
         this.fundingBasketService.getFundingBasketObject(this.user.getUsername())
           .subscribe(fundingBask => this.fundingBasket = fundingBask);
           
-        console.log(this.fundingBasket.getFundingBasket());
+        console.log(this.fundingBasket);
           
         this.changeRoute('/helperDashboard');
      } else {
@@ -95,16 +97,20 @@ export class LoginComponent{
     
        var exists;
       this.userService.doesUserExist(username).subscribe(doesexist => {
-        console.log("userExists: does exist before:(inside sunscribe)");
+        console.log("userExists: does exist before(inside subscribe)");
         console.log(doesexist);
+
         exists = doesexist;
+
         console.log(exists);
+
         return exists;
       })
-      console.log("exists after:")
+      console.log("exists after subscribe:")
       console.log(exists);
+
       if(exists){return exists;}
-      console.log('didnt make it')
+      console.log('didnt work')
       return false;
   }
   signUpRedirect(){

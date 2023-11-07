@@ -17,7 +17,7 @@ import { FundingBasket } from '../FundingBasket';
 })
 export class LoginComponent{
   user!:User;
-  fundingBasket:FundingBasket = new FundingBasket();
+  fundingBasket!:FundingBasket;
   
   logInSection = new FormGroup(
     {
@@ -61,23 +61,52 @@ export class LoginComponent{
       this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
         console.log(basket);
       })
-      */
+      
      var exists;
      this.userService.doesUserExist(username)
-        .subscribe(exists => exists = exists)
-     if(exists){
+        .subscribe(doesexists => exists = doesexists)
+        */
+     console.log("test call of usereExists::");
+     console.log(this.userExists(username));
+     console.log("if::");
+     if(this.userExists(username)){
         this.userService.getUserByName(username)
-          .subscribe(user => this.user = user);
-        this.currentUser.setCurrentUser(this.user);
+          .subscribe(user => {
+            this.user = user;
+            this.currentUser.setCurrentUser(this.user);
+          });
+        
         this.fundingBasketService.getFundingBasketObject(this.user.getUsername())
-          .subscribe(fundingBasket => this.fundingBasket = fundingBasket)
-
-        this.changeRoute('/helperDashboard')
+          .subscribe(fundingBask => this.fundingBasket = fundingBask);
+          
+        console.log(this.fundingBasket.getFundingBasket());
+          
+        this.changeRoute('/helperDashboard');
+     } else {
+      this.signUpRedirect();
      }
     }
+
     
   }
-
+  userExists(username:string): boolean{
+    console.log("userExists:");
+    console.log(username);
+    
+       var exists;
+      this.userService.doesUserExist(username).subscribe(doesexist => {
+        console.log("userExists: does exist before:(inside sunscribe)");
+        console.log(doesexist);
+        exists = doesexist;
+        console.log(exists);
+        return exists;
+      })
+      console.log("exists after:")
+      console.log(exists);
+      if(exists){return exists;}
+      console.log('didnt make it')
+      return false;
+  }
   signUpRedirect(){
     this.changeRoute('/signup')
   }

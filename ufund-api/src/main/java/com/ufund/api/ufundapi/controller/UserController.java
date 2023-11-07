@@ -97,6 +97,8 @@ public class UserController {
     public ResponseEntity<Boolean> doesUserExist(@PathVariable String username){
         try{
             Boolean exists = userDAO.doesUserExist(username);
+            LOG.info("DONEEEE");
+            
             return new ResponseEntity<Boolean>(exists,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

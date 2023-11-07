@@ -33,6 +33,7 @@ export class UserHelperService {
       catchError(this.handleError<string>('createUser'))
     );
   }
+
   /**Get a single user by its name */
   getUserByName(username:string):Observable<User>{
     const url = `${this.userURL}/${username}`
@@ -41,6 +42,7 @@ export class UserHelperService {
       catchError(this.handleError<User>('createUser'))
     );
   }
+  
   doesUserExist(username:string):Observable<Boolean>{
     const url = `${this.userURL}/exists/${username}`
     return this.http.get<Boolean>(url,this.httpOptions)

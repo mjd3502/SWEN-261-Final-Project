@@ -37,16 +37,11 @@ export class SignupComponent {
     console.log(username);
 
     //check given username against all current and admin
-
-    
     if(username && typeof username === 'string'){
-      
       if(!this.userExists(username)){
-        
-        //if new name, create new user
         this.user = new User(username);
         this.userService.createUser(this.user).subscribe(us=>{
-          this.currentUser.setCurrentUser(this.user);
+          this.currentUser.setCurrentUser(us);
         });
         this.fundingBasket.setUsername(username);
         this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{

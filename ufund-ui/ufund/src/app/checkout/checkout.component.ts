@@ -23,17 +23,18 @@ export class CheckoutComponent implements OnInit{
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private location:Location
-    // private cd:ChangeDetectorRef
   ){}
 
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
+      console.log(user  + " user1")
       if (user) {
         this.user = user;
         this.username = user.getUsername();
+        console.log(this.user)
       }
+      console.log("no user")
     })
-
     this.getFundingBasket(this.username);
 
   }

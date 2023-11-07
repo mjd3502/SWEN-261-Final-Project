@@ -46,7 +46,6 @@ export class LoginComponent{
     const username = this.logInSection.get("username")?.value;
     console.log(username);
     
-
     if(username === 'admin'){     
       this.changeRoute('/adminDashboard')
     }else if(username && typeof username === 'string'){

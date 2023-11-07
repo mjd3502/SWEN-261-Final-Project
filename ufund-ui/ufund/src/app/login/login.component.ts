@@ -47,10 +47,8 @@ export class LoginComponent{
     console.log(username);
     
 
-    if(username === 'admin'){
-      
+    if(username === 'admin'){     
       this.changeRoute('/adminDashboard')
-
     }else if(username && typeof username === 'string'){
         this.user = new User(username);
         this.userService.createUser(this.user).subscribe(us=>{
@@ -61,8 +59,6 @@ export class LoginComponent{
         console.log(basket);
       })
       this.changeRoute('/helperDashboard')
-    }
-
-   
+    }        
   }
 }

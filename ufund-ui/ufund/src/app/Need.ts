@@ -6,4 +6,12 @@ export class Need{
     cost!: number;
     type!: string;
 
+    setQuantity(Quantity:number){
+        this.quantity = Quantity;
+    }
+
+    getQuantity(){
+        return this.quantity;
+    }
+
 }

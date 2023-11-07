@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { HelperDashboardComponent } from './helper-dashboard/helper-dashboard.component';
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { FundingBasketComponent } from './funding-basket/funding-basket.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddNeedComponent } from './add-need/add-need.component';
@@ -17,6 +17,7 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -26,14 +27,15 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
     HelperDashboardComponent,
     BrowseNeedsComponent,
     NeedsDetailComponent,
-    CheckoutComponent,
+    FundingBasketComponent,
     SearchBarComponent,
     UpdateNeedComponent,
     AdminDashboardComponent,
     AdminBrowseNeedsComponent,
     AddNeedComponent,
     NavbarComponent,
-    AdminNavbarComponent
+    AdminNavbarComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

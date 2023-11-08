@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/upload")
+@RequestMapping("")
 public class FileUploadController {
     private static final Logger LOG = Logger.getLogger(FileUploadController.class.getName());
     
@@ -29,7 +29,7 @@ public class FileUploadController {
     }
 
     //post requests for when a file is sent to the server to be uploaded
-    @PostMapping("")
+    @PostMapping("/upload")
     public ResponseEntity<File> addFile(@RequestBody File file){
         LOG.info("POST /upload " + file.getName());
         

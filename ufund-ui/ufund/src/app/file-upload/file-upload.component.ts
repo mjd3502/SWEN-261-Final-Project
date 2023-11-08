@@ -30,7 +30,8 @@ export class FileUploadComponent {
     //adds the image to form data
     data.append('image',this.file, this.file.name)
     
-    //sends post request with the form data
+    //sends post request with 
+    //form data or file ??
     this.http.post('http://localhost:8080/upload',this.file)
       .subscribe(response => {
         console.log(response);

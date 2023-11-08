@@ -17,7 +17,9 @@ import { FundingBasket } from '../FundingBasket';
 })
 export class LoginComponent{
   user!:User;
-  fundingBasket:FundingBasket = new FundingBasket();
+  fundingBasket!:FundingBasket;
+  exists!:Boolean | undefined;
+  
   
   logInSection = new FormGroup(
     {
@@ -32,32 +34,42 @@ export class LoginComponent{
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
     private fundingBasketService:FundingBasketService
-    
     ){
   }
+
 
   changeRoute(url:string){
     this.router.navigate([url])
   }
 
-
+  async userExists(username:string): Promise<void>{
+    const userexist = await this.userService.doesUserExist(username).toPromise()
+    this.exists =userexist;
+    console.log(this.exists)
+  }
   
-  login(){
+  async login(){
     const username = this.logInSection.get("username")?.value;
     console.log(username);
-    
-    if(username === 'admin'){     
+ 
+   if(username === 'admin'){
       this.changeRoute('/adminDashboard')
-    }else if(username && typeof username === 'string'){
-        this.user = new User(username);
-        this.userService.createUser(this.user).subscribe(us=>{
-        this.currentUser.setCurrentUser(this.user);
-      });
-      this.fundingBasket.setUsername(username);
-      this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
-        console.log(basket);
-      })
-      this.changeRoute('/helperDashboard')
-    }        
+
+    }else if(username  && typeof username === 'string'){
+      await this.userExists(username);
+      if(this.exists){
+          this.user = new User(username);
+          this.currentUser.setCurrentUser(this.user);
+          this.changeRoute('/helperDashboard');
+      } else {
+        this.signUpRedirect();
+      }
+    }
+
+    
+  }
+
+  signUpRedirect(){
+    this.changeRoute('/signup')
   }
 }

@@ -71,16 +71,9 @@ export class FundingBasketComponent implements OnInit{
     const selectedValue = e.target.value;
     console.log(selectedValue)
     const NeedQuantity = need.quantity - selectedValue;
-    // console.log(NeedQuantity);
-    // need.quantity = NeedQuantity;
+    
+    need.quantity = NeedQuantity;
     console.log(NeedQuantity)
-    // this.needService.updateNeed(need).subscribe(
-    //   need => {
-    //     console.log(need);
-    //   }
-    // )
-
-    //if another option 
     this.newNeedQuantity = need;
     console.log(this.newNeedQuantity);
   }

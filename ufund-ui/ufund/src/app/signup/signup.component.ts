@@ -35,13 +35,10 @@ export class SignupComponent {
   signup(){
     const username = this.signUpSection.get("username")?.value;
     console.log(username);
-
-    //check given username against all current and admin
     if(username && typeof username === 'string'){
-      if(!this.userExists(username)){
         this.user = new User(username);
         this.userService.createUser(this.user).subscribe(us=>{
-          this.currentUser.setCurrentUser(us);
+          this.currentUser.setCurrentUser(this.user);
         });
         this.fundingBasket.setUsername(username);
         this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
@@ -49,13 +46,7 @@ export class SignupComponent {
         })
         this.changeRoute('/helperDashboard')
       }
-    }
-    //if not new, clear box
   }
-  userExists(username:string): boolean{
-    this.userService.doesUserExist(username).subscribe(doesexist => {
-      return doesexist
-    })
-    return false;
-}
+  
+
 }

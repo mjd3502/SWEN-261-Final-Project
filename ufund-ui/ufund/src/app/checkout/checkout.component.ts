@@ -31,11 +31,14 @@ export class CheckoutComponent implements OnInit{
       if (user) {
         this.user = user;
         this.username = user.getUsername();
-        console.log(this.user)
+        console.log(this.user.getUsername())
+        console.log("helloooooo")
+
+        this.getFundingBasket(this.username);
       }
       console.log("no user")
     })
-    this.getFundingBasket(this.username);
+   
 
   }
 

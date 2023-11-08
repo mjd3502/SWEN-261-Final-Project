@@ -34,7 +34,6 @@ export class LoginComponent{
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
     private fundingBasketService:FundingBasketService
-    
     ){
   }
 
@@ -44,7 +43,6 @@ export class LoginComponent{
   }
 
   async userExists(username:string): Promise<void>{
-    console.log("userExists:");
     const userexist = await this.userService.doesUserExist(username).toPromise()
     this.exists =userexist;
     console.log(this.exists)
@@ -59,24 +57,11 @@ export class LoginComponent{
       this.changeRoute('/adminDashboard')
 
     }else if(username  && typeof username === 'string'){
-      console.log("test call of usereExists::");
-      console.log("if::");
       await this.userExists(username);
-      console.log(this.exists + "hello")
       if(this.exists){
-          this.userService.getUserByName(username)
-            .subscribe(user => {
-              this.user = user;
-              console.log(this.user)
-              this.currentUser.setCurrentUser(this.user);
-          });
-
-          // this.fundingBasketService.getFundingBasketObject(this.user.getUsername())
-          // .subscribe(fundingBask => this.fundingBasket = fundingBask);  
-          // console.log(this.fundingBasket);
+          this.user = new User(username);
+          this.currentUser.setCurrentUser(this.user);
           this.changeRoute('/helperDashboard');
-
-
       } else {
         this.signUpRedirect();
       }
@@ -84,11 +69,6 @@ export class LoginComponent{
 
     
   }
-
-  
-      // console.log("exists after subscribe:")
-      // console.log(this.exists);
-
 
   signUpRedirect(){
     this.changeRoute('/signup')

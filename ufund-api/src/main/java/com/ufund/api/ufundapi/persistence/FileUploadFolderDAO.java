@@ -2,6 +2,10 @@ package com.ufund.api.ufundapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -25,6 +29,12 @@ public class FileUploadFolderDAO implements FileUploadDAO {
 
     @Override
     public boolean createImage(File file) throws IOException {
-        
+        try(InputStream input = new FileInputStream(file)){
+            Files.copy(input, "ufund-api/data/images");
+
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     };
 }

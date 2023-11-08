@@ -267,8 +267,9 @@ public class CupboardController {
     }
     
     /**
-     * Removes and stores the need once the need on the cupboard has
-     * reached a quantity of zero
+     * Removes the need using CupboardFileDAo
+     * stores the need once the need on the cupboard has
+     * reached a quantity of zero using removeNeedsFileDAO
      * 
      * @param need need to be removed
      * @return ResponseEntity with updated need object and HTTP status of OK if removed
@@ -277,12 +278,17 @@ public class CupboardController {
      * @throws IOException
      */
     @PutMapping("")
-    public ResponseEntity<Need> removeNeed(Need need) throws IOException{
+    public ResponseEntity<Need> storeRemovedNeed(Need need) throws IOException{
         LOG.info("PUT /need " + need);
 
+        if (need.getQuantity() != 0){
+            return null;
+        }
+
         try {
-            boolean needRemoved = removeNeedsDAO.removeNeed(need);
-            if (needRemoved){
+            Need needRemoved = cupboardDao.removeNeedFromCupboard(need.getId());
+            boolean needStored = removeNeedsDAO.storeRemovedNeed(needRemoved);
+            if (needStored){
                 return new ResponseEntity<Need>(HttpStatus.OK); 
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -293,4 +299,11 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
+     * Try: remove the need from cupboard using removeNeed in cupboardFileDAO,
+     * removeNeed returns an object Need
+     * storeRemovedNeed takes in object Need
+     * stores it in JSON file
+     */
 }

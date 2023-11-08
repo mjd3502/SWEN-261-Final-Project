@@ -58,18 +58,20 @@ public class RemoveNeedsFileDAO implements RemoveNeedsDAO{
         return true;
     }
 
+    /**
+     * Stores the removed needs in a file
+     */
     @Override
-    public boolean removeNeed(Need need) throws IOException { //change to String name (of need) or id
+    public boolean storeRemovedNeed(Need need) throws IOException {
         synchronized(removedNeeds){
-            if (need.getQuantity() == 0) {
-                // cupboard.remove(id);
-                //fix
-                Need newRemovedNeed = new Need(need.getId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
-                removedNeeds.put(newRemovedNeed.getName(),need);
-                return save();
-            } else {
-                return false;
-            }
+            removedNeeds.put(need.getName(),need);
+            return save();
+            // if (need.getQuantity() == 0) {
+            //     removedNeeds.put(need.getName(),need);
+            //     return save();
+            // } else {
+            //     return false;
+            // }
         }
     }
 

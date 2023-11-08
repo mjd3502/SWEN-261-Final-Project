@@ -24,7 +24,7 @@ public interface RemoveNeedsDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean removeNeed(Need need) throws IOException;
+    boolean storeRemovedNeed(Need need) throws IOException;
 
     // /**
     //  * Retrieves a single need in the 

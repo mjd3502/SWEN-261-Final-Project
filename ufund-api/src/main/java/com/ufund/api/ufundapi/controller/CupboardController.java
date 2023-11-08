@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
+import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 
 /**
  * Handles REST API requests for the Cupboard
@@ -28,6 +29,7 @@ import com.ufund.api.ufundapi.persistence.CupboardDAO;
 public class CupboardController {
     private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private CupboardDAO cupboardDao;
+    private RemoveNeedsDAO removeNeedsDAO;
 
     /**
      * Create a REST API controller object to handle requests
@@ -36,8 +38,9 @@ public class CupboardController {
      * 
      * This dependency is added using the Spring Framework
      */
-    public CupboardController(CupboardDAO cupboardDAO){
+    public CupboardController(CupboardDAO cupboardDAO, RemoveNeedsDAO removeNeedsDAO){
         this.cupboardDao = cupboardDAO;
+        this.removeNeedsDAO = removeNeedsDAO;
     }
 
     /**
@@ -261,5 +264,33 @@ public class CupboardController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
+    }
+    
+    /**
+     * Removes and stores the need once the need on the cupboard has
+     * reached a quantity of zero
+     * 
+     * @param need need to be removed
+     * @return ResponseEntity with updated need object and HTTP status of OK if removed
+     * ResponseEntity with HTTP status of NOT_FOUND if not found
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * @throws IOException
+     */
+    @PutMapping("")
+    public ResponseEntity<Need> removeNeed(Need need) throws IOException{
+        LOG.info("PUT /need " + need);
+
+        try {
+            boolean needRemoved = removeNeedsDAO.removeNeed(need);
+            if (needRemoved){
+                return new ResponseEntity<Need>(HttpStatus.OK); 
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

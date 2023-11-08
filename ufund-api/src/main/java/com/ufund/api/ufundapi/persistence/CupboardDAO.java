@@ -74,7 +74,7 @@ public interface CupboardDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    Need updateNeed(Need need) throws IOException;
+    Need updateNeed (Need need) throws IOException;
 
     /**
      * Retrieves entire Cupboard of needs

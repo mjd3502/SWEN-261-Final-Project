@@ -1,6 +1,9 @@
 package com.ufund.api.ufundapi.persistence;
 
 import java.io.File;
+import java.io.FileInputStream;
+
+import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -22,12 +25,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class FileUploadFolderDAO implements FileUploadDAO {
     private static final Logger LOG = Logger.getLogger(FileUploadDAO.class.getName());
+    private Path folderPath;
 
     public FileUploadFolderDAO(){
+        folderPath = Paths.get("ufund-api/data/images");
     }
 
     @Override
-    public boolean createImage(File file) throws IOException {
+    public boolean createImage(MultipartFile file) throws IOException {
+        if(file == null){
+            System.out.println("Yay?");
+        }
+        else{
+            System.out.println(file);
+        }
+        // InputStream input = new FileInputStream(file);
+        // Files.copy(input, folderPath);
         return false;
     }
 

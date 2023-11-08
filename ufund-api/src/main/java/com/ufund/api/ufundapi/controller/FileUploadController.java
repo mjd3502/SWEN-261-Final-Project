@@ -1,4 +1,6 @@
 package com.ufund.api.ufundapi.controller;
+
+import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,8 +36,8 @@ public class FileUploadController {
 
     //post requests for when a file is sent to the server to be uploaded
     @PostMapping("/upload")
-    public ResponseEntity<File> addFile(@RequestBody File file){
-        LOG.info("POST /upload " + file.getName());
+    public ResponseEntity<File> addFile(@RequestBody MultipartFile file ){
+        //LOG.info("POST /upload " + file.getName());
         try{
             fileDao.createImage(file);
 

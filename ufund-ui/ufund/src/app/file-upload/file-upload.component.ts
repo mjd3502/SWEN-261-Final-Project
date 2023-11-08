@@ -25,14 +25,19 @@ export class FileUploadComponent {
 
   //when button to upload is clicked
   onUpload(){
+
+    console.log(this.file);
+
     //created form data
     const data = new FormData();
     //adds the image to form data
     data.append('image',this.file, this.file.name)
+    console.log(data.get('image'));
+    console.log(data);
     
     //sends post request with 
     //form data or file ??
-    this.http.post('http://localhost:8080/upload',this.file)
+    this.http.post('http://localhost:8080/upload',data)
       .subscribe(response => {
         console.log(response);
       });

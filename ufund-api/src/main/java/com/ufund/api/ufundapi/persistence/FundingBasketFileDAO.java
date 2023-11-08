@@ -72,7 +72,7 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
     @Override
     public FundingBasket createFundingBasket(FundingBasket fundingBasket) throws IOException {
         synchronized(fundingBaskets){
-            List<Need> listOFNeeds = new ArrayList<>();
+            Map<Integer,Need> listOFNeeds = new HashMap<>();
             FundingBasket newFundingBasket =  new FundingBasket(fundingBasket.getUserName(),listOFNeeds);
             fundingBaskets.put(fundingBasket.getUserName(), newFundingBasket);
             save();
@@ -105,10 +105,10 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
         FundingBasket fundingBasket = fundingBaskets.get(userName);
         if(fundingBasket != null){
             LOG.info("user is not null");
-            List<Need> basket = fundingBasket.getFundingBasket();
-            for(Need need: basket){
+            Map<Integer,Need> basket = fundingBasket.getFundingBasket();
+            for(Need need: basket.values()){
                 if(need.getId() == id){
-                    basket.remove(need);
+                    basket.remove(need.getId());
                     LOG.info("delteeeeeeed");
                     return save();
                 }
@@ -121,14 +121,31 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
 
 
     @Override
-    public List<Need> getFundingBasket(String name) throws IOException {
+    public Map<Integer,Need> getFundingBasket(String name) throws IOException {
         synchronized(fundingBaskets){
             if(fundingBaskets.containsKey(name)){
                 FundingBasket fundingBasket = fundingBaskets.get(name);
                 return fundingBasket.getFundingBasket();
             }
         }
-        return null;
+        return new HashMap<>();
+    }
+
+
+    @Override
+    public boolean clearFundingBasket(String userName) throws IOException {
+      
+        synchronized(fundingBaskets){
+            if(fundingBaskets.containsKey(userName)){
+               Map<Integer,Need> listOFNeeds = new HashMap<>();
+                FundingBasket newFundingBasket =  new FundingBasket(userName,listOFNeeds);
+                fundingBaskets.replace(userName, newFundingBasket);
+                return save();
+            }else{
+                return false;
+            }
+        }
+
     }
     @Override
     public FundingBasket getFundingBasketObject(String name) throws IOException {

@@ -28,11 +28,11 @@ export class FundingBasketService {
   }
 
 
-  getFundingBasket(name:string):Observable<Need[]>{
+  getFundingBasket(name:string):Observable<Map<number,Need>>{
     const url = `${this.fundingBasketURL}/${name}`
-    return this.http.get<Need[]>(url,this.httpOptions)
+    return this.http.get<Map<number,Need>>(url,this.httpOptions)
     .pipe(
-      catchError(this.handleError<Need[]>('fundingBasket'))
+      catchError(this.handleError<Map<number,Need>>('fundingBasket'))
     );
   }
   getFundingBasketObject(name:string):Observable<FundingBasket>{
@@ -50,10 +50,17 @@ export class FundingBasketService {
     );
   }
   
-  removeNeedFromBasket(name:string,needId:number):Observable<FundingBasket>{
+  removeNeedFromBasket(name:string,needId:number):Observable<Map<number,Need>>{
     const url = `${this.fundingBasketURL}/${name}/needId/${needId}`
-    return this.http.delete<FundingBasket>(url,this.httpOptions).pipe(
-      catchError(this.handleError<FundingBasket>('removeNeedFromBasket'))
+    return this.http.delete<Map<number,Need>>(url,this.httpOptions).pipe(
+      catchError(this.handleError<Map<number,Need>>('removeNeedFromBasket'))
+    );
+  }
+
+  clearBasket(userName:string):Observable<Map<number,Need>>{
+    const url = `${this.fundingBasketURL}/clearFundingBasket/${userName}`
+    return this.http.delete<Map<number,Need>>(url,this.httpOptions).pipe(
+      catchError(this.handleError<Map<number,Need>>('clearBasket'))
     );
   }
   

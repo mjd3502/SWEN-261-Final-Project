@@ -51,9 +51,8 @@ export class LoginComponent{
   async login(){
     const username = this.logInSection.get("username")?.value;
     console.log(username);
-    
-
-    if(username === 'admin'){
+ 
+   if(username === 'admin'){
       this.changeRoute('/adminDashboard')
 
     }else if(username  && typeof username === 'string'){

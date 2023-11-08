@@ -28,7 +28,7 @@ export class NavbarComponent {
   logOutLogo = faArrowRightFromBracket;
 
   iconClicked(){
-    this.router.navigate(["/checkout"])
+    this.router.navigate(["/funding-basket"])
     console.log("checkbox clicked")
   }
 

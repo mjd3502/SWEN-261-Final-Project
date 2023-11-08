@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import com.ufund.api.ufundapi.controller.CupboardController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
+import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 
 /*
  * Author: Carla Lopez @csl5623
@@ -30,6 +31,7 @@ import com.ufund.api.ufundapi.persistence.CupboardDAO;
 public class CupboardControllerTest {
     private CupboardController cupboardController;
     private CupboardDAO mockcupboardDAO;
+    private RemoveNeedsDAO mockRemoveNeedsDAO;
 
     /**
      * Before each test, create a new cupboardController object and inject
@@ -38,7 +40,7 @@ public class CupboardControllerTest {
     @BeforeEach
     public void setupcupboardController() {
         mockcupboardDAO = mock(CupboardDAO.class);
-        cupboardController = new CupboardController(mockcupboardDAO);
+        cupboardController = new CupboardController(mockcupboardDAO, mockRemoveNeedsDAO);
     }
 
     /**

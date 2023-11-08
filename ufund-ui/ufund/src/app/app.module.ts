@@ -17,7 +17,11 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+
+import { SignupComponent } from './signup/signup.component';
+
 import { CheckoutComponent } from './checkout/checkout.component';
+
 
 
 @NgModule({
@@ -35,7 +39,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AddNeedComponent,
     NavbarComponent,
     AdminNavbarComponent,
+
+    SignupComponent,
     CheckoutComponent
+
   ],
   imports: [
     BrowserModule,

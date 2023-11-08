@@ -79,6 +79,30 @@ public class UserController {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //         }
 //     }
-
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username){
+        try{
+            User user = userDAO.getUserByName(username);
+            if (user != null){
+                return new ResponseEntity<User>(user,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+        
+    }
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> doesUserExist(@PathVariable String username){
+        try{
+            Boolean exists = userDAO.doesUserExist(username);
+            LOG.info("DONEEEE");
+            
+            return new ResponseEntity<Boolean>(exists,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+    }
     
 }

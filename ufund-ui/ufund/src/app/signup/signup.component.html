@@ -1,16 +1,16 @@
 
+
 <div class="body">
     <div class="form-container" >
-        <form [formGroup]="logInSection" (ngSubmit)="login()">
+        <form [formGroup]="signUpSection" (ngSubmit)="signup()">
             <fa-icon [icon]="faDog" class="fa-dog"></fa-icon>
-            <h1> Log in </h1>
+            <h1> Sign up </h1>
             <div class="inputBox">
-                <label>Username</label>
+                <label>Choose Username</label>
                 <input type="text"  formControlName="username" />
                 <i></i>
             </div>            
-            <input (click)="login()" type="submit" />
-            <input (click)="signUpRedirect()" type="submit" value="Sign Up"/>
+            <input (click)="signup()" type="submit" />
         </form>
     </div>
 </div>

@@ -94,6 +94,20 @@ public class UserFileDAO implements UserDAO{
         }
     }
 
-
-
+    @Override
+    public User getUserByName(String username) throws IOException{
+        synchronized(users){
+            if(users.containsKey(username)){
+                User user = users.get(username);
+                return user;
+            }
+            return null;
+        }
+    }
+    @Override
+    public Boolean doesUserExist(String username) throws IOException{
+        synchronized(users){
+            return users.containsKey(username);
+        }
+    }
 }

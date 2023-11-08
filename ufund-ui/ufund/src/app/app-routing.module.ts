@@ -9,7 +9,10 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
+import { SignupComponent } from './signup/signup.component';
+
 import { CheckoutComponent } from './checkout/checkout.component';
+
 
 const routes: Routes = [
   {path:'funding-basket',component:FundingBasketComponent},
@@ -22,7 +25,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path: 'browse-needs', component: BrowseNeedsComponent},
+  {path: 'signup', component: SignupComponent},
   {path:"checkout",component:CheckoutComponent}
+
 ];
 
 

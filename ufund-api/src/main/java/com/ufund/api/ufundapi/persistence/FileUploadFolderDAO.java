@@ -21,20 +21,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class FileUploadFolderDAO implements FileUploadDAO {
-    private static final Logger LOG = Logger.getLogger(CupboardFileDAO.class.getName());
+    private static final Logger LOG = Logger.getLogger(FileUploadDAO.class.getName());
 
-    public FileUploadDAO(){
-
+    public FileUploadFolderDAO(){
     }
 
     @Override
     public boolean createImage(File file) throws IOException {
-        try(InputStream input = new FileInputStream(file)){
-            Files.copy(input, "ufund-api/data/images");
+        return false;
+    }
 
-            return true;
-        }catch (Exception e) {
-            return false;
-        }
-    };
+    // private boolean createImage(File file) throws IOException {
+    //     try(InputStream input = new FileInputStream(file)){
+    //         Files.copy(input, "ufund-api/data/images");
+
+    //         return true;
+    //     }catch (Exception e) {
+    //         return false;
+    //     }
+
+    //     return false;
+    // };
 }

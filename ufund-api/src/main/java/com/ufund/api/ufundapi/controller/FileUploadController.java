@@ -37,7 +37,7 @@ public class FileUploadController {
     public ResponseEntity<File> addFile(@RequestBody File file){
         LOG.info("POST /upload " + file.getName());
         try{
-            fileDao.ccreateImage(file);
+            fileDao.createImage(file);
 
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 

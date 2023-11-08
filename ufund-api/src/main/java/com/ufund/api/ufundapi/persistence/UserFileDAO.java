@@ -69,7 +69,6 @@ public class UserFileDAO implements UserDAO{
 
     }
 
-
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users){

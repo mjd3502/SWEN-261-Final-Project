@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { FundingBasketService } from '../funding-basket.service';
 import { Router } from '@angular/router';
 import { NeedsService } from '../needs.service';
-import { CheckoutService } from '../checkout.service';
 import { FlagService } from '../flag.service';
 
 @Component({

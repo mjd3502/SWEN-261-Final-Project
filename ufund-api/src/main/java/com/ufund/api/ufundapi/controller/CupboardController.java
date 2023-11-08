@@ -96,6 +96,11 @@ public class CupboardController {
         return value <= 0;
     }
 
+
+    private boolean validateTypeField(String type){
+        return type.equalsIgnoreCase("Goods") || type.equalsIgnoreCase("Volunteer");
+    }
+
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
@@ -104,11 +109,15 @@ public class CupboardController {
          * Needs will only be created if all fields have a value
          */
         if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         
         if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        if(!validateTypeField(need.getType())){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         try {
@@ -220,6 +229,10 @@ public class CupboardController {
     @PutMapping("")
     public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /need " + need);
+
+        if(!validateTypeField(need.getType())){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         try {
             Need checkNeed = cupboardDao.updateNeed(need);

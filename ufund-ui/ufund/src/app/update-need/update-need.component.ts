@@ -14,6 +14,8 @@ import { NeedsService } from '../needs.service';
 export class UpdateNeedComponent implements OnInit {
   Need!:Need;
 
+  errorMessage = " ";
+
   constructor(private needsService:NeedsService,
     private route:ActivatedRoute,
     private router:Router
@@ -37,7 +39,12 @@ export class UpdateNeedComponent implements OnInit {
       this.needsService.updateNeed(this.Need).subscribe(response =>{
         this.router.navigate(['/adminDashboard'])
         console.log(response);
-      })
+      },(error) =>{
+        if(error.status >=400 || error.status < 500){
+          this.errorMessage = "Please enter a valid need type"
+        }
+      }
+      )
     }
     
   }

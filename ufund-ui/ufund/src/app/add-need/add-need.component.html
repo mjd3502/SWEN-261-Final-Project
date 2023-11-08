@@ -6,9 +6,8 @@
     <h1>Add a New Need!</h1>
     <h3>Please fill out all fields</h3>
 
-    <form class="form-container"  (ngSubmit)="onSubmit()">
+    <form class="form-container"  (ngSubmit)="onSubmit()" >
        
-        
         <div class="formGroup">
             <label>Need Name: </label>
             <input type="text" class="form-input" id="name"
@@ -44,6 +43,7 @@
         
         </div>
 
+        <div *ngIf="errorMesage" > {{errorMesage}}</div>
         <button class="update-button" type="submit"> Create Need! </button>
 
     </form>

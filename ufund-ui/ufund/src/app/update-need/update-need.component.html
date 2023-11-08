@@ -37,6 +37,8 @@
                 [(ngModel)] = "Need.type" name="type">
             
             </div>
+            
+            <div *ngIf="errorMessage"> {{errorMessage}} </div>
 
             <button class="update-button" type="submit"> Update Need </button>
 

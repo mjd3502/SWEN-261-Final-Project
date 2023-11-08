@@ -1,72 +1,72 @@
 import { Component } from '@angular/core';
+import { Need } from '../Need';
+import { FundingBasketService } from '../funding-basket.service';
+import { CurrentUserService } from '../current-user.service';
+import { Router } from '@angular/router';
+import { CheckoutService } from '../checkout.service';
+import { User } from '../User';
+import { NeedsService } from '../needs.service';
+import { FlagService } from '../flag.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit{
-  basket: Need[] = [];
-  username!:string
-
-  user!:User;
-
+export class CheckoutComponent {
+  
+  basket: Map<number,Need> = new Map<number, Need>();
+  username!:string;
+  user!:User
 
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
-    private location:Location
+    private router:Router,
+    private updateQuantity: FlagService,
+    private needsService:NeedsService
   ){}
 
   ngOnInit(): void {
-    this.currentUser.getCurrentUser().subscribe(user =>{
-      console.log(user  + " user1")
+    this.currentUser.getCurrentUser().subscribe(user =>{  
       if (user) {
         this.user = user;
         this.username = user.getUsername();
         console.log(this.user.getUsername())
-        console.log("helloooooo")
-
-        this.getFundingBasket(this.username);
-      }
-      console.log("no user")
+      }   
+      this.getFundingBasket(this.username)
+      // console.log(this.updateQuantity.getUpdateQuantity() + " new quantities ");   
     })
-   
 
   }
-
-  goBack():void{
-    return this.location.back()
-  }
-
   
-  getFundingBasket(name:string):void{
-    this.fundingBasketService.getFundingBasket(name).subscribe(needs => this.basket = needs);
+  getFundingBasket(username:string):void{
+    this.fundingBasketService.getFundingBasket(username).subscribe(fundingBasket => {
+      console.log('Funding Basket data:', fundingBasket);
+      let updateNeedQuantity = this.updateQuantity.getUpdateQuantity();
+      var i = 0;
+      for (var need of fundingBasket.values()) {
+        need.quantity = updateNeedQuantity[i];
+        console.log(need.quantity);
+        i++;
+      }
+      this.basket = fundingBasket
+    });
   }
 
-
-  calculateTotal(): void{ 
-    let total = 0;
-    for (let needs of this.basket) {
-      total += needs.cost;
+  submitOrder():void{
+    for (var need of this.basket.values()) {
+      this.needsService.updateNeed(need).subscribe(
+        need =>{
+          console.log(need)
+        }
+      )
     }
   }
-
-  addQuantity(need: Need): void{
-    need.quantity += 1;
-  }
-
-  subtractQuantity(need: Need): void{
-    if (need.quantity > 0){ 
-      need.quantity -= 1;
-    }
-  }
-
-  deleteNeed(needId: number): void{
-    this.basket = this.basket.filter(need => need .id != needId)
-    this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(user =>{
-      console.log(user);
-    })
+  checkoutNeeds():void{
+    this.fundingBasketService.clearBasket(this.username).subscribe(
+      fundingbasket => this.basket = fundingbasket
+    )
   }
 
 

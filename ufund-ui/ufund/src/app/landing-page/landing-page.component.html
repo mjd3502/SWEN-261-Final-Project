@@ -1,7 +1,7 @@
 
-<body>
-    <div class="container px-28 py-5 relative">
-        <nav class="flex items-center">
+<body class="bg-gray-900 bg-center bg-cover h-screen">
+    <div class="text-white container px-28 py-5 relative">
+        <nav class="flex items-center ">
             <fa-icon [icon]="faDog" class="fa-dog text-4xl w-12 h-12"></fa-icon>
             <ul class="flex-1 text-center">
                 <li class="list-none inline-block px-6" >Home</li>
@@ -9,12 +9,11 @@
                 <li class="list-none inline-block px-6">About</li>
                 <li class="list-none inline-block px-6">Contact</li>
             </ul>
-            <div>
-                Log in as a Helper 
-            </div>
+            <div  (click)="redirectToLogin()"   class="bg-gray-800 rounded-3xl py-3 px-8 font-medium inline-block mr-4 hover:bg-blue-950">
+                Log in as a Helper</div>
         </nav>
 
-        <div class="text-blue-950 mt-48 max-w-lg">
+        <div class="text-gray-400 mt-48 max-w-lg">
             <h1 class="text-6xl font-semibold leading-normal subpixel-antialiased">
                 Help for our furry friends 
                 with the MIA Foundation
@@ -27,9 +26,9 @@
             </p>
 
             <div class="mt-10 ">
-                <div class="rounded-3xl py-3 px-8 font-medium inline-block mr-4">
+                <div (click)="redirectToLogin()" class="bg-gray-800 rounded-3xl py-3 px-8 font-medium inline-block mr-4  hover:bg-blue-950">
                     Log in as a Helper</div>
-                <div class="rounded-3xl py-3 px-8 font-medium inline-block mr-4">
+                <div (click)="redirectToLogin()" class="bg-gray-800 rounded-3xl py-3 px-8 font-medium inline-block mr-4 hover:bg-blue-950">
                 Log in as a Manager</div>
             </div>
         </div>

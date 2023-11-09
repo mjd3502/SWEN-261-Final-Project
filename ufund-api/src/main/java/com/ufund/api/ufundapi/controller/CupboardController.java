@@ -150,9 +150,10 @@ public class CupboardController {
         LOG.info("DELETE /cupboard/" + id);
 
         try {
+            Need need = cupboardDao.getSingleNeedById(id);
             boolean didit = cupboardDao.deleteNeed(id);
-            if (didit){
-                
+            boolean stored = removeNeedsDAO.storeRemovedNeed(need);
+            if (didit && stored){
                 return new ResponseEntity<Need>(HttpStatus.OK); 
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -278,45 +279,4 @@ public class CupboardController {
         }
         
     }
-    
-    /**
-     * Removes the need using CupboardFileDAo
-     * stores the need once the need on the cupboard has
-     * reached a quantity of zero using removeNeedsFileDAO
-     * 
-     * @param need need to be removed
-     * @return ResponseEntity with updated need object and HTTP status of OK if removed
-     * ResponseEntity with HTTP status of NOT_FOUND if not found
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     * @throws IOException
-     */
-    @PutMapping("/remove")
-    public ResponseEntity<Need> storeRemovedNeed(Need need) throws IOException{
-        LOG.info("PUT /need " + need);
-
-        // if (need.getQuantity() != 0){
-        //     return null;
-        // }
-
-        try {
-            Need needRemoved = cupboardDao.removeNeedFromCupboard(need.getId());
-            boolean needStored = removeNeedsDAO.storeRemovedNeed(needRemoved);
-            if (needStored){
-                return new ResponseEntity<Need>(HttpStatus.OK); 
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * Try: remove the need from cupboard using removeNeed in cupboardFileDAO,
-     * removeNeed returns an object Need
-     * storeRemovedNeed takes in object Need
-     * stores it in JSON file
-     */
 }

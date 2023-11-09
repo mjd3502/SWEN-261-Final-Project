@@ -231,17 +231,4 @@ public class CupboardFileDAO implements CupboardDAO{
         return  Arrays.asList(getcupboardArray());
        }
     }
-
-    //remove needs storage feature
-    @Override
-    public Need removeNeedFromCupboard(int id) throws IOException{
-        if(cupboard.containsKey(id)){
-            Need need = cupboard.get(id);
-            cupboard.remove(id);
-            save();
-            return need;
-        }else {
-            return null;
-        }
-    }
 }

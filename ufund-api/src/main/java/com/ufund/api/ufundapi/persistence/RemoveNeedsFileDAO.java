@@ -61,18 +61,12 @@ public class RemoveNeedsFileDAO implements RemoveNeedsDAO{
 
     /**
      * Stores the removed needs in a file
-     */
+     */    
     @Override
     public boolean storeRemovedNeed(Need need) throws IOException {
         synchronized(removedNeeds){
             removedNeeds.put(need.getName(),need);
             return save();
-            // if (need.getQuantity() == 0) {
-            //     removedNeeds.put(need.getName(),need);
-            //     return save();
-            // } else {
-            //     return false;
-            // }
         }
     }
 

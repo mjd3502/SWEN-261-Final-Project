@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ufund.api.ufundapi.persistence.FileUploadDAO;
@@ -35,8 +37,9 @@ public class FileUploadController {
     }
 
     //post requests for when a file is sent to the server to be uploaded
+    //Think about names for the file... requestpart "name"
     @PostMapping("/upload")
-    public ResponseEntity<File> addFile(@RequestBody MultipartFile file ){
+    public ResponseEntity<File> addFile(@RequestPart(name="image", required = false) MultipartFile file ){
         //LOG.info("POST /upload " + file.getName());
         try{
             fileDao.createImage(file);

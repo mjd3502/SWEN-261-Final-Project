@@ -1,5 +1,6 @@
 package com.ufund.api.ufundapi.persistence;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -28,20 +29,35 @@ public class FileUploadFolderDAO implements FileUploadDAO {
     private Path folderPath;
 
     public FileUploadFolderDAO(){
-        folderPath = Paths.get("ufund-api/data/images");
+        folderPath = (Path)Paths.get("./data/images");
     }
 
     @Override
     public boolean createImage(MultipartFile file) throws IOException {
-        if(file == null){
-            System.out.println("Yay?");
+        String userDirectory = Paths.get("").toAbsolutePath().toString();
+
+        System.out.println(userDirectory);
+        System.out.println(folderPath.toString());
+        
+        try {
+            // Files.copy(file.getInputStream(), folderPath);
+            // File x = new File("C:/Users/MJD09/Downloads/Dog.jpg");
+            // InputStream i = new FileInputStream(x);
+
+            InputStream input = new BufferedInputStream(file.getInputStream());
+
+            Path folderpath = Path.of("./data/images", file.getOriginalFilename());
+            
+            Files.copy(input, folderpath);
+            
+            System.out.println("YIPPEEEEE");
+            return true;
         }
-        else{
-            System.out.println(file);
+        catch (Exception e){
+            System.out.println("Error :(");
+            return false;
         }
-        // InputStream input = new FileInputStream(file);
-        // Files.copy(input, folderPath);
-        return false;
+        
     }
 
     // private boolean createImage(File file) throws IOException {

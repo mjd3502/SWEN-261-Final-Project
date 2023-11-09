@@ -1,12 +1,8 @@
-
-
 #container{
     margin: auto;
-    
     width:80%;
-    border: #00d5ff 8px solid;
     border-radius: 10px;
-    background-color: #72A0C1;
+    background-color: #1A202C;
     margin-top: 10px;
     padding-top: 10pt;
     padding-left: 10pt;
@@ -19,7 +15,6 @@ h1,h2,h3,h4,p{
 
 
 form{
-    
     width: 80%;
 }
 
@@ -42,13 +37,7 @@ button{
     margin-bottom: 10px;
     padding: 10px 20px;
     font-size: 24px;
-    background-color: #007bff;
-    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-
-button:hover{
-    background-color: #00d5ff;
-}   

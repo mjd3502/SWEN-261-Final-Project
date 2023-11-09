@@ -10,12 +10,13 @@ geometry: margin=1in
 
 ## Team Information
 * Team name: Sultans of Scrum
-* Team members
-  * Garrett Geyer
-  * Michael DiBiase
-  * Carla Lopez
-  * Rachel Adkins
-  * Cheyenne Zhang
+
+* Team members:
+  * Garrett Geyer     |  GitHub Code Review PR
+  * Michael DiBiase   |  Configuration Coordinator
+  * Carla Lopez       |  Design Coordinator
+  * Rachel Adkins     |  Team Coordinator
+  * Cheyenne Zhang    |  Quality Coordinator
 
 ## Executive Summary
 
@@ -170,9 +171,12 @@ The model tier forms the backbone of our application's architecture with the Nee
 The MIA Foundation U Fund website has been thoughtfully designed to align with two fundamental Object-Oriented (OO) design principles: High Cohesion and the Single Responsibility Principle (SRP). These principles are reflected in both the frontend (Angular) and backend (Java) components and modules. 
 
 
-> High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
+  High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
 
-> The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
+  The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
+
+  <Principle 3>
+  <Principle 4>
 
 By following these OO design principles, the MIA Foundation U Fund website has a maintainable and extensible code, enhancing the overall quality of the project.
 

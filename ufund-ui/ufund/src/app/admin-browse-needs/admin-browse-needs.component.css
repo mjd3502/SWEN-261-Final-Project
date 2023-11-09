@@ -1,8 +1,7 @@
-#container{
-    border: #00d5ff 8px solid;
+.container{
     border-radius: 10px;
-    background-color: #72A0C1;
-    margin-top: 0%;
+    background-color: #1A202C;
+    margin: 50%;
     padding-top: 10pt;
     padding-left: 10pt;
     padding-right: 10pt;
@@ -12,21 +11,14 @@
     padding-bottom: 10px;
     display:flex;
     width:50%;
-    justify-content: space-around;
 }
 
 button{
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover{
-    background-color: #00d5ff;
 }
 
 h1,h2,h3,h4,p {
@@ -39,14 +31,14 @@ p{
 }
 
 ul{
-    /* border: green 2px solid; */
     list-style-type: none;
 }
 
 
 li {
-    padding-left: 10px;
-    border: rgb(236, 224, 224) 8px solid;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: rgb(236, 224, 224) 3px solid;
     border-radius: 30px;
-    margin-bottom: 10px;
-}
+
+} 

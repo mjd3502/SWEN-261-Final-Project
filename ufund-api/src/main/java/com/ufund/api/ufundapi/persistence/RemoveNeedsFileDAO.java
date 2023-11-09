@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.Need;
@@ -18,7 +19,7 @@ import com.ufund.api.ufundapi.model.Need;
  * 
  * @author Cheyenne Zhang
  */
-
+@Component
 public class RemoveNeedsFileDAO implements RemoveNeedsDAO{
 
     Map<String,Need> removedNeeds;

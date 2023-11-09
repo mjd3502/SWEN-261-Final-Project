@@ -290,13 +290,13 @@ public class CupboardController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * @throws IOException
      */
-    @PutMapping("")
+    @PutMapping("/remove")
     public ResponseEntity<Need> storeRemovedNeed(Need need) throws IOException{
         LOG.info("PUT /need " + need);
 
-        if (need.getQuantity() != 0){
-            return null;
-        }
+        // if (need.getQuantity() != 0){
+        //     return null;
+        // }
 
         try {
             Need needRemoved = cupboardDao.removeNeedFromCupboard(need.getId());

@@ -62,23 +62,8 @@ public class UserController {
         }
     }
 
-//     @GetMapping("userName/{username}")
-//     public ResponseEntity<String> getUsername(@PathVariable("username") String username){
 
-//         try {
 
-//             String user = userDAO.getUserName(username);
-//             if(user != null){
-//                 return new ResponseEntity<String>(user,HttpStatus.OK);
-//             }else{
-//                 return new ResponseEntity<String>("No username available",HttpStatus.OK);
-//             }
-            
-//         } catch (Exception e) {
-//             LOG.log(Level.SEVERE,e.getLocalizedMessage());
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//         }
-//     }
     @GetMapping("/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username){
         try{

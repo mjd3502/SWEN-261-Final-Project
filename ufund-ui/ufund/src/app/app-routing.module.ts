@@ -12,6 +12,7 @@ import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const routes: Routes = [
@@ -22,12 +23,12 @@ const routes: Routes = [
   {path:'adminDashboard',component:AdminDashboardComponent},
   {path:'admin-browse', component: AdminBrowseNeedsComponent},
   {path:'admin-create-need', component: AddNeedComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path: 'browse-needs', component: BrowseNeedsComponent},
   {path: 'signup', component: SignupComponent},
-  {path:"checkout",component:CheckoutComponent}
-
+  {path:"checkout",component:CheckoutComponent},
+  {path:"home",component:LandingPageComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 

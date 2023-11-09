@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class LandingPageComponent {
 
+  faDog = faDog
 }

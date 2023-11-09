@@ -21,7 +21,7 @@ export class FundingBasketComponent implements OnInit{
   username!:string;
   user!:User;
   updateNeedQuantity!:boolean
-  newQuantities:number[] = []
+  newQuantities:Need[] = []
   
 
   constructor(
@@ -29,16 +29,18 @@ export class FundingBasketComponent implements OnInit{
     private currentUser:CurrentUserService,
     private router:Router,
     private updateQuantity: FlagService,
+    private needsService:NeedsService
   ){}
 
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       
-      if (user) {
+    if (user) {
         this.user = user;
         this.username = user.getUsername();
         console.log(this.user.getUsername())
         this.getFundingBasket(this.username);
+        console.log(this.basket)
       }
     })
 
@@ -48,9 +50,6 @@ export class FundingBasketComponent implements OnInit{
     this.fundingBasketService.getFundingBasket(name).subscribe(fundingBasket => 
     this.basket = fundingBasket
     );
-
-
-
   }
   
   deleteNeed(needId: number): void{
@@ -71,13 +70,18 @@ export class FundingBasketComponent implements OnInit{
 
   ChooseQuantity(e:any,need:Need){
     const selectedValue = e.target.value;
-    console.log(selectedValue)
     const newQuantity = need.quantity - selectedValue;
-    console.log(newQuantity)
-    this.newQuantities.push(newQuantity)
+    let newNeed = new Need()
+    newNeed.id = need.id
+    newNeed.name = need.name
+    newNeed.description = need.description
+    newNeed.quantity = newQuantity
+    newNeed.cost = need.cost
+    newNeed.type = need.type
+    this.newQuantities.push(newNeed)
     this.updateQuantity.setUpdateQuantity(this.newQuantities);
-    console.log(this.newQuantities);
   }
+
 
   checkoutNeeds():void{
     this.router.navigate(['/checkout'])

@@ -65,8 +65,6 @@ export class LoginComponent{
         this.signUpRedirect();
       }
     }
-
-    
   }
 
   signUpRedirect(){

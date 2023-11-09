@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Need } from './Need';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlagService {
 
-  private updateQuantity: number[] = [];
+  private updateQuantity: Need[] = [];
 
-  setUpdateQuantity(newQuantites:number[]):void{
+  setUpdateQuantity(newQuantites:Need[]):void{
     this.updateQuantity = newQuantites;
   }
 
-  getUpdateQuantity():number[]{
+  getUpdateQuantity():Need[]{
     return this.updateQuantity
   }
 

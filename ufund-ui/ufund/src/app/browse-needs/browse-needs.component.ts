@@ -6,6 +6,7 @@ import { User } from '../User';
 import { BehaviorSubject } from 'rxjs';
 import { FundingBasket } from '../FundingBasket';
 import { FundingBasketService } from '../funding-basket.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-browse-needs',
@@ -44,7 +45,11 @@ export class BrowseNeedsComponent implements OnInit{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
     })
-    
+
+    Swal.fire({
+      title: "Added to basket",
+      icon: "success"
+    });
   }
 
 }

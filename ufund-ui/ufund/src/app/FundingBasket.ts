@@ -7,7 +7,7 @@ export class FundingBasket{
 
     constructor(){
         this.userName = "";
-        this.fundingBasket = new Map();
+        this.fundingBasket = new Map<number,Need>();
     }
     
 
@@ -22,6 +22,4 @@ export class FundingBasket{
     setUsername(userName:string){
         this.userName = userName;
     }
-    
-
 }

@@ -83,7 +83,6 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
 
     @Override
     public FundingBasket addNeedToFundingBasket(String userName,Need need) throws IOException {
-
         synchronized(fundingBaskets){
             FundingBasket fundingBasket = fundingBaskets.get(userName);
             if(fundingBasket != null){
@@ -91,7 +90,7 @@ public class FundingBasketFileDAO implements FundingBasketDAO{
                 save();
                 LOG.info("added to file");
             }else{
-                 LOG.info("not added :( ");
+                LOG.info("not added :( ");
             }
             return fundingBasket;
         }

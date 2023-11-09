@@ -22,6 +22,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { SignupComponent } from './signup/signup.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -40,9 +41,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AddNeedComponent,
     NavbarComponent,
     AdminNavbarComponent,
-    FileUploadComponent
+    FileUploadComponent,
     SignupComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    LandingPageComponent
 
   ],
   imports: [

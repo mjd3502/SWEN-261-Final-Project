@@ -16,12 +16,13 @@
 
         <form [formGroup]="logInSection" (ngSubmit)="login()">
 
-            <div class="mb-4">
+            <div class="mb-4 inputBox">
                 <label for="username" class="block text-sm font-medium">Username</label>
                 <input type="text" id="username" formControlName="username" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
             </div>
 
-            <button (click)="login()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">Log In</button>
+            <input (click)="login()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">Log In</button>          
+            <input (click)="signUpRedirect()" type="submit" value="Sign Up"/>
         </form>
 
         <p class="text-sm mt-4 text-gray-400 text-center">Don't have an account? <a href="#" class="text-blue-400 hover:underline">Sign Up</a></p>

@@ -231,6 +231,4 @@ public class CupboardFileDAO implements CupboardDAO{
         return  Arrays.asList(getcupboardArray());
        }
     }
-
-
 }

@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 
 import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-need',
@@ -45,6 +46,10 @@ export class UpdateNeedComponent implements OnInit {
         }
       }
       )
+    Swal.fire({
+        title: "Need Updated",
+        icon: "success"
+      });
     }
     
   }

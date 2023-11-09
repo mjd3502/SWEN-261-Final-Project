@@ -1,0 +1,19 @@
+
+
+<div class="body">
+    <div class="form-container" >
+        <form [formGroup]="signUpSection" (ngSubmit)="signup()">
+            <fa-icon [icon]="faDog" class="fa-dog"></fa-icon>
+            <h1> Sign up </h1>
+            <div class="inputBox">
+                <label>Choose Username</label>
+                <input type="text"  formControlName="username" />
+                <i></i>
+            </div>            
+            <input (click)="signup()" type="submit" />
+        </form>
+    </div>
+</div>
+
+
+ 

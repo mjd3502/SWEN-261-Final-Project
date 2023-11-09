@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="checkout-container">
+<div class="titleBox">
+<h2>Funding Basket</h2>
+</div>
+<div class = "body">
+    <ul>
+        <li *ngFor="let need of basket | keyvalue">
+            <span>{{need.value.name}} - Quanity needed: {{need.value.quantity}} - Cost: {{need.value.cost}}</span>
+
+            <div class="M">
+               <span>My contribution: </span>
+                <select name="quantityOption" (change)="ChooseQuantity($event,need.value)" class="option-control">
+                    <option value="--Select"></option>
+                    <option [value]="number" *ngFor="let number of quantityArray(need.value)">
+                       {{number}}
+                    </option>
+                </select>
+            
+            </div>
+            
+            
+            <button (click)="deleteNeed(need.key)">Delete</button>
+        </li>
+    </ul>
+    <div class="checkout button">
+        <button (click)="checkoutNeeds()"> Checkout </button>
+    </div>
+</div>
+</div>

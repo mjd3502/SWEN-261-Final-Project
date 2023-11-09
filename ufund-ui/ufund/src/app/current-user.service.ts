@@ -7,7 +7,7 @@ import { User } from './User';
 })
 export class CurrentUserService {
 
-  private currentUser = new BehaviorSubject<User|null>(null);
+  private currentUser = new BehaviorSubject<User|null >(null);
 
   setCurrentUser(user:User):void{
     this.currentUser.next(user);

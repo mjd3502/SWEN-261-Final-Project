@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
+import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 
 /**
  * Handles REST API requests for the Cupboard
@@ -28,6 +29,7 @@ import com.ufund.api.ufundapi.persistence.CupboardDAO;
 public class CupboardController {
     private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private CupboardDAO cupboardDao;
+    private RemoveNeedsDAO removeNeedsDAO;
 
     /**
      * Create a REST API controller object to handle requests
@@ -36,8 +38,9 @@ public class CupboardController {
      * 
      * This dependency is added using the Spring Framework
      */
-    public CupboardController(CupboardDAO cupboardDAO){
+    public CupboardController(CupboardDAO cupboardDAO, RemoveNeedsDAO removeNeedsDAO){
         this.cupboardDao = cupboardDAO;
+        this.removeNeedsDAO = removeNeedsDAO;
     }
 
     /**
@@ -147,9 +150,10 @@ public class CupboardController {
         LOG.info("DELETE /cupboard/" + id);
 
         try {
+            Need need = cupboardDao.getSingleNeedById(id);
             boolean didit = cupboardDao.deleteNeed(id);
-            if (didit){
-                
+            boolean stored = removeNeedsDAO.storeRemovedNeed(need);
+            if (didit && stored){
                 return new ResponseEntity<Need>(HttpStatus.OK); 
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -273,6 +277,5 @@ public class CupboardController {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
     }
 }

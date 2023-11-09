@@ -1,7 +1,9 @@
 package com.ufund.api.ufundapi.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,11 +13,11 @@ public class FundingBasket {
 
  
     @JsonProperty("userName") private String userName;
-    @JsonProperty("fundingBasket") private List<Need> fundingBasket;
+    @JsonProperty("fundingBasket") private Map<Integer,Need> listOfNeeds;
 
-    public FundingBasket(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") List<Need> fundingBasket){
+    public FundingBasket(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") Map<Integer,Need> listOfNeeds){
         this.userName = userName;
-        this.fundingBasket = this.fundingBasket = (fundingBasket != null) ? fundingBasket : new ArrayList<>();
+        this.listOfNeeds = this.listOfNeeds = (listOfNeeds != null) ? listOfNeeds : new HashMap<>();
     }
 
     
@@ -27,24 +29,26 @@ public class FundingBasket {
         return userName;
     }
     
-    public List<Need> getFundingBasket() {
-        return fundingBasket;
+    public Map<Integer,Need> getFundingBasket() {
+        return this.listOfNeeds;
     }
     public void setFundingBasket(Need need) {
-        this.fundingBasket.add(need);
+        this.listOfNeeds.put(need.getId(), need);
     }
 
     @Override
     public String toString() {
         StringBuilder needs = new StringBuilder();
         
-        if (!fundingBasket.isEmpty()) {
-            for (int i = 0; i < fundingBasket.size(); i++) {
-                Need item = fundingBasket.get(i);
-                needs.append(item.toString());
-                if (i < fundingBasket.size() - 1) {
+        if (!listOfNeeds.isEmpty()) {
+
+            int count =0;
+            for(Need need: listOfNeeds.values()){
+                needs.append(need.toString());
+                if (count < listOfNeeds.size() - 1) {
                     needs.append(", ");
                 }
+                count ++;
             }
         } else {
             needs.append("No items in the funding basket");

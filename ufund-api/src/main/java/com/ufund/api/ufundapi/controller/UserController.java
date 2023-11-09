@@ -62,23 +62,32 @@ public class UserController {
         }
     }
 
-//     @GetMapping("userName/{username}")
-//     public ResponseEntity<String> getUsername(@PathVariable("username") String username){
 
-//         try {
 
-//             String user = userDAO.getUserName(username);
-//             if(user != null){
-//                 return new ResponseEntity<String>(user,HttpStatus.OK);
-//             }else{
-//                 return new ResponseEntity<String>("No username available",HttpStatus.OK);
-//             }
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username){
+        try{
+            User user = userDAO.getUserByName(username);
+            if (user != null){
+                return new ResponseEntity<User>(user,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+        
+    }
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> doesUserExist(@PathVariable String username){
+        try{
+            Boolean exists = userDAO.doesUserExist(username);
+            LOG.info("DONEEEE");
             
-//         } catch (Exception e) {
-//             LOG.log(Level.SEVERE,e.getLocalizedMessage());
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//         }
-//     }
-
+            return new ResponseEntity<Boolean>(exists,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+    }
     
 }

@@ -13,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,9 @@ const routes: Routes = [
   {path:"checkout",component:CheckoutComponent},
   {path:"home",component:LandingPageComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path:"about",component:AboutComponent},
+  {path:"contact",component:AboutComponent},
+  {path:"howItWorks",component:AboutComponent},
 ];
 
 

@@ -23,6 +23,10 @@ import { SignupComponent } from './signup/signup.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-navbar.component';
 
 
 
@@ -44,7 +48,11 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FileUploadComponent,
     SignupComponent,
     CheckoutComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HowItWorksComponent,
+    AboutComponent,
+    ContactComponent,
+    LandingPageNavbarComponent
 
   ],
   imports: [

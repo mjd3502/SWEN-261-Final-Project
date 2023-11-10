@@ -1,13 +1,16 @@
 
-<div>
-    <h1>Payment information </h1>
+<app-navbar></app-navbar>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+   
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-semibold mb-6 text-center">Payment information</h1>
+        <form >
+            <div class="mb-4 inputBox">
+                <label for="username" class="block text-sm font-medium"> Credit Card number </label>
+                <input type="text" id="username" formControlName="username" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+            </div>
+            <input (click)="checkoutNeeds()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">       
+        </form>
+    </div>
 
-    <form>
-        <div class="formGroup">
-            <label>Credit Card number </label>
-            <input type="text" class="form-input" id="name">
-        </div>
-
-        <button class="update-button" type="submit" (click)="checkoutNeeds()"> Submit order </button>
-    </form>
-</div>
+</body>

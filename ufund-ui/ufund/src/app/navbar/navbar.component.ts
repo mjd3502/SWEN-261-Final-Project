@@ -33,7 +33,7 @@ export class NavbarComponent {
   }
 
   redirectToPage(){
-    this.router.navigate(["/login"])
+    this.router.navigate(["/home"])
   
   }
 

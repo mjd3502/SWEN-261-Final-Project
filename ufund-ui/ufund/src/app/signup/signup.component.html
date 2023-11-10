@@ -1,19 +1,16 @@
 
-
-<div class="body">
-    <div class="form-container" >
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <fa-icon [icon]="faDog" class="fa-dog center-dog fa-2xl"></fa-icon>
+        <h1 class="text-2xl font-semibold mb-6 text-center">Helper Sign up Page</h1>
+        <h2 class="text-2xl font-semibold mb-6 text-center">Create an account</h2>
         <form [formGroup]="signUpSection" (ngSubmit)="signup()">
-            <fa-icon [icon]="faDog" class="fa-dog"></fa-icon>
-            <h1> Sign up </h1>
-            <div class="inputBox">
-                <label>Choose Username</label>
-                <input type="text"  formControlName="username" />
-                <i></i>
-            </div>            
-            <input (click)="signup()" type="submit" />
+            <div class="mb-4 inputBox">
+                <label for="username" class="block text-sm font-medium"> Choose a username </label>
+                <input type="text" id="username" formControlName="username" class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+            </div>
+            <input (click)="signup()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">       
         </form>
     </div>
-</div>
 
-
- 
+</body>

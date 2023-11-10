@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,13 +12,20 @@ export class LandingPageComponent {
 
   faDog = faDog
 
-  isAdmin = true
-
-  constructor(private router:Router){
+  constructor(private router:Router,
+    private isaAdmin:LoginService
+    ){
 
   }
 
   redirectToLogin(){
     this.router.navigate(["/login"])
+    this.isaAdmin.setIsAdmin(false);
+  }
+
+
+  redirectToAdminLogin(){
+    this.router.navigate(["/login"])
+    this.isaAdmin.setIsAdmin(true);
   }
 }

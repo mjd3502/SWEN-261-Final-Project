@@ -32,7 +32,7 @@ export class AdminNavbarComponent {
     }).then((result =>{
 
       if(result.isConfirmed){
-        this.redirectToPage('login');
+        this.redirectToPage('home');
         console.log("log out")
       }
     

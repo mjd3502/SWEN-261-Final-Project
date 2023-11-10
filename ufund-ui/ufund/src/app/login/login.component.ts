@@ -7,6 +7,7 @@ import { CurrentUserService } from '../current-user.service';
 import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FundingBasketService } from '../funding-basket.service';
 import { FundingBasket } from '../FundingBasket';
+import { LoginService } from '../login.service';
 
 //import { User } from '../User';
 
@@ -19,6 +20,10 @@ export class LoginComponent{
   user!:User;
   fundingBasket!:FundingBasket;
   exists!:Boolean | undefined;
+
+  loginHeader!: string
+
+  isAdminLogin = true;
   
   
   logInSection = new FormGroup(
@@ -33,8 +38,24 @@ export class LoginComponent{
     private router:Router,
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
-    private fundingBasketService:FundingBasketService
+    private isAdmin:LoginService
     ){
+  }
+
+
+  ngOnInit(): void {
+    this.changeHeader()
+  }
+
+  changeHeader(){
+    let admin = this.isAdmin.getIsAdmin();
+    if(admin){
+      this.loginHeader = "Admin Login"
+      this.isAdminLogin = false;
+    }else{
+      this.loginHeader = "Helper Login"
+      
+    }
   }
 
 

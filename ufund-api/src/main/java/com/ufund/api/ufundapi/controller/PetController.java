@@ -52,7 +52,7 @@ public class PetController {
      */
 
 
-@GetMapping("/pet/{id}")
+@GetMapping("/{id}")
     public ResponseEntity<Pet> getSinglePetbyId(@PathVariable int id) {
         LOG.info("GET /pet/{id}");
         try {
@@ -129,7 +129,7 @@ public class PetController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/pet/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Pet> deletePet(@PathVariable int id) {
         LOG.info("DELETE /pet/" + id);
 

@@ -6,19 +6,43 @@ import java.util.List;
 import com.ufund.api.ufundapi.model.FavoritePets;
 import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.model.User;
-
+/**
+ * Defines the interface for Favorite pets object persistence
+ * 
+ * @author Garrett Geyer, Cheyenne Zhang, Carla Lopez, Rachel Atkins,  Michael Dibiase
+ */
 public interface FavoritePetsDAO {
-    /*
-     * TODO: docstrings for following functions
+    /**
+     * creates a list of favorite pets
+     * @param FavoritePetslist favoritePet object to create, save
+     * @return created favorite pet
+     * @throws IOException if issue in storage
      */
-
     FavoritePets createFavoritePets(FavoritePets FavoritePets) throws IOException;
 
-    FavoritePets addPetToFavoritePets(String userName, Pet pet) throws IOException;
-
-    boolean removePetFromFavoritePets(String userName,int pet) throws  IOException;
-
-    List<Pet> getFavoritePets(String userName) throws IOException;
+    /**
+     * adds a pet to a user's list of favorite pets
+     * @param username user to add pet to
+     * @param pet pet to add to user's list
+     * @return favorite pets object for user
+     * @throws IOException if issue in storage
+     */
+    FavoritePets addPetToFavoritePets(String username, Pet pet) throws IOException;
+    /**
+     * removes a pet from a user's favorite pet list
+     * @param username user to remove from
+     * @param pet pet to remove
+     * @return true if pet deleted
+     * @throws IOException if issue in storage
+     */
+    boolean removePetFromFavoritePets(String username,int pet) throws  IOException;
+    /**
+     * returns the list of favorite pets for a user
+     * @param userName user to retrieve favorite pets for
+     * @return lit of pets user has favorited
+     * @throws IOException if issue in storage
+     */
+    List<Pet> getFavoritePets(String username) throws IOException;
 
 
     

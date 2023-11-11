@@ -13,9 +13,10 @@ public class FavoritePets {
     @JsonProperty("username") private String username;
     @JsonProperty("favoritePets") private List<Pet> favoritePets;
     /**
-     * class to 
-     * @param username
-     * @param favoritePets
+     * class to track a list of favorite pets for a user
+     * @author Garrett Geyer, Carla Lopez, Cheyyene, Rachel, Micheal
+     * @param username name of user
+     * @param favoritePets favorite pets for user 
      */
 
     public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") List<Pet> favoritePets){
@@ -32,6 +33,9 @@ public class FavoritePets {
         return username;
     }
     
+    /**
+     * @return list of favorite pets
+     */
     public List<Pet> getFavoritePets() {
         return favoritePets;
     }
@@ -52,7 +56,7 @@ public class FavoritePets {
                 }
             }
         } else {
-            pets.append("No items in the funding basket");
+            pets.append("No favorite pets");
         }
         
         return String.format(STRING_FORMAT_FavoritePets,username, pets.toString());

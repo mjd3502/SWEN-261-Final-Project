@@ -105,16 +105,16 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
         FavoritePets favoritePets = favoritePetss.get(userName);
         if(favoritePets != null){
             LOG.info("user is not null");
-            List<Pet> basket = favoritePets.getFavoritePets();
-            for(Pet pet: basket){
+            List<Pet> petList = favoritePets.getFavoritePets();
+            for(Pet pet: petList){
                 if(pet.getId() == id){
-                    basket.remove(pet);
+                    petList.remove(pet);
                     LOG.info("delted");
                     return save();
                 }
             }
         }
-        LOG.info("not deletad");
+        LOG.info("not deleted");
         return false;
        }
     }

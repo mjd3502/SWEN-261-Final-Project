@@ -36,17 +36,17 @@ export class FavoritePetsService {
     );
   }
 
-  addPetToBasket(name:string,pet:Pet):Observable<FavoritePets>{
+  addPetToFavoritePets(name:string,pet:Pet):Observable<FavoritePets>{
     const url = `${this.favoritePetsURL}/addPet/${name}`
     return this.http.put<FavoritePets>(url,pet,this.httpOptions).pipe(
-      catchError(this.handleError<FavoritePets>('addpettoFavoritePets'))
+      catchError(this.handleError<FavoritePets>('addPetToFavoritePets'))
     );
   }
   
-  removePetFromBasket(name:string,petId:number):Observable<FavoritePets>{
+  removePetFromFavoritePets(name:string,petId:number):Observable<FavoritePets>{
     const url = `${this.favoritePetsURL}/${name}/petId/${petId}`
     return this.http.delete<FavoritePets>(url,this.httpOptions).pipe(
-      catchError(this.handleError<FavoritePets>('removePetFromBasket'))
+      catchError(this.handleError<FavoritePets>('removePetFromFavoritePets'))
     );
   }
 

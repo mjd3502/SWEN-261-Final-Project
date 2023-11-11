@@ -184,7 +184,7 @@ public class PetController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping(" ")
-    public ResponseEntity<List<Pet>> getEntirePet(){
+    public ResponseEntity<List<Pet>> getPetList(){
         LOG.info("GET /pet/" );
        List<Pet> responseEntity = new ArrayList<>();
 

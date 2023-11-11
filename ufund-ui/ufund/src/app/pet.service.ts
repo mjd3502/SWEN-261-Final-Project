@@ -1,9 +1,82 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Observable, catchError, of, tap } from 'rxjs';
+
+import { Pet } from './Pet';
+
+@Injectable({ providedIn: 'root' })
 export class PetService {
 
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  private URL ='http://localhost:8080/pet'
+  constructor(
+    private http: HttpClient,
+    ) 
+    { }
+
+    /** GET pets from the server */
+    getPetbyId(id:number):Observable<Pet>{
+      const url = `${this.URL}/${id}`
+      return this.http.get<Pet>(url,this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Pet>('getPetbyId')))
+    }
+    
+    createPet(pet:Pet):Observable<Pet>{
+      return this.http.post<Pet>(this.URL,pet,this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Pet>('addPet'))
+      );
+    }
+
+    deletePetByName(name:string):Observable<Pet>{
+      const url = `${this.URL}/petName/${name}`
+      return this.http.delete<Pet>(url,this.httpOptions).pipe(
+        catchError(this.handleError<Pet>('deletePetbyName')))
+    }
+
+    deletePetbyId(id:number):Observable<Pet>{
+      const url = `${this.URL}/${id}`
+      return this.http.delete<Pet>(url,this.httpOptions).pipe(
+        catchError(this.handleError<Pet>('deletePetbyId')))
+    }
+
+    getAllPets():Observable<Pet[]>{
+      return this.http.get<Pet[]>(this.URL,this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Pet[]>('getAllPets', []))
+      );
+    }
+
+    updatePet(pet:Pet):Observable<any>{
+      return this.http.put<Pet>(this.URL,pet,this.httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('updatePet')))
+    }
+
+    searchPetsByName(name:string): Observable<Pet[]>{
+      if(!name.trim()){
+        return of([]);
+      }
+
+      const url = `${this.URL}/pets/?name=${name}`
+      
+      console.log('im working' + url)
+      return this.http.get<Pet[]>(url).pipe(
+        catchError(this.handleError<Pet[]>('searcPet', []))
+        );
+
+    }
+
+  
+    private handleError<T>(operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(error);
+        return of(result as T);
+      };
+    }
 }

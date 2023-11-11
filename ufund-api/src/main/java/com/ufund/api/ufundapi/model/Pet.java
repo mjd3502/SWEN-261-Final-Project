@@ -56,10 +56,6 @@ public class Pet {
         this.name = name;
     }
 
-    
-
-
-
     /**
      * Retrieves the description of the pet
      * @return The description of the pet
@@ -82,14 +78,6 @@ public class Pet {
      */
     public boolean getAvailable() {
         return available;
-    }
-
-    /**
-     * Sets the availability of the pet - necessary for Java object deserialization
-     * @param available
-     */
-    public void setDescription(boolean available) {
-        this.description = description;
     }
 
     /**

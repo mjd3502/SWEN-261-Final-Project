@@ -29,24 +29,17 @@ public class FileUploadFolderDAO implements FileUploadDAO {
     private Path folderPath;
 
     public FileUploadFolderDAO(){
-        folderPath = (Path)Paths.get("./data/images");
+        
     }
 
     @Override
     public boolean createImage(MultipartFile file) throws IOException {
-        String userDirectory = Paths.get("").toAbsolutePath().toString();
-
-        System.out.println(userDirectory);
-        System.out.println(folderPath.toString());
-        
         try {
-            // Files.copy(file.getInputStream(), folderPath);
-            // File x = new File("C:/Users/MJD09/Downloads/Dog.jpg");
-            // InputStream i = new FileInputStream(x);
-
             InputStream input = new BufferedInputStream(file.getInputStream());
 
-            Path folderpath = Path.of("./data/images", file.getOriginalFilename());
+            //Path folderpath = Path.of("./data/images", file.getOriginalFilename());
+            
+            Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/pets", file.getOriginalFilename());
             
             Files.copy(input, folderpath);
             

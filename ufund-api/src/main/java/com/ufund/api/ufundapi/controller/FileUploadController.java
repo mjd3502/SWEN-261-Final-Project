@@ -40,10 +40,12 @@ public class FileUploadController {
     //post requests for when a file is sent to the server to be uploaded
     //This one is specific for a pet being uploaded
     @PostMapping("/upload-pet")
-    public ResponseEntity<File> addPetFile(@RequestPart(name="image", required = false) MultipartFile file ){
-        //LOG.info("POST /upload " + file.getName());
+    public ResponseEntity<File> addPetFile(
+        @RequestPart(name="image", required = false) MultipartFile file,
+        @RequestPart(name="name", required = false) String id){
+            
         try{
-            fileDao.createPetImage(file,"1");
+            fileDao.createPetImage(file,id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
         }catch(Exception e){

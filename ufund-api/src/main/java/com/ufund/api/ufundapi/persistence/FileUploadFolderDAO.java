@@ -41,7 +41,7 @@ public class FileUploadFolderDAO implements FileUploadDAO {
 
             //Path folderpath = Path.of("./data/images", file.getOriginalFilename());
             
-            Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/pets", file.getOriginalFilename());
+            Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/pets", id+".jpg");
             
             Files.copy(input, folderpath);
             

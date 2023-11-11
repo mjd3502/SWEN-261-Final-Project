@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path: 'browse-needs', component: BrowseNeedsComponent},
-  {path: 'upload',component: FileUploadComponent}
+  {path: 'upload/:type/:id',component: FileUploadComponent}
 ];
 
 @NgModule({

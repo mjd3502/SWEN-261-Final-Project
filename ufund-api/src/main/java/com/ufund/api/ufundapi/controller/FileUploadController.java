@@ -43,7 +43,6 @@ public class FileUploadController {
         //LOG.info("POST /upload " + file.getName());
         try{
             fileDao.createImage(file);
-
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
         }catch(Exception e){

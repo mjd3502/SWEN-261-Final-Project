@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.FavoritePets;
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.Pet;
 
 
 @Component
@@ -72,8 +72,8 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
     @Override
     public FavoritePets createFavoritePets(FavoritePets favoritePets) throws IOException {
         synchronized(favoritePetss){
-            List<Need> listOFNeeds = new ArrayList<>();
-            FavoritePets newFavoritePets =  new FavoritePets(favoritePets.getUsername(),listOFNeeds);
+            List<Pet> listOFPets = new ArrayList<>();
+            FavoritePets newFavoritePets =  new FavoritePets(favoritePets.getUsername(),listOFPets);
             favoritePetss.put(favoritePets.getUsername(), newFavoritePets);
             save();
             return newFavoritePets;
@@ -82,12 +82,12 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
     }
 
     @Override
-    public FavoritePets addNeedToFavoritePets(String userName,Need need) throws IOException {
+    public FavoritePets addPetToFavoritePets(String userName,Pet pet) throws IOException {
 
         synchronized(favoritePetss){
             FavoritePets favoritePets = favoritePetss.get(userName);
             if(favoritePets != null){
-                favoritePets.setFavoritePets(need);
+                favoritePets.setFavoritePets(pet);
                 save();
                 LOG.info("added to file");
             }else{
@@ -100,15 +100,15 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
     
 
     @Override
-    public boolean removeNeedFromFavoritePets(String userName, int id) throws IOException {
+    public boolean removePetFromFavoritePets(String userName, int id) throws IOException {
        synchronized(favoritePetss){
         FavoritePets favoritePets = favoritePetss.get(userName);
         if(favoritePets != null){
             LOG.info("user is not null");
-            List<Need> basket = favoritePets.getFavoritePets();
-            for(Need need: basket){
-                if(need.getId() == id){
-                    basket.remove(need);
+            List<Pet> basket = favoritePets.getFavoritePets();
+            for(Pet pet: basket){
+                if(pet.getId() == id){
+                    basket.remove(pet);
                     LOG.info("delted");
                     return save();
                 }
@@ -121,7 +121,7 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
 
 
     @Override
-    public List<Need> getFavoritePets(String name) throws IOException {
+    public List<Pet> getFavoritePets(String name) throws IOException {
         synchronized(favoritePetss){
             if(favoritePetss.containsKey(name)){
                 FavoritePets favoritePets = favoritePetss.get(name);

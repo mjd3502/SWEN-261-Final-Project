@@ -4,18 +4,21 @@ import java.io.IOException;
 import java.util.List;
 
 import com.ufund.api.ufundapi.model.FavoritePets;
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.model.User;
 
 public interface FavoritePetsDAO {
+    /*
+     * TODO: docstrings for following functions
+     */
 
     FavoritePets createFavoritePets(FavoritePets FavoritePets) throws IOException;
 
-    FavoritePets addNeedToFavoritePets(String userName, Need need) throws IOException;
+    FavoritePets addPetToFavoritePets(String userName, Pet pet) throws IOException;
 
-    boolean removeNeedFromFavoritePets(String userName,int need) throws  IOException;
+    boolean removePetFromFavoritePets(String userName,int pet) throws  IOException;
 
-    List<Need> getFavoritePets(String userName) throws IOException;
+    List<Pet> getFavoritePets(String userName) throws IOException;
 
 
     

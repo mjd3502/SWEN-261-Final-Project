@@ -11,14 +11,14 @@ public class FavoritePets {
 
  
     @JsonProperty("username") private String username;
-    @JsonProperty("favoritePets") private List<Need> favoritePets;
+    @JsonProperty("favoritePets") private List<Pet> favoritePets;
     /**
      * class to 
      * @param username
      * @param favoritePets
      */
 
-    public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") List<Need> favoritePets){
+    public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") List<Pet> favoritePets){
         this.username = username;
         this.favoritePets = this.favoritePets = (favoritePets != null) ? favoritePets : new ArrayList<>();
     }
@@ -32,30 +32,30 @@ public class FavoritePets {
         return username;
     }
     
-    public List<Need> getFavoritePets() {
+    public List<Pet> getFavoritePets() {
         return favoritePets;
     }
-    public void setFavoritePets(Need need) {
-        this.favoritePets.add(need);
+    public void setFavoritePets(Pet pet) {
+        this.favoritePets.add(pet);
     }
 
     @Override
     public String toString() {
-        StringBuilder needs = new StringBuilder();
+        StringBuilder pets = new StringBuilder();
         
         if (!favoritePets.isEmpty()) {
             for (int i = 0; i < favoritePets.size(); i++) {
-                Need item = favoritePets.get(i);
-                needs.append(item.toString());
+                Pet item = favoritePets.get(i);
+                pets.append(item.toString());
                 if (i < favoritePets.size() - 1) {
-                    needs.append(", ");
+                    pets.append(", ");
                 }
             }
         } else {
-            needs.append("No items in the funding basket");
+            pets.append("No items in the funding basket");
         }
         
-        return String.format(STRING_FORMAT_FavoritePets,username, needs.toString());
+        return String.format(STRING_FORMAT_FavoritePets,username, pets.toString());
     }
 
 

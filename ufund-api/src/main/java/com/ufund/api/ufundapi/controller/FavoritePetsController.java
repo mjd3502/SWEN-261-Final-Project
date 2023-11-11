@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.persistence.FavoritePetsDAO;
 import com.ufund.api.ufundapi.model.FavoritePets;
 // import com.ufund.api.ufundapi.persistence.favoritePetsDAO;
@@ -48,11 +48,11 @@ public class FavoritePetsController {
     }
 
 
-    @PutMapping("/addNeed/{name}")
-    public  ResponseEntity<FavoritePets> addNeedToBasket(@PathVariable("name")String name, @RequestBody Need need){
-        LOG.info("PUT /favoritePets/addNeed/" + name);
+    @PutMapping("/addpet/{name}")
+    public  ResponseEntity<FavoritePets> addPetToList(@PathVariable("name")String name, @RequestBody Pet pet){
+        LOG.info("PUT /favoritePets/addPet/" + name);
         try {
-            FavoritePets favoritePets = favoritePetsDao.addNeedToFavoritePets(name,need);
+            FavoritePets favoritePets = favoritePetsDao.addPetToFavoritePets(name,pet);
 
             if(favoritePets != null){
                 return new ResponseEntity<FavoritePets>(favoritePets,HttpStatus.ACCEPTED);
@@ -66,17 +66,17 @@ public class FavoritePetsController {
         }
     }
 
-    @DeleteMapping("/{name}/needId/{needId}")
-    public ResponseEntity<FavoritePets> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
+    @DeleteMapping("/{name}/petId/{petId}")
+    public ResponseEntity<FavoritePets> removePetFromBasket(@PathVariable("name")String name, @PathVariable("petId") int petId){
 
         try {
-            boolean deleted = favoritePetsDao.removeNeedFromFavoritePets(name, needId);
+            boolean deleted = favoritePetsDao.removePetFromFavoritePets(name, petId);
 
             if(deleted){
-                 LOG.info("deleteeeeeeeeeed");
+                 LOG.info("deleted");
                 return new ResponseEntity<FavoritePets>(HttpStatus.OK);
             }else{
-                 LOG.info("nooooooooo");
+                 LOG.info("no");
                  return new ResponseEntity<FavoritePets>(HttpStatus.NOT_ACCEPTABLE);
             }
 
@@ -87,11 +87,11 @@ public class FavoritePetsController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<Need>> getFavoritePets(@PathVariable("name") String name){
+    public ResponseEntity<List<Pet>> getFavoritePets(@PathVariable("name") String name){
 
         try {
-            List<Need> favoritePets = favoritePetsDao.getFavoritePets(name);
-            return new ResponseEntity<List<Need>>(favoritePets,HttpStatus.OK);
+            List<Pet> favoritePets = favoritePetsDao.getFavoritePets(name);
+            return new ResponseEntity<List<Pet>>(favoritePets,HttpStatus.OK);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 

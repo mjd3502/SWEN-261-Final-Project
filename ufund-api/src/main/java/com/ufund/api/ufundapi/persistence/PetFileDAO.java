@@ -147,7 +147,7 @@ public class PetFileDAO implements PetDAO{
     @Override
     public Pet createPet(Pet pet) throws IOException {
         synchronized(petList){
-            Pet newPet = new Pet(nextId(), pet.getName(), pet.getQuantity(), pet.getDescription(), pet.getCost(), pet.getType());
+            Pet newPet = new Pet(nextId(), pet.getName(), pet.getDescription(), pet.getAvailable());
             petList.put(newPet.getId(),newPet);
             save(); // may throw an IOException
             return newPet;

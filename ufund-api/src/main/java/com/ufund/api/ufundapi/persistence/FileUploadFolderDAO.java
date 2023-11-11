@@ -32,8 +32,10 @@ public class FileUploadFolderDAO implements FileUploadDAO {
         
     }
 
+    //image passed for a pet, should be saved to the folder for pets
+    //file name will be based on the ID of the associated pet
     @Override
-    public boolean createImage(MultipartFile file) throws IOException {
+    public boolean createPetImage(MultipartFile file, String id) throws IOException {
         try {
             InputStream input = new BufferedInputStream(file.getInputStream());
 
@@ -53,15 +55,27 @@ public class FileUploadFolderDAO implements FileUploadDAO {
         
     }
 
-    // private boolean createImage(File file) throws IOException {
-    //     try(InputStream input = new FileInputStream(file)){
-    //         Files.copy(input, "ufund-api/data/images");
 
-    //         return true;
-    //     }catch (Exception e) {
-    //         return false;
-    //     }
+    //Downloads image for a need to needs folder under angular assests
+    //saves file with a name based on the ID of the associated need.
+    @Override
+    public boolean createNeedImage(MultipartFile file, String id) throws IOException {
+        try {
+            InputStream input = new BufferedInputStream(file.getInputStream());
 
-    //     return false;
-    // };
+            //Path folderpath = Path.of("./data/images", file.getOriginalFilename());
+            //file.getOriginalFilename()
+            Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/needs", id+".jpg");
+            
+            Files.copy(input, folderpath);
+            
+            System.out.println("YIPPEEEEE");
+            return true;
+        }
+        catch (Exception e){
+            System.out.println("Error :(");
+            return false;
+        }
+        
+    }
 }

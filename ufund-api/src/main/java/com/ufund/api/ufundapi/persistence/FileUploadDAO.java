@@ -12,13 +12,22 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FileUploadDAO {
     /*
-     * A passed image is downloaded to our repo
+     * A passed image is downloaded to our repo under pets
      * @param file object to be saved
      * @return a true for success or false otherwise
      * @throws IOException if theres an error.
      */
 
-    boolean createImage(MultipartFile file) throws IOException;
+    boolean createPetImage(MultipartFile file, String id) throws IOException;
+
+
+    /*
+     * A passed image is downloaded to our repo under needs
+     * @param file object to be saved
+     * @return a true for success or false otherwise
+     * @throws IOException if theres an error.
+     */
+    boolean createNeedImage(MultipartFile file, String id) throws IOException;
 
 
 

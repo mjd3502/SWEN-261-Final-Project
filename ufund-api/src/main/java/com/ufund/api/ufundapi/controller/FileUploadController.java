@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
+
 @RestController
 @RequestMapping("")
 public class FileUploadController {
@@ -37,12 +38,29 @@ public class FileUploadController {
     }
 
     //post requests for when a file is sent to the server to be uploaded
-    //Think about names for the file... requestpart "name"
-    @PostMapping("/upload")
-    public ResponseEntity<File> addFile(@RequestPart(name="image", required = false) MultipartFile file ){
+    //This one is specific for a pet being uploaded
+    @PostMapping("/upload-pet")
+    public ResponseEntity<File> addPetFile(@RequestPart(name="image", required = false) MultipartFile file ){
         //LOG.info("POST /upload " + file.getName());
         try{
-            fileDao.createImage(file);
+            fileDao.createPetImage(file,"1");
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+    //post requests for when a file is sent to the server to be uploaded
+    //This one is specific for an image of a need being uploaded
+    @PostMapping("/upload-need")
+    public ResponseEntity<File> addNeedFile(
+        @RequestPart(name="image", required = false) MultipartFile file,
+        @RequestPart(name="name", required = false) String id){
+            
+        try{
+            fileDao.createNeedImage(file,id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
         }catch(Exception e){

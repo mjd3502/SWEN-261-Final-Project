@@ -23,6 +23,8 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static java.nio.file.StandardCopyOption.*;
+
 @Component
 public class FileUploadFolderDAO implements FileUploadDAO {
     private static final Logger LOG = Logger.getLogger(FileUploadDAO.class.getName());
@@ -43,7 +45,7 @@ public class FileUploadFolderDAO implements FileUploadDAO {
             
             Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/pets", id+".jpg");
             
-            Files.copy(input, folderpath);
+            Files.copy(input, folderpath, REPLACE_EXISTING);
             
             System.out.println("YIPPEEEEE");
             return true;
@@ -67,7 +69,7 @@ public class FileUploadFolderDAO implements FileUploadDAO {
             //file.getOriginalFilename()
             Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/needs", id+".jpg");
             
-            Files.copy(input, folderpath);
+            Files.copy(input, folderpath, REPLACE_EXISTING);
             
             System.out.println("YIPPEEEEE");
             return true;

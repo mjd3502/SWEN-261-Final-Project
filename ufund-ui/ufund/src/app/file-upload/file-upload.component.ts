@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-upload',
@@ -19,7 +19,7 @@ export class FileUploadComponent {
   //id of associated pet/need
   id!: String;
 
-  constructor(private http:HttpClient, private route: ActivatedRoute,){}
+  constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit():void{
     //gets the id # from the url on init and the type
@@ -75,6 +75,10 @@ export class FileUploadComponent {
           console.log(response);
         });
     }
+
+
+    //sends admin back to dashboard
+    this.router.navigate(['/adminDashboard'])
     
   }
 }

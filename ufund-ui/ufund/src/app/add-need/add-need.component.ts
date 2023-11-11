@@ -24,7 +24,7 @@ export class AddNeedComponent {
   onSubmit(){
     if(this.Need){
       this.needsService.createNeed(this.Need).subscribe(response =>{
-        this.router.navigate(['/adminDashboard'])
+        this.router.navigate(['/upload/need/' + (String)(response.id)])
         console.log(response);
       })
     }

@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.persistence.FavoritePetsDAO;
 import com.ufund.api.ufundapi.model.FavoritePets;
 // import com.ufund.api.ufundapi.persistence.favoritePetsDAO;
+import com.ufund.api.ufundapi.model.Need;
 
 @RestController
 @RequestMapping("/favoritePets")
@@ -67,31 +69,33 @@ public class FavoritePetsController {
     }
 
     @DeleteMapping("/{name}/petId/{petId}")
-    public ResponseEntity<FavoritePets> removePetFromBasket(@PathVariable("name")String name, @PathVariable("petId") int petId){
+    public ResponseEntity<Map<Integer,Pet>> removePetFromBasket(@PathVariable("name")String name, @PathVariable("petId") int petId){
 
         try {
             boolean deleted = favoritePetsDao.removePetFromFavoritePets(name, petId);
+            Map<Integer,Pet> favoritePets = favoritePetsDao.getFavoritePets(name);
 
             if(deleted){
-                 LOG.info("deleted");
-                return new ResponseEntity<FavoritePets>(HttpStatus.OK);
+                LOG.info("deleteeeeeeeeeed " );
+                
+                return new ResponseEntity<Map<Integer,Pet>>(favoritePets,HttpStatus.OK);
             }else{
-                 LOG.info("no");
-                 return new ResponseEntity<FavoritePets>(HttpStatus.NOT_ACCEPTABLE);
+                 LOG.info("nooooooooo");
+                 return new ResponseEntity<Map<Integer,Pet>>(favoritePets,HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 
         }
-    }
+    } 
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<Pet>> getFavoritePets(@PathVariable("name") String name){
+    public ResponseEntity<Map<Integer,Pet>> getFavoritePets(@PathVariable("name") String name){
 
         try {
-            List<Pet> favoritePets = favoritePetsDao.getFavoritePets(name);
-            return new ResponseEntity<List<Pet>>(favoritePets,HttpStatus.OK);
+            Map<Integer,Pet> favoritePets = favoritePetsDao.getFavoritePets(name);
+            return new ResponseEntity<Map<Integer,Pet>>(favoritePets,HttpStatus.OK);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 

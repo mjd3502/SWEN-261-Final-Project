@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.FavoritePets;
+import com.ufund.api.ufundapi.model.FundingBasket;
+import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.Pet;
 
 
@@ -37,7 +39,7 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
     }
 
 
-    private FavoritePets[] getFavoritePetssArray(){
+    private FavoritePets[] getFavoritePetsArray(){
         ArrayList<FavoritePets> favoritePetsList = new ArrayList<>();
         for(FavoritePets FavoritePets: favoritePetss.values()){
             favoritePetsList.add(FavoritePets);
@@ -52,7 +54,7 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
    
 
     private boolean save() throws IOException{
-        FavoritePets[] favoritePetsArray = getFavoritePetssArray();
+        FavoritePets[] favoritePetsArray = getFavoritePetsArray();
         objectMapper.writeValue(new File(filename),favoritePetsArray);
         return true;
         
@@ -72,8 +74,8 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
     @Override
     public FavoritePets createFavoritePets(FavoritePets favoritePets) throws IOException {
         synchronized(favoritePetss){
-            List<Pet> listOFPets = new ArrayList<>();
-            FavoritePets newFavoritePets =  new FavoritePets(favoritePets.getUsername(),listOFPets);
+            Map<Integer,Pet> favoritePets2 = new HashMap<>();
+            FavoritePets newFavoritePets =  new FavoritePets(favoritePets.getUsername(),favoritePets2);
             favoritePetss.put(favoritePets.getUsername(), newFavoritePets);
             save();
             return newFavoritePets;
@@ -105,29 +107,29 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
         FavoritePets favoritePets = favoritePetss.get(userName);
         if(favoritePets != null){
             LOG.info("user is not null");
-            List<Pet> petList = favoritePets.getFavoritePets();
-            for(Pet pet: petList){
+            Map<Integer,Pet> basket = favoritePets.getFavoritePets();
+            for(Pet pet: basket.values()){
                 if(pet.getId() == id){
-                    petList.remove(pet);
-                    LOG.info("delted");
+                    basket.remove(pet.getId());
+                    LOG.info("delteeeeeeed");
                     return save();
                 }
             }
         }
-        LOG.info("not deleted");
+        LOG.info("not deleteeed");
         return false;
        }
     }
 
 
     @Override
-    public List<Pet> getFavoritePets(String name) throws IOException {
+    public Map<Integer,Pet> getFavoritePets(String name) throws IOException {
         synchronized(favoritePetss){
             if(favoritePetss.containsKey(name)){
                 FavoritePets favoritePets = favoritePetss.get(name);
                 return favoritePets.getFavoritePets();
             }
         }
-        return null;
+        return new HashMap<>();
     }
 }

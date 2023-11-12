@@ -23,6 +23,7 @@ import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { UpdatePetComponent } from './update-pet/update-pet.component';
 import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.component';
+import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.compon
     BrowsePetsComponent,
     AddPetComponent,
     UpdatePetComponent,
-    HelperPetPageComponent
+    HelperPetPageComponent,
+    AdminPetPageComponent
   ],
   imports: [
     BrowserModule,

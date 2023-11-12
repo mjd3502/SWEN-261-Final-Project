@@ -14,6 +14,7 @@ import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { UpdatePetComponent } from './update-pet/update-pet.component';
 import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.component';
+import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'pet-detail', component: PetDetailComponent},
   {path: 'add-pet', component: AddPetComponent},
   {path:'updatePet/:id',component:UpdatePetComponent},
-  {path:'helperPetPage',component:HelperPetPageComponent}
+  {path:'helperPetPage',component:HelperPetPageComponent},
+  {path:'adminPetPage',component:AdminPetPageComponent}
 ];
 
 @NgModule({

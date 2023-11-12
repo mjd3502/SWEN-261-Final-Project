@@ -58,6 +58,4 @@ export class PetDetailComponent implements OnInit {
       console.log(user);
     })
   }
-
-
 }

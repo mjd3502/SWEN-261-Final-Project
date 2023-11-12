@@ -7,6 +7,7 @@ import { NeedsService } from '../needs.service';
 import { FlagService } from '../flag.service';
 import { map } from 'rxjs';
 import Swal from 'sweetalert2';
+import { TotalAmountService } from '../total-amount.service';
 
 @Component({
   selector: 'app-checkout',
@@ -19,13 +20,18 @@ export class CheckoutComponent {
   username!:string;
   user!:User
 
+  totalAmount = 0;
+
 
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private donationService: FlagService,
-    private needsService:NeedsService
+    private needsService:NeedsService,
+    private totalAmountService:TotalAmountService
   ){}
+
+  
 
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{  
@@ -35,15 +41,14 @@ export class CheckoutComponent {
       }   
      
     })
+    // this.totalAmount = this.totalAmountService.getTotalAmount();
 
   }
   submitOrder():void{
     this.donationValues = this.donationService.getUpdateQuantity();
-    console.log("neeeedsss to submitttt ")
     for(const[key,value] of Object.entries(this.donationValues)){
       console.log("needs surplussss")
       let id = Number(key);
-      console.log("needs surplussss")
       this.needsService.helperDonation(id,value).subscribe(
         need =>{
           console.log(need);
@@ -51,6 +56,8 @@ export class CheckoutComponent {
       )
     }
   }
+
+
   checkoutNeeds():void{
     this.submitOrder()
     this.fundingBasketService.clearBasket(this.username).subscribe(

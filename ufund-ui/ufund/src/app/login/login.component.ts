@@ -74,9 +74,18 @@ export class LoginComponent{
     const username = this.logInSection.get("username")?.value;
     console.log(username);
  
-   if(username === 'admin'){
-      this.changeRoute('/adminDashboard')
-    }else if(username  && typeof username === 'string'){
+   if(!this.isAdminLogin){
+      if(username === "admin"){
+        this.changeRoute('/adminDashboard')
+      }else{
+        Swal.fire({
+          title: "Please log in with admin credentials",
+          text:"Wrong admin",
+          icon: "error"
+        });
+      }
+  }else{
+    if(username  && typeof username === 'string'){
       await this.userExists(username);
       if(this.exists){
           this.user = new User(username);
@@ -93,7 +102,8 @@ export class LoginComponent{
       }
     }
   }
-
+  
+  }
   signUpRedirect(){
     this.changeRoute('/signup')
   }

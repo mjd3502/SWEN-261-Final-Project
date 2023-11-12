@@ -8,6 +8,7 @@ import { FundingBasketService } from '../funding-basket.service';
 import { Router } from '@angular/router';
 import { NeedsService } from '../needs.service';
 import { FlagService } from '../flag.service';
+import { TotalAmountService } from '../total-amount.service';
 
 
 @Component({
@@ -22,17 +23,17 @@ export class FundingBasketComponent implements OnInit{
   username!:string;
   user!:User;
   donationValues: { [key: string]: number } = {};
+  needIndividualCost: { [key: string]: number } = {};
   // newQuantities:Need[] = []
-  needsToCheckOut:Need[] =[]
-  totalCostOfEachNeed:number[] = []
   
-  total = 0;
+  totalAmount = 0;
 
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private router:Router,
     private donationService: FlagService,
+    private totalAmountService:TotalAmountService
   ){}
 
   ngOnInit(): void {
@@ -61,9 +62,17 @@ export class FundingBasketComponent implements OnInit{
     );
   }
 
-  onDonationChange(needKey: number, event: any) {
+  onDonationChange(Need:Need, event: any) {
+    let needKey = String(Need.id);
     if (event.target instanceof HTMLInputElement) {
       this.donationValues[needKey] = Number(event.target.value);
+    }
+    let total = Need.cost * this.donationValues[needKey];
+    this.needIndividualCost[needKey] = total;
+    
+    this.totalAmount =0;
+    for (const value of Object.values(this.needIndividualCost)) {
+      this.totalAmount += value;
     }
   }
 
@@ -73,24 +82,17 @@ export class FundingBasketComponent implements OnInit{
     console.log("need new quantities")
     console.log(this.donationValues);
     this.router.navigate(['/checkout'])
+    this.totalAmountService.setTotalAmount(this.totalAmount)
   }
 
 
-  totalQuantityOfNeed():void{
-    var total = 0;
-    for(var need of this.needsToCheckOut){
-      total = need.cost * need.quantity
-    }
-    this.totalCostOfEachNeed.push(total)
-  }
-
-  basketTotal():void{
-    this.total = 0;
-    for(var totalofNeed of this.totalCostOfEachNeed){
-      this.total += totalofNeed;
-    }
-    console.log(this.total)
-  }
+  // basketTotal():void{
+  //   this.total = 0;
+  //   for(var totalofNeed of this.totalCostOfEachNeed){
+  //     this.total += totalofNeed;
+  //   }
+  //   console.log(this.total)
+  // }
 
 
   checkoutNeeds():void{

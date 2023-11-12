@@ -21,6 +21,7 @@ export class SignupComponent {
   signUpSection = new FormGroup(
     {username: new FormControl('',[Validators.required])}
   )
+  
   faDog = faDog;
   constructor(
     private router:Router,

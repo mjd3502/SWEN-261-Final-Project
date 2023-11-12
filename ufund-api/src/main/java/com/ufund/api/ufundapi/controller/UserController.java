@@ -29,26 +29,18 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-    //    private boolean validateHelperLogin(String value) {
+       private boolean validateHelperLogin(String value) {
        
-    //     if (value == null) {
-    //         return false;
-    //     }
-        
-    //     if(value.equalsIgnoreCase("admin")) {
-    //         return false;
-    //     }
-        
-    //     return true;
-    // }
+        return value.equalsIgnoreCase("admin");
+    }
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
         LOG.info("POST /user " + user);
 
-        // if(!validateHelperLogin(fundingBasket.getfundingBasketName())){
-        //     return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        // }
+        if(!validateHelperLogin(user.getUsername())){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
 
         try {
             

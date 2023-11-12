@@ -42,8 +42,18 @@ export class UpdateNeedComponent implements OnInit {
         this.router.navigate(['/adminDashboard'])
         console.log(response);
       },(error) =>{
-        if(error.status >=400 || error.status < 500){
-          this.errorMessage = "Please enter a valid need type"
+        console.error('An error occurred:', error);
+        if(error.status == 400){
+          // this.errorMesage = "Please enter a valid type of need";
+          Swal.fire({
+            title: "Please enter a valid type of need",
+            icon: "error"
+          });
+        }else{
+          Swal.fire({
+            title: "Please enter valid inputs",
+            icon: "error"
+          });
         }
       }
       )

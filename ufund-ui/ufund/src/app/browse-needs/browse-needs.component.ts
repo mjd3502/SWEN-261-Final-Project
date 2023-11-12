@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class BrowseNeedsComponent implements OnInit{
   needs: Need[] = [];
+  disableAddNeed:boolean = false;
 
   constructor(
     private needsService: NeedsService,
@@ -26,7 +27,11 @@ export class BrowseNeedsComponent implements OnInit{
 
 
   getNeeds(): void{
-    this.needsService.getEntireNeedsCupboard().subscribe(needs => this.needs = needs)
+    this.needsService.getEntireNeedsCupboard().subscribe(needs => {
+      this.needs = needs;
+    }
+    )
+    console.log(this.disableAddNeed);
     
   }
 
@@ -44,8 +49,13 @@ export class BrowseNeedsComponent implements OnInit{
   functionAddNeed(need: Need): void{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
-    })
-
+  })
+    if(need.quantity ==0){
+      Swal.fire({
+        title: "This need has been fullfilled",
+        icon: "error"
+      });
+    }
     Swal.fire({
       title: "Added to basket",
       icon: "success"

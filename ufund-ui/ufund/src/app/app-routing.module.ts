@@ -9,8 +9,8 @@ import { AdminBrowseNeedsComponent } from './admin-browse-needs/admin-browse-nee
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 import { SignupComponent } from './signup/signup.component';
-
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AboutComponent } from './about/about.component';
@@ -26,6 +26,7 @@ const routes: Routes = [
   {path:'admin-create-need', component: AddNeedComponent},
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path: 'browse-needs', component: BrowseNeedsComponent},
+  {path: 'upload/:type/:id',component: FileUploadComponent},
   {path: 'signup', component: SignupComponent},
   {path:"checkout",component:CheckoutComponent},
   {path:"home",component:LandingPageComponent},

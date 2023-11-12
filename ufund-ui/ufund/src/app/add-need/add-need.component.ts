@@ -24,11 +24,15 @@ export class AddNeedComponent {
   onSubmit(){
     if(this.Need){
       this.needsService.createNeed(this.Need).subscribe(response =>{
+
+        
+
         Swal.fire({
           title: "Need created :)",
           icon: "success"
         });
-        this.router.navigate(['/adminDashboard'])
+        
+        this.router.navigate(['/upload/need/' + (String)(response.id)])
         
         console.log(response);
       },(error) =>{

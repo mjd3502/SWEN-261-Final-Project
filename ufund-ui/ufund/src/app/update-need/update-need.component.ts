@@ -38,9 +38,10 @@ export class UpdateNeedComponent implements OnInit {
   onSubmit(){
     if(this.Need){
       this.needsService.updateNeed(this.Need).subscribe(response =>{
-        console.log(response)
-        this.router.navigate(['/adminDashboard'])
+
         console.log(response);
+        this.router.navigate(['/upload/need/' + (String)(response.id)])
+
       },(error) =>{
         console.error('An error occurred:', error);
         if(error.status == 400){

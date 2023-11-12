@@ -1,6 +1,7 @@
 <app-admin-navbar></app-admin-navbar>
 
 <div>
-    <input type = "file" (change)="onChange($event)">
+    <input type = "file" accept=".jpg" (change)="onChange($event)">
     <button (click)="onUpload()">upload</button>
+    <img src="../../assets/images/pets/Dog.jpg">
 </div>

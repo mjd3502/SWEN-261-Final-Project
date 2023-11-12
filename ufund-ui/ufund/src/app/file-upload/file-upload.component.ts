@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FileUploadService } from '../file-upload.service';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-upload',
@@ -8,36 +10,75 @@ import { FileUploadService } from '../file-upload.service';
 })
 
 export class FileUploadComponent {
-  link: string = "";
-  loading: boolean = false;
-  files: File[] = [];
+  //stores the file passed
+  file!: File;
+  
+  //data from url
+  //defines if a need or pet is being stored
+  type!: String;
+  //id of associated pet/need
+  id!: String;
 
-  constructor(private fileUploadService: FileUploadService){}
+  constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit():void{
+    //gets the id # from the url on init and the type
+    this.getVals();
 
+  }
+
+  getVals() :void{
+    //gets the id from the url and the type (need/pet)
+    this.id = String(this.route.snapshot.paramMap.get('id'));
+    this.type = String(this.route.snapshot.paramMap.get('type'));
   }
 
   //when a file is selected
   onChange(event: any){
-    this.files = event.target.files;
+    console.log(event);
+
+    //sets this file to the file the user selects
+    this.file= <File>event.target.files[0];
   }
 
   //when button to upload is clicked
   onUpload(){
-    this.loading = !this.loading
 
-    console.log(this.files[0]);
+    //created form data
+    const data = new FormData();
 
-    this.fileUploadService.upload(this.files[0]).subscribe(
-      (event:any)=> {
-        if(typeof (event) === 'object'){
-          this.link = event.link;
+    //adds the image to form data
+    data.append('image',this.file, this.file.name)
+    //adds the id from the url for the file to be named when stored in the folder
+    data.append('name',(String)(this.id))
 
-          this.loading = false;
-        }
-      }
-    )
+    //console log image data and the name, just the id in the url which will be the name of the file when saved
+    console.log(data.get('image'));
+    console.log(data.get('name'));
+    
+    //if an image for a need is added
+    if(this.type == 'need'){
+      //sends post request for a need with 
+      //form data containing the file and the name (Id) for it to be stored under
+      this.http.post('http://localhost:8080/upload-need',data)
+        .subscribe(response => {
+          console.log(response);
+        });
+    }
 
+    //if an image for a pet being added
+    else{
+      //sends post request for a pet with 
+      //form data containing the file and the name (Id) for it to be stored under
+      this.http.post('http://localhost:8080/upload-pet',data)
+        .subscribe(response => {
+          console.log(response);
+        });
+    }
+
+
+    //sends admin back to dashboard
+    this.router.navigate(['/adminDashboard'])
+    
   }
 }

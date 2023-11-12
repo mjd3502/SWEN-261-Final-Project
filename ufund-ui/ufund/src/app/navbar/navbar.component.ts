@@ -15,12 +15,16 @@ export class NavbarComponent {
     private router:Router,
     private currentUser:CurrentUserService
     ){}
+    
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {
         this.username = user.getUsername();
       }
     })
+    if(this.username == null){  
+      this.router.navigate(['/home']);
+    }
     
   }
 

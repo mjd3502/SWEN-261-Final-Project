@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FundingBasket } from '../FundingBasket';
 import { FundingBasketService } from '../funding-basket.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-browse-needs',
@@ -20,7 +21,8 @@ export class BrowseNeedsComponent implements OnInit{
   constructor(
     private needsService: NeedsService,
     private fundingBasketService:FundingBasketService,
-    private currentUser:CurrentUserService
+    private currentUser:CurrentUserService,
+    private router: Router
     ){}
 
   userName!:string;
@@ -42,7 +44,7 @@ export class BrowseNeedsComponent implements OnInit{
       if (user) {
         this.userName = user.getUsername();
       }
-    })
+    })  
     
   }
  

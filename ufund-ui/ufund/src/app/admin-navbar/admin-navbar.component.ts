@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminNavbarComponent {
   logOutLogo = faArrowRightFromBracket;
+  username !: String;
 
   constructor(private router:Router){
 

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class CheckoutComponent {
   basket: Map<number,Need> = new Map<number, Need>();
-  updatedNeeds!:Need[]
+  donationValues: { [key: string]: number } = {};
   username!:string;
   user!:User
 
@@ -23,7 +23,7 @@ export class CheckoutComponent {
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
-    private updateQuantity: FlagService,
+    private donationService: FlagService,
     private needsService:NeedsService
   ){}
 
@@ -37,25 +37,25 @@ export class CheckoutComponent {
     })
 
   }
-  
-
   submitOrder():void{
-    this.updatedNeeds = this.updateQuantity.getUpdateQuantity();
-    for(var need of this.updatedNeeds){
-      this.needsService.updateNeed(need).subscribe(
-        (need) =>{
-          console.log(need)
+    this.donationValues = this.donationService.getUpdateQuantity();
+    console.log("neeeedsss to submitttt ")
+    for(const[key,value] of Object.entries(this.donationValues)){
+      console.log("needs surplussss")
+      let id = Number(key);
+      console.log("needs surplussss")
+      this.needsService.helperDonation(id,value).subscribe(
+        need =>{
+          console.log(need);
         }
       )
     }
   }
-
-
   checkoutNeeds():void{
+    this.submitOrder()
     this.fundingBasketService.clearBasket(this.username).subscribe(
       fundingbasket => this.basket = fundingbasket
     )
-    this.submitOrder()
   
     Swal.fire({
       title: "Order completed!",

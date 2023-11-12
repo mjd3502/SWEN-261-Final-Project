@@ -6,14 +6,14 @@ import { Need } from './Need';
 })
 export class FlagService {
 
-  private updateQuantity: Need[] = [];
+  private donationValues: { [key: string]: number } = {};
 
-  setUpdateQuantity(newQuantites:Need[]):void{
-    this.updateQuantity = newQuantites;
+  setUpdateQuantity(newQuantites:{ [key: string]: number }):void{
+    this.donationValues = newQuantites;
   }
 
-  getUpdateQuantity():Need[]{
-    return this.updateQuantity
+  getUpdateQuantity():{ [key: string]: number;}{
+    return this.donationValues
   }
 
   constructor() { }

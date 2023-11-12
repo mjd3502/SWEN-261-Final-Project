@@ -232,11 +232,8 @@ public class CupboardFileDAO implements CupboardDAO{
                 updatedNeedQuantity =0;
                 surplusNeedCupboard =0;
             }
-
             need.setQuantity(updatedNeedQuantity);
             need.setSurplus(surplusNeedCupboard);
-            
-            
             cupboard.put(need.getId(),need);
             save(); // may throw an IOException
             return need;

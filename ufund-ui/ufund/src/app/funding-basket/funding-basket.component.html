@@ -1,30 +1,88 @@
-<app-navbar></app-navbar>
-<div class="checkout-container">
-<div class="titleBox">
-<h2>Funding Basket</h2>
-</div>
-<div class = "body">
-    <ul>
-        <li *ngFor="let need of basket | keyvalue">
-            <span>{{need.value.name}} - Quanity needed: {{need.value.quantity}} - Cost: {{need.value.cost}}</span>
 
-            <div class="M">
-               <span>My contribution: </span>
-                <select name="quantityOption" (change)="ChooseQuantity($event,need.value)" class="option-control">
-                    <option value="--Select"></option>
-                    <option [value]="number" *ngFor="let number of quantityArray(need.value)">
-                       {{number}}
-                    </option>
-                </select>
-            
+<body  class=" bg-gray-900 bg-center bg-cover h-screen">
+    <app-navbar></app-navbar>
+    <div class="text-white container grid grid-cols-12 items-start pb-16 pt-4">
+
+        <div class="col-span-8  border-gray-100 p-4 rounded">
+
+            <h2 class="text-4xl text-medium font-bold text-center mb-8"> Funding Basket </h2>
+                <div class="space-y-4">
+                    <div class="grid grid-rows-2 gap-20">
+                        <div  *ngFor="let need of basket | keyvalue">
+                            <span>{{need.value.name}}  </span>       
+                            <div class="">
+                                Quanity needed:{{need.value.quantity}} - Cost: ${{need.value.cost}}  
+                            </div>
+                               
+                            <div class="flex">
+                                <input
+                                type="text"
+                                class="form-input mt-1 p-2  border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white"
+                                id="description"
+                                [(ngModel)]="donationValues[need.key]"
+                                name="donation"
+                                ng-required="true"
+                                (input)="onDonationChange(need.key, $event)"
+                                >
+                                <span>
+                                    <h1>Donation for {{ need.value.name }}: ${{ donationValues[need.key] }}</h1>
+                                </span>
+                            </div>
+                <div>
+                                <!-- <select name="quantityOption" (change)="ChooseQuantity($event,need.value)" class="option-control">
+                                    <option value="--Select"></option>
+                                    <option [value]="number" *ngFor="let number of quantityArray(need.value)">
+                                       {{number}}
+                                    </option>
+                                </select> -->
+                            </div>   
+                            <button class="text-xl bg-slate-700 px-3 py-2 text-white rounded hover:bg-slate-400" (click)="deleteNeed(need.key)">Delete</button>
+                        </div>
+                    </div> 
+                </div>
+        </div>
+
+
+
+
+
+        <div class="col-span-4 border-gray-700 p-4 rounded">
+            <h4 class="text-2xl text-center mb-4 font-medium uppercase">order summary</h4>
+            <div class="space-y-2">
+                <div class="flex justify-between">
+                    <div>
+                        <div *ngFor="let need of needsToCheckOut" >
+                            <h5 class="font-medium">{{need.name}}</h5>
+                            <p class="text-sm">{{need.type}}</p>
+                            <p >
+                                {{need.quantity}}
+                            </p>
+                            <p>
+                                ${{need.cost}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between uppercase">
+                    <p>SubTotal</p>
+                    <p>{{total}}</p>
+                </div>
+                <div class="flex justify-between uppercase">
+                    <p>SHIPPING</p>
+                    <p>FREE</p>
+                </div>
+                <div class="flex justify-between uppercase">
+                    <p>TOTAL</p>
+                    <p>{{total}}</p>
+                </div>
+
+                <div (click)="proceedToCheckOut()"  class="text-xl w-full h-full text-center bg-slate-700 px-5 py-4 text-white rounded hover:bg-slate-400">
+                    Proceed to checkout
+                </div>
             </div>
-            
-            
-            <button (click)="deleteNeed(need.key)">Delete</button>
-        </li>
-    </ul>
-    <div class="checkout button">
-        <button (click)="checkoutNeeds()"> Checkout </button>
+        </div>
     </div>
-</div>
-</div>
+    
+</body>
+

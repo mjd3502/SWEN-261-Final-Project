@@ -71,6 +71,21 @@ export class NeedsService {
         }));
     }
 
+
+    helperDonation(id:number,donation:number):Observable<any>{
+      const url = `${this.cupBoardURL}/helperDonation/${id}/donation/${donation}`
+      return this.http.put<Need>(url,this.httpOptions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            console.error("Enter valid data type",error.message);
+          } else if (error.status > 400 && error.status < 500) {
+            console.error("Enter valid valid input fields", error.message);
+          }
+          return throwError(error);
+        }));
+    }
+
     searchCupboardByName(name:string): Observable<Need[]>{
       if(!name.trim()){
         return of([]);

@@ -1,26 +1,51 @@
-<div id = "container">
-<h1>Our Needs</h1>
+<div class="bg-gray-800 bg-center bg-cover h-screen flex">
+    <main class="flex-1">
 
-<ul>
-    <!--cerates an list item for each need-->
-    <li *ngFor="let need of needs" id = "item">
-        <!--Link to detail page of the need "/detail/{{need.id}}" could be used-->
-        <a routerLink="/detail/{{need.id}}">
-            <b>{{need.name}}</b>
-        </a><br>
-        <div class="info">
-            <p>
-                <b><u>Description: </u></b>{{need.description}}<br>
-                <b><u>Cost: </u></b> {{need.cost}}<br>
-                <b><u>Type of need: </u></b> {{need.type}}
-                <b><u>Quanity needed: </u></b> {{need.quantity}}
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-4xl text-center font-bold text-gray-700 border-b border-gray-200 my-8">
+                Support our Furry Friends in Need 
+            </h1>
+        
+            <p class="text-sm font-medium text-center text-gray-700">
+                Browse the needs of our organization!
             </p>
         </div>
-      
-        <!-- add button to add need to checkout -->
-        <button  (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
-        <!-- call function for adding to the basket on click 
-            use  -->
-    </li>
-</ul>
+        <table class="text-white w-full mx-auto mt-28">
+            <thead>
+                <tr class="text-lg font-medium text-white border-b border-gray-200">
+                    <td class="py-4 px-4 text-center">Need Name</td>
+                    <td class="py-4 px-4 text-center">Cost</td>
+                    <td class="py-4 px-4 text-center">Description</td>
+                    <td class="py-4 px-4 text-center">Quantity needed</td>
+                    <td class="py-4 px-4 text-center">Surplus</td>
+                    <td class="py-4 px-4 text-center">Type</td>
+                    <td class="py-4 px-4 text-center">Add to basket</td>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let need of needs" id = "item"  class="hover:bg-gray-600 transition-colors">
+                <td class="flex text-center gap-x-4 items-center py-4 pl-10">
+                    <div>
+                        <a routerLink="/detail/{{need.id}}">
+                            <b class="text-lg font-semibold text-white ">{{need.name}}</b>
+                        </a><br>
+                        <div class="font-medium text-gray-400"> {{need.type}}</div>
+                    </div>
+                    
+                </td>
+                <td class="font-medium text-center">${{need.cost}}</td>
+                <td class="font-medium text-center">{{need.description}}</td>
+                <td class="font-medium text-center">{{need.quantity}}</td>
+                <td class="font-medium text-center">{{need.surplus}}</td>
+                <td class="font-medium text-center">{{need.type}}</td>
+                <td class="font-medium text-center"> 
+                    <button  (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    </main>
 </div>
+
+

@@ -234,9 +234,6 @@ public class CupboardController {
         if(!validateTypeField(need.getType())){
              return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
-
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
             if (checkNeed != null){
@@ -253,7 +250,7 @@ public class CupboardController {
 
     @PutMapping("/helperDonation/{id}/donation/{donation}")
     public ResponseEntity<Need> helperDonation(@PathVariable("id")int id,@PathVariable("donation")int donation ){
-
+    LOG.info("PUT /\"/helperDonation/ ");  
         try {
             Need need = cupboardDao.helperSurplusUpdateNeed(id, donation);
             if (need != null){

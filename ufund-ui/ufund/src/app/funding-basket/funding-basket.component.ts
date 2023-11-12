@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NeedsService } from '../needs.service';
 import { FlagService } from '../flag.service';
 
+
 @Component({
   selector: 'app-funding-basket',
   templateUrl: './funding-basket.component.html',
@@ -20,16 +21,18 @@ export class FundingBasketComponent implements OnInit{
   basket: Map<number,Need> = new Map<number, Need>();
   username!:string;
   user!:User;
-  updateNeedQuantity!:boolean
-  newQuantities:Need[] = []
+  donationValues: { [key: string]: number } = {};
+  // newQuantities:Need[] = []
+  needsToCheckOut:Need[] =[]
+  totalCostOfEachNeed:number[] = []
   
+  total = 0;
 
   constructor(
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
     private router:Router,
-    private updateQuantity: FlagService,
-    private needsService:NeedsService
+    private donationService: FlagService,
   ){}
 
   ngOnInit(): void {
@@ -58,28 +61,35 @@ export class FundingBasketComponent implements OnInit{
     );
   }
 
-
-  quantityArray(need: Need): number[]{
-    let quantity = need.quantity;
-    const array = [];
-    for(var i=0;i<=quantity;i++){
-      array.push(i);
+  onDonationChange(needKey: number, event: any) {
+    if (event.target instanceof HTMLInputElement) {
+      this.donationValues[needKey] = Number(event.target.value);
     }
-    return array
   }
 
-  ChooseQuantity(e:any,need:Need){
-    const selectedValue = e.target.value;
-    const newQuantity = need.quantity - selectedValue;
-    let newNeed = new Need()
-    newNeed.id = need.id
-    newNeed.name = need.name
-    newNeed.description = need.description
-    newNeed.quantity = newQuantity
-    newNeed.cost = need.cost
-    newNeed.type = need.type
-    this.newQuantities.push(newNeed)
-    this.updateQuantity.setUpdateQuantity(this.newQuantities);
+
+  proceedToCheckOut(){
+    this.donationService.setUpdateQuantity(this.donationValues);
+    console.log("need new quantities")
+    console.log(this.donationValues);
+    this.router.navigate(['/checkout'])
+  }
+
+
+  totalQuantityOfNeed():void{
+    var total = 0;
+    for(var need of this.needsToCheckOut){
+      total = need.cost * need.quantity
+    }
+    this.totalCostOfEachNeed.push(total)
+  }
+
+  basketTotal():void{
+    this.total = 0;
+    for(var totalofNeed of this.totalCostOfEachNeed){
+      this.total += totalofNeed;
+    }
+    console.log(this.total)
   }
 
 

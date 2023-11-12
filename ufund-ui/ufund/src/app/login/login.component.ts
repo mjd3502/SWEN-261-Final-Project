@@ -8,6 +8,7 @@ import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FundingBasketService } from '../funding-basket.service';
 import { FundingBasket } from '../FundingBasket';
 import { LoginService } from '../login.service';
+import Swal from 'sweetalert2';
 
 //import { User } from '../User';
 
@@ -75,7 +76,6 @@ export class LoginComponent{
  
    if(username === 'admin'){
       this.changeRoute('/adminDashboard')
-
     }else if(username  && typeof username === 'string'){
       await this.userExists(username);
       if(this.exists){
@@ -83,6 +83,12 @@ export class LoginComponent{
           this.currentUser.setCurrentUser(this.user);
           this.changeRoute('/helperDashboard');
       } else {
+        Swal.fire({
+          title: "Username already taken",
+          text:"Please create a new account",
+          icon: "error"
+        });
+
         this.signUpRedirect();
       }
     }

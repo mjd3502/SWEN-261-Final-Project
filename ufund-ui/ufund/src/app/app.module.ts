@@ -22,6 +22,7 @@ import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { UpdatePetComponent } from './update-pet/update-pet.component';
+import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UpdatePetComponent } from './update-pet/update-pet.component';
     PetDetailComponent,
     BrowsePetsComponent,
     AddPetComponent,
-    UpdatePetComponent
+    UpdatePetComponent,
+    HelperPetPageComponent
   ],
   imports: [
     BrowserModule,

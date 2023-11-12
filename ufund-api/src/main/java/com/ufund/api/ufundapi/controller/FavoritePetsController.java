@@ -48,7 +48,7 @@ public class FavoritePetsController {
     }
 
 
-    @PutMapping("/addpet/{name}")
+    @PutMapping("/addPet/{name}")
     public  ResponseEntity<FavoritePets> addPetToList(@PathVariable("name")String name, @RequestBody Pet pet){
         LOG.info("PUT /favoritePets/addPet/" + name);
         try {

@@ -1,1 +1,1 @@
-[{"username":"helper","favoritePets":[]}]
+[{"username":"carla","favoritePets":[{"id":16,"name":"hola","description":"hello","available":true,"cost":10},{"id":17,"name":"hola","description":"hello","available":true,"cost":10},{"id":17,"name":"carla","description":"hello","available":true,"cost":10}]},{"username":"gerreat","favoritePets":[]},{"username":"michael","favoritePets":[{"id":17,"name":"carla","description":"hello","available":true,"cost":10},{"id":18,"name":"carla","description":"hello","available":true,"cost":10}]}]

@@ -21,14 +21,10 @@ public class PetFileDAO implements PetDAO{
 
     private static final Logger LOG = Logger.getLogger(PetFileDAO.class.getName());
 
-    Map<Integer,Pet> petList;   // Provides a local cache of the Pet objects
-                                // so that we don't pet to read from the file
-                                // each time
-    private ObjectMapper objectMapper;  // Provides conversion between Pet
-                                        // objects and JSON text format written
-                                        // to the file
-    private static int nextId;  // The next Id to assign to a new Pet
-    private String filename;    // Filename to read from and write to
+    Map<Integer,Pet> petList;   
+    private ObjectMapper objectMapper;  
+    private static int nextId;  
+    private String filename;   
 
     /**
      * Creates a Pet File Data Access Object
@@ -96,7 +92,6 @@ public class PetFileDAO implements PetDAO{
      */
     private boolean save() throws IOException {
         Pet[] petArray = getPetArray();
-
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
         // with the file or reading from the file
@@ -128,7 +123,7 @@ public class PetFileDAO implements PetDAO{
             if (pet.getId() > nextId)
                 nextId = pet.getId();
         }
-        // Make the next id one greater than the maximum from the file
+        
         ++nextId;
         return true;
 
@@ -152,8 +147,6 @@ public class PetFileDAO implements PetDAO{
             save(); // may throw an IOException
             return newPet;
         }
-
-
     }
 
     /**

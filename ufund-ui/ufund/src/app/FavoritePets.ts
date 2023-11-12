@@ -22,6 +22,4 @@ export class FavoritePets{
     setUsername(username:string){
         this.username = username;
     }
-    
-
 }

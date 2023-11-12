@@ -65,7 +65,7 @@ public class FavoritePetsController {
 
         }
     }
-
+    
     @DeleteMapping("/{name}/petId/{petId}")
     public ResponseEntity<FavoritePets> removePetFromBasket(@PathVariable("name")String name, @PathVariable("petId") int petId){
 
@@ -97,6 +97,5 @@ public class FavoritePetsController {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
-
 
 }

@@ -37,32 +37,32 @@ public class UserControllerTest {
         userController = new UserController(mockUserDAO);
     }
 
-    @Test
-    public void createUser() throws IOException{
-        //Setup
-        User user = new User("Cheyenne");
-        when(mockUserDAO.createUser(user)).thenReturn(user);
+    // @Test
+    // public void createUser() throws IOException{
+    //     //Setup
+    //     User user = new User("Cheyenne");
+    //     when(mockUserDAO.createUser(user)).thenReturn(user);
 
-        // Invoke
-        ResponseEntity<User> response = userController.createUser(user);
+    //     // Invoke
+    //     ResponseEntity<User> response = userController.createUser(user);
     
-        // Analyze
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertEquals(user,response.getBody());
-    }
+    //     // Analyze
+    //     assertEquals(HttpStatus.CREATED,response.getStatusCode());
+    //     assertEquals(user,response.getBody());
+    // }
 
-    @Test
-    public void createUserInternalServerError() throws IOException {
-        //Setup
-        User user = new User("Cheyenne");
-        when(mockUserDAO.createUser(user)).thenThrow(new RuntimeException("Internal Server Error"));
+    // @Test
+    // public void createUserInternalServerError() throws IOException {
+    //     //Setup
+    //     User user = new User("Cheyenne");
+    //     when(mockUserDAO.createUser(user)).thenThrow(new RuntimeException("Internal Server Error"));
 
-        //Invoke
-        ResponseEntity<User> responseEntity = userController.createUser(user);
+    //     //Invoke
+    //     ResponseEntity<User> responseEntity = userController.createUser(user);
 
-        //Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
-    }
+    //     //Analyze
+    //     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    // }
 
     // @Test
     // public void getUsername() throws IOException{

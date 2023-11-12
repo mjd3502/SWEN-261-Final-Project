@@ -7,6 +7,8 @@ import { CurrentUserService } from '../current-user.service';
 import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FundingBasketService } from '../funding-basket.service';
 import { FundingBasket } from '../FundingBasket';
+import { LoginService } from '../login.service';
+import Swal from 'sweetalert2';
 
 //import { User } from '../User';
 
@@ -17,7 +19,13 @@ import { FundingBasket } from '../FundingBasket';
 })
 export class LoginComponent{
   user!:User;
-  fundingBasket:FundingBasket = new FundingBasket();
+  fundingBasket!:FundingBasket;
+  exists!:Boolean | undefined;
+
+  loginHeader!: string
+
+  isAdminLogin = true;
+  
   
   logInSection = new FormGroup(
     {
@@ -31,38 +39,72 @@ export class LoginComponent{
     private router:Router,
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
-    private fundingBasketService:FundingBasketService
-    
+    private isAdmin:LoginService
     ){
   }
+
+
+  ngOnInit(): void {
+    this.changeHeader()
+  }
+
+  changeHeader(){
+    let admin = this.isAdmin.getIsAdmin();
+    if(admin){
+      this.loginHeader = "Admin Login"
+      this.isAdminLogin = false;
+    }else{
+      this.loginHeader = "Helper Login"
+      
+    }
+  }
+
 
   changeRoute(url:string){
     this.router.navigate([url])
   }
 
-
+  async userExists(username:string): Promise<void>{
+    const userexist = await this.userService.doesUserExist(username).toPromise()
+    this.exists =userexist;
+    console.log(this.exists)
+  }
   
-  login(){
+  async login(){
     const username = this.logInSection.get("username")?.value;
     console.log(username);
-    
+ 
+   if(!this.isAdminLogin){
+      if(username === "admin"){
+        this.changeRoute('/adminDashboard')
+      }else{
+        Swal.fire({
+          title: "Please log in with admin credentials",
+          text:"Wrong admin",
+          icon: "error"
+        });
+      }
+  }else{
+    if(username  && typeof username === 'string'){
+      await this.userExists(username);
+      if(this.exists){
+          this.user = new User(username);
+          this.currentUser.setCurrentUser(this.user);
+          this.changeRoute('/helperDashboard');
+      } else {
+        Swal.fire({
+          title: "Username already taken",
+          text:"Please create a new account",
+          icon: "error"
+        });
 
-    if(username === 'admin'){
-      
-      this.changeRoute('/adminDashboard')
-
-    }else if(username && typeof username === 'string'){
-        this.user = new User(username);
-        this.userService.createUser(this.user).subscribe(us=>{
-        this.currentUser.setCurrentUser(this.user);
-      });
-      this.fundingBasket.setUsername(username);
-      this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
-        console.log(basket);
-      })
-      this.changeRoute('/helperDashboard')
+        this.signUpRedirect();
+      }
     }
-
-   
+  }
+  
+  }
+  signUpRedirect(){
+    this.changeRoute('/signup')
   }
 }

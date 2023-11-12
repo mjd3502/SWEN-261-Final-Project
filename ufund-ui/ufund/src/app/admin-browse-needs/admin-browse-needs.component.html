@@ -1,10 +1,10 @@
-<div id="container">
+<!-- <div id="container">
     <h1>My Cupboard!</h1>
     
     <ul>
-        <li *ngFor="let need of needs" >
+        <li *ngFor="let need of needs" > -->
             <!-- updateNeed/{{need.id}}             The link that should be used-->
-            <h2><b>{{need.name}}</b></h2>
+            <!-- <h2><b>{{need.name}}</b></h2>
             <div class="info">
                 <p>
                     <b><u>Description:</u></b> {{need.description}}<br>
@@ -20,5 +20,36 @@
             </div>
         </li>
     </ul>
-</div>
+</div> -->
     
+
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-semibold mb-6 text-center">My Cupboard!</h1>
+        
+        <ul>
+            <li *ngFor="let need of needs" class="mb-4">
+                <h2 class="text-lg font-semibold mb-2"><b>{{need.name}}</b></h2>
+                <div class="info">
+                    <div *ngIf="need.quantity==0">
+                        <h3>Need Quanity has been met</h3>
+                    </div>
+                    <p>
+                        <b><u>Description:</u></b> {{need.description}}<br>
+                        <b><u>Cost:</u></b> {{need.cost}}
+                        <b><u>Quantity: </u></b> {{need.quantity}}
+                        <b><u>Surplus: </u></b> {{need.surplus}}
+                        <b><u>Type: </u></b> {{need.type}}
+                    </p>
+                </div>
+                <div class="buttons mt-2">
+                    <button (click)="deleteNeed(need.id)" class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-400">Delete Need</button>
+                    <a routerLink="/updateNeed/{{need.id}}" class="ml-2 bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-400">Update Need</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+

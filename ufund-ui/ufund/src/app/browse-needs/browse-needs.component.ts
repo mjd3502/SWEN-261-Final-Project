@@ -1,12 +1,12 @@
 import { Component,OnInit } from '@angular/core';
 import {Need} from '../Need';
 import { NeedsService } from '../needs.service';
-import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { User } from '../User';
 import { BehaviorSubject } from 'rxjs';
 import { FundingBasket } from '../FundingBasket';
 import { FundingBasketService } from '../funding-basket.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-browse-needs',
@@ -15,6 +15,7 @@ import { FundingBasketService } from '../funding-basket.service';
 })
 export class BrowseNeedsComponent implements OnInit{
   needs: Need[] = [];
+  disableAddNeed:boolean = false;
 
   constructor(
     private needsService: NeedsService,
@@ -26,7 +27,11 @@ export class BrowseNeedsComponent implements OnInit{
 
 
   getNeeds(): void{
-    this.needsService.getEntireNeedsCupboard().subscribe(needs => this.needs = needs)
+    this.needsService.getEntireNeedsCupboard().subscribe(needs => {
+      this.needs = needs;
+    }
+    )
+    console.log(this.disableAddNeed);
     
   }
 
@@ -40,15 +45,21 @@ export class BrowseNeedsComponent implements OnInit{
     })
     
   }
-
-  // number = 7
-
-  // adds the need to user's funding basket
-  
+ 
   functionAddNeed(need: Need): void{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
-    })
+  })
+    if(need.quantity ==0){
+      Swal.fire({
+        title: "This need has been fullfilled",
+        icon: "error"
+      });
+    }
+    Swal.fire({
+      title: "Added to basket",
+      icon: "success"
+    });
   }
 
 }

@@ -1,50 +1,58 @@
 <app-admin-navbar></app-admin-navbar>
- 
 
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="container">
-    <h1>Add a New Need!</h1>
-    <h3>Please fill out all fields</h3>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
 
-    <form class="form-container"  (ngSubmit)="onSubmit()">
-       
-        
-        <div class="formGroup">
-            <label>Need Name: </label>
-            <input type="text" class="form-input" id="name"
-            [(ngModel)] = "Need.name" name="name" ng-required="true">
-        </div>
+<body class="bg-gray-900 text-white">
 
-        <div class="formGroup">
-            <label>Need Description: </label>
-            <input type="text" class="form-input" id="description"
-            [(ngModel)] = "Need.description" name="description" ng-required="true">
-        
-        </div>
+    <div id="container" class="container mx-auto p-8">
+        <h1 class="text-3xl font-semibold mb-4">Add a New Need!</h1>
+        <h3 class="text-lg mb-6">Please fill out all fields</h3>
 
+        <form class="form-container" (ngSubmit)="onSubmit()">
 
-        <div class="formGroup">
-            <label>Need Quantity: </label>
-            <input type="text" class="form-input" id="quantity"
-            [(ngModel)] = "Need.quantity" name="quantity" ng-required="true">
-        
-        </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need Name:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="name"
+                    [(ngModel)]="Need.name" name="name" ng-required="true">
+            </div>
 
-        <div class="formGroup">
-            <label>Need's Cost: </label>
-            <input type="text" class="form-input" id="cost"
-            [(ngModel)] = "Need.cost" name="cost" ng-required="true">
-        
-        </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need Description:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="description"
+                    [(ngModel)]="Need.description" name="description" ng-required="true">
+            </div>
 
-        <div class="formGroup">
-            <label>Type (goods or volunteer): </label>
-            <input type="text" class="form-input" id="type"
-            [(ngModel)] = "Need.type" name="type" ng-required="true">
-        
-        </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need Quantity:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="quantity"
+                    [(ngModel)]="Need.quantity" name="quantity" ng-required="true">
+            </div>
 
-        <button class="update-button" type="submit"> Create Need! </button>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Cost:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="cost"
+                    [(ngModel)]="Need.cost" name="cost" ng-required="true">
+            </div>
 
-    </form>
-</div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Type (goods or volunteer):</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="type"
+                    [(ngModel)]="Need.type" name="type" ng-required="true">
+            </div>
+
+            <div *ngIf="errorMesage" class="text-red-500 mb-4">{{errorMesage}}</div>
+            <button type="submit" class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button">Create Need!</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

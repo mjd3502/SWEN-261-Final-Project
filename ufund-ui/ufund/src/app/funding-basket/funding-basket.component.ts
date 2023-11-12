@@ -1,0 +1,103 @@
+import { ChangeDetectorRef, Component,OnInit } from '@angular/core';
+import { Need } from '../Need';
+import { UserHelperService } from '../user-helper.service';
+import { CurrentUserService } from '../current-user.service';
+import { User } from '../User';
+import { Location } from '@angular/common';
+import { FundingBasketService } from '../funding-basket.service';
+import { Router } from '@angular/router';
+import { NeedsService } from '../needs.service';
+import { FlagService } from '../flag.service';
+import { TotalAmountService } from '../total-amount.service';
+
+
+@Component({
+  selector: 'app-funding-basket',
+  templateUrl: './funding-basket.component.html',
+  styleUrls: ['./funding-basket.component.css']
+})
+
+
+export class FundingBasketComponent implements OnInit{
+  basket: Map<number,Need> = new Map<number, Need>();
+  username!:string;
+  user!:User;
+  donationValues: { [key: string]: number } = {};
+  needIndividualCost: { [key: string]: number } = {};
+  // newQuantities:Need[] = []
+  
+  totalAmount = 0;
+
+  constructor(
+    private fundingBasketService:FundingBasketService,
+    private currentUser:CurrentUserService,
+    private router:Router,
+    private donationService: FlagService,
+    private totalAmountService:TotalAmountService
+  ){}
+
+  ngOnInit(): void {
+    this.currentUser.getCurrentUser().subscribe(user =>{
+      
+    if (user) {
+        this.user = user;
+        this.username = user.getUsername();
+        console.log(this.user.getUsername())
+        this.getFundingBasket(this.username);
+        console.log(this.basket)
+      }
+    })
+
+  }
+
+  getFundingBasket(name:string):void{
+    this.fundingBasketService.getFundingBasket(name).subscribe(fundingBasket => 
+    this.basket = fundingBasket
+    );
+  }
+  
+  deleteNeed(needId: number): void{
+    this.fundingBasketService.removeNeedFromBasket(this.username,needId).subscribe(fundingBasket =>
+      this.basket = fundingBasket
+    );
+  }
+
+  onDonationChange(Need:Need, event: any) {
+    let needKey = String(Need.id);
+    if (event.target instanceof HTMLInputElement) {
+      this.donationValues[needKey] = Number(event.target.value);
+    }
+    let total = Need.cost * this.donationValues[needKey];
+    this.needIndividualCost[needKey] = total;
+    
+    this.totalAmount =0;
+    for (const value of Object.values(this.needIndividualCost)) {
+      this.totalAmount += value;
+    }
+  }
+
+
+  proceedToCheckOut(){
+    this.donationService.setUpdateQuantity(this.donationValues);
+    console.log("need new quantities")
+    console.log(this.donationValues);
+    this.router.navigate(['/checkout'])
+    this.totalAmountService.setTotalAmount(this.totalAmount)
+  }
+
+
+  // basketTotal():void{
+  //   this.total = 0;
+  //   for(var totalofNeed of this.totalCostOfEachNeed){
+  //     this.total += totalofNeed;
+  //   }
+  //   console.log(this.total)
+  // }
+
+
+  checkoutNeeds():void{
+    this.router.navigate(['/checkout'])
+  }
+}
+
+

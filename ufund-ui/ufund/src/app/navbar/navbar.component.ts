@@ -28,12 +28,12 @@ export class NavbarComponent {
   logOutLogo = faArrowRightFromBracket;
 
   iconClicked(){
-    this.router.navigate(["/checkout"])
+    this.router.navigate(["/funding-basket"])
     console.log("checkbox clicked")
   }
 
   redirectToPage(){
-    this.router.navigate(["/login"])
+    this.router.navigate(["/home"])
   
   }
 

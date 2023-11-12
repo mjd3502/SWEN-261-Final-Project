@@ -1,0 +1,16 @@
+<nav class="flex items-center ">
+    <fa-icon [icon]="faDog" class="fa-dog text-4xl w-12 h-12"></fa-icon>
+    <ul class="flex-1 text-center">
+        <li routerLink="/home"  class="list-none inline-block px-6 hover:underline" >Home</li>
+        <li routerLink="/howItWorks"  class="list-none inline-block px-6 py-2 hover:underline ">How it works</li>
+        <li routerLink="/about"  class="list-none inline-block px-6 hover:underline">About</li>
+        <li routerLink="/contact"  class="list-none inline-block px-6 hover:underline">Contact</li>
+    </ul>
+
+    
+    <div  (click)="redirectToLogin()"   class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-2xl">
+     Log in as a Helper</div>
+    <div  (click)="redirectToAdminLogin()" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-2xl">
+     Log in as a Manager</div>
+    
+</nav>

@@ -20,6 +20,7 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
+import { AddPetComponent } from './add-pet/add-pet.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PetDetailComponent } from './pet-detail/pet-detail.component';
     AdminNavbarComponent,
     FileUploadComponent,
     PetDetailComponent,
-    BrowsePetsComponent
+    BrowsePetsComponent,
+    AddPetComponent
   ],
   imports: [
     BrowserModule,

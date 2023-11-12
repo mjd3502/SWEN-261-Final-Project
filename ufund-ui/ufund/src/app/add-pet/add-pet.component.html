@@ -1,0 +1,40 @@
+<app-admin-navbar></app-admin-navbar>
+ 
+<div id="container">
+    <h1>Add a New Pet</h1>
+    <h3>Please fill out all fields</h3>
+
+    <form class="form-container"  (ngSubmit)="onSubmit()">
+       
+        <div class="formGroup">
+            <label>Pet Name: </label>
+            <input type="text" class="form-input" id="name"
+            [(ngModel)] = "pet.name" name="name" ng-required="true">
+        </div>
+
+        <div class="formGroup">
+            <label>Pet Description: </label>
+            <input type="text" class="form-input" id="description"
+            [(ngModel)] = "pet.description" name="description" ng-required="true">
+        
+        </div>
+
+
+        <div class="formGroup">
+            <label>Pet Id: </label>
+            <input type="text" class="form-input" id="cost"
+            [(ngModel)] = "pet.id" name="id" ng-required="true">
+        
+        </div>
+
+        <div class="formGroup">
+            <label>Adoption Status: </label>
+            <input type="text" class="form-input" id="type"
+            [(ngModel)] = "pet.available" name="available" ng-required="true">
+        
+        </div>
+
+        <button class="update-button" type="submit"> Create Pet </button>
+
+    </form>
+</div>

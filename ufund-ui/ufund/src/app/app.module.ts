@@ -21,6 +21,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
+import { UpdatePetComponent } from './update-pet/update-pet.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddPetComponent } from './add-pet/add-pet.component';
     FileUploadComponent,
     PetDetailComponent,
     BrowsePetsComponent,
-    AddPetComponent
+    AddPetComponent,
+    UpdatePetComponent
   ],
   imports: [
     BrowserModule,

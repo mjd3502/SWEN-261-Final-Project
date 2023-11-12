@@ -1,0 +1,35 @@
+<app-admin-navbar></app-admin-navbar>
+ 
+<div id = "container">
+    <form class="form-container"  (ngSubmit)="onSubmit()">
+            <div class="formGroup">
+                <label>Name:</label>
+                <input type="text" class="form-input" id="name"
+                [(ngModel)] = "pet.name" name="name">
+            </div>
+
+            <div class="formGroup">
+                <label>Description:</label>
+                <input type="text" class="form-input" id="description"
+                [(ngModel)] = "pet.description" name="description">
+            
+            </div>
+
+            <div class="formGroup">
+                <label>Id: </label>
+                <input type="text" class="form-input" id="cost"
+                [(ngModel)] = "pet.id" name="id" ng-required="true">
+            
+            </div>
+    
+            <div class="formGroup">
+                <label>Adoption Status: </label>
+                <input type="text" class="form-input" id="type"
+                [(ngModel)] = "pet.available" name="available" ng-required="true">
+            
+            </div>
+
+            <button class="update-button" type="submit"> Update Pet </button>
+
+    </form>
+</div>

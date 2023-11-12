@@ -12,6 +12,7 @@ import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
+import { UpdatePetComponent } from './update-pet/update-pet.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'browse-needs', component: BrowseNeedsComponent},
   {path: 'browse-pets', component: BrowsePetsComponent},
   {path: 'pet-detail', component: PetDetailComponent},
-  {path: 'add-pet', component: AddPetComponent}
+  {path: 'add-pet', component: AddPetComponent},
+  {path:'updatePet/:id',component:UpdatePetComponent}
 ];
 
 @NgModule({

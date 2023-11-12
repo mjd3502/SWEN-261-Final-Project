@@ -1,0 +1,19 @@
+<div id = "container">
+    <h1>Pets for Adoption</h1>
+    
+    <ul>
+        <li *ngFor="let pet of pets" id = "item">
+            <a routerLink="/detail/{{pet.id}}">
+                <b>{{pet.name}}</b>
+            </a><br>
+            <div class="description">
+                <p>
+                    <b><u>Description: </u></b>{{pet.description}}<br>
+                </p>
+            </div>
+          
+            <button  (click)="functionAddPet(pet)" id="button" type="button" title ="add to favorites list">Add to Favorites</button>
+        </li>
+    </ul>
+</div>
+    

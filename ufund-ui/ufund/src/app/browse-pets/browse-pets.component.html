@@ -11,8 +11,12 @@
                     <b><u>Description: </u></b>{{pet.description}}<br>
                 </p>
             </div>
-          
-            <button  (click)="functionAddPet(pet)" id="button" type="button" title ="add to favorites list">Add to Favorites</button>
+            <div class="add to favorites">
+                <span class="favpets" (click)="functionAddPet(pet)">
+                  <fa-icon [icon]="favoritesLogo"></fa-icon>
+                  <h6>Add to Favorites</h6>
+                </span>
+            </div>
         </li>
     </ul>
 </div>

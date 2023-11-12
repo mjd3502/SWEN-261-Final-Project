@@ -25,6 +25,7 @@ import { UpdatePetComponent } from './update-pet/update-pet.component';
 import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.component';
 import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
 import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.component';
+import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.
     UpdatePetComponent,
     HelperPetPageComponent,
     AdminPetPageComponent,
-    AdminBrowsePetsComponent
+    AdminBrowsePetsComponent,
+    FavoritePetsComponent
   ],
   imports: [
     BrowserModule,

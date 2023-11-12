@@ -3,11 +3,11 @@ import { Pet } from "./Pet";
 export class FavoritePets{
     
     private  username:string;
-    private fundingBasket:Pet[];
+    private favorites:Pet[];
 
     constructor(){
         this.username = "";
-        this.fundingBasket = [];
+        this.favorites = [];
     }
     
 
@@ -15,8 +15,8 @@ export class FavoritePets{
         return this.username;
     }
 
-    getFundingBasket():Pet[]{
-        return this.fundingBasket;
+    getFavoritePets():Pet[]{
+        return this.favorites;
     }
 
     setUsername(username:string){

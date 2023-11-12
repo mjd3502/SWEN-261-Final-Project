@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { BrowsePetsComponent } from './browse-pets.component';
 
 describe('BrowseNeedsComponent', () => {
@@ -8,8 +7,7 @@ describe('BrowseNeedsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BrowsePetsComponent],
-      imports: [RouterModule]
+      declarations: [BrowsePetsComponent]
     });
     fixture = TestBed.createComponent(BrowsePetsComponent);
     component = fixture.componentInstance;

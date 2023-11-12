@@ -7,7 +7,7 @@ import { User } from '../User';
 import { BehaviorSubject } from 'rxjs';
 import { FavoritePets } from '../FavoritePets';
 import { FavoritePetsService } from '../favorite-pets.service';
-
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-browse-pets',
   templateUrl: './browse-pets.component.html',
@@ -15,6 +15,8 @@ import { FavoritePetsService } from '../favorite-pets.service';
 })
 export class BrowsePetsComponent implements OnInit{
   pets: Pet[] = [];
+
+  favoritesLogo = faHeart;
 
   constructor(
     private petService: PetService,
@@ -38,7 +40,7 @@ export class BrowsePetsComponent implements OnInit{
     })
     
   }
-  
+
   functionAddPet(pet: Pet): void{
     this.favoritePetsService.addPetToFavoritePets(this.userName,pet).subscribe(user =>{
       console.log(user);

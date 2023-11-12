@@ -15,6 +15,7 @@ export class NavbarComponent {
     private router:Router,
     private currentUser:CurrentUserService
     ){}
+    
   ngOnInit(): void {
     this.currentUser.getCurrentUser().subscribe(user =>{
       if (user) {

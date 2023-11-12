@@ -1,5 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
+import java.util.HashMap;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -9,11 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Need {
 
-    static final String STRING_FORMAT = "Need [id=%d,name =%s, quantity = %d, description = %s, cost = %d, type = %s]";
+    static final String STRING_FORMAT = "Need [id=%d,name =%s, quantity = %d, surplus = %d, description = %s, cost = %d, type = %s]";
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("quantity") private int quantity;
+    @JsonProperty("surplus") private int surplus;
     @JsonProperty("description") private String description;
     @JsonProperty("cost") private int cost;
 
@@ -29,10 +32,11 @@ public class Need {
      * @param cost The cost of the need
      * @param type The type of the need
      */
-    public Need(@JsonProperty("id")int id , @JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("description") String description, @JsonProperty("cost") int cost, @JsonProperty("type") String type ){
+    public Need(@JsonProperty("id")int id , @JsonProperty("name") String name, @JsonProperty("quantity") int quantity, @JsonProperty("surplus") int surplus, @JsonProperty("description") String description, @JsonProperty("cost") int cost, @JsonProperty("type") String type ){
         this.id=id;
         this.name = name;
         this.quantity = quantity;
+        this.surplus = this.surplus = (surplus != 0) ? surplus : 0;
         this.description = description;
         this.cost = cost;
         this.type = type;
@@ -78,6 +82,18 @@ public class Need {
         if (quantity >= 0) {
             this.quantity = quantity;
         }
+    }
+
+    public int getSurplus() {
+        return surplus;
+    }
+
+    /**
+     * Sets the quantity of the need if > or = 0; necessary for Java object deserialization
+     * @param quantity The quantity of the need
+     */
+    public void setSurplus(int surplus) {
+        this.surplus = surplus;
     }
 
     /**
@@ -139,7 +155,7 @@ public class Need {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name,quantity,description,cost,type);
+        return String.format(STRING_FORMAT,id,name,quantity,surplus,description,cost,type);
     }
 
 }

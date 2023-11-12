@@ -76,6 +76,8 @@ public interface CupboardDAO {
      */
     Need updateNeed (Need need) throws IOException;
 
+    Need helperSurplusUpdateNeed (int id,int donation) throws IOException;
+
     /**
      * Retrieves entire Cupboard of needs
      * 

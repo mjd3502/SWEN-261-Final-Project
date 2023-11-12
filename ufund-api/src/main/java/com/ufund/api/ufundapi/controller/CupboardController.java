@@ -235,10 +235,29 @@ public class CupboardController {
              return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+
+
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/helperDonation/{id}/donation/{donation}")
+    public ResponseEntity<Need> helperDonation(@PathVariable("id")int id,@PathVariable("donation")int donation ){
+
+        try {
+            Need need = cupboardDao.helperSurplusUpdateNeed(id, donation);
+            if (need != null){
+                return new ResponseEntity<Need>(need,HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

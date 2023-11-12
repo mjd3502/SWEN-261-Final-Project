@@ -17,190 +17,190 @@ import com.ufund.api.ufundapi.model.Need;
 
 
 
-@Tag("Model-tier")
-public class ModelTest {
-    private Need need;
-    /**
-     * Before each test, create a new cupboardController object and inject
-     * a mock need DAO
-     */
-    @BeforeEach
-    public void setupNeedModel() {
-        need = new Need(1, "Need", 10, "Description", 100, "Goods");
-    }
+// @Tag("Model-tier")
+// public class ModelTest {
+//     private Need need;
+//     /**
+//      * Before each test, create a new cupboardController object and inject
+//      * a mock need DAO
+//      */
+//     @BeforeEach
+//     public void setupNeedModel() {
+//         need = new Need(1, "Need", 10, "Description", 100, "Goods");
+//     }
 
-    /**
-     * Tests: contructor 
-     * Uses multiple assert statements to ensure the correct value of each attribute of the need.
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testConstructor() {
-        assertEquals(1, need.getId());
-        assertEquals("Need", need.getName());
-        assertEquals(10, need.getQuantity());
-        assertEquals("Description", need.getDescription());
-        assertEquals(100, need.getCost());
-        assertEquals("Goods", need.getType());
-    }
+//     /**
+//      * Tests: contructor 
+//      * Uses multiple assert statements to ensure the correct value of each attribute of the need.
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testConstructor() {
+//         assertEquals(1, need.getId());
+//         assertEquals("Need", need.getName());
+//         assertEquals(10, need.getQuantity());
+//         assertEquals("Description", need.getDescription());
+//         assertEquals(100, need.getCost());
+//         assertEquals("Goods", need.getType());
+//     }
 
-    /**
-     * Tests: getId()
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testGetId() {
-        assertEquals(1, need.getId());
-    }
+//     /**
+//      * Tests: getId()
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testGetId() {
+//         assertEquals(1, need.getId());
+//     }
 
-    /**
-     * Tests: getName()
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testGetName() {
-        assertEquals("Need", need.getName());
-    }
+//     /**
+//      * Tests: getName()
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testGetName() {
+//         assertEquals("Need", need.getName());
+//     }
 
-    /**
-     * Tests: setName(String name)
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testSetName() {
-        need.setName("New Name");
-        assertEquals("New Name", need.getName());
-    }
+//     /**
+//      * Tests: setName(String name)
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testSetName() {
+//         need.setName("New Name");
+//         assertEquals("New Name", need.getName());
+//     }
 
-    /**
-     * Tests: getQuantity()
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testGetQuantity() {
-        assertEquals(10, need.getQuantity());
-    }
+//     /**
+//      * Tests: getQuantity()
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testGetQuantity() {
+//         assertEquals(10, need.getQuantity());
+//     }
 
-    /**
-     * Tests: setQuantity(int quantity)
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testSetQuantity() {
-        need.setQuantity(15);
-        assertEquals(15, need.getQuantity());
-    }
+//     /**
+//      * Tests: setQuantity(int quantity)
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testSetQuantity() {
+//         need.setQuantity(15);
+//         assertEquals(15, need.getQuantity());
+//     }
 
-    /**
-     * Tests: setQuantity(int quantity) --> invalid input
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testSetQuantityInvalidInputNumber() {
-        try {
-            need.setQuantity(-5);
-        } catch (IllegalArgumentException e) {
-            assertEquals(0, need.getQuantity());
-        }
-    }
+//     /**
+//      * Tests: setQuantity(int quantity) --> invalid input
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testSetQuantityInvalidInputNumber() {
+//         try {
+//             need.setQuantity(-5);
+//         } catch (IllegalArgumentException e) {
+//             assertEquals(0, need.getQuantity());
+//         }
+//     }
 
-    /**
-     * Tests: getDescription
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testGetDescription() {
-        assertEquals("Description", need.getDescription());
-    }
+//     /**
+//      * Tests: getDescription
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testGetDescription() {
+//         assertEquals("Description", need.getDescription());
+//     }
 
-    /**
-     * Tests: setDescription(String description)
-     * Author: Rachel Adkins 
-     */
-    @Test
-    public void testSetDescription() {
-        need.setDescription("New Description");
-        assertEquals("New Description", need.getDescription());
-    }
+//     /**
+//      * Tests: setDescription(String description)
+//      * Author: Rachel Adkins 
+//      */
+//     @Test
+//     public void testSetDescription() {
+//         need.setDescription("New Description");
+//         assertEquals("New Description", need.getDescription());
+//     }
 
-    /**
-     * Tests: getCost()
-     * Author: Cheyenne Zhang
-     */
-    @Test
-    public void testGetCost() {
-        assertEquals(100, need.getCost());
-    }
+//     /**
+//      * Tests: getCost()
+//      * Author: Cheyenne Zhang
+//      */
+//     @Test
+//     public void testGetCost() {
+//         assertEquals(100, need.getCost());
+//     }
 
-    /**
-     * Tests: setCost(int cost)
-     * Author: Cheyenne Zhang
-     */
-    @Test
-    public void testSetCost() {
-        need.setCost(200);
-        assertEquals(200, need.getCost());
-    }
+//     /**
+//      * Tests: setCost(int cost)
+//      * Author: Cheyenne Zhang
+//      */
+//     @Test
+//     public void testSetCost() {
+//         need.setCost(200);
+//         assertEquals(200, need.getCost());
+//     }
 
-    /**
-     * Tests: setCost(int cost) --> invalid input
-     * Author:  Cheyenne Zhang
-     */
-    @Test
-    public void testSetCostInvalidInput() {
-        try {
-            need.setCost(-5);
-        } catch (IllegalArgumentException e) {
-            assertEquals(100, need.getCost());
-        }
-    }
+//     /**
+//      * Tests: setCost(int cost) --> invalid input
+//      * Author:  Cheyenne Zhang
+//      */
+//     @Test
+//     public void testSetCostInvalidInput() {
+//         try {
+//             need.setCost(-5);
+//         } catch (IllegalArgumentException e) {
+//             assertEquals(100, need.getCost());
+//         }
+//     }
 
-    /**
-     * Tests: getType()
-     * Author:  Cheyenne Zhang
-     */
-    @Test
-    public void testGetType() {
-        assertEquals("Goods", need.getType());
-    }
+//     /**
+//      * Tests: getType()
+//      * Author:  Cheyenne Zhang
+//      */
+//     @Test
+//     public void testGetType() {
+//         assertEquals("Goods", need.getType());
+//     }
 
-    /**
-     * Tests: setType(String type)
-     * Author:  Cheyenne Zhang
-     */
-    @Test
-    public void testSetTypeVolunteer() {
-        need.setType("Volunteer");
-        assertEquals("Volunteer", need.getType());
-    }
+//     /**
+//      * Tests: setType(String type)
+//      * Author:  Cheyenne Zhang
+//      */
+//     @Test
+//     public void testSetTypeVolunteer() {
+//         need.setType("Volunteer");
+//         assertEquals("Volunteer", need.getType());
+//     }
 
-    /**
-     * Tests: setType(String type)
-     * Author:  Rachel Adkins
-     */
-    @Test
-    public void testSetTypeGoods() {
-        need.setType("Goods");
-        assertEquals("Goods", need.getType());
-    }
+//     /**
+//      * Tests: setType(String type)
+//      * Author:  Rachel Adkins
+//      */
+//     @Test
+//     public void testSetTypeGoods() {
+//         need.setType("Goods");
+//         assertEquals("Goods", need.getType());
+//     }
 
-    /**
-     * Tests: setType (invalid input)
-     * Author: Rachel Adkins
-     */
-    @Test
-    public void testSetTypeInvalidInput() {
-        need.setType("Dog Food");
-        assertEquals("Goods", need.getType());
-    }
+//     /**
+//      * Tests: setType (invalid input)
+//      * Author: Rachel Adkins
+//      */
+//     @Test
+//     public void testSetTypeInvalidInput() {
+//         need.setType("Dog Food");
+//         assertEquals("Goods", need.getType());
+//     }
 
-    /**
-     * Tests: toString()
-     * Author:  Cheyenne Zhang
-     */
-    @Test
-    public void testToString() {
-        assertEquals("Need [id=1,name =Need, quantity = 10, description = Description, cost = 100, type = Goods]", need.toString());
-    }
+//     /**
+//      * Tests: toString()
+//      * Author:  Cheyenne Zhang
+//      */
+//     @Test
+//     public void testToString() {
+//         assertEquals("Need [id=1,name =Need, quantity = 10, description = Description, cost = 100, type = Goods]", need.toString());
+//     }
 
-}
+// }

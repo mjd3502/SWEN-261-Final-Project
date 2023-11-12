@@ -147,13 +147,11 @@ public class CupboardFileDAO implements CupboardDAO{
     @Override
     public Need createNeed(Need need) throws IOException {
         synchronized(cupboard){
-            Need newNeed = new Need(nextId(), need.getName(), need.getQuantity(), need.getDescription(), need.getCost(), need.getType());
+            Need newNeed = new Need(nextId(), need.getName(), need.getQuantity(),need.getSurplus(), need.getDescription(), need.getCost(), need.getType());
             cupboard.put(newNeed.getId(),newNeed);
             save(); // may throw an IOException
             return newNeed;
-        }
-
-
+        }        
     }
 
     /**
@@ -214,12 +212,65 @@ public class CupboardFileDAO implements CupboardDAO{
     @Override
     public Need updateNeed(Need need) throws IOException {
         synchronized(cupboard) {
-            if (cupboard.containsKey(need.getId()) == false)
-                return null;  // need does not exist
+            if (!cupboard.containsKey(need.getId())){
+                return null;
+            }
+            int quantityNeedCupboard = cupboard.get(need.getId()).getQuantity();
+            int updatedNeedQuantity = need.getQuantity();
+            int surplusNeedCupboard = cupboard.get(need.getId()).getSurplus();
+
+            if(surplusNeedCupboard < updatedNeedQuantity){
+                if(quantityNeedCupboard == 0 && updatedNeedQuantity > 0 && surplusNeedCupboard > 0){
+                    updatedNeedQuantity = updatedNeedQuantity - surplusNeedCupboard;
+                    surplusNeedCupboard = 0;
+                }
+                updatedNeedQuantity = updatedNeedQuantity - surplusNeedCupboard;
+                surplusNeedCupboard = 0;
+            }else if(surplusNeedCupboard > updatedNeedQuantity){
+                surplusNeedCupboard = Math.abs(updatedNeedQuantity - surplusNeedCupboard);
+            }else{
+                updatedNeedQuantity =0;
+                surplusNeedCupboard =0;
+            }
+
+            need.setQuantity(updatedNeedQuantity);
+            need.setSurplus(surplusNeedCupboard);
+            
+            
             cupboard.put(need.getId(),need);
             save(); // may throw an IOException
             return need;
         }
+    }
+
+    @Override
+    public Need helperSurplusUpdateNeed(int id,int donation) throws IOException {
+       synchronized(cupboard) {
+        Need cupboardNeed = cupboard.get(id);
+        int surplus = cupboardNeed.getSurplus();
+        int quantity = cupboardNeed.getQuantity();
+
+        if (!cupboard.containsKey(id)){
+                return null;
+        }
+       
+        if(surplus > 0 && donation > quantity){
+            surplus = surplus + donation;
+        }else{
+            if(donation < quantity){
+                quantity = quantity - donation;
+            }else if(donation > quantity){
+                surplus =  Math.abs(donation-quantity);
+                quantity = 0;
+            }
+        }
+        
+       cupboardNeed.setQuantity(quantity);
+       cupboardNeed.setSurplus(surplus); 
+       cupboard.put(id,cupboardNeed);
+            save(); // may throw an IOException
+        return cupboardNeed;
+    }
     }
 
     /**
@@ -231,4 +282,6 @@ public class CupboardFileDAO implements CupboardDAO{
         return  Arrays.asList(getcupboardArray());
        }
     }
+
+    
 }

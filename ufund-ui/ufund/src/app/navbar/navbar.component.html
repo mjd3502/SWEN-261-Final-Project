@@ -6,12 +6,18 @@
           Helping animals born with birth defects since 2012.</div>
       </div>
       <app-search-bar></app-search-bar>
-      <!-- <div>
-        Logged in as: {{username}}
-      </div> -->
       <div routerLink="/helperDashboard">
         Home 
       </div>
+      <div routerLink="/helper-pet-page">
+        Adopt a Dog
+      </div>
+      <div class="favorite-pets">
+        <span class="favpets" (click)="favoritesClicked()">
+          <fa-icon [icon]="favoritesLogo"></fa-icon>
+          <h6>Favorites</h6>
+        </span>
+        </div>
       <div class="basket">
       <span class="fa" (click)="iconClicked()">
         <fa-icon [icon]="shoppingBasket"></fa-icon>
@@ -26,31 +32,3 @@
       </div>
     </nav>
 </div>
-
-<!-- <div class="navbar">
-    <nav class="navbar-content">
-      <h2>U Fund Website</h2>
-      <app-search-bar></app-search-bar>
-      <ol>
-        <li class="home"  routerLink="/helperDashboard" >Home</li>
-        <li class= "fa" routerLink="/checkout" >
-            <fa-icon [icon]="shoppingBasket"></fa-icon>
-        </li>
-        <li (click)="logOut()"  class= "fa" routerLink="/checkout" >
-            <fa-icon [icon]="logOutLogo"></fa-icon>
-        </li>
-      </ol>
-    </nav>
-</div>     -->
-      <!-- <span class="fa" (click)="iconClicked()">
-        <fa-icon [icon]="shoppingBasket"></fa-icon>
-        <h6>Funding Basket</h6>
-      </span>
-      <span class="fa" (click)="logOut()">
-        <fa-icon [icon]="logOutLogo"></fa-icon>
-        <h6>Log out</h6>
-      </span>
-      <div>
-        Username: {{username}}
-      </div> -->
-

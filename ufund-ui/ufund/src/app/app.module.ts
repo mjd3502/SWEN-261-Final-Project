@@ -26,6 +26,7 @@ import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.compon
 import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
 import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.component';
 import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
+import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-page.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
     HelperPetPageComponent,
     AdminPetPageComponent,
     AdminBrowsePetsComponent,
-    FavoritePetsComponent
+    FavoritePetsComponent,
+    FavoritePetsPageComponent
   ],
   imports: [
     BrowserModule,

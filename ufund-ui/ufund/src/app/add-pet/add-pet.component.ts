@@ -18,7 +18,7 @@ export class AddPetComponent {
   onSubmit(){
     if(this.pet){
       this.petService.createPet(this.pet).subscribe(response =>{
-        this.router.navigate(['/adminDashboard'])
+        this.router.navigate(['/adminPetPage'])
         console.log(response);
       })
     }

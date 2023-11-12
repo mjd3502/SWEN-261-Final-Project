@@ -17,6 +17,7 @@ import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.compon
 import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
 import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.component';
 import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
+import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-page.component';
 
 const routes: Routes = [
   {path:'checkout',component:CheckoutComponent},
@@ -30,13 +31,14 @@ const routes: Routes = [
   {path: 'detail/:id', component: NeedsDetailComponent },
   {path: 'browse-needs', component: BrowseNeedsComponent},
   {path: 'browse-pets', component: BrowsePetsComponent},
-  {path: 'pet-detail', component: PetDetailComponent},
-  {path: 'add-pet', component: AddPetComponent},
+  {path: 'pet-detail/:id', component: PetDetailComponent},
+  {path: 'admin-create-pet', component: AddPetComponent},
   {path:'updatePet/:id',component:UpdatePetComponent},
   {path:'helperPetPage',component:HelperPetPageComponent},
   {path:'adminPetPage',component:AdminPetPageComponent},
   {path: 'admin-browse-pets', component: AdminBrowsePetsComponent},
-  {path: 'favorite-pets', component: FavoritePetsComponent}
+  {path: 'favorite-pets', component: FavoritePetsComponent},
+  {path: 'favorite-pets-page', component: FavoritePetsPageComponent}
 ];
 
 @NgModule({

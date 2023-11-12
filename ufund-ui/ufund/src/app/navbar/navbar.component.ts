@@ -35,7 +35,7 @@ export class NavbarComponent {
   }
 
   favoritesClicked(){
-    this.router.navigate(["/favorite-pets"])
+    this.router.navigate(["/favorite-pets-page"])
     console.log("favorites clicked")
   }
 

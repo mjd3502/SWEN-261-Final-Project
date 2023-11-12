@@ -1,0 +1,21 @@
+<div id = "container">
+    <h1>Favorite Pets</h1>
+
+    <ul>
+        <!-- <li *ngFor="let pet of favorites" id = "item">
+            <a routerLink="/detail/{{pet.id}}">
+                <b>{{pet.name}}</b>
+            </a><br>
+            <div class="description">
+                <p>
+                    <b><u>Description: </u></b>{{pet.description}}<br>
+                </p>
+            </div>
+        </li> -->
+        <li *ngFor="let pet of favorites">
+            <span>{{pet.name}} </span>
+            <button (click)="deletePet(pet.id)">Remove</button>
+        </li>
+    </ul>
+</div>
+    

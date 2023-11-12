@@ -1,11 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Pet } from '../Pet';
 import { PetService } from '../pet.service';
-import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
-import { User } from '../User';
-import { BehaviorSubject } from 'rxjs';
-import { FavoritePets } from '../FavoritePets';
 import { FavoritePetsService } from '../favorite-pets.service';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 @Component({

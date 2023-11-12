@@ -67,7 +67,7 @@ export class PetService {
       
       console.log('im working' + url)
       return this.http.get<Pet[]>(url).pipe(
-        catchError(this.handleError<Pet[]>('searcPet', []))
+        catchError(this.handleError<Pet[]>('searchPet', []))
         );
 
     }

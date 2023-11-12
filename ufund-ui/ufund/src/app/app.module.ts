@@ -18,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-
+import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
+import { PetDetailComponent } from './pet-detail/pet-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AddNeedComponent,
     NavbarComponent,
     AdminNavbarComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    PetDetailComponent,
+    BrowsePetsComponent
   ],
   imports: [
     BrowserModule,

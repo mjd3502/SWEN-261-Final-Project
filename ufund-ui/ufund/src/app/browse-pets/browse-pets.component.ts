@@ -14,7 +14,7 @@ import { FavoritePetsService } from '../favorite-pets.service';
   styleUrls: ['./browse-pets.component.css']
 })
 export class BrowsePetsComponent implements OnInit{
-  pet: Pet[] = [];
+  pets: Pet[] = [];
 
   constructor(
     private petService: PetService,
@@ -25,7 +25,7 @@ export class BrowsePetsComponent implements OnInit{
   userName!:string;
 
   getPets(): void{
-    this.petService.getAllPets().subscribe(pet => this.pet = pet)
+    this.petService.getAllPets().subscribe(pets => this.pets = pets)
     
   }
 

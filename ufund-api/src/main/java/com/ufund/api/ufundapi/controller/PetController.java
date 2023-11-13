@@ -177,7 +177,7 @@ public class PetController {
     }
     
     /**
-     * Responds to the GET request for all pets in the entire Pet
+     * Responds to the GET request for all pets
      * 
      * @return ResponseEntity with array of pet objects (can be empty) and
      * HTTP status of OK

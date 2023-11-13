@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FavoritePets } from '../FavoritePets';
 import { FavoritePetsService } from '../favorite-pets.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorite-pets',
@@ -15,7 +16,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./favorite-pets.component.css']
 })
 export class FavoritePetsComponent implements OnInit{
-  favorites: Pet[] = [];
+  favorites: Map<number,Pet> = new Map<number, Pet>();
   username!:string;
   user!:User;
 
@@ -23,7 +24,8 @@ export class FavoritePetsComponent implements OnInit{
     private petService: PetService,
     private favoritePetsService:FavoritePetsService,
     private currentUser:CurrentUserService,
-    private location:Location
+    private location:Location,
+    private router: Router
   ){}
 
   goBack():void{
@@ -53,7 +55,6 @@ export class FavoritePetsComponent implements OnInit{
   }
 
   deletePet(petId: number): void{
-    this.favorites = this.favorites.filter(pet => pet.id != petId)
     this.favoritePetsService.removePetFromFavoritePets(this.username,petId).subscribe(user =>{
       console.log(user);
     })

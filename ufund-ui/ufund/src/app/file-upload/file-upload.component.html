@@ -1,7 +1,19 @@
-<app-admin-navbar></app-admin-navbar>
 
-<div>
-    <input type = "file" accept=".jpg" (change)="onChange($event)">
-    <button (click)="onUpload()">upload</button>
-    <img src="../../assets/images/pets/Dog.jpg">
-</div>
+
+
+<app-admin-navbar></app-admin-navbar>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+    
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-semibold mb-6 text-center">File Upload Image</h1>
+
+        <div>
+            <input type = "file" accept=".jpg" (change)="onChange($event)">
+            <button (click)="onUpload()" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">
+            Upload File
+            </button>
+            <img src="../../assets/images/pets/Dog.jpg">
+        </div>
+    </div>
+
+</body>

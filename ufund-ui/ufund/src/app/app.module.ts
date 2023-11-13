@@ -27,7 +27,7 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-navbar.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -62,7 +62,8 @@ import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-n
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

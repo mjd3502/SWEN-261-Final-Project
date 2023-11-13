@@ -14,8 +14,6 @@
             </div>
 
             <input (click)="login()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">       
-            <!-- <input (click)="signUpRedirect()" type="submit" value="Sign Up"/> -->
-
             <div *ngIf="isAdminLogin"
             (click)="signUpRedirect()">
                 <p class="text-sm mt-4 text-gray-400 text-center">Don't have an account? Sign Up </p>

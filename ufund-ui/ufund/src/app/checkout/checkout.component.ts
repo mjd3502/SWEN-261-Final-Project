@@ -7,7 +7,7 @@ import { NeedsService } from '../needs.service';
 import { FlagService } from '../flag.service';
 import { map } from 'rxjs';
 import Swal from 'sweetalert2';
-import { TotalAmountService } from '../total-amount.service';
+
 
 @Component({
   selector: 'app-checkout',
@@ -19,7 +19,6 @@ export class CheckoutComponent {
   donationValues: { [key: string]: number } = {};
   username!:string;
   user!:User
-
   totalAmount = 0;
 
 
@@ -28,7 +27,6 @@ export class CheckoutComponent {
     private currentUser:CurrentUserService,
     private donationService: FlagService,
     private needsService:NeedsService,
-    private totalAmountService:TotalAmountService
   ){}
 
   

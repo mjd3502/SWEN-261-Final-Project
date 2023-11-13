@@ -76,6 +76,8 @@ export class LoginComponent{
  
    if(!this.isAdminLogin){
       if(username === "admin"){
+        this.user = new User(username)
+        this.currentUser.setCurrentUser(this.user);
         this.changeRoute('/adminDashboard')
       }else{
         Swal.fire({
@@ -93,11 +95,10 @@ export class LoginComponent{
           this.changeRoute('/helperDashboard');
       } else {
         Swal.fire({
-          title: "Username already taken",
-          text:"Please create a new account",
+          title: "Account doesn't exist",
+          text:"Please create a new account or enter a valid username",
           icon: "error"
         });
-
         this.signUpRedirect();
       }
     }

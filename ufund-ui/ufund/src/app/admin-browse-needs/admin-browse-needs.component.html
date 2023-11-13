@@ -1,55 +1,57 @@
-<!-- <div id="container">
-    <h1>My Cupboard!</h1>
-    
-    <ul>
-        <li *ngFor="let need of needs" > -->
-            <!-- updateNeed/{{need.id}}             The link that should be used-->
-            <!-- <h2><b>{{need.name}}</b></h2>
-            <div class="info">
-                <p>
-                    <b><u>Description:</u></b> {{need.description}}<br>
-
-                    <b><u>Cost:</u></b> {{need.cost}}
-                    <b><u>Quantity: </u></b> {{need.quantity}}
-                    <b><u>Type: </u></b> {{need.type}}
-                </p>
-            </div>
-            <div class = "buttons">
-                <button (click)="deleteNeed(need.id)" id="button" type="button" title ="Delete need">Delete Need</button>
-                <button routerLink="/updateNeed/{{need.id}}">Update Need</button>
-            </div>
-        </li>
-    </ul>
-</div> -->
-    
-
-<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
-
-    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-        <h1 class="text-2xl font-semibold mb-6 text-center">My Cupboard!</h1>
-        
-        <ul>
-            <li *ngFor="let need of needs" class="mb-4">
-                <h2 class="text-lg font-semibold mb-2"><b>{{need.name}}</b></h2>
-                <div class="info">
-                    <div *ngIf="need.quantity==0">
-                        <h3>Need Quanity has been met</h3>
-                    </div>
-                    <p>
-                        <b><u>Description:</u></b> {{need.description}}<br>
-                        <b><u>Cost:</u></b> {{need.cost}}
-                        <b><u>Quantity: </u></b> {{need.quantity}}
-                        <b><u>Surplus: </u></b> {{need.surplus}}
-                        <b><u>Type: </u></b> {{need.type}}
-                    </p>
-                </div>
-                <div class="buttons mt-2">
-                    <button (click)="deleteNeed(need.id)" class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-400">Delete Need</button>
-                    <a routerLink="/updateNeed/{{need.id}}" class="ml-2 bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-400">Update Need</a>
-                </div>
-            </li>
-        </ul>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen">
+    <div class="flex items-center justify-between w-full py-7 px-10">
+      <div>
+        <h1 class="text-2xl font-semibold leading-relaxed text-white">My Cupboard</h1>
+        <p class="text-sm font-medium text-gray-500">
+          Create your needs and upload here
+        </p>
+      </div>
+      <button routerLink="/admin-create-need" class="py-2.5 px-6 text-white bg-indigo-700 rounded-xl">
+        <span class="text-sm font-semibold">Create Need</span>
+      </button>
     </div>
-
+    <main class="flex-1">
+        <table class="text-white w-full mx-auto mt-28">
+            <thead>
+                <tr class="text-lg font-medium text-white border-b border-gray-200">
+                    <td class="py-4 px-4 text-center">Need Name</td>
+                    <td class="py-4 px-4 text-center">Cost</td>
+                    <td class="py-4 px-4 text-center">Description</td>
+                    <td class="py-4 px-4 text-center">Quantity</td>
+                    <td class="py-4 px-4 text-center">Surplus</td>
+                    <td class="py-4 px-4 text-center">Status</td>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let need of needs | paginate:{itemsPerPage:5,currentPage:p};" id = "item"  class="hover:bg-gray-600 transition-colors">
+                <td class="flex text-center gap-x-4 items-center py-4 pl-10">
+                    <div>
+                        <div *ngIf="need.quantity==0">
+                            <h3>Need Goal has been met</h3>
+                        </div>
+                        <a routerLink="/detail/{{need.id}}">
+                            <b class="text-lg font-semibold text-white ">{{need.name}}</b>
+                        </a>
+                        <br>
+                        <div class="font-medium text-gray-400"> {{need.type}}</div>
+                    </div>
+                </td>
+                <td  class="text-sm text-center">
+                    {{need.type === 'goods' ? '$' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}
+                </td>
+                <td class="text-sm text-center">{{need.description}}</td>
+                <td class="text-sm text-center">{{need.quantity}}</td>
+                <td class="text-sm text-center">{{need.surplus}}</td>
+                <td class="text-sm text-center">
+                    <div class="buttons mt-2">
+                        <button (click)="deleteNeed(need.id)" class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-400">Delete Need</button>
+                        <a routerLink="/updateNeed/{{need.id}}" class="ml-2 bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-400">Update Need</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+    </main>
 </body>
 

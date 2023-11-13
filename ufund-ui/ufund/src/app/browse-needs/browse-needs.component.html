@@ -22,7 +22,7 @@
                 </tr>
             </thead>
         <tbody>
-            <tr *ngFor="let need of needs" id = "item"  class="hover:bg-gray-600 transition-colors">
+            <tr *ngFor="let need of needs | paginate:{itemsPerPage:5,currentPage:p};" id = "item"  class="hover:bg-gray-600 transition-colors">
                 <td class="flex text-center gap-x-4 items-center py-4 pl-10">
                     <div>
                         <div *ngIf="need.quantity==0">
@@ -34,7 +34,15 @@
                         <div class="font-medium text-gray-400"> {{need.type}}</div>
                     </div>
                 </td>
-                <td class="font-medium text-center">${{need.cost}}</td>
+
+                <div *ngIf="need.type === 'goods'">
+                    <td class="font-medium text-center">${{need.cost}}</td>
+                </div>
+                <div *ngIf="need.type === 'volunteer'">
+                    <td class="font-medium text-center"> hours: {{need.cost}}</td>
+                </div>
+
+                
                 <td class="font-medium text-center">{{need.description}}</td>
                 <td class="font-medium text-center">{{need.quantity}}</td>
                 <td class="font-medium text-center">{{need.type}}</td>
@@ -42,9 +50,9 @@
                     
                 <button [disabled]="need.quantity == 0" (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
                 </td>
-
             </tr>
         </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </table>
     </main>
 </div>

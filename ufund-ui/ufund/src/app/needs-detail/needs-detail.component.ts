@@ -10,6 +10,7 @@ import { User } from '../User';
 import { FundingBasketService } from '../funding-basket.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-needs-detail',
   templateUrl: './needs-detail.component.html',
@@ -18,13 +19,14 @@ import Swal from 'sweetalert2';
 export class NeedsDetailComponent implements OnInit {
 
   need!:Need; // Initialize the property to null
+  userDetail = false
 
   constructor(
     private route: ActivatedRoute,
     private needsService: NeedsService,
     private location: Location,
     private fundingBasketService:FundingBasketService,
-    private currentUser:CurrentUserService
+    private currentUser:CurrentUserService,
   ) { 
 
   }
@@ -40,8 +42,13 @@ export class NeedsDetailComponent implements OnInit {
       if (user) {
         this.username = user.getUsername();
       }
+      console.log(user)
     })
-
+    if(this.username === 'admin'){
+      this.userDetail = true;
+    }
+    console.log(this.username)
+    
   }
 
   getNeed(): void {

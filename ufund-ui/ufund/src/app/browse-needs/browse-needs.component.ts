@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 })
 export class BrowseNeedsComponent implements OnInit{
   needs: Need[] = [];
+ p:number = 1;
+
   disableAddNeed:boolean = false;
 
   constructor(
@@ -47,6 +49,7 @@ export class BrowseNeedsComponent implements OnInit{
     })  
     
   }
+
  
   functionAddNeed(need: Need): void{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{

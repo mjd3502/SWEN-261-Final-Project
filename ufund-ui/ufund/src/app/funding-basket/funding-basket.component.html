@@ -9,7 +9,9 @@
                 <div class="space-y-4">
                     <div class="grid grid-rows-2 gap-20">
                         <div  *ngFor="let need of basket | keyvalue">
-                            <span>{{need.value.name}}  </span>       
+                            <a routerLink="/detail/{{need.value.id}}">
+                                <span>{{need.value.name}}  </span>  
+                            </a>
                             <div class="">
                                 Quanity needed:{{need.value.quantity}} - Cost: ${{need.value.cost}}  
                             </div>
@@ -45,6 +47,7 @@
                 <div class="flex justify-between">
                     <div>
                         <div  *ngFor="let need of basket | keyvalue">
+
                             <h5 class="font-medium">Name: {{need.value.name}}</h5>
                             <p class="text-sm"> Quanity: {{donationValues[need.key]}}</p>
                             <p >

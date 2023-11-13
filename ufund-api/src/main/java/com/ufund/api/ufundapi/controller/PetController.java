@@ -19,7 +19,7 @@ import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.persistence.PetDAO;
 
 /**
- * Handles REST API requests for the Pet
+ * Handles REST API requests for the Pets
  * 
  * @author Garrett Geyer, Cheyenne Zhang, Carla Lopez, Rachel Atkins,  Michael Dibiase
  */

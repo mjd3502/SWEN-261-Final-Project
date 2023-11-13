@@ -1,7 +1,9 @@
 package com.ufund.api.ufundapi.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +13,7 @@ public class FavoritePets {
 
  
     @JsonProperty("username") private String username;
-    @JsonProperty("favoritePets") private List<Pet> favoritePets;
+    @JsonProperty("favoritePets") private Map<Integer,Pet> favoritePets;
     /**
      * class to track a list of favorite pets for a user
      * @author Garrett Geyer, Carla Lopez, Cheyyene, Rachel, Micheal
@@ -19,9 +21,9 @@ public class FavoritePets {
      * @param favoritePets favorite pets for user 
      */
 
-    public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") List<Pet> favoritePets){
+    public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") Map<Integer,Pet> favoritePets){
         this.username = username;
-        this.favoritePets = this.favoritePets = (favoritePets != null) ? favoritePets : new ArrayList<>();
+        this.favoritePets = this.favoritePets = (favoritePets != null) ? favoritePets : new HashMap<>();
     }
 
     
@@ -36,11 +38,11 @@ public class FavoritePets {
     /**
      * @return list of favorite pets
      */
-    public List<Pet> getFavoritePets() {
-        return favoritePets;
+    public Map<Integer,Pet> getFavoritePets() {
+        return this.favoritePets;
     }
     public void setFavoritePets(Pet pet) {
-        this.favoritePets.add(pet);
+        this.favoritePets.put(pet.getId(),pet);
     }
 
     @Override

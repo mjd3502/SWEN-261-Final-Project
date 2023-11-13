@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.persistence;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import com.ufund.api.ufundapi.model.FavoritePets;
 import com.ufund.api.ufundapi.model.Pet;
@@ -42,7 +43,7 @@ public interface FavoritePetsDAO {
      * @return lit of pets user has favorited
      * @throws IOException if issue in storage
      */
-    List<Pet> getFavoritePets(String username) throws IOException;
+    Map<Integer,Pet> getFavoritePets(String username) throws IOException;
 
 
     

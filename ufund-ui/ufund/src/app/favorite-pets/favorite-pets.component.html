@@ -12,9 +12,9 @@
                 </p>
             </div>
         </li> -->
-        <li *ngFor="let pet of favorites">
-            <span>{{pet.name}} </span>
-            <button (click)="deletePet(pet.id)">Remove</button>
+        <li *ngFor="let pet of favorites | keyvalue">
+            <span>{{pet.value.name}} </span>
+            <button (click)="deletePet(pet.value.id)">Remove</button>
         </li>
     </ul>
 </div>

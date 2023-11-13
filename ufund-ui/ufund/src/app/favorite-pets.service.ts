@@ -28,11 +28,11 @@ export class FavoritePetsService {
   }
 
 
-  getFavoritePets(name:string):Observable<Pet[]>{
+  getFavoritePets(name:string):Observable<Map<number,Pet>>{
     const url = `${this.favoritePetsURL}/${name}`
-    return this.http.get<Pet[]>(url,this.httpOptions)
+    return this.http.get<Map<number,Pet>>(url,this.httpOptions)
     .pipe(
-      catchError(this.handleError<Pet[]>('favoritePets'))
+      catchError(this.handleError<Map<number,Pet>>('favoritePets'))
     );
   }
 

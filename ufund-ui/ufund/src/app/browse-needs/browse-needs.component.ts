@@ -24,7 +24,6 @@ export class BrowseNeedsComponent implements OnInit{
     private needsService: NeedsService,
     private fundingBasketService:FundingBasketService,
     private currentUser:CurrentUserService,
-    private router: Router
     ){}
 
   userName!:string;
@@ -55,7 +54,7 @@ export class BrowseNeedsComponent implements OnInit{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
   })
-    if(need.quantity ==0){
+    if(need.quantity == 0){
       Swal.fire({
         title: "This need has been fullfilled",
         icon: "error"

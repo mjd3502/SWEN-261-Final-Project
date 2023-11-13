@@ -1,4 +1,4 @@
-<div class="bg-gray-800 bg-center bg-cover h-screen flex">
+<!-- <div class="bg-gray-800 bg-center bg-cover h-screen flex">
     <main class="flex-1">
 
         <div class="flex flex-col items-center justify-center">
@@ -42,7 +42,7 @@
                     <td class="font-medium text-center"> hours: {{need.cost}}</td>
                 </div>
 
-                
+
                 <td class="font-medium text-center">{{need.description}}</td>
                 <td class="font-medium text-center">{{need.quantity}}</td>
                 <td class="font-medium text-center">{{need.type}}</td>
@@ -55,6 +55,48 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </table>
     </main>
-</div>
+</div> -->
+
+
+
+
+<main class="bg-gray-950 bg-center bg-cover h-screen flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-4xl text-center font-bold text-gray-700 border-b border-gray-200 my-8 mb-8">
+                Support our Furry Friends in Need 
+            </h1>
+        
+            <p class="text-sm font-medium text-center text-gray-700 mb-10">
+                Browse the needs of our organization!
+            </p>
+        </div>
+
+        <div class="flex items-center justify-center flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" *ngFor="let need of needs | paginate:{itemsPerPage:4,currentPage:p};">
+                    <h3 *ngIf="need.quantity==0" class="text-red-500 " >Need Goal has been met</h3>
+                    <img src="../assets/images/needs/{{need.id}}.jpg" alt="{{need.name}} Image" class="p-8 rounded-t-lg"> 
+        
+                    <div class="px-5 pb-5">
+        
+                        <a routerLink="/detail/{{need.id}}">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{need.name}}</h5>
+                        </a>
+                        <div class="flex items-center mt-2.5 mb-5">
+                            <div class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">{{need.type}}</div>
+                        </div>
+        
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white">
+                            {{need.type === 'goods' ? '$' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}
+                            </span>
+                            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  [disabled]="need.quantity == 0" (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
+                        </div>
+                    </div>
+                </div>
+                <pagination-controls class="text-white text-center rounded-lg" (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+</main>
 
 

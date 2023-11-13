@@ -1,6 +1,7 @@
 <body class="bg-gray-900 h-screen overflow-y-hidden">
-    <app-navbar></app-navbar>
-    <div class="flex flex-col items-center justify-center h-screen">
+    <app-admin-navbar *ngIf="this.userDetail"></app-admin-navbar>
+    <app-navbar *ngIf="!this.userDetail"></app-navbar>
+    <div class="flex flex-col items-center justify-center h-screen" >
         <span class="text-white text-7xl mb-8">Need</span>
         <div class="bg-gray-700 p-16 rounded-lg shadow-lg w-2/3 h-2/3 flex">
             <div class="flex flex-col gap-4 p-24">
@@ -12,7 +13,8 @@
                 <p class="text-white text-lg">
                     {{need.description}}
                 </p>
-                <h6 class="text-3xl font-semibold">Cost: ${{need.cost}}</h6>
+
+                <h6 class="text-3xl font-semibold"> {{need.type === 'goods' ? '$' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}</h6>
                 <div class="flex flex-row items-center gap-12 text-white">
                     <h6 class="text-xl">Quantity Needed: {{need.quantity}}</h6>
 

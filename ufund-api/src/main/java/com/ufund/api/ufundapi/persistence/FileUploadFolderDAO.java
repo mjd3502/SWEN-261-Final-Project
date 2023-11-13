@@ -78,6 +78,20 @@ public class FileUploadFolderDAO implements FileUploadDAO {
             System.out.println("Error :(");
             return false;
         }
+    }
+
+    @Override
+    public boolean deleteImage(String location, String id){
+
+        Path folderpath = Path.of("../ufund-ui/ufund/src/assets/images/"+location +"/" + (id)+".jpg");
+        System.out.println(folderpath);
         
+        try {
+            Files.delete(folderpath);
+            return true;
+
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

@@ -29,8 +29,7 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-       private boolean validateHelperLogin(String value) {
-       
+    public boolean validateHelperLogin(String value) {
         return value.equalsIgnoreCase("admin");
     }
     

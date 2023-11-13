@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Pet {
 
     static final String STRING_FORMAT = "Pet [id=%d,name =%s, description = %s, available = %b]";
-    static int nextId=0;
+
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("description") private String description;
@@ -25,8 +25,8 @@ public class Pet {
      * @param description The description of the pet
      * @param available is the pet available to adobt
      */
-    public Pet(/*@JsonProperty("id")int id ,*/ @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("available") boolean available ){
-        this.id=nextId++;
+    public Pet(@JsonProperty("id")int id , @JsonProperty("name") String name, @JsonProperty("description") String description, @JsonProperty("available") boolean available ){
+        this.id=id;
         this.name = name;
         this.description = description;
         this.available = available;

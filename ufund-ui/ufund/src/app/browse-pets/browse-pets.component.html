@@ -2,8 +2,7 @@
 <app-navbar></app-navbar>
 
 <div id = "container">
-    <h1>Pets for Adoption</h1>
-    
+    <h1>Pets for Adoption</h1> 
     <ul>
         <li *ngFor="let pet of pets" id = "item">
             <a routerLink="/pet-detail/{{pet.id}}">

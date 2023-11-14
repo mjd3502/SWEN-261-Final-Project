@@ -12,6 +12,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 export class BrowsePetsComponent implements OnInit{
   pets: Pet[] = [];
 
+  p:number = 1
   favoritesLogo = faHeart;
 
   constructor(
@@ -40,6 +41,7 @@ export class BrowsePetsComponent implements OnInit{
   functionAddPet(pet: Pet): void{
     this.favoritePetsService.addPetToFavoritePets(this.userName,pet).subscribe(user =>{
       console.log(user);
+      console.log(pet)
     })
   }
 

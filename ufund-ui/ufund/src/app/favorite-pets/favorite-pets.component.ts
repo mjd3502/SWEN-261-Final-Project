@@ -19,6 +19,7 @@ export class FavoritePetsComponent implements OnInit{
   favorites: Map<number,Pet> = new Map<number, Pet>();
   username!:string;
   user!:User;
+  p:number = 1;
 
   constructor(
     private petService: PetService,

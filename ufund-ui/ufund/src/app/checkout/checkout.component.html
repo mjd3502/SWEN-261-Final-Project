@@ -1,17 +1,33 @@
-<app-navbar></app-navbar>
-<div class="checkout-container">
-<div class="titleBox">
-<h2>Funding Basket</h2>
-</div>
-<div class = "body">
-<!-- <button (click)="goBack()"> Return to Dashboard</button> -->
-    <ul>
-        <li *ngFor="let need of basket">
-            <span>{{need.name}} - Quantity: {{need.quantity}} - Cost: {{need.cost}}</span>
-            <button (click)="addQuantity(need)">+</button>
-            <button (click)="subtractQuantity(need)">-</button>
-            <button (click)="deleteNeed(need.id)">Delete</button>
-        </li>
-    </ul>
-</div>
-</div>
+
+<body class="flex flex-col bg-gray-900 text-white h-screen">
+    <app-navbar></app-navbar>
+
+    <div class="flex-grow flex items-center justify-center">
+
+        <div class="flex space-x-4">
+
+            <div class="bg-gray-800 p-10 rounded-lg shadow-lg w-96">
+                <h1 class="text-2xl font-semibold mb-6 text-center">Payment Information</h1>
+                <form>
+                    <div class="mb-4 inputBox">
+                        <label for="username" class="block text-sm font-medium">Full Name</label>
+                        <input type="text" id="username" formControlName="username"
+                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+                        <label for="address" class="block text-sm font-medium">Address</label>
+                        <input type="text" id="address" formControlName="address"
+                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+                        <label for="creditCard" class="block text-sm font-medium">Credit Card number</label>
+                        <input type="text" id="creditCard" formControlName="creditCard"
+                            class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white">
+                    </div>
+                    <input (click)="checkoutNeeds()" type="submit"
+                        class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminNavbarComponent {
   logOutLogo = faArrowRightFromBracket;
+  username !: String;
 
   constructor(private router:Router){
 
@@ -32,7 +33,7 @@ export class AdminNavbarComponent {
     }).then((result =>{
 
       if(result.isConfirmed){
-        this.redirectToPage('login');
+        this.redirectToPage('home');
         console.log("log out")
       }
     

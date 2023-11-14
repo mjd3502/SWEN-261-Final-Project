@@ -1,34 +1,20 @@
-<div class="navbar">
-    <nav class="navbar-content">
-      <div class="title">
-        <div class="header">The Mia Foundation</div>
-        <div class="subtitle">
-          Helping animals born with birth defects since 2012.</div>
-      </div>
-      <app-search-bar></app-search-bar>
-      <div routerLink="/helperDashboard">
-        Home 
-      </div>
-      <div routerLink="/helperPetPage">
-        Adopt a Dog
-      </div>
-      <div class="favorite-pets">
-        <span class="favpets" (click)="favoritesClicked()">
-          <fa-icon [icon]="favoritesLogo"></fa-icon>
-          <h6>Favorites</h6>
-        </span>
-      </div>
-      <div class="basket">
-      <span class="fa" (click)="iconClicked()">
-        <fa-icon [icon]="shoppingBasket"></fa-icon>
-        <h6>Funding Basket</h6>
-      </span>
-      </div>
-      <div class="logout">
-      <span class="fa" (click)="logOut()">
-        <fa-icon [icon]="logOutLogo"></fa-icon>
-        <h6>Log out</h6>
-      </span>
-      </div>
-    </nav>
-</div>
+
+<nav class= "text-white bg-gray-950 flex items-center ml-8 mr-8 ">
+  <h1 routerLink="/home">Mia Foudation</h1> 
+  <div routerLink="/helperDashboard"  class="list-none inline-block px-6 hover:underline" >Home</div>
+  <ul class="flex-1 text-center">
+    <app-search-bar class=" list-none  inline-block px-6"></app-search-bar>
+   
+      
+  </ul>
+  <div (click)="iconClicked()"   class="block px-4 py-2 text-white hover:bg-gray-200 rounded-2xl">
+  <fa-icon [icon]="shoppingBasket"></fa-icon>
+   Funding Basket
+  
+  </div>
+  <div  (click)="logOut()" class="block px-4 py-2 text-white hover:bg-gray-200 rounded-2xl">
+    <fa-icon [icon]="logOutLogo"></fa-icon>
+    Log out
+  </div>
+  
+</nav>

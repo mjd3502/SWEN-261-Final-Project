@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PutMapping;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.CupboardDAO;
+import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 
 /**
  * Handles REST API requests for the Cupboard
@@ -28,6 +29,7 @@ import com.ufund.api.ufundapi.persistence.CupboardDAO;
 public class CupboardController {
     private static final Logger LOG = Logger.getLogger(CupboardController.class.getName());
     private CupboardDAO cupboardDao;
+    private RemoveNeedsDAO removeNeedsDAO;
 
     /**
      * Create a REST API controller object to handle requests
@@ -36,8 +38,9 @@ public class CupboardController {
      * 
      * This dependency is added using the Spring Framework
      */
-    public CupboardController(CupboardDAO cupboardDAO){
+    public CupboardController(CupboardDAO cupboardDAO, RemoveNeedsDAO removeNeedsDAO){
         this.cupboardDao = cupboardDAO;
+        this.removeNeedsDAO = removeNeedsDAO;
     }
 
     /**
@@ -93,6 +96,11 @@ public class CupboardController {
         return value <= 0;
     }
 
+
+    private boolean validateTypeField(String type){
+        return type.equalsIgnoreCase("Goods") || type.equalsIgnoreCase("Volunteer");
+    }
+
     @PostMapping("")
     public ResponseEntity<Need> createNeed(@RequestBody Need need) {
         LOG.info("POST /cupboard " + need);
@@ -101,11 +109,15 @@ public class CupboardController {
          * Needs will only be created if all fields have a value
          */
         if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         
         if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        if(!validateTypeField(need.getType())){
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         try {
@@ -138,9 +150,10 @@ public class CupboardController {
         LOG.info("DELETE /cupboard/" + id);
 
         try {
+            Need need = cupboardDao.getSingleNeedById(id);
             boolean didit = cupboardDao.deleteNeed(id);
-            if (didit){
-                
+            boolean stored = removeNeedsDAO.storeRemovedNeed(need);
+            if (didit && stored){
                 return new ResponseEntity<Need>(HttpStatus.OK); 
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -218,10 +231,42 @@ public class CupboardController {
     public ResponseEntity<Need> updateNeed(@RequestBody Need need) {
         LOG.info("PUT /need " + need);
 
+        if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
+            LOG.info("wrooooonggg input");
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        
+        if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
+            LOG.info("wrooooonggg input");
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        if(!validateTypeField(need.getType())){
+            LOG.info("wrooooonggg input");
+             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
         try {
             Need checkNeed = cupboardDao.updateNeed(need);
             if (checkNeed != null){
                 return new ResponseEntity<Need>(checkNeed,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/helperDonation/{id}/donation/{donation}")
+    public ResponseEntity<Need> helperDonation(@PathVariable("id")int id,@PathVariable("donation")int donation ){
+    LOG.info("PUT /\"/helperDonation/ ");  
+        try {
+            Need need = cupboardDao.helperSurplusUpdateNeed(id, donation);
+            if (need != null){
+                return new ResponseEntity<Need>(need,HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -260,6 +305,5 @@ public class CupboardController {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
     }
 }

@@ -22,8 +22,9 @@ An online U-Fund system built in Java 17=> and Angular 16.2.3
 
 1. Clone the repository and go to the root directory.
 2. Execute `mvn compile exec:java`
-3. Open in your browser `http://localhost:8080/`
-4.  _add any other steps required or examples of how to use/run_
+3. Cd into the ufund directory and execute: npm install. This will download the necessary angular dependencies to run the site.
+4. Open in your browser `http://localhost:8080/`
+
 
 ## Known bugs and disclaimers
 (It may be the case that your implementation is not perfect.)
@@ -33,6 +34,10 @@ If any shortcomings, make clear what these are and where they are located.
 
 Our team had issues with the curl commands to test our functions from the terminal or command prompt. During development we referred to the slide show and materials found in the SWEN website as well as other outside documentation to try and understand the command. For all team members the curl commands did not work as expected as we had issues with proper syntax in the terminal. To overcome this we decided to use the Postman application, this software allows us to by pass the command line. Postman directly interacts with our api and uses GET, POST etc. and the proper url to show what the system outputs and the codes associated with it. This made testing far easier and better streamlined for the team!
 
+Sprint 2 Bugs
+
+> If the user adds a need to the funding basket twice but then decides to delete only one of those needs, both will be deleted. This occurs because our FundingBasket in the backend is a List of needs and deletes a need by id. Therefore, it will delete all the needs with the same id. This bug will be tackled on Sprint 3
+> If a user logs in with the same username, our website doesn't logged them into their account. It creates a new user and overrides the previous one associated with that username.
 ## How to test it
 
 The Maven build script provides hooks for run unit tests and generate code coverage

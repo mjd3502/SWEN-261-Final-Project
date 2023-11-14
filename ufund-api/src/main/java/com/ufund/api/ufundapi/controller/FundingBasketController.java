@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,36 +68,57 @@ public class FundingBasketController {
     }
 
     @DeleteMapping("/{name}/needId/{needId}")
-    public ResponseEntity<FundingBasket> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
+    public ResponseEntity<Map<Integer,Need>> removeNeedFromBasket(@PathVariable("name")String name, @PathVariable("needId") int needId){
 
         try {
             boolean deleted = fundingBasketDao.removeNeedFromFundingBasket(name, needId);
+            Map<Integer,Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
 
             if(deleted){
-                 LOG.info("deleteeeeeeeeeed");
-                return new ResponseEntity<FundingBasket>(HttpStatus.OK);
+                LOG.info("deleteeeeeeeeeed " );
+                
+                return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.OK);
             }else{
                  LOG.info("nooooooooo");
-                 return new ResponseEntity<FundingBasket>(HttpStatus.NOT_ACCEPTABLE);
+                 return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.NOT_ACCEPTABLE);
             }
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
 
         }
-    }
+    } 
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<Need>> getFundingBasket(@PathVariable("name") String name){
+    public ResponseEntity<Map<Integer,Need>> getFundingBasket(@PathVariable("name") String name){
 
         try {
-            List<Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
-            return new ResponseEntity<List<Need>>(fundingBasket,HttpStatus.OK);
+            Map<Integer,Need> fundingBasket = fundingBasketDao.getFundingBasket(name);
+            return new ResponseEntity<Map<Integer,Need>>(fundingBasket,HttpStatus.OK);
 
         } catch (Exception e) {
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
 
+    @DeleteMapping("/clearFundingBasket/{userName}")
+    public ResponseEntity<Map<Integer,Need>> clearFundingBasket(@PathVariable("userName") String username){
 
+
+        try {
+            
+            boolean clearbasket = fundingBasketDao.clearFundingBasket(username);
+            if(clearbasket){
+                LOG.info("clear basket");
+                 Map<Integer,Need> basket = fundingBasketDao.getFundingBasket(username);
+                return new ResponseEntity<Map<Integer,Need>>(basket,HttpStatus.OK);
+            }else{
+                 LOG.info("nooooooooo");
+                 return new ResponseEntity<Map<Integer,Need>>(HttpStatus.NOT_ACCEPTABLE);
+            }
+        } catch (Exception e) {
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+
+    }
 }

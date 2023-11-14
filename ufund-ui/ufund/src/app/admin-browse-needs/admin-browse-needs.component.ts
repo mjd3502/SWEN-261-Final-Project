@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Need} from '../Need';
 import { NeedsService } from '../needs.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-browse-needs',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AdminBrowseNeedsComponent {
   needs: Need[] = [];
+  p:number = 1;
 
   constructor(private needsService: NeedsService,
     private route:Router
@@ -32,12 +34,11 @@ export class AdminBrowseNeedsComponent {
     this.needsService.deleteNeedbyId(needId).subscribe(user => {
       console.log(user);
     })
+
+    Swal.fire({
+      title: "Need deleted from cupboard",
+      icon: "success"
+    });
   }
-
-
-  // editNeed(id:number):void{
-  //   this.route.navigate(['/updateNeed',id]);
-  //   console.log(id);
-  // }
 
 }

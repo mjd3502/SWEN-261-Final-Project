@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { HelperDashboardComponent } from './helper-dashboard/helper-dashboard.component';
 import { BrowseNeedsComponent } from './browse-needs/browse-needs.component';
 import { NeedsDetailComponent } from './needs-detail/needs-detail.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { FundingBasketComponent } from './funding-basket/funding-basket.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddNeedComponent } from './add-need/add-need.component';
@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+
 import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
@@ -28,6 +29,17 @@ import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.
 import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
 import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-page.component';
 
+
+import { SignupComponent } from './signup/signup.component';
+
+import { CheckoutComponent } from './checkout/checkout.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-navbar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +47,7 @@ import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-pa
     HelperDashboardComponent,
     BrowseNeedsComponent,
     NeedsDetailComponent,
-    CheckoutComponent,
+    FundingBasketComponent,
     SearchBarComponent,
     UpdateNeedComponent,
     AdminDashboardComponent,
@@ -52,7 +64,15 @@ import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-pa
     AdminPetPageComponent,
     AdminBrowsePetsComponent,
     FavoritePetsComponent,
-    FavoritePetsPageComponent
+    FavoritePetsPageComponent,
+    SignupComponent,
+    CheckoutComponent,
+    LandingPageComponent,
+    HowItWorksComponent,
+    AboutComponent,
+    ContactComponent,
+    LandingPageNavbarComponent
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +81,8 @@ import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-pa
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

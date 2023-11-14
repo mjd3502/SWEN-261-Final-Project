@@ -22,6 +22,9 @@ export class NavbarComponent {
         this.username = user.getUsername();
       }
     })
+    if(this.username == null){  
+      this.router.navigate(['/home']);
+    }
     
   }
 
@@ -30,7 +33,7 @@ export class NavbarComponent {
   favoritesLogo = faHeart;
 
   iconClicked(){
-    this.router.navigate(["/checkout"])
+    this.router.navigate(["/funding-basket"])
     console.log("checkbox clicked")
   }
 
@@ -40,7 +43,7 @@ export class NavbarComponent {
   }
 
   redirectToPage(){
-    this.router.navigate(["/login"])
+    this.router.navigate(["/home"])
   
   }
 

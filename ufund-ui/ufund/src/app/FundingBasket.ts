@@ -3,11 +3,11 @@ import { Need } from "./Need";
 export class FundingBasket{
     
     private  userName:string;
-    private fundingBasket:Need[];
+    private fundingBasket:Map<number,Need>;
 
     constructor(){
         this.userName = "";
-        this.fundingBasket = [];
+        this.fundingBasket = new Map<number,Need>();
     }
     
 
@@ -15,13 +15,11 @@ export class FundingBasket{
         return this.userName;
     }
 
-    getFundingBasket():Need[]{
+    getFundingBasket():Map<number,Need>{
         return this.fundingBasket;
     }
 
     setUsername(userName:string){
         this.userName = userName;
     }
-    
-
 }

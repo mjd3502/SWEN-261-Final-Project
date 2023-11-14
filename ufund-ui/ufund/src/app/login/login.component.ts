@@ -22,6 +22,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent{
   user!:User;
   fundingBasket!:FundingBasket;
+  favpets!: FavoritePets;
   exists!:Boolean | undefined;
 
   loginHeader!: string

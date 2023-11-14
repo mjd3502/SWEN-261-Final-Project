@@ -54,10 +54,10 @@ export class SignupComponent {
         this.fundingBasket.setUsername(username);
         this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
         console.log(basket);
+        })
         this.favoriteList.setUsername(username);
         this.favoritePets.createFavoritePets(this.favoriteList).subscribe(favoriteList =>{
           console.log(favoriteList)
-        })
         })
         Swal.fire({
           title: "Account created",

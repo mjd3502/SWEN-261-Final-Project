@@ -149,14 +149,18 @@ This section describes the web interface flow; this is how the user views and in
 > section will follow the same instructions that are given for the View
 > Tier above._
 
-> The model tier of our application contains three main entities:
+> The model tier of our application contains 5 main entities:
 - Need
 - Funding Basket
 - User
+- Pet
+- Favorite Pets
+
 Each on of them has a specific function within the application.
 The Need entity represents a good/volunteer opportunity that admin users can create and modify and that helper users can checkout to support the organization
 Funding Basket entity represent a unique basket that associated to a a particular username.
-User entity represents a helper user that logs in to the application. User are identified by a unique username. 
+User entity represents a helper user that logs in to the application. User are identified by a unique username. Furthermore, the Pet entity models a pet that a user can adpot through our organization. 
+Favorite Pets entity reprensets the wishlist of potential adopted pets for a user.
 The model tier forms the backbone of our application's architecture with the Need, Funding Basket and User entities playing distinct but interconnected roles. 
 
 

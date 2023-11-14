@@ -31,7 +31,9 @@ export class UpdatePetComponent implements OnInit {
   onSubmit(){
     if(this.pet){
       this.petService.updatePet(this.pet).subscribe(response =>{
-        this.router.navigate(['/adminPetPage'])
+        
+        this.router.navigate(['/upload/pet/' + (String)(response.id)])
+        
         console.log(response);
       })
     }

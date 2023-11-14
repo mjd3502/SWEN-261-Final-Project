@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,16 +20,15 @@ public class FundingBasketTest {
     
     @BeforeEach
     public void setUp(){
-        fundingBasket = new FundingBasket("carlitaxmessi",new ArrayList<>());
+        fundingBasket = new FundingBasket("carlitaxmessi",new HashMap<>());
     }
 
     @Test
     public void testConstructor(){
         assertEquals("carlitaxmessi",fundingBasket.getUserName());
-        assertEquals(new ArrayList<>(),fundingBasket.getFundingBasket());
+        assertEquals(new HashMap(),fundingBasket.getFundingBasket());
 
     }
-
 
     @Test
     public void getUsername(){
@@ -38,15 +38,15 @@ public class FundingBasketTest {
 
     @Test
     public void getFundingBasket(){
-        assertEquals(new ArrayList<>(),fundingBasket.getFundingBasket());
+        assertEquals(new HashMap<>(),fundingBasket.getFundingBasket());
     }
 
 
     @Test
     public void setFundingBasket(){
-        Need need = new Need(1, "carla", 10, "hello", 10, "volunteer");
+        Need need = new Need(1, "carla", 10, 1, "hello", 10, "volunteer");
         fundingBasket.setFundingBasket(need);
-        assertTrue(fundingBasket.getFundingBasket().contains(need));
+        assertTrue(fundingBasket.getFundingBasket().containsValue(need));
     }
 
 
@@ -58,10 +58,10 @@ public class FundingBasketTest {
 
     @Test 
     public void FundingBasketwithItems(){
-         Need need = new Need(1, "carla", 10, "hello", 10, "volunteer");
+        Need need = new Need(1, "carla", 10, 1, "hello", 10, "volunteer");
         fundingBasket.setFundingBasket(need);
-        String string ="FundingBasket [userName=carlitaxmessi, fundingBasket=Need [id=1,name =carla, quantity = 10, description = hello, cost = 10, type = volunteer] ]  ";
-         assertEquals(string,fundingBasket.toString());
+        String string ="FundingBasket [userName=carlitaxmessi, fundingBasket=Need [id=1,name =carla, quantity = 10, surplus = 1, description = hello, cost = 10, type = volunteer] ]  ";
+        assertEquals(string,fundingBasket.toString());
     }
 
 }

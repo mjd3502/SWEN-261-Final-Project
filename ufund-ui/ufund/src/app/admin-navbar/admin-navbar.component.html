@@ -1,12 +1,13 @@
-<div class="navbar">
-    <nav class="navbar-content">
-      <div class="title">Mia Foundation</div>
+<div class="navbar bg-gray-950 text-white">
+      <nav class="navbar-content bg-gray-800">
+        <h2 class="title text-4xl font-semibold mb-6 text-center align-middle">Mia Foundation</h2>
 
-      <button routerLink="/adminDashboard"> Home </button>
-      <button routerLink="/admin-create-need"> Add a new need </button>
-      <span class="fa" (click)="logOut()">
-        <fa-icon [icon]="logOutLogo"></fa-icon>
-        <h6>Log out</h6>
-      </span>
-    </nav>
+        <a routerLink="/adminDashboard" class="nav-link">Home</a>
+        <a routerLink="/adminPetPage" class = "nav-link">Pet Page</a>
+        <span class="fa" (click)="logOut()">
+          <fa-icon [icon]="logOutLogo"></fa-icon>
+          <h6>Log out</h6>
+        </span>
+
+      </nav>
 </div>

@@ -51,7 +51,7 @@ public class UserFileDAOTest {
 
 
     @Test 
-    public void test_createNewUser(){
+    public void createNewUser(){
         User user = new User("Carla");
 
         try {
@@ -68,7 +68,7 @@ public class UserFileDAOTest {
 
 
     @Test
-    public void test_getUserName(){
+    public void getUserName(){
         try {
             //gets username from already established list
             String name = userFileDAO.getUserName("Michael");
@@ -81,13 +81,52 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void test_getBADUserName(){
+    public void getBadUserName(){
         try {
             //gets bad username, should give back null value
             String name = userFileDAO.getUserName("THE DESTROYER OF WORLDS");
             
             assertEquals(null,name);
             
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
+    @Test
+    public void getUserByName(){
+        try {
+            //gets username from already established list
+            User user = userFileDAO.getUserByName("Michael");
+            assertEquals("User [userName=Michael ]",user.toString());
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
+    @Test
+    public void getUserByNameNull(){
+        try {
+            //gets username from already established list
+            User user = userFileDAO.getUserByName("not a user");
+            assertEquals(null,user);
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
+    @Test
+    public void doesUserExist(){
+        try {
+            //gets username from already established list
+            Boolean exist = userFileDAO.doesUserExist("Michael");
+            assertEquals(true,exist);
         } catch (IOException e) {
             //test fails if an error is thrown
             assertFalse(true);

@@ -13,6 +13,7 @@ export class NeedsService {
   };
 
   private cupBoardURL ='http://localhost:8080/cupboard'
+
   constructor(
     private http: HttpClient,
     ) 
@@ -47,8 +48,19 @@ export class NeedsService {
 
     deleteNeedbyId(id:number):Observable<Need>{
       const url = `${this.cupBoardURL}/${id}`
+      
+      this.deleteImage(id);
+      
       return this.http.delete<Need>(url,this.httpOptions).pipe(
         catchError(this.handleError<Need>('deleteNeedbyId')))
+    }
+
+    deleteImage(id:number):Observable<Boolean>{
+      const imgUrl = 'http://localhost:8080/imageDelete/needs'
+      const url = `${imgUrl}/${id}`
+
+      return this.http.delete<Boolean>(url,this.httpOptions).pipe(
+        catchError(this.handleError<Boolean>('deleteNeedbyId')))
     }
 
     getEntireNeedsCupboard():Observable<Need[]>{
@@ -60,6 +72,21 @@ export class NeedsService {
 
     updateNeed(need:Need):Observable<any>{
       return this.http.put<Need>(this.cupBoardURL,need,this.httpOptions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            console.error("Enter valid data type",error.message);
+          } else if (error.status > 400 && error.status < 500) {
+            console.error("Enter valid valid input fields", error.message);
+          }
+          return throwError(error);
+        }));
+    }
+
+
+    helperDonation(id:number,donation:number):Observable<any>{
+      const url = `${this.cupBoardURL}/helperDonation/${id}/donation/${donation}`
+      return this.http.put<Need>(url,this.httpOptions)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 400) {

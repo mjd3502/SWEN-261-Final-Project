@@ -11,31 +11,33 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.FundingBasket;
-import com.ufund.api.ufundapi.model.Need;
+import com.ufund.api.ufundapi.model.FavoritePets;
+import com.ufund.api.ufundapi.model.Pet;
 
 
 @Tag("Persistence-tier")
-public class FundingBasketDAOTest {
-    private FundingBasketFileDAO fundingBasket;
+public class FavoritePetsDAOTest {
+    private FavoritePetsFileDAO favoritePets;
 
-    FundingBasket[] baskets;
+    FavoritePets[] baskets;
     ObjectMapper mockObjectMapper;
 
     @BeforeEach
-    public void setUpFundingBasketDAO() throws IOException{
-        ArrayList<Need> needs = new ArrayList<>();
-        needs.add(new Need(1,"Random Need", 10, "lorem ipsum", 10, "goods"));
+    public void setUpFavoritePetsDAO() throws IOException{
+        HashMap<Integer,Pet> pets = new HashMap<Integer, Pet>();
+        pets.put(1,new Pet(1,"Random Pet", "lorem ipsum", true));
         
-        baskets = new FundingBasket[1];
-        baskets[0] = new FundingBasket("William", needs);
+        baskets = new FavoritePets[1];
+        baskets[0] = new FavoritePets("William", pets);
         
 
         mockObjectMapper = mock(ObjectMapper.class);
@@ -43,24 +45,24 @@ public class FundingBasketDAOTest {
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
         when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"),FundingBasket[].class))
+            .readValue(new File("doesnt_matter.txt"),FavoritePets[].class))
                 .thenReturn(baskets);
-        fundingBasket = new FundingBasketFileDAO("doesnt_matter.txt",mockObjectMapper);
+        favoritePets = new FavoritePetsFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
 
     @Test
     public void test_createBasket(){
         //setup
-        List<Need> needs = new ArrayList<>();
-        FundingBasket fb = new FundingBasket("Jessica", needs);
-        FundingBasket result;
+        HashMap<Integer,Pet> pets = new HashMap<Integer, Pet>();
+        FavoritePets fb = new FavoritePets("Jessica", pets);
+        FavoritePets result;
         try {
-            result = fundingBasket.createFundingBasket(fb);
+            result = favoritePets.createFavoritePets(fb);
             
             //assert
-            assertEquals(result.getUserName(), "Jessica");
-            assertEquals(result.toString(),"FundingBasket [userName=Jessica, fundingBasket=No items in the funding basket ]  ");
+            assertEquals(result.getUsername(), "Jessica");
+            assertEquals(result.toString(),"FavoritePets [username=Jessica, favoritePets=No favorite pets ]  ");
         } catch (IOException e) {
             //should not throw an error
             assertFalse(true);
@@ -74,9 +76,9 @@ public class FundingBasketDAOTest {
     public void test_create_Bad_Basket(){
        
         //invoke
-        FundingBasket result = new FundingBasket(null,null);
+        FavoritePets result = new FavoritePets(null,null);
         
-        assertEquals(result.getUserName(), null);
+        assertEquals(result.getUsername(), null);
         
     }
 
@@ -85,10 +87,10 @@ public class FundingBasketDAOTest {
        
         //invoke
         try {
-            List<Need> result = fundingBasket.getFundingBasket("William");
-            Need need = result.get(0);
+            Map<Integer,Pet> result = favoritePets.getFavoritePets("William");
+            Pet pet = result.get(1);
             
-            assertEquals(need.getName(),"Random Need");
+            assertEquals(pet.getName(),"Random Pet");
         
         } catch (IOException e) {
             //test fails if error thrown
@@ -100,9 +102,9 @@ public class FundingBasketDAOTest {
     public void test_get_basket_by_Bad_name(){
         //invoke
         try {
-            List<Need> result = fundingBasket.getFundingBasket("Jackson");
+            Map<Integer,Pet> result = favoritePets.getFavoritePets("Jackson");
            
-            assertEquals(result, null);
+            assertEquals(result, new HashMap());
         
         } catch (IOException e) {
             //test fails if error thrown
@@ -113,15 +115,15 @@ public class FundingBasketDAOTest {
     }
 
     @Test
-    public void test_add_need(){
+    public void test_add_pet(){
         //setup
-        Need need = new Need(2,"Fake need", 10, "lorem ipsum", 10, "goods");
+        Pet pet = new Pet(2,"Fake pet", "lorem ipsum", true);
         
         try {
-            FundingBasket result = fundingBasket.addNeedToFundingBasket("William",need);
-            List<Need> needs = result.getFundingBasket();
+            FavoritePets result = favoritePets.addPetToFavoritePets("William",pet);
+            Map<Integer,Pet> pets = result.getFavoritePets();
 
-            assertEquals(needs.get(1).getName(), "Fake need");
+            assertEquals(pets.get(2).getName(), "Fake pet");
         
         } catch (IOException e) {
             assertFalse(true);
@@ -131,11 +133,11 @@ public class FundingBasketDAOTest {
     @Test
     public void test_delete_from_basket(){
         //setup
-        Need need = new Need(2,"Fake need", 10, "lorem ipsum", 10, "goods");
+        Pet pet = new Pet(2,"Fake pet", "lorem ipsum", true);
         
         try {
-            fundingBasket.addNeedToFundingBasket("William",need);
-            Boolean result = fundingBasket.removeNeedFromFundingBasket("William", 2);
+            favoritePets.addPetToFavoritePets("William",pet);
+            Boolean result = favoritePets.removePetFromFavoritePets("William", 2);
 
             //result should return true
             assertTrue(result);
@@ -148,11 +150,11 @@ public class FundingBasketDAOTest {
     @Test
     public void test_delete_Bad_from_basket(){
         //setup
-        Need need = new Need(2,"Fake need", 10, "lorem ipsum", 10, "goods");
+        Pet pet = new Pet(2,"Fake pet", "lorem ipsum", true);
         
         try {
-            fundingBasket.addNeedToFundingBasket("William",need);
-            Boolean result = fundingBasket.removeNeedFromFundingBasket("William", 3);
+            favoritePets.addPetToFavoritePets("William",pet);
+            Boolean result = favoritePets.removePetFromFavoritePets("William", 3);
 
             //should return false
             assertTrue(!result);

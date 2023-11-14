@@ -10,12 +10,13 @@ geometry: margin=1in
 
 ## Team Information
 * Team name: Sultans of Scrum
-* Team members
-  * Garrett Geyer
-  * Michael DiBiase
-  * Carla Lopez
-  * Rachel Adkins
-  * Cheyenne Zhang
+
+* Team members:
+  * Garrett Geyer     |  GitHub Code Review PR
+  * Michael DiBiase   |  Configuration Coordinator
+  * Carla Lopez       |  Design Coordinator
+  * Rachel Adkins     |  Team Coordinator
+  * Cheyenne Zhang    |  Quality Coordinator
 
 ## Executive Summary
 
@@ -161,7 +162,8 @@ On the other, the 'admin" or " U-fund manager, logs in to an administrative dash
 > section will follow the same instructions that are given for the View
 > Tier above._
 
-> The model tier of our application contains five main entities:
+> The model tier of our application contains 5 main entities:
+
 - Need
 - Funding Basket
 - User
@@ -174,6 +176,7 @@ User entity represents a helper user that logs in to the application. User are i
 The pet represents a pet in the shelter, with all information including adoption status and the ability to inquire about the pet.
 The Favorite list keep track of, for each user, what that user's favorite pets are, which they can add/removve any available pets from this list.
 The model tier forms the backbone of our application's architecture with the Need, Funding Basket, Pet, Favorite Pets, and User entities playing distinct but interconnected roles. 
+
 
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
@@ -190,9 +193,14 @@ High Cohesion is evident in the design, where related responsibilities are group
 
 The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
 
+
+High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
+
+The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
 Information Expert is implemented such that little to none work has to be done after calling a function. That is to say functions are implemented to return usable values, rather than returning something which has to modified or checked against another set of requirements. An example of this is with a function implemented to check if a user is new or not, simple returning a boolean rather than using a previously implemented function to return all users, then checking that for duplicate upon returning.
 
 Open/Closed is the principle of using instantiation and inheritance in the design. This is seen mainly in our DAO implementations, which all have an abstraction form a seperate class in their implementation. Many of our systems contain very individual functionaliy and prevent a significant quantity of instantiation from occuring.
+
 
 By following these OO design principles, the MIA Foundation U Fund website has a maintainable and extensible code, enhancing the overall quality of the project.
 
@@ -233,5 +241,10 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 
 ### Use of Sweet Alert Library
 > The team of developers has chosen to incorporate the SweetAlert JavaScript library to enhance the user experience by offering visually appealing and user-friendly pop-up dialogs for web development. This choice not only elevates the user experience but also improves the presentation of important information and messages to users. 
+
+### Use of Tailwind CSS
+> Our decision to incorporate Tailwind CSS into our development stack was driven bu its effiency and flexibility to create UI components. The framework allowed us to rapidly build our front end without the need for extensive custom styling
+
+> As a team with varying levels of experience using the framework, we found Tailwind's documentations and tutorials as very helpful resources. Following these tutorials enabled us to quickly grasp the fundamentals of Tailwind CSS and leverage its features effectively
 
 

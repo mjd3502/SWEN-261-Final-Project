@@ -1,0 +1,31 @@
+
+<body class="bg-gray-700 bg-center bg-cover h-screen">
+    <div class="text-white container px-28 py-5 relative">
+        
+        <app-landing-page-navbar > </app-landing-page-navbar>
+
+        <div class="text-gray-400 mt-48 max-w-lg">
+            <h1 class="text-6xl font-semibold leading-normal subpixel-antialiased">
+                Help our furry friends 
+                with the MIA Foundation
+            </h1>
+            <p>
+                At MIA Foundation, we believe in second chances, 
+                wagging tails, and endless purrs. 
+                Our mission is simple: to help, care for, and find loving forever homes for animals in need. 
+                When you step into our world, you step into a world of compassion, furry friends, and boundless love.
+            </p>
+
+            <div class="mt-10 ">
+                <div (click)="redirectToLogin()" class="bg-gray-800 rounded-3xl py-3 px-8 font-medium inline-block mr-4  hover:bg-blue-950">
+                    Log in as a Helper</div>
+                <div (click)="redirectToAdminLogin()" class="bg-gray-800 rounded-3xl py-3 px-8 font-medium inline-block mr-4 hover:bg-blue-950">
+                Log in as a Manager</div>
+            </div>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</body>
+    

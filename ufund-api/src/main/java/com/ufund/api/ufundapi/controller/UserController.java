@@ -29,56 +29,56 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-    //    private boolean validateHelperLogin(String value) {
-       
-    //     if (value == null) {
-    //         return false;
-    //     }
-        
-    //     if(value.equalsIgnoreCase("admin")) {
-    //         return false;
-    //     }
-        
-    //     return true;
-    // }
+    public boolean validateHelperLogin(String value) {
+        return value.equalsIgnoreCase("admin");
+    }
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
         LOG.info("POST /user " + user);
 
-        // if(!validateHelperLogin(fundingBasket.getfundingBasketName())){
-        //     return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        // }
+        if(validateHelperLogin(user.getUsername())){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        
+
 
         try {
-            
+            LOG.info("coooollll");
             User newUser = userDAO.createUser(user);
             return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
-            
-
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-//     @GetMapping("userName/{username}")
-//     public ResponseEntity<String> getUsername(@PathVariable("username") String username){
 
-//         try {
 
-//             String user = userDAO.getUserName(username);
-//             if(user != null){
-//                 return new ResponseEntity<String>(user,HttpStatus.OK);
-//             }else{
-//                 return new ResponseEntity<String>("No username available",HttpStatus.OK);
-//             }
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable String username){
+        try{
+            User user = userDAO.getUserByName(username);
+            if (user != null){
+                return new ResponseEntity<User>(user,HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+        
+    }
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> doesUserExist(@PathVariable String username){
+        try{
+            Boolean exists = userDAO.doesUserExist(username);
+            LOG.info("DONEEEE");
             
-//         } catch (Exception e) {
-//             LOG.log(Level.SEVERE,e.getLocalizedMessage());
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//         }
-//     }
-
+            return new ResponseEntity<Boolean>(exists,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }  
+    }
     
 }

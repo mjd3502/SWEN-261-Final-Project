@@ -1,46 +1,50 @@
-
 <app-admin-navbar></app-admin-navbar>
- 
-<div id = "container">
-    <form class="form-container"  (ngSubmit)="onSubmit()">
-            <div class="formGroup">
-                <label>Name:</label>
-                <input type="text" class="form-input" id="name"
+<body class="bg-gray-900 h-screen overflow-y-hidden">
+
+    <div id="container" class="container mx-auto p-8">
+        <h1 class="text-3xl font-semibold mb-4">Update a Need!</h1>
+        <h3 class="text-lg mb-6">Please fill out all fields</h3>
+
+        <form class="form-container" (ngSubmit)="onSubmit()">
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Name:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="name"
                 [(ngModel)] = "Need.name" name="name">
             </div>
 
-            <div class="formGroup">
-                <label>Description:</label>
-                <input type="text" class="form-input" id="description"
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Description:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="description"
                 [(ngModel)] = "Need.description" name="description">
             
             </div>
-
-
-            <div class="formGroup">
-                <label>quantity</label>
-                <input type="text" class="form-input" id="quantity"
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Quantity:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="quantity"
                 [(ngModel)] = "Need.quantity" name="quantity">
             
             </div>
 
-            <div class="formGroup">
-                <label>Cost</label>
-                <input type="text" class="form-input" id="cost"
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Cost:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="cost"
                 [(ngModel)] = "Need.cost" name="cost">
             
             </div>
 
-            <div class="formGroup">
-                <label>Type:</label>
-                <input type="text" class="form-input" id="type"
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Need's Type (goods or volunteer):</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="type"
                 [(ngModel)] = "Need.type" name="type">
             
             </div>
             
-            <div *ngIf="errorMessage"> {{errorMessage}} </div>
+            <div *ngIf="errorMessage" class="text-red-500 mb-4">{{errorMessage}}</div>
+            <button class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button" type="submit"> Update Need </button>
 
-            <button class="update-button" type="submit"> Update Need </button>
+        </form>
 
-    </form>
-</div>
+    </div>
+
+</body>
+

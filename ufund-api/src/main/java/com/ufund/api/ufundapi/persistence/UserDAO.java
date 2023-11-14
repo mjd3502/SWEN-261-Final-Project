@@ -11,5 +11,6 @@ public interface UserDAO {
 
     
     String getUserName(String username)  throws IOException;
-
+    User getUserByName(String username) throws IOException;
+    Boolean doesUserExist(String username) throws IOException;
 }

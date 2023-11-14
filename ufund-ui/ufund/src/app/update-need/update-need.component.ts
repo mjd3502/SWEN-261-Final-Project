@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 
 import { Need } from '../Need';
 import { NeedsService } from '../needs.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-need',
@@ -37,14 +38,30 @@ export class UpdateNeedComponent implements OnInit {
   onSubmit(){
     if(this.Need){
       this.needsService.updateNeed(this.Need).subscribe(response =>{
-        this.router.navigate(['/adminDashboard'])
+
         console.log(response);
+        this.router.navigate(['/upload/need/' + (String)(response.id)])
+
       },(error) =>{
-        if(error.status >=400 || error.status < 500){
-          this.errorMessage = "Please enter a valid need type"
+        console.error('An error occurred:', error);
+        if(error.status == 400){
+          // this.errorMesage = "Please enter a valid type of need";
+          Swal.fire({
+            title: "Please enter a valid type of need",
+            icon: "error"
+          });
+        }else{
+          Swal.fire({
+            title: "Please enter valid inputs",
+            icon: "error"
+          });
         }
       }
       )
+    Swal.fire({
+        title: "Need Updated",
+        icon: "success"
+      });
     }
     
   }

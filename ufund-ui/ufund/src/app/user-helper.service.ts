@@ -34,6 +34,20 @@ export class UserHelperService {
     );
   }
 
+  /**Get a single user by its name */
+  getUserByName(username:string):Observable<User>{
+    const url = `${this.userURL}/${username}`
+    return this.http.get<User>(url,this.httpOptions)
+    .pipe(
+      catchError(this.handleError<User>('createUser'))
+    );
+  }
+  
+  doesUserExist(username:string):Observable<Boolean>{
+    const url = `${this.userURL}/exists/${username}`
+    return this.http.get<Boolean>(url,this.httpOptions)
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
@@ -27,50 +29,30 @@ import com.ufund.api.ufundapi.model.Need;
 
 @Tag("Persistence-tier")
 public class FundingBasketDAOTest {
-    private FundingBasketFileDAO fundingBasket;
-
-    FundingBasket[] baskets;
+    private FundingBasketFileDAO fundingBasketFileDAO;
+    FundingBasket[] testBasket;
     ObjectMapper mockObjectMapper;
 
-    @BeforeEach
-    public void setUpFundingBasketDAO() throws IOException{
-        Map<Integer,Need> needs = new HashMap<>();
-        Need need = new Need(1,"Random Need", 10,0 , "lorem ipsum", 10, "goods");
-        needs.put(need.getId(),need);
+    // @BeforeEach
+    // public void setUpFundingBasketDAO() throws IOException{
+    //     mockObjectMapper = mock(ObjectMapper.class);
+
+    //     Map<Integer, Need> needs = new HashMap<>();
         
-        baskets = new FundingBasket[1];
-        // baskets[0] = new FundingBasket("William", needs);
+    //     Need need = new Need(1,"Random Need", 10,0 , "lorem ipsum", 10, "goods");
+    //     needs.put(need.getId(),need);
+        
+    //     FundingBasket fBasket = new FundingBasket("William", needs);
         
 
-        mockObjectMapper = mock(ObjectMapper.class);
+    //     mockObjectMapper = mock(ObjectMapper.class);
         
-        // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the hero array above
-        when(mockObjectMapper
-            .readValue(new File("doesnt_matter.txt"),FundingBasket[].class))
-                .thenReturn(baskets);
-        fundingBasket = new FundingBasketFileDAO("doesnt_matter.txt",mockObjectMapper);
-    }
-
-
-    // @Test
-    // public void test_createBasket(){
-    //     //setup
-    //     Map<Integer,Need> needs = new TreeMap<>();
-    //     FundingBasket fb = new FundingBasket("Jessica", needs);
-    //     FundingBasket result;
-    //     try {
-    //         result = fundingBasket.createFundingBasket(fb);
-            
-    //         //assert
-    //         assertEquals(result.getUserName(), "Jessica");
-    //         assertEquals(result.toString(),"FundingBasket [userName=Jessica, fundingBasket=No items in the funding basket ]  ");
-    //     } catch (IOException e) {
-    //         //should not throw an error
-    //         assertFalse(true);
-    //     }
-
-        
+    //     // When the object mapper is supposed to read from the file
+    //     // the mock object mapper will return the hero array above
+    //     when(mockObjectMapper
+    //         .readValue(new File("doesnt_matter.txt"),FundingBasket.class))
+    //             .thenReturn(fBasket);
+    //     fundingBasketFileDAO = new FundingBasketFileDAO("doesnt_matter.txt",mockObjectMapper);
     // }
 
 

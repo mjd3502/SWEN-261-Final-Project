@@ -137,6 +137,26 @@ public class FundingBasketFileDAOTest {
         }
     }
 
+
+    @Test
+    public void removeNeedFromBasketNull(){
+        //setup
+        Need need = new Need(99,"food",1,0,"a thing",20,"goods");
+
+
+        try {
+            fundingBasketFileDAO.addNeedToFundingBasket("Cheyenne",need);
+            fundingBasketFileDAO.removeNeedFromFundingBasket("Cheyenne", need.getId());
+            Boolean result = fundingBasketFileDAO.removeNeedFromFundingBasket("Cheyenne", need.getId());
+
+            //result should return true
+            assertFalse(result);
+
+        } catch (IOException e) {
+            assertFalse(true);
+        }
+    }
+
     @Test
     public void clearFundingBasket() throws IOException{
         boolean result = fundingBasketFileDAO.clearFundingBasket("Cheyenne");

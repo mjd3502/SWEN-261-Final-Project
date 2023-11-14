@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 
 import com.ufund.api.ufundapi.controller.FavoritePetsController;
 import com.ufund.api.ufundapi.model.FavoritePets;
+import com.ufund.api.ufundapi.model.FundingBasket;
+import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.persistence.FavoritePetsDAO;
 
@@ -36,7 +38,7 @@ public class FavoritePetsControllerTest {
      * Before each test, create a new userController object and inject
      * a mock pet DAO
      */
-    /* 
+    
     @BeforeEach
     public void setupFavoritePetsController() {
         mockFavoritePetsDAO = mock(FavoritePetsDAO.class);
@@ -49,6 +51,8 @@ public class FavoritePetsControllerTest {
         Pet pet = new Pet(0, "bucky", "good dog", true);
         Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
         HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.createFavoritePets(favoritePets)).thenReturn(favoritePets);
 
@@ -65,7 +69,9 @@ public class FavoritePetsControllerTest {
         //Setup
         Pet pet = new Pet(0, "bucky", "good dog", true);
         Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
-        HashMap<Integer,Pet> listOfPets = List.of(pet,pet1);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.createFavoritePets(favoritePets)).thenThrow(new RuntimeException("Internal Server Error"));
 
@@ -79,14 +85,16 @@ public class FavoritePetsControllerTest {
     @Test
     public void addPetToBasket() throws IOException{
         //Setup
-        Pet pet = new Pet(0, "donate toys", 10, "donate dog toys", 0, "goods");
-        Pet pet1 = new Pet(1, "bucky", "good dog", true);
-        HashMap<Integer,Pet> listOfPets = List.of(pet);
+        Pet pet = new Pet(0, "bucky", "good dog", true);
+        Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("helper", listOfPets);
         when(mockFavoritePetsDAO.addPetToFavoritePets("helper", pet1)).thenReturn(favoritePets);
 
         //Invoke
-        ResponseEntity<FavoritePets> response = favoritePetsController.addPetToBasket("helper", pet1);
+        ResponseEntity<FavoritePets> response = favoritePetsController.addPetToList("helper", pet1);
 
         //Analyze
         assertEquals(HttpStatus.ACCEPTED,response.getStatusCode());
@@ -96,12 +104,12 @@ public class FavoritePetsControllerTest {
     @Test
     public void addPetToBasketInvalid() throws IOException{
         //Setup
-        Pet pet = new Pet(0, "donate toys", 10, "donate dog toys", 0, "goods");
+        Pet pet = new Pet(0, "bucky", "good dog", true);
         FavoritePets favoritePets = null;
         when(mockFavoritePetsDAO.addPetToFavoritePets(null, pet)).thenReturn(favoritePets);
 
         //Invoke
-        ResponseEntity<FavoritePets> response = favoritePetsController.addPetToBasket(null, pet);
+        ResponseEntity<FavoritePets> response = favoritePetsController.addPetToList(null, pet);
 
         //Analyze
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
@@ -113,12 +121,14 @@ public class FavoritePetsControllerTest {
         //Setup
         Pet pet = new Pet(0, "bucky", "good dog", true);
         Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
-        HashMap<Integer,Pet> listOfPets = List.of(pet);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.addPetToFavoritePets("user",pet1)).thenThrow(new RuntimeException("Internal Server Error"));
 
         //Invoke
-        ResponseEntity<FavoritePets> responseEntity = favoritePetsController.addPetToBasket("user",pet1);
+        ResponseEntity<FavoritePets> responseEntity = favoritePetsController.addPetToList("user",pet1);
 
         //Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
@@ -127,30 +137,33 @@ public class FavoritePetsControllerTest {
     @Test
     public void removePetFromBasket() throws IOException{
         //Setup
-        Pet pet = new Pet(0, "donate toys", 10, "donate dog toys", 0, "goods");
-        HashMap<Integer,Pet> listOfPets = List.of(pet);
+       Pet pet = new Pet(0, "bucky", "good dog", true);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
         FavoritePets favoritePets = new FavoritePets("helper", listOfPets);
         when(mockFavoritePetsDAO.removePetFromFavoritePets("helper", 0)).thenReturn(true);
 
         //Invoke
-        ResponseEntity<FavoritePets> response = favoritePetsController.removePetFromBasket("helper", 0);
+        ResponseEntity<Map<Integer,Pet>> response = favoritePetsController.removePetFromBasket("helper", 0);
 
         //Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(null,response.getBody());
+        assertEquals(new HashMap<Integer,Pet>(),response.getBody());
     }
 
     @Test
     public void removePetFromBasketInvalid() throws IOException{
         //Setup
-        Pet pet = new Pet(0, "donate toys", 10, "donate dog toys", 0, "goods");
-        Pet pet1 = new Pet(1, "donate food", 10, "donate dog fod", 0, "goods");
-        HashMap<Integer,Pet> listOfPets = List.of(pet, pet1);
-        FavoritePets favoritePets = new FavoritePets("helper", listOfPets);
+        Pet pet = new Pet(0, "bucky", "good dog", true);
+        Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
+        FavoritePets favoritePet1 = new FavoritePets("helper", listOfPets);
         when(mockFavoritePetsDAO.removePetFromFavoritePets("helper", 2)).thenReturn(false);
 
         //Invoke
-        ResponseEntity<FavoritePets> response = favoritePetsController.removePetFromBasket("helper", 2);
+       ResponseEntity<Map<Integer,Pet>> response = favoritePetsController.removePetFromBasket("helper", 2);
 
         //Analyze
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
@@ -159,45 +172,49 @@ public class FavoritePetsControllerTest {
     @Test
     public void removePetFromBasketEmpty() throws IOException{
         //Setup
-        FavoritePets favoritePets = null;
-        when(mockFavoritePetsDAO.removePetFromFavoritePets(null, 3)).thenReturn(false);
-
+        Map<Integer,Pet> mapOfNeeds = new HashMap<>();
+        FavoritePets favoritePets = new FavoritePets("helper", mapOfNeeds);
+        when(mockFavoritePetsDAO.removePetFromFavoritePets("helper", 3)).thenReturn(false);
         //Invoke
-        ResponseEntity<FavoritePets> response = favoritePetsController.removePetFromBasket(null, 2);
+        ResponseEntity<Map<Integer,Pet>> response = favoritePetsController.removePetFromBasket("helper", 2);
 
         //Analyze
+        Map<Integer,Pet> expected = new HashMap<>();
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
-        assertEquals(favoritePets, response.getBody());
+        assertEquals(expected, response.getBody());
     }
 
     @Test
     public void removePetFromBasketInternalServerError() throws IOException {
         //Setup
         Pet pet = new Pet(0, "bucky", "good dog", true);
-        Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
-        HashMap<Integer,Pet> listOfPets = List.of(pet,pet1);
+        Pet pet1 = new Pet(1, "buckster", "goodish dog", false);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.removePetFromFavoritePets("user",1)).thenThrow(new RuntimeException("Internal Server Error"));
 
         //Invoke
-        ResponseEntity<FavoritePets> responseEntity = favoritePetsController.removePetFromBasket("user",1);
+       ResponseEntity<Map<Integer,Pet>> response = favoritePetsController.removePetFromBasket("user",1);
 
         //Analyze
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
     @Test 
     public void getFavoritePets() throws IOException{
         //Setup
-        Pet pet = new Pet(0, "donate food", 10, "donate dog fod", 0, "goods");
-        Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
-        Pet pet2 = new Pet(2, "walk a dog", 15, "donate dog food", 0, "volunteering");
-        HashMap<Integer,Pet> listOfPets = List.of(pet,pet1,pet2);
+        Pet pet = new Pet(0, "bucky", "good dog", true);
+        Pet pet1 = new Pet(1, "buckster", "goodish dog", false);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.getFavoritePets("user")).thenReturn(favoritePets.getFavoritePets());
 
         //Invoke
-        ResponseEntity<HashMap<Integer,Pet>> response = favoritePetsController.getFavoritePets("user");
+        ResponseEntity<Map<Integer,Pet>> response = favoritePetsController.getFavoritePets("user");
 
         //Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -207,17 +224,19 @@ public class FavoritePetsControllerTest {
     @Test
     public void getFavoritePetsInternalServerError() throws IOException {
         //Setup
-        Pet pet = new Pet(0, "bucky", "good dog", true);
-        Pet pet1 = new Pet(1, "buckster", "goodish dog", true);
-        HashMap<Integer,Pet> listOfPets = List.of(pet,pet1);
+       Pet pet = new Pet(0, "bucky", "good dog", true);
+        Pet pet1 = new Pet(1, "buckster", "goodish dog", false);
+        HashMap<Integer,Pet> listOfPets = new HashMap<Integer,Pet>();
+        listOfPets.put(pet.getId(), pet);
+        listOfPets.put(pet1.getId(), pet1);
         FavoritePets favoritePets = new FavoritePets("user", listOfPets);
         when(mockFavoritePetsDAO.getFavoritePets("user")).thenThrow(new RuntimeException("Internal Server Error"));
 
         //Invoke
-        ResponseEntity<HashMap<Integer,Pet>> responseEntity = favoritePetsController.getFavoritePets("user");
+        ResponseEntity<Map<Integer,Pet>> responseEntity = favoritePetsController.getFavoritePets("user");
 
         //Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
-    */
+
 }

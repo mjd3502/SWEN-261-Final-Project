@@ -2,6 +2,7 @@ package com.ufund.api.ufundapi.controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,19 +30,30 @@ public class UserController {
         this.userDAO = userDAO;
     }
     
-    public boolean validateHelperLogin(String value) {
-        return value.equalsIgnoreCase("admin");
+    public static boolean checkLettersOrNumbers(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (!Character.isLetterOrDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
         LOG.info("POST /user " + user);
 
-        if(validateHelperLogin(user.getUsername())){
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        
+        // if(validateHelperLogin(user.getUsername())){
+        //     return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        // }
+        boolean containsOnlyLettersOrNumbers = checkLettersOrNumbers(user.getUsername());
 
+    
+        
+        if(!containsOnlyLettersOrNumbers){
+            return new ResponseEntity<>(user,HttpStatus.NOT_ACCEPTABLE);
+        }
 
         try {
             LOG.info("coooollll");

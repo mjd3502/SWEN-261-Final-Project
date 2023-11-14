@@ -93,7 +93,9 @@ public class Need {
      * @param quantity The quantity of the need
      */
     public void setSurplus(int surplus) {
-        this.surplus = surplus;
+        if (surplus >= 0) {
+            this.surplus = surplus;
+        }
     }
 
     /**

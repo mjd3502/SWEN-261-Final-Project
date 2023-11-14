@@ -243,21 +243,22 @@ public class CupboardFileDAO implements CupboardDAO{
     @Override
     public Need helperSurplusUpdateNeed(int id,int donation) throws IOException {
        synchronized(cupboard) {
+        if (!cupboard.containsKey(id)){
+            return null;
+        } 
+
         Need cupboardNeed = cupboard.get(id);
         int surplus = cupboardNeed.getSurplus();
         int quantity = cupboardNeed.getQuantity();
 
-        if (!cupboard.containsKey(id)){
-                return null;
-        }
 
         if(donation < quantity){
-                quantity = quantity-donation;
+            quantity = quantity - donation;
         }else if(donation > quantity){
-                surplus =  Math.abs(donation-quantity);
-                quantity = 0;
+            surplus =  Math.abs(donation-quantity);
+            quantity = 0;
         }else{
-            quantity = quantity-donation;
+            quantity = quantity - donation; 
         }
         
         

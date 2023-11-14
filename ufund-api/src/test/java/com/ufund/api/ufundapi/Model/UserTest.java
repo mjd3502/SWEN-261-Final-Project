@@ -34,6 +34,18 @@ public class UserTest {
        assertEquals("carlitaxmessi",user.getUsername());
     }
     
+
+    @Test
+    public void testSetUsername() {
+        User user = new User("originalUsername");
+        String expectedUsername = "testUsername";
+
+        user.setUsername(expectedUsername);
+
+        String actualUsername = user.getUsername();
+        assertEquals(expectedUsername, actualUsername, "Username should be set correctly");
+    }
+
     @Test
     public void usernameToString(){
         assertEquals("User [userName=carlitaxmessi ]",user.toString());

@@ -227,6 +227,17 @@ public class CupboardControllerTest {
     }
 
     @Test
+    public void createNeedNull() throws IOException{
+
+        Need need = new Need(0, null, 10,0, "donate dog food", 10, "goods");
+        when(mockcupboardDAO.createNeed(need)).thenReturn(null);
+    
+        ResponseEntity<Need> response = cupboardController.createNeed(need);
+
+        assertEquals(null,response.getBody());
+    }
+
+    @Test
     public void createNeedCostNegative() throws IOException{
 
         Need need = new Need(0, "Volunteer to pet a dog", 10,0, "donate dog food", -54965, "volunteer");
@@ -531,26 +542,28 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
 
-    // @Test
-    // public void updateNeedBadType() throws IOException{
-    //     Need need = new Need(0, "Carla", 10,0, "donate dog food", 10, "goods");
-    //     when(mockcupboardDAO.updateNeed(need)).thenReturn(null);
+    @Test
+    public void updateNeedType() throws IOException{
+        Need need = new Need(0, "Carla", 10,0, "donate dog food", 10, "goods");
+        when(mockcupboardDAO.updateNeed(need)).thenReturn(need);
 
-    //     ResponseEntity<Need> response = cupboardController.updateNeed(need);
-    //     need.setType("");
-    //     response = cupboardController.updateNeed(need);
-    //     assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
-    // }
+        ResponseEntity<Need> response = cupboardController.updateNeed(need);
+        need.setType("volunteer");
+        response = cupboardController.updateNeed(need);
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
 
-    // @Test
-    // public void updateNeedQuantityNegative() throws IOException{
+    @Test
+    public void updateNeedQuantityZero() throws IOException{
 
-    //     Need need = new Need(0, "Volunteer to pet a dog", -1,0, "donate dog food", 10, "volunteer");
-    //     when(mockcupboardDAO.updateNeed(need)).thenReturn(null);
+         Need need = new Need(0, "Carla", 10,0, "donate dog food", 10, "goods");
+        when(mockcupboardDAO.updateNeed(need)).thenReturn(null);
 
-    //     ResponseEntity<Need> response = cupboardController.updateNeed(need);
-    //     assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
-    // }
+        ResponseEntity<Need> response = cupboardController.updateNeed(need);
+        need.setQuantity(0);
+        response = cupboardController.updateNeed(need);
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+    }
 
     // @Test
     // public void updateNeedQuantityZero() throws IOException{
@@ -562,15 +575,17 @@ public class CupboardControllerTest {
     //     assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     // }
 
-    // @Test
-    // public void updateNeedCostZero() throws IOException{
+    @Test
+    public void updateNeedCostZero() throws IOException{
 
-    //     Need need = new Need(0, "Volunteer to pet a dog", 10,0, "donate dog food", 0, "volunteer");
-    //     when(mockcupboardDAO.updateNeed(need)).thenReturn(null);
+         Need need = new Need(0, "Carla", 10,0, "donate dog food", 10, "goods");
+        when(mockcupboardDAO.updateNeed(need)).thenReturn(null);
 
-    //     ResponseEntity<Need> response = cupboardController.updateNeed(need);
-    //     assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
-    // }
+        ResponseEntity<Need> response = cupboardController.updateNeed(need);
+        need.setCost(0);
+        response = cupboardController.updateNeed(need);
+        assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+    }
 
     // @Test
     // public void updateNeedBadRequest() throws IOException{

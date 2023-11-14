@@ -80,6 +80,9 @@ public class Pet {
         return available;
     }
 
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
     /**
      * {@inheritDoc}
      */

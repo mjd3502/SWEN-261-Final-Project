@@ -55,17 +55,17 @@ export class SignupComponent {
         console.log(this.exists)
 
         if(this.exists){
-          Swal.fire({
-            title: "Username is already taken",
-            text:"Please choose a new username",
-            icon: "error"
-        });
-        
+            Swal.fire({
+                  title: "Username is already taken",
+                  text:"Please choose a new username",
+                  icon: "error"
+            });
         }else{
+
           this.user = new User(username);
           this.userService.createUser(this.user).subscribe(us=>{
             this.currentUser.setCurrentUser(this.user);
-            console.log("creat user carla ")
+            console.log("creat user")
             
           })
           this.fundingBasket.setUsername(username);
@@ -76,12 +76,14 @@ export class SignupComponent {
           this.favoritePets.createFavoritePets(this.favoriteList).subscribe(favoriteList =>{
             console.log(favoriteList)
           })
+
           Swal.fire({
             title: "Account created",
             text:"Log into your account now",
             icon: "success"
           });
-          this.changeRoute('/login')
+
+        this.changeRoute('/login')
         }
     }
   }

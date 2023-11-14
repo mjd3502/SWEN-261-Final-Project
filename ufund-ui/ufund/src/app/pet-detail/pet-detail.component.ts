@@ -17,6 +17,7 @@ import { FavoritePetsService } from '../favorite-pets.service';
 export class PetDetailComponent implements OnInit {
 
   pet!:Pet; // Initialize the property to null
+  userDetail = false
 
   constructor(
     private route: ActivatedRoute,
@@ -39,7 +40,12 @@ export class PetDetailComponent implements OnInit {
       if (user) {
         this.username = user.getUsername();
       }
+      console.log(user)
     })
+    if(this.username === 'admin'){
+      this.userDetail = true;
+    }
+    console.log(this.username)
 
   }
 

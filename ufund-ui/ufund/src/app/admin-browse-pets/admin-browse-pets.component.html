@@ -1,21 +1,43 @@
-<div id="container">
-    <h1>My Pet Page</h1>
-    
-    <ul>
-        <li *ngFor="let pet of pets" >
-            <h2><b>{{pet.name}}</b></h2>
-            <div class="info">
-                <p>
-                    <b><u>Description:</u></b> {{pet.description}}<br>
-
-                    <b><u>Adoption Status: </u></b> {{pet.available}}
-                </p>
-            </div>
-            <div class = "buttons">
-                <button (click)="deletePet(pet.id)" id="button" type="button" title ="Delete need">Delete Pet</button>
-                <button routerLink="/updatePet/{{pet.id}}">Update Pet</button>
-            </div>
-        </li>
-    </ul>
-</div>
+<body class="bg-gray-950 text-white flex flex-col items-center justify-center h-screen">
+    <div class="flex items-center justify-between w-full py-7 px-10">
+      <div>
+        <h1 class="text-2xl font-semibold leading-relaxed text-white">Pest for Adoption</h1>
+      </div>
+      <button routerLink="/admin-create-pet" class="py-2.5 px-6 text-white bg-indigo-700 rounded-xl">
+        <span class="text-sm font-semibold">Create Pet</span>
+      </button>
+    </div>
+    <main class="flex-1">
+        <table class="text-white">
+            <thead>
+                <tr class="text-lg font-medium text-white border-b border-gray-200">
+                    <td class="py-4 px-4 text-center">Pet Name</td>
+                    <td class="py-4 px-4 text-center">Availability</td>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let pet of pets | paginate:{itemsPerPage:4,currentPage:p};" id = "item"  class="hover:bg-gray-600 transition-colors">
+                <td class="flex text-center gap-x-4 items-center py-4 pl-10">
+                    <div>
+                        <a routerLink="/pet-detail/{{pet.id}}">
+                            <b class="text-lg font-semibold text-white ">{{pet.name}}</b>
+                        </a>
+                        <br>
+                    </div>
+                </td>
+                <td  class="text-sm text-center">
+                    {{ pet.available ? 'AVAILABLE' : 'ADOPTED' }}
+                </td>
+                <td class="text-sm text-center">
+                    <div class="buttons mt-2">
+                        <button (click)="deletePet(pet.id)" class="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-400">Delete Pet</button>
+                        <a routerLink="/updatePet/{{pet.id}}" class="ml-2 bg-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-400">Update Pet</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </table>
+    </main>
+</body>
     

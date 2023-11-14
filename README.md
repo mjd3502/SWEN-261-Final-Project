@@ -22,7 +22,7 @@ An online U-Fund system built in Java 17=> and Angular 16.2.3
 
 1. Clone the repository and go to the root directory.
 2. Execute `mvn compile exec:java`
-3. Cd into the ufund directory and execute: npm install. This will download the necessary angular dependencies to run the site.
+3. Cd into the ufund-ui/ufund directory and execute: npm install. This will download the necessary angular dependencies to run the site, as well as our front end framworks (Tailwind CSS and Sweet Alert)
 4. Open in your browser `http://localhost:8080/`
 
 
@@ -38,6 +38,8 @@ Sprint 2 Bugs
 
 > If the user adds a need to the funding basket twice but then decides to delete only one of those needs, both will be deleted. This occurs because our FundingBasket in the backend is a List of needs and deletes a need by id. Therefore, it will delete all the needs with the same id. This bug will be tackled on Sprint 3
 > If a user logs in with the same username, our website doesn't logged them into their account. It creates a new user and overrides the previous one associated with that username.
+
+
 ## How to test it
 
 The Maven build script provides hooks for run unit tests and generate code coverage

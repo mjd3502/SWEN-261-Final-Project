@@ -29,6 +29,15 @@ public interface FileUploadDAO {
      */
     boolean createNeedImage(MultipartFile file, String id) throws IOException;
 
+    
+    /*
+     * A passed image is downloaded to our repo under needs
+     * @param file object to be saved
+     * @return a true for success or false otherwise
+     * @throws IOException if theres an error.
+     */
+    boolean deleteImage(String location, String id) throws IOException;
+
 
 
 }

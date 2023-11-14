@@ -1,0 +1,21 @@
+<div id="container">
+    <h1>My Pet Page</h1>
+    
+    <ul>
+        <li *ngFor="let pet of pets" >
+            <h2><b>{{pet.name}}</b></h2>
+            <div class="info">
+                <p>
+                    <b><u>Description:</u></b> {{pet.description}}<br>
+
+                    <b><u>Adoption Status: </u></b> {{pet.available}}
+                </p>
+            </div>
+            <div class = "buttons">
+                <button (click)="deletePet(pet.id)" id="button" type="button" title ="Delete need">Delete Pet</button>
+                <button routerLink="/updatePet/{{pet.id}}">Update Pet</button>
+            </div>
+        </li>
+    </ul>
+</div>
+    

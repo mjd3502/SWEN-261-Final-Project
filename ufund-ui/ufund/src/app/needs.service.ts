@@ -13,6 +13,7 @@ export class NeedsService {
   };
 
   private cupBoardURL ='http://localhost:8080/cupboard'
+
   constructor(
     private http: HttpClient,
     ) 
@@ -47,8 +48,19 @@ export class NeedsService {
 
     deleteNeedbyId(id:number):Observable<Need>{
       const url = `${this.cupBoardURL}/${id}`
+      
+      this.deleteImage(id);
+      
       return this.http.delete<Need>(url,this.httpOptions).pipe(
         catchError(this.handleError<Need>('deleteNeedbyId')))
+    }
+
+    deleteImage(id:number):Observable<Boolean>{
+      const imgUrl = 'http://localhost:8080/imageDelete/needs'
+      const url = `${imgUrl}/${id}`
+
+      return this.http.delete<Boolean>(url,this.httpOptions).pipe(
+        catchError(this.handleError<Boolean>('deleteNeedbyId')))
     }
 
     getEntireNeedsCupboard():Observable<Need[]>{

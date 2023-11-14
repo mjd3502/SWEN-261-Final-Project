@@ -44,6 +44,7 @@ public class FileUploadController {
         @RequestPart(name="image", required = false) MultipartFile file,
         @RequestPart(name="name", required = false) String id){
             
+        LOG.info("Post /upload-pet/" + id);
         try{
             fileDao.createPetImage(file,id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -61,11 +62,29 @@ public class FileUploadController {
         @RequestPart(name="image", required = false) MultipartFile file,
         @RequestPart(name="name", required = false) String id){
             
+        
+        LOG.info("Post /upload-need/" + id);
         try{
             fileDao.createNeedImage(file,id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
         }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
+
+    @DeleteMapping("/imageDelete/needs/{id}")
+    public ResponseEntity<Boolean> deleteImage(@PathVariable String id){
+        
+        LOG.info("DELETE /imageDelete/needs/" + id);
+        try {
+            fileDao.deleteImage("needs",id);
+            System.out.println("worked??");
+            
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (IOException e) {
+            System.out.println("This did not work ;-;");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         

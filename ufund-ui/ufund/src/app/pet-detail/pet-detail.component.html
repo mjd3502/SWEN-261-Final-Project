@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<body>
+    <header>
+        <div id="goodFont">
+        <h1>Pet:{{pet.name}}</h1>
+        </div>
+    </header>
+    <main>
+        <div class="row">
+            <div class="box2">
+                <img src="" alt="{{pet.name}} Image" class="center">
+            </div>
+            <div id="goodFont" class="box2">
+                <div class="titleBox">
+                <h2><span class="bold-text"> Description:</span></h2>
+                </div>
+                <p>{{pet.description}}</p>
+            </div>
+        </div>
+        <div id="goodFont" class="box">
+            <div class="mainText">
+            <button (click)="functionAddPet(pet)">Add to Favorites</button><br><br>
+            <button (click)="goBack()"> Return to Pets Page</button>
+            </div>
+        </div>
+    </main>
+    <div class="inquiry">
+        <title>Inquiry Box</title>
+        <div class="center">
+            <input type="checkbox" id="click">
+            <label for="click" class="click-me">Inquiry</label>
+            <div class="content">
+                <div class="header">
+                    <h2>Contact Us</h2>
+                    <label for="click" class="close-button">Close</label>
+                </div>
+                <p>585-555-5555</p>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+</body>

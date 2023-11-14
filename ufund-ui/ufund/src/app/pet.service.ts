@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 
 import { Pet } from './Pet';
 
@@ -29,7 +29,15 @@ export class PetService {
     createPet(pet:Pet):Observable<Pet>{
       return this.http.post<Pet>(this.URL,pet,this.httpOptions)
       .pipe(
-        catchError(this.handleError<Pet>('addPet'))
+        // catchError(this.handleError<Pet>('addPet'))
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            console.error("Enter valid data type",error.message);
+          } else if (error.status > 400 && error.status < 500) {
+            console.error("Enter valid valid input fields", error.message);
+          }
+          return throwError(error);
+        })
       );
     }
 

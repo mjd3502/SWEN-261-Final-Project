@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PetService } from '../pet.service';
 import { Router } from '@angular/router';
 import { Pet } from '../Pet';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-pet',
@@ -18,9 +19,24 @@ export class AddPetComponent {
   onSubmit(){
     if(this.pet){
       this.petService.createPet(this.pet).subscribe(response =>{
-        this.router.navigate(['/adminPetPage'])
         console.log(response);
-      })
+
+        if(response.id){
+          Swal.fire({
+            title: "Listing created :)",
+            icon: "success"
+          });
+
+          this.router.navigate(['/adminPetPage'])
+        }
+                
+      },(error)=>{
+        Swal.fire({
+          title: "Please enter valid information",
+          icon: "error"
+        });
+      });
     }
+
   }
 }

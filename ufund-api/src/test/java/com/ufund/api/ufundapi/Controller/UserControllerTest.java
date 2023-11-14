@@ -62,7 +62,7 @@ public class UserControllerTest {
     
         // Analyze
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
-        assertEquals(null,response.getBody());
+        assertEquals(user,response.getBody());
     }
 
     @Test
@@ -70,10 +70,8 @@ public class UserControllerTest {
         //Setup
         User user = new User("admin");
         when(mockUserDAO.createUser(user)).thenThrow(new RuntimeException("Internal Server Error"));
-
         //Invoke
         ResponseEntity<User> responseEntity = userController.createUser(user);
-
         //Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }

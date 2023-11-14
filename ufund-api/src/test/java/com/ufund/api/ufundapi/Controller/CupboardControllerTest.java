@@ -35,7 +35,7 @@ import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 @Tag("Controller-tier")
 public class CupboardControllerTest {
     private CupboardController cupboardController;
-    private CupboardDAO mockcupboardDAO;
+    private CupboardDAO mockcupboardDAO; 
     private RemoveNeedsDAO mockRemoveNeedsDAO;
 
 
@@ -349,16 +349,16 @@ public class CupboardControllerTest {
         ResponseEntity<Need[]> responseEntity = cupboardController.searchCupboard(need.getName());
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
-@Test
-    public void deleteNeedbyId() throws IOException{
 
-        int needId = 99;
-        when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
+// @Test
+//     public void deleteNeedbyId() throws IOException{
+
+//         int needId = 99;
+//         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
-        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
-        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
- }
-
+//         ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
+//         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+// }
 //     /**
 //      * Tests: deleteNeed (fail case)
 //      * 

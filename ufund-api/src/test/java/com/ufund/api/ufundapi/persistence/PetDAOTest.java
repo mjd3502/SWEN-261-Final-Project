@@ -71,6 +71,28 @@ public class PetDAOTest {
             assertFalse(true);
         }
     }
+
+
+    @Test
+    public void testUpdateInvalidePet(){
+        try{
+        // Setup
+        Pet pet = new Pet(99,"dog1better","even more dog", true);
+
+        // Invoke
+        Pet result = assertDoesNotThrow(() -> petFileDAO.updatePet(pet),"Unexpected exception thrown");
+        petFileDAO.deletePet(pet.getId());
+        Pet resultExpected =  assertDoesNotThrow(() -> petFileDAO.updatePet(pet),"Unexpected exception thrown");
+        // Analyze
+        assertNull(resultExpected);
+        Pet actual = petFileDAO.getSinglePetById(pet.getId());
+        assertEquals(actual,resultExpected);
+        } catch (IOException e) {
+            //if error was thrown assert false, test failed
+            assertFalse(true);
+        }
+    }
+    
     
     
     @Test
@@ -290,6 +312,23 @@ public class PetDAOTest {
     }
 
 
+    @Test 
+    public void test_get_all_Pets(){
+
+        try {
+
+            List<Pet> result = petFileDAO.getAllPets();
+
+            assertEquals(3, result.size());
+
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+
+        
+    }
 
 
 

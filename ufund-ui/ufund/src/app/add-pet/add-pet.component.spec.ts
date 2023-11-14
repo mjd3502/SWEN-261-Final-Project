@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CheckoutComponent } from './checkout.component';
+import { AddPetComponent } from './add-pet.component';
 
-describe('CheckoutComponent', () => {
-  let component: CheckoutComponent;
-  let fixture: ComponentFixture<CheckoutComponent>;
+describe('AddPetComponent', () => {
+  let component: AddPetComponent;
+  let fixture: ComponentFixture<AddPetComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CheckoutComponent]
+      declarations: [AddPetComponent]
     });
-    fixture = TestBed.createComponent(CheckoutComponent);
+    fixture = TestBed.createComponent(AddPetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

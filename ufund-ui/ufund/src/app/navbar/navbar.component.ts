@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from '../current-user.service';
-import { faArrowRightFromBracket, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faBasketShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,10 +30,16 @@ export class NavbarComponent {
 
   shoppingBasket= faBasketShopping;
   logOutLogo = faArrowRightFromBracket;
+  favoritesLogo = faHeart;
 
   iconClicked(){
     this.router.navigate(["/funding-basket"])
     console.log("checkbox clicked")
+  }
+
+  favoritesClicked(){
+    this.router.navigate(["/favorite-pets-page"])
+    console.log("favorites clicked")
   }
 
   redirectToPage(){

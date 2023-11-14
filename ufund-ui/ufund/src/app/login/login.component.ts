@@ -7,6 +7,8 @@ import { CurrentUserService } from '../current-user.service';
 import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FundingBasketService } from '../funding-basket.service';
 import { FundingBasket } from '../FundingBasket';
+import { FavoritePetsService } from '../favorite-pets.service';
+import { FavoritePets } from '../FavoritePets';
 import { LoginService } from '../login.service';
 import Swal from 'sweetalert2';
 
@@ -40,6 +42,7 @@ export class LoginComponent{
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
     private isAdmin:LoginService
+
     ){
   }
 

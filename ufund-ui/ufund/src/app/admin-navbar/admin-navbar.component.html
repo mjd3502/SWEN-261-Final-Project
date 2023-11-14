@@ -1,9 +1,12 @@
-
 <div class="navbar bg-gray-950 text-white">
       <nav class="navbar-content bg-gray-800">
         <h2 class="title text-4xl font-semibold mb-6 text-center align-middle">Mia Foundation</h2>
 
         <a routerLink="/adminDashboard" class="nav-link">Home</a>
+        <a routerLink="/adminPetPage" class = "nav-link">Pet Page</a>
+        <a routerLink="/admin-create-pet" class = "nav-link">Add a new Pet</a>
+        <a routerLink="/admin-create-need" class = "nav-link">Add a new need</a>
+        
         <span class="fa" (click)="logOut()">
           <fa-icon [icon]="logOutLogo"></fa-icon>
           <h6>Log out</h6>
@@ -11,4 +14,3 @@
 
       </nav>
 </div>
-

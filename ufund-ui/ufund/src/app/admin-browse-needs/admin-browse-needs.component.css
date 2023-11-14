@@ -21,9 +21,15 @@ button{
     cursor: pointer;
 }
 
+button:hover{
+    background-color: #00d5ff;
+}
+
+
 h1,h2,h3,h4,p {
     color: #fff;
 }
+
 
 
 p{

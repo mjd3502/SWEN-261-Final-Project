@@ -1,0 +1,33 @@
+<app-admin-navbar></app-admin-navbar>
+<body class="bg-gray-900 h-screen overflow-y-hidden">
+
+    <div id="container" class="container mx-auto p-8 text-white">
+        <h1 class="text-3xl font-semibold mb-4">Update a Pet!</h1>
+        <h3 class="text-lg mb-6">Please fill out all fields</h3>
+
+        <form class="form-container" (ngSubmit)="onSubmit()">
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet's Name:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="name"
+                [(ngModel)] = "pet.name" name="name">
+            </div>
+
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet's Description:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="description"
+                [(ngModel)] = "pet.description" name="description">
+            
+            </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet Availability</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="quantity"
+                [(ngModel)] = "pet.available" name="quantity">
+            
+            </div>
+            <button class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button" type="submit"> Update Pet </button>
+
+        </form>
+
+    </div>
+
+</body>

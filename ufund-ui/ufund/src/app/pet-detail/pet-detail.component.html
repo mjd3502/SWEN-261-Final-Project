@@ -1,0 +1,45 @@
+<body class="bg-gray-900 h-screen overflow-y-hidden">
+    <app-admin-navbar *ngIf="this.userDetail"></app-admin-navbar>
+    <app-navbar *ngIf="!this.userDetail"></app-navbar>
+    <div class="flex flex-col items-center justify-center h-screen">
+      <span class="text-black text-7xl mb-8">Pet</span>
+      <div class="bg-gray-700 p-16 rounded-lg shadow-lg w-2/3 h-2/3 flex">
+        <div class="flex flex-col gap-4 p-24">
+          <div>
+            <h1 class="text-6xl font-bold">{{ pet.name }}</h1>
+            <h6 class="text-4xl font-semibold">Availability: {{ pet.available ? 'AVAILABLE' : 'ADOPTED' }}</h6>
+          </div>
+          <p class="text-black text-lg">
+            {{ pet.description }}
+          </p>
+          <div *ngIf="!this.userDetail" class="flex flex-row items-center gap-12 text-white">
+            <button class="text-2xl bg-slate-800 px-6 py-4 text-white rounded hover:bg-slate-400" (click)="functionAddPet(pet)">
+              Add to favorites
+            </button>
+              <div class="inquiry text-white justify-between">
+                <title>Inquiry Box</title>
+                <div class="center">
+                  <input type="checkbox" id="click">
+                  <label for="click" class="click-me">Inquiry</label>
+                  <div class="content">
+                    <div class="header">
+                      <h2>Contact Us</h2>
+                      <label for="click" class="close-button">Close</label>
+                    </div>
+                    <p class="text-black">585-555-5555</p>
+                    <div class="line"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <a *ngIf="this.userDetail" routerLink="/updatePet/{{ pet.id }}" class="text-2xl bg-slate-800 px-6 py-4 text-white rounded hover:bg-slate-400">
+            Update Pet
+          </a>
+        </div>
+        <div class="flex items-center justify-center">
+          <img src="../assets/images/pets/{{ pet.id }}.jpg" alt="{{ pet.name }} Image" class="rounded-lg">
+        </div>
+      </div>
+    </div>
+  </body>
+  

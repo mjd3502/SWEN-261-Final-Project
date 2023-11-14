@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminBrowseNeedsComponent {
   needs: Need[] = [];
+  p:number = 1;
 
   constructor(private needsService: NeedsService,
     private route:Router

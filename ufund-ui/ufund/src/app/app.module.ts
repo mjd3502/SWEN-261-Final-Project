@@ -19,6 +19,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 
+import { BrowsePetsComponent } from './browse-pets/browse-pets.component';
+import { PetDetailComponent } from './pet-detail/pet-detail.component';
+import { AddPetComponent } from './add-pet/add-pet.component';
+import { UpdatePetComponent } from './update-pet/update-pet.component';
+import { HelperPetPageComponent } from './helper-pet-page/helper-pet-page.component';
+import { AdminPetPageComponent } from './admin-pet-page/admin-pet-page.component';
+import { AdminBrowsePetsComponent } from './admin-browse-pets/admin-browse-pets.component';
+import { FavoritePetsComponent } from './favorite-pets/favorite-pets.component';
+import { FavoritePetsPageComponent } from './favorite-pets-page/favorite-pets-page.component';
+
+
 import { SignupComponent } from './signup/signup.component';
 
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -27,8 +38,7 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-navbar.component';
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,6 +56,15 @@ import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-n
     NavbarComponent,
     AdminNavbarComponent,
     FileUploadComponent,
+    PetDetailComponent,
+    BrowsePetsComponent,
+    AddPetComponent,
+    UpdatePetComponent,
+    HelperPetPageComponent,
+    AdminPetPageComponent,
+    AdminBrowsePetsComponent,
+    FavoritePetsComponent,
+    FavoritePetsPageComponent,
     SignupComponent,
     CheckoutComponent,
     LandingPageComponent,
@@ -62,7 +81,8 @@ import { LandingPageNavbarComponent } from './landing-page-navbar/landing-page-n
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

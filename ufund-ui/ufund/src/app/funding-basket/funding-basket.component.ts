@@ -3,12 +3,9 @@ import { Need } from '../Need';
 import { UserHelperService } from '../user-helper.service';
 import { CurrentUserService } from '../current-user.service';
 import { User } from '../User';
-import { Location } from '@angular/common';
 import { FundingBasketService } from '../funding-basket.service';
 import { Router } from '@angular/router';
-import { NeedsService } from '../needs.service';
 import { FlagService } from '../flag.service';
-import { TotalAmountService } from '../total-amount.service';
 
 
 @Component({
@@ -24,8 +21,8 @@ export class FundingBasketComponent implements OnInit{
   user!:User;
   donationValues: { [key: string]: number } = {};
   needIndividualCost: { [key: string]: number } = {};
-  // newQuantities:Need[] = []
-  
+  p:number = 1;
+  needsToCheckout: Map<string,number> = new Map<string, number>();
   totalAmount = 0;
 
   constructor(
@@ -33,7 +30,6 @@ export class FundingBasketComponent implements OnInit{
     private currentUser:CurrentUserService,
     private router:Router,
     private donationService: FlagService,
-    private totalAmountService:TotalAmountService
   ){}
 
   ngOnInit(): void {
@@ -66,33 +62,32 @@ export class FundingBasketComponent implements OnInit{
     let needKey = String(Need.id);
     if (event.target instanceof HTMLInputElement) {
       this.donationValues[needKey] = Number(event.target.value);
+      this.needsToCheckout.set(needKey,Need.cost);
     }
-    let total = Need.cost * this.donationValues[needKey];
+
+    this.calculateIndividualTotal(Need.cost,needKey);
+    this.calculateTotalAmount();
+  }
+
+  calculateIndividualTotal(cost:number,needKey:string):void{
+    let total = cost * this.donationValues[needKey]
     this.needIndividualCost[needKey] = total;
-    
-    this.totalAmount =0;
+  }
+
+  calculateTotalAmount():void{
+    this.totalAmount = 0;
     for (const value of Object.values(this.needIndividualCost)) {
       this.totalAmount += value;
-    }
   }
+  }
+
+
 
 
   proceedToCheckOut(){
     this.donationService.setUpdateQuantity(this.donationValues);
-    console.log("need new quantities")
-    console.log(this.donationValues);
     this.router.navigate(['/checkout'])
-    this.totalAmountService.setTotalAmount(this.totalAmount)
   }
-
-
-  // basketTotal():void{
-  //   this.total = 0;
-  //   for(var totalofNeed of this.totalCostOfEachNeed){
-  //     this.total += totalofNeed;
-  //   }
-  //   console.log(this.total)
-  // }
 
 
   checkoutNeeds():void{

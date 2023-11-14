@@ -38,6 +38,7 @@ public class CupboardControllerTest {
     private CupboardDAO mockcupboardDAO;
     private RemoveNeedsDAO mockRemoveNeedsDAO;
 
+
     /**
      * Before each test, create a new cupboardController object and inject
      * a mock need DAO
@@ -106,6 +107,7 @@ public class CupboardControllerTest {
 
         Need need = new Need(0, "Donate food", 10,0, "donate dog food", 10, "goods");
         when(mockcupboardDAO.createNeed(need)).thenReturn(need);
+
     
         ResponseEntity<Need> response = cupboardController.createNeed(need);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
@@ -142,6 +144,7 @@ public class CupboardControllerTest {
         Need need = new Need(0, "", 10,0, "donate dog food", 10, "goods");
         when(mockcupboardDAO.createNeed(need)).thenReturn(null);
     
+
         ResponseEntity<Need> response = cupboardController.createNeed(need);
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
     }
@@ -344,49 +347,24 @@ public class CupboardControllerTest {
         ResponseEntity<Need[]> responseEntity = cupboardController.searchCupboard(need.getName());
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
+@Test
+    public void deleteNeedbyId() throws IOException{
 
-    /**
-     * Tests: deleteNeed (success case)
-     * 
-     * Attempts to delete a need by ID. Checks if need exists, and that the resulting status
-     * code is OK because the need was successfully found and deleted.
-     * @throws IOException
-     */
-    // @Test
-    // public void deleteNeedbyIdDeleteNeed() throws IOException{
-
-    //     Need need = new Need(0, "Carla", 10,0, "new need ", 10, "volunteer");
-    //     Map<Integer,Need> cupboard= new HashMap<>();
-    //     cupboard.put(need.getId(),need);
-
-    //     when(mockcupboardDAO.deleteNeed(0)).thenReturn(true);
-    //     // when(mockRemoveNeedsDAO.storeRemovedNeed(need)).thenReturn(true);
+        int needId = 99;
+        when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
-    //     ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(need.getId());
-    //     verify(mockcupboardDAO, times(1)).deleteNeed(0);
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+ }
 
-    //     assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-    //     assertEquals(need,responseEntity.getBody());
-        
-    // }
+//     /**
+//      * Tests: deleteNeed (fail case)
+//      * 
+//      * Attempts to delete a need by ID. Checks if need exists, and that resulting status code is 
+//      * NOT FOUND because the need to delete does not exist. 
+//      * @throws IOException
+//      */
 
-    // @Test
-    // public void deleteNeedbyIdStoreNeed() throws IOException{
-
-    //     Need need = new Need(0, "Carla", 10,0, "new need ", 10, "volunteer");
-    //     Map<Integer,Need> cupboard= new HashMap<>();
-    //     cupboard.put(need.getId(),need);
-
-    //     when(mockRemoveNeedsDAO.storeRemovedNeed(need)).thenReturn(true);
-    //     // when(mockRemoveNeedsDAO.storeRemovedNeed(need)).thenReturn(true);
-        
-    //     ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(need.getId());
-    //     verify(mockRemoveNeedsDAO, times(1)).storeRemovedNeed(any(Need.class));
-
-    //     assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-    //     assertEquals(need,responseEntity.getBody());
-        
-    // }
 
     @Test
     public void deleteNeedbyIdNotFound() throws IOException{
@@ -635,7 +613,7 @@ public class CupboardControllerTest {
         when(mockcupboardDAO.helperSurplusUpdateNeed(0, 100)).thenThrow(new IOException("Internal Server Error"));
 
         ResponseEntity<Need> response = cupboardController.helperDonation(0, 100);
-
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
+
 }

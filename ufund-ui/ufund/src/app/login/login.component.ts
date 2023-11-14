@@ -7,6 +7,8 @@ import { CurrentUserService } from '../current-user.service';
 import { faDog, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FundingBasketService } from '../funding-basket.service';
 import { FundingBasket } from '../FundingBasket';
+import { FavoritePetsService } from '../favorite-pets.service';
+import { FavoritePets } from '../FavoritePets';
 import { LoginService } from '../login.service';
 import Swal from 'sweetalert2';
 
@@ -20,6 +22,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent{
   user!:User;
   fundingBasket!:FundingBasket;
+  favpets!: FavoritePets;
   exists!:Boolean | undefined;
 
   loginHeader!: string
@@ -40,6 +43,7 @@ export class LoginComponent{
     private userService:UserHelperService,
     private currentUser:CurrentUserService,
     private isAdmin:LoginService
+
     ){
   }
 
@@ -76,6 +80,8 @@ export class LoginComponent{
  
    if(!this.isAdminLogin){
       if(username === "admin"){
+        this.user = new User(username)
+        this.currentUser.setCurrentUser(this.user);
         this.changeRoute('/adminDashboard')
       }else{
         Swal.fire({
@@ -93,11 +99,10 @@ export class LoginComponent{
           this.changeRoute('/helperDashboard');
       } else {
         Swal.fire({
-          title: "Username already taken",
-          text:"Please create a new account",
+          title: "Account doesn't exist",
+          text:"Please create a new account or enter a valid username",
           icon: "error"
         });
-
         this.signUpRedirect();
       }
     }

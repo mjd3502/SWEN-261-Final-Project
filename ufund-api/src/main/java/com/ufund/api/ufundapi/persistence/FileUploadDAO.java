@@ -30,5 +30,8 @@ public interface FileUploadDAO {
     boolean createNeedImage(MultipartFile file, String id) throws IOException;
 
 
+    boolean deleteImage(String location, String id) throws IOException;
+
+
 
 }

@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FundingBasket } from '../FundingBasket';
 import { FundingBasketService } from '../funding-basket.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-browse-needs',
@@ -15,12 +16,14 @@ import Swal from 'sweetalert2';
 })
 export class BrowseNeedsComponent implements OnInit{
   needs: Need[] = [];
+ p:number = 1;
+
   disableAddNeed:boolean = false;
 
   constructor(
     private needsService: NeedsService,
     private fundingBasketService:FundingBasketService,
-    private currentUser:CurrentUserService
+    private currentUser:CurrentUserService,
     ){}
 
   userName!:string;
@@ -42,15 +45,16 @@ export class BrowseNeedsComponent implements OnInit{
       if (user) {
         this.userName = user.getUsername();
       }
-    })
+    })  
     
   }
+
  
   functionAddNeed(need: Need): void{
     this.fundingBasketService.addNeedToBasket(this.userName,need).subscribe(user =>{
       console.log(user);
   })
-    if(need.quantity ==0){
+    if(need.quantity == 0){
       Swal.fire({
         title: "This need has been fullfilled",
         icon: "error"

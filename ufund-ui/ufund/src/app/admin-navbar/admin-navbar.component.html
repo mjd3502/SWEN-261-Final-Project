@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-gray-900 text-white">
-  <div class="navbar bg-gray-800">
+<div class="navbar bg-gray-950 text-white">
       <nav class="navbar-content bg-gray-800">
         <h2 class="title text-4xl font-semibold mb-6 text-center align-middle">Mia Foundation</h2>
 
-        <button routerLink="/adminDashboard"> Home </button>
-        <button routerLink="/admin-create-need"> Add a new need </button>
-
+        <a routerLink="/adminDashboard" class="nav-link">Home</a>
+        <a routerLink="/adminPetPage" class = "nav-link">Pet Page</a>
         <span class="fa" (click)="logOut()">
           <fa-icon [icon]="logOutLogo"></fa-icon>
           <h6>Log out</h6>
         </span>
 
       </nav>
-  </div>
-</body>
-
-</html>
+</div>

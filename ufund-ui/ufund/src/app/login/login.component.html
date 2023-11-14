@@ -1,5 +1,5 @@
 
-<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+<body class="bg-gray-700 text-white flex items-center justify-center h-screen">
 
     <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
         <fa-icon [icon]="faDog" class="fa-dog center-dog fa-2xl"></fa-icon>
@@ -14,8 +14,6 @@
             </div>
 
             <input (click)="login()" type="submit" class="w-full bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500">       
-            <!-- <input (click)="signUpRedirect()" type="submit" value="Sign Up"/> -->
-
             <div *ngIf="isAdminLogin"
             (click)="signUpRedirect()">
                 <p class="text-sm mt-4 text-gray-400 text-center">Don't have an account? Sign Up </p>

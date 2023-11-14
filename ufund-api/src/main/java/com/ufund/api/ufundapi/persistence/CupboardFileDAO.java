@@ -251,6 +251,7 @@ public class CupboardFileDAO implements CupboardDAO{
         int surplus = cupboardNeed.getSurplus();
         int quantity = cupboardNeed.getQuantity();
 
+
         if(donation < quantity){
             quantity = quantity - donation;
         }else if(donation > quantity){
@@ -260,10 +261,11 @@ public class CupboardFileDAO implements CupboardDAO{
             quantity = quantity - donation; 
         }
         
+        
        cupboardNeed.setQuantity(quantity);
        cupboardNeed.setSurplus(surplus); 
        cupboard.put(id,cupboardNeed);
-            save(); // may throw an IOException
+        save(); // may throw an IOException
         return cupboardNeed;
     }
     }

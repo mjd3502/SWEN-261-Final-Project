@@ -37,16 +37,16 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user){
         LOG.info("POST /user " + user);
 
-        if(!validateHelperLogin(user.getUsername())){
+        if(validateHelperLogin(user.getUsername())){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
+        
+
 
         try {
-            
+            LOG.info("coooollll");
             User newUser = userDAO.createUser(user);
             return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
-            
-
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

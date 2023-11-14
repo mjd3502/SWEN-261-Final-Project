@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminBrowsePetsComponent {
   pets: Pet[] = [];
+  p:number = 1
 
   constructor(private petService: PetService,
     private route:Router

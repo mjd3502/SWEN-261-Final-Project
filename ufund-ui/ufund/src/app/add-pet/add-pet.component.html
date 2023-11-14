@@ -1,40 +1,31 @@
 <app-admin-navbar></app-admin-navbar>
- 
-<div id="container">
-    <h1>Add a New Pet</h1>
-    <h3>Please fill out all fields</h3>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen">
+    
+    <div id="container" class="container mx-auto">
+        <h1 class="text-3xl font-semibold mb-4">Add a New Pet!</h1>
+        <h3 class="text-lg mb-6">Please fill out all fields</h3>
+        <form class="form-container" (ngSubmit)="onSubmit()">
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet Name:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="name"
+                    [(ngModel)]="pet.name" name="name" ng-required="true">
+            </div>
 
-    <form class="form-container"  (ngSubmit)="onSubmit()">
-       
-        <div class="formGroup">
-            <label>Pet Name: </label>
-            <input type="text" class="form-input" id="name"
-            [(ngModel)] = "pet.name" name="name" ng-required="true">
-        </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet Description:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="description"
+                    [(ngModel)]="pet.description" name="description" ng-required="true">
+            </div>
 
-        <div class="formGroup">
-            <label>Pet Description: </label>
-            <input type="text" class="form-input" id="description"
-            [(ngModel)] = "pet.description" name="description" ng-required="true">
-        
-        </div>
+            <div class="mb-4 formGroup">
+                <label class="block text-sm font-normal">Pet Availability:</label>
+                <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="quantity"
+                    [(ngModel)]="pet.available" name="quantity" ng-required="true">
+            </div>
+            <!-- <div *ngIf="errorMesage" class="text-red-500 mb-4">{{errorMesage}}</div> -->
+            <button type="submit" class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button">Create Need!</button>
 
-        <!--
-        <div class="formGroup">
-            <label>Pet Id: </label>
-            <input type="text" class="form-input" id="cost"
-            [(ngModel)] = "pet.id" name="id" ng-required="true">
-        
-        </div>
-        //-->
-        <div class="formGroup">
-            <label>Available (true or false): </label>
-            <input type="text" class="form-input" id="type"
-            [(ngModel)] = "pet.available" name="available" ng-required="true">
-        
-        </div>
+        </form>
+    </div>
 
-        <button class="update-button" type="submit"> Create Pet </button>
-
-    </form>
-</div>
+</body>

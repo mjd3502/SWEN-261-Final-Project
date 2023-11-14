@@ -60,7 +60,7 @@
 
 
 
-<main class="bg-gray-950 bg-center bg-cover h-screen flex flex-col items-center justify-center">
+<main class="bg-gray-700 bg-center bg-cover h-screen flex flex-col items-center justify-center">
         <div class="flex flex-col items-center justify-center">
             <h1 class="text-4xl text-center font-bold text-gray-700 border-b border-gray-200 my-8 mb-8">
                 Support our Furry Friends in Need 
@@ -76,7 +76,6 @@
                 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" *ngFor="let need of needs | paginate:{itemsPerPage:4,currentPage:p};">
                     <h3 *ngIf="need.quantity==0" class="text-red-500 " >Need Goal has been met</h3>
                     <img src="../assets/images/needs/{{need.id}}.jpg" alt="{{need.name}} Image" class="p-8 rounded-t-lg"> 
-        
                     <div class="px-5 pb-5">
         
                         <a routerLink="/detail/{{need.id}}">
@@ -88,7 +87,7 @@
         
                         <div class="flex items-center justify-between">
                             <span class="text-3xl font-bold text-gray-900 dark:text-white">
-                            {{need.type === 'goods' ? '$' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}
+                            {{need.type === 'goods' ? 'Cost: $' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}
                             </span>
                             <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  [disabled]="need.quantity == 0" (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
                         </div>

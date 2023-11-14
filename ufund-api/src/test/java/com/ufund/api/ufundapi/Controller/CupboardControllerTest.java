@@ -27,11 +27,11 @@ import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
  * Secondary Tests: Rachel Adkins @raa5749
  */
 
-// @Tag("Controller-tier")
-// public class CupboardControllerTest {
-//     private CupboardController cupboardController;
-//     private CupboardDAO mockcupboardDAO;
-//     private RemoveNeedsDAO mockRemoveNeedsDAO;
+@Tag("Controller-tier")
+public class CupboardControllerTest {
+    private CupboardController cupboardController;
+    private CupboardDAO mockcupboardDAO;
+    private RemoveNeedsDAO mockRemoveNeedsDAO;
 
 //     /**
 //      * Before each test, create a new cupboardController object and inject
@@ -312,16 +312,16 @@ import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 //      * Attempts to delete a need by ID. Checks if need exists, and that the resulting status
 //      * code is OK because the need was successfully found and deleted.
 //      * @throws IOException
-//      */
-//     @Test
-//     public void deleteNeedbyId() throws IOException{
+//              4$$4$      */
+@Test
+    public void deleteNeedbyId() throws IOException{
 
-//         int needId = 99;
-//         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
+        int needId = 99;
+        when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
         
-//         ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
-//         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-//     }
+        ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
+        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+ }
 
 //     /**
 //      * Tests: deleteNeed (fail case)
@@ -439,4 +439,4 @@ import com.ufund.api.ufundapi.persistence.RemoveNeedsDAO;
 //         ResponseEntity<Need> responseEntity = cupboardController.updateNeed(need);
 //         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
 //     }
-// }
+}

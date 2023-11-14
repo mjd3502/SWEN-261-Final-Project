@@ -21,7 +21,7 @@ export class FundingBasketComponent implements OnInit{
   user!:User;
   donationValues: { [key: string]: number } = {};
   needIndividualCost: { [key: string]: number } = {};
-  // newQuantities:Need[] = []
+  p:number = 1;
   needsToCheckout: Map<string,number> = new Map<string, number>();
   totalAmount = 0;
 

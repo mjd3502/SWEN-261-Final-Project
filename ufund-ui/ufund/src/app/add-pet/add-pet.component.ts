@@ -27,7 +27,8 @@ export class AddPetComponent {
             icon: "success"
           });
 
-          this.router.navigate(['/adminPetPage'])
+          this.router.navigate(['/upload/pet/' + (String)(response.id)])
+        
         }
                 
       },(error)=>{

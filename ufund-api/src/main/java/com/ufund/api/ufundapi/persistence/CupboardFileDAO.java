@@ -249,17 +249,26 @@ public class CupboardFileDAO implements CupboardDAO{
 
         if (!cupboard.containsKey(id)){
                 return null;
-        }
-       
-        if(surplus > 0 && donation > quantity){
-            surplus = surplus + donation;
+        } 
+        
+        // if(surplus > 0 && donation > quantity){ 
+        //     surplus = surplus + donation; 
+        // }else{ 
+        //     if(donation < quantity){ 
+        //         quantity = quantity - donation; 
+        //     }else if(donation > quantity){ 
+        //         surplus =  Math.abs(donation-quantity); 
+        //         quantity = 0; 
+        //     } 
+        // } 
+
+        if(donation < quantity){
+            quantity = quantity - donation;
+        }else if(donation > quantity){
+            surplus =  Math.abs(donation-quantity);
+            quantity = 0;
         }else{
-            if(donation < quantity){
-                quantity = quantity - donation;
-            }else if(donation > quantity){
-                surplus =  Math.abs(donation-quantity);
-                quantity = 0;
-            }
+            quantity = quantity - donation; 
         }
         
        cupboardNeed.setQuantity(quantity);

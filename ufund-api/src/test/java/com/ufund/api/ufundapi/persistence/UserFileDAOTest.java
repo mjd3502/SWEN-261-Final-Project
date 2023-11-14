@@ -51,7 +51,7 @@ public class UserFileDAOTest {
 
 
     @Test 
-    public void test_createNewUser(){
+    public void createNewUser(){
         User user = new User("Carla");
 
         try {
@@ -68,7 +68,7 @@ public class UserFileDAOTest {
 
 
     @Test
-    public void test_getUserName(){
+    public void getUserName(){
         try {
             //gets username from already established list
             String name = userFileDAO.getUserName("Michael");
@@ -81,7 +81,7 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void test_getBADUserName(){
+    public void getBadUserName(){
         try {
             //gets bad username, should give back null value
             String name = userFileDAO.getUserName("THE DESTROYER OF WORLDS");
@@ -96,7 +96,7 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void test_getUserByName(){
+    public void getUserByName(){
         try {
             //gets username from already established list
             User user = userFileDAO.getUserByName("Michael");
@@ -109,7 +109,7 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void test_getUserByNameNull(){
+    public void getUserByNameNull(){
         try {
             //gets username from already established list
             User user = userFileDAO.getUserByName("not a user");
@@ -122,7 +122,7 @@ public class UserFileDAOTest {
     }
 
     @Test
-    public void test_doesUserExist(){
+    public void doesUserExist(){
         try {
             //gets username from already established list
             Boolean exist = userFileDAO.doesUserExist("Michael");

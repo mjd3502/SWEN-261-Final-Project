@@ -248,6 +248,7 @@ public class CupboardControllerTest {
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+
     }
 
     @Test
@@ -258,6 +259,7 @@ public class CupboardControllerTest {
 
         ResponseEntity<Need> response = cupboardController.createNeed(need);
         assertEquals(HttpStatus.NOT_ACCEPTABLE,response.getStatusCode());
+
     }
 
     @Test

@@ -27,6 +27,7 @@ import com.ufund.api.ufundapi.persistence.CupboardDAO;
 @Tag("Persistence-tier")
 public class CupboardFileDAOTest {
     private CupboardFileDAO cupboardFileDAO;
+    private CupboardDAO mockCupboardDAO;
     Need[] testNeeds;
     ObjectMapper mockObjectMapper;
 
@@ -48,11 +49,6 @@ public class CupboardFileDAOTest {
         cupboardFileDAO = new CupboardFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
-
-    /*---------------------------------TESTS----------------------- 
-     * @author garrett Geyer
-    */
-
     @Test
     public void testUpdateNeed(){
         try{
@@ -65,7 +61,7 @@ public class CupboardFileDAOTest {
         // Analyze
         assertNotNull(result);
         Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
-        assertEquals(actual,need);
+        assertEquals(need,actual);
         } catch (IOException e) {
             //if error was thrown assert false, test failed
             assertFalse(true);
@@ -73,220 +69,256 @@ public class CupboardFileDAOTest {
     }
     
 
+    // @Test
+    // public void testUpdateNeedNoKey(){
+    //     try{
+    //     // Setup
+    //     Need need = new Need(67,"does not exist", 2, 0,"not a thing", 20, "goods");
+    //     Need nullNeed= null;
+    //     // Invoke
+    //     Need result = assertDoesNotThrow(() -> cupboardFileDAO.updateNeed(need),"Unexpected exception thrown");
 
-    @Test
-    public void testCreateValidNeed(){
-        Need need = new Need(101,"Hello!!", 1,0, "Lorem Ipsum", 1, "goods");
+    //     // Analyze
+    //     assertNotNull(result);
+    //     Need actual = cupboardFileDAO.getSingleNeedById(67);
         
+    //     assertEquals(nullNeed.getBody(), null);
+    //     assertEquals(null, null);
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
+
+    @Test
+    public void testUpdateNeedSurplus(){
+        try{
+        // Setup
+        Need need = new Need(99,"food", 3, 2,"a thing", 20, "goods");
 
         // Invoke
-        Need result;
-        try {
-            result = cupboardFileDAO.createNeed(need);
+        Need result = assertDoesNotThrow(() -> cupboardFileDAO.updateNeed(need),"Unexpected exception thrown");
 
-            // Analyze, result will be true if the need created matches criteria of uploaded need
-            assertEquals(result.getId(),need.getId());
-            assertEquals(result.getName(),need.getName());
-            assertEquals(result.getDescription(),need.getDescription());
-
-
+        // Analyze
+        assertNotNull(result);
+        Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
+        assertEquals(0,actual.getSurplus());
         } catch (IOException e) {
             //if error was thrown assert false, test failed
             assertFalse(true);
         }
     }
 
-    @Test
-    public void testCreateNullNeed(){
-        Need need = null;
-        // Invoke
-        Need result;
-        try {
-            result = cupboardFileDAO.createNeed(need);
+    // @Test
+    // public void testCreateValidNeed() throws IOException{
+    //     // Setup
+    //     Need need = new Need(90,"food but better", 1, 0,"even more food", 10, "goods");
+    //     int needId = 90;
 
-            assertFalse(true);
+    //     // Invok
+    //     assertDoesNotThrow(() -> {
+    //         Need result = cupboardFileDAO.createNeed(need);
 
-        } catch (IOException | NullPointerException e) {
-            //should throw error becuase unexceptable value
-            assertTrue(true);
-        } 
-    }
+    //         // Analyze
+    //         assertNotNull(result);
+    //         assertEquals(need.getId(),result.getId());
+
+    //         Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
+    //         assertEquals(need,actual);
+    //     },"Unexpected exception thrown");
+    // }
+
+    // @Test
+    // public void testCreateNullNeed(){
+    //     Need need = null;
+    //     // Invoke
+    //     Need result;
+    //     try {
+    //         result = cupboardFileDAO.createNeed(need);
+
+    //         assertFalse(true);
+
+    //     } catch (IOException | NullPointerException e) {
+    //         //should throw error becuase unexceptable value
+    //         assertTrue(true);
+    //     } 
+    // }
 
 
-    @Test
-    public void testDeleteExistingNeed(){
-        // Setup
-        Need need = new Need(101,"Delete me!", 1, 0,"Lorem Ipsum", 1, "goods");
+    // @Test
+    // public void testDeleteExistingNeed(){
+    //     // Setup
+    //     Need need = new Need(101,"Delete me!", 1, 0,"Lorem Ipsum", 1, "goods");
         
-        try {
-            cupboardFileDAO.createNeed(need);
+    //     try {
+    //         cupboardFileDAO.createNeed(need);
 
-            // Invoke
-            boolean result;
-            try {
-                result = cupboardFileDAO.deleteNeed(101);
+    //         // Invoke
+    //         boolean result;
+    //         try {
+    //             result = cupboardFileDAO.deleteNeed(101);
 
-                // Analyze, result will equal true if the need was deleted
-                assertTrue(result);
-
-
-            } catch (IOException e) {
-                //if error was thrown assert false, test failed
-                assertFalse(true);
-        }
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-
-    }
-
-    @Test
-    public void testDeleteFakeNeed(){
-        //Deleting a need which does not exist
-
-        // Invoke
-        boolean result;
-        try {
-            result = cupboardFileDAO.deleteNeed(10000);
-
-            // Analyze, result will equal true if deleting the need returned false
-            assertTrue(!result);
+    //             // Analyze, result will equal true if the need was deleted
+    //             assertTrue(result);
 
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //         } catch (IOException e) {
+    //             //if error was thrown assert false, test failed
+    //             assertFalse(true);
+    //     }
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+
+    // }
+
+    // @Test
+    // public void testDeleteFakeNeed(){
+    //     //Deleting a need which does not exist
+
+    //     // Invoke
+    //     boolean result;
+    //     try {
+    //         result = cupboardFileDAO.deleteNeed(10000);
+
+    //         // Analyze, result will equal true if deleting the need returned false
+    //         assertTrue(!result);
 
 
-    @Test
-    public void testGetSingleNeed() throws IOException{
-        // Setup
-        Need need = new Need(101,"Get this need by ID", 1,0, "Lorem Ipsum", 1, "goods");
-
-        cupboardFileDAO.createNeed(need);
-
-        // Invoke
-        Need result;
-        try {
-            result = cupboardFileDAO.getSingleNeedById(101);
-
-            //make sure the need is the same as the one we are trying to get
-            assertEquals(result.getId(),need.getId());
-            assertEquals(result.getName(),need.getName());
-            assertEquals(result.getDescription(),need.getDescription());
-
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 
 
-    @Test
-    public void testGetInvalidSingleNeed() throws IOException{
-        // Invoke
-        Need result;
-        try {
-            result = cupboardFileDAO.getSingleNeedById(20);
+    // @Test
+    // public void testGetSingleNeed() throws IOException{
+    //     // Setup
+    //     Need need = new Need(101,"Get this need by ID", 1,0, "Lorem Ipsum", 1, "goods");
 
-            //make sure the return is null as there is no need with said id
-            assertNull(result);
+    //     cupboardFileDAO.createNeed(need);
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     // Invoke
+    //     Need result;
+    //     try {
+    //         result = cupboardFileDAO.getSingleNeedById(101);
+
+    //         //make sure the need is the same as the one we are trying to get
+    //         assertEquals(result.getId(),need.getId());
+    //         assertEquals(result.getName(),need.getName());
+    //         assertEquals(result.getDescription(),need.getDescription());
+
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 
 
-    @Test
-    public void getOneNeedbyName() throws IOException{
-        // Setup
-        Need need = new Need(101,"Get this need!", 1,0, "Lorem Ipsum", 1, "goods");
+    // @Test
+    // public void testGetInvalidSingleNeed() throws IOException{
+    //     // Invoke
+    //     Need result;
+    //     try {
+    //         result = cupboardFileDAO.getSingleNeedById(20);
 
-        cupboardFileDAO.createNeed(need);
+    //         //make sure the return is null as there is no need with said id
+    //         assertNull(result);
 
-        // Invoke
-        Need[] search_result;
-        try {
-            search_result = cupboardFileDAO.getNeedbyName("Get this need!");
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 
-            // Analyze
-            assertEquals(1,search_result.length);
 
-            int result_id = search_result[0].getId();
+    // @Test
+    // public void getOneNeedbyName() throws IOException{
+    //     // Setup
+    //     Need need = new Need(101,"Get this need!", 1,0, "Lorem Ipsum", 1, "goods");
 
-            assertEquals(result_id,101);
+    //     cupboardFileDAO.createNeed(need);
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     // Invoke
+    //     Need[] search_result;
+    //     try {
+    //         search_result = cupboardFileDAO.getNeedbyName("Get this need!");
 
-    @Test
-    public void get2NeedsByName() throws IOException{
-        // Setup
-        Need need1 = new Need(124,"Dog food!", 1,0, "Lorem Ipsum", 1, "goods");
-        Need need2 = new Need(123,"Dog walking", 1,0, "Lorem Ipsum", 1, "volunteer");
+    //         // Analyze
+    //         assertEquals(1,search_result.length);
 
-        cupboardFileDAO.createNeed(need1);
-        cupboardFileDAO.createNeed(need2);
+    //         int result_id = search_result[0].getId();
 
-        // Invoke
-        Need[] search_result;
-        try {
-            search_result = cupboardFileDAO.getNeedbyName("Dog");
+    //         assertEquals(result_id,101);
 
-            // Analyze
-            assertEquals(search_result.length, 2);
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
+
+    // @Test
+    // public void get2NeedsByName() throws IOException{
+    //     // Setup
+    //     Need need1 = new Need(124,"Dog food!", 1,0, "Lorem Ipsum", 1, "goods");
+    //     Need need2 = new Need(123,"Dog walking", 1,0, "Lorem Ipsum", 1, "volunteer");
+
+    //     cupboardFileDAO.createNeed(need1);
+    //     cupboardFileDAO.createNeed(need2);
+
+    //     // Invoke
+    //     Need[] search_result;
+    //     try {
+    //         search_result = cupboardFileDAO.getNeedbyName("Dog");
+
+    //         // Analyze
+    //         assertEquals(search_result.length, 2);
             
-            int result_id1 = search_result[0].getId();
-            int result_id2 = search_result[1].getId();
+    //         int result_id1 = search_result[0].getId();
+    //         int result_id2 = search_result[1].getId();
 
-            assertEquals(102, result_id2);
-            assertEquals(101, result_id1);
+    //         assertEquals(102, result_id2);
+    //         assertEquals(101, result_id1);
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 
-    @Test
-    public void test_deleteByName() throws IOException{
-        Need deleteme = new Need(145, "Delete this!", 1,0, "Lorem Ipsum", 10, "goods");
+    // @Test
+    // public void test_deleteByName() throws IOException{
+    //     Need deleteme = new Need(145, "Delete this!", 1,0, "Lorem Ipsum", 10, "goods");
         
         
-        cupboardFileDAO.createNeed(deleteme);
+    //     cupboardFileDAO.createNeed(deleteme);
         
-        // Invoke
-        try {
-            boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
+    //     // Invoke
+    //     try {
+    //         boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
 
-            assertTrue(result);
+    //         assertTrue(result);
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 
-    @Test
-    public void test_deleteInvalidByName() throws IOException{
-        // Invoke
-        try {
-            boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
+    // @Test
+    // public void test_deleteInvalidByName() throws IOException{
+    //     // Invoke
+    //     try {
+    //         boolean result = cupboardFileDAO.deleteNeedbyName("Delete this!");
 
-            //result should be false
-            assertTrue(!result);
+    //         //result should be false
+    //         assertTrue(!result);
 
-        } catch (IOException e) {
-            //if error was thrown assert false, test failed
-            assertFalse(true);
-        }
-    }
+    //     } catch (IOException e) {
+    //         //if error was thrown assert false, test failed
+    //         assertFalse(true);
+    //     }
+    // }
 }

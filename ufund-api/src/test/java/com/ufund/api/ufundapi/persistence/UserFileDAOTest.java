@@ -95,5 +95,44 @@ public class UserFileDAOTest {
 
     }
 
+    @Test
+    public void test_getUserByName(){
+        try {
+            //gets username from already established list
+            User user = userFileDAO.getUserByName("Michael");
+            assertEquals("User [userName=Michael ]",user.toString());
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
+    @Test
+    public void test_getUserByNameNull(){
+        try {
+            //gets username from already established list
+            User user = userFileDAO.getUserByName("not a user");
+            assertEquals(null,user);
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
+    @Test
+    public void test_doesUserExist(){
+        try {
+            //gets username from already established list
+            Boolean exist = userFileDAO.doesUserExist("Michael");
+            assertEquals(true,exist);
+        } catch (IOException e) {
+            //test fails if an error is thrown
+            assertFalse(true);
+        }
+
+    }
+
 
 }

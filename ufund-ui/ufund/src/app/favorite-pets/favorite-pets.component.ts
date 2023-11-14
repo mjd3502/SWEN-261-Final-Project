@@ -57,6 +57,7 @@ export class FavoritePetsComponent implements OnInit{
   deletePet(petId: number): void{
     this.favoritePetsService.removePetFromFavoritePets(this.username,petId).subscribe(user =>{
       console.log(user);
+      this.getFavoritePets(this.username);
     })
   }
 

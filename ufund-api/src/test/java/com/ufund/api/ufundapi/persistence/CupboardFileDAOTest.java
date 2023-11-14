@@ -94,49 +94,6 @@ public class CupboardFileDAOTest {
         }
     }
 
-    // @Test
-    // public void testUpdateNeedSurplusEqualToNewQuantity() throws IOException{
-    //     try{
-    //     // Setup
-    //     Need need = new Need(98,"Something",1,2,"a different thing",20,"goods");
-    //     Need[] needs = new Need[1];
-    //     needs[0] = need;
-    //     Need update = new Need(98,"Something",2,0,"a different thing",20,"goods");
-
-    //     // Invoke
-    //     Need result = assertDoesNotThrow(() -> cupboardFileDAO.updateNeed(update),"Unexpected exception thrown");
-
-    //     // Analyze
-    //     Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
-    //     assertEquals(0,result.getSurplus());
-    //     assertEquals(1,result.getQuantity());
-    //     } catch (NullPointerException e) {
-    //         //if error was thrown assert false, test failed
-    //         assertFalse(true);
-    //     }
-    // }
-
-    // @Test
-    // public void testUpdateNeedNoKey(){
-    //     try{
-    //     // Setup
-    //     Need need = new Need(67,"does not exist", 2, 0,"not a thing", 20, "goods");
-    //     Need nullNeed= null;
-    //     // Invoke
-    //     Need result = assertDoesNotThrow(() -> cupboardFileDAO.updateNeed(need),"Unexpected exception thrown");
-
-    //     // Analyze
-    //     assertNotNull(result);
-    //     Need actual = cupboardFileDAO.getSingleNeedById(67);
-        
-    //     assertEquals(nullNeed.getBody(), null);
-    //     assertEquals(null, null);
-    //     } catch (IOException e) {
-    //         //if error was thrown assert false, test failed
-    //         assertFalse(true);
-    //     }
-    // }
-
     @Test
     public void testUpdateNeedSurplus(){
         try{
@@ -156,24 +113,6 @@ public class CupboardFileDAOTest {
         }
     }
 
-    // @Test
-    // public void testCreateValidNeed() throws IOException{
-    //     // Setup
-    //     Need need = new Need(90,"food but better", 1, 0,"even more food", 10, "goods");
-    //     int needId = 90;
-
-    //     // Invok
-    //     assertDoesNotThrow(() -> {
-    //         Need result = cupboardFileDAO.createNeed(need);
-
-    //         // Analyze
-    //         assertNotNull(result);
-    //         assertEquals(need.getId(),result.getId());
-
-    //         Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
-    //         assertEquals(need,actual);
-    //     },"Unexpected exception thrown");
-    // }
 
     @Test
     public void testCreateNullNeed(){
@@ -432,27 +371,6 @@ public class CupboardFileDAOTest {
             assertFalse(true);
         }
     }
-
-    // @Test
-    // public void helperSurplusUpdateNeedNoKey() throws IOException{
-    //     try{
-    //     // Setup
-    //     Need need = new Need(98,"Something",10,0,"a different thing",20,"goods");
-    //     Need[] needs = new Need[1];
-    //     needs[0] = need;
-    //     Need update = new Need(31,"Something",10,0,"a different thing",20,"goods");
-
-    //     // Invoke
-    //     Need result = assertDoesNotThrow(() -> cupboardFileDAO.helperSurplusUpdateNeed(31,1000),"Unexpected exception thrown");
-
-    //     // Analyze
-    //     Need actual = cupboardFileDAO.getSingleNeedById(need.getId());
-    //     assertEquals(null,result);
-    //     } catch (IOException e) {
-    //         //if error was thrown assert false, test failed
-    //         assertFalse(true);
-    //     }
-    // }
 
     @Test
     public void getEntireCupboard() throws IOException{

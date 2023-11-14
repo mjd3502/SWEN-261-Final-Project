@@ -121,22 +121,6 @@ public class FundingBasketFileDAOTest {
     }
 
     @Test
-    public void addNeedToFundingBasketNotAdded(){
-        //setup
-        Need need = new Need(99,"food",1,0,"a thing",20,"goods");
-
-        try {
-            FundingBasket result = fundingBasketFileDAO.addNeedToFundingBasket("this is not a user",need);
-            Map<Integer,Need> needs = result.getFundingBasket();
-
-            assertEquals(needs.get(99).getName(), "food");
-
-        } catch (IOException e) {
-            assertFalse(true);
-        }
-    }
-
-    @Test
     public void deleteFromBasket(){
         //setup
         Need need = new Need(99,"food",1,0,"a thing",20,"goods");

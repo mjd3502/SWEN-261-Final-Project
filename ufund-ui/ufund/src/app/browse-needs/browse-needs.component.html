@@ -13,7 +13,7 @@
         <div class="flex items-center justify-center flex-1">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" *ngFor="let need of needs | paginate:{itemsPerPage:4,currentPage:p};">
-                    <h3 *ngIf="need.quantity==0" class="text-red-500 " >Need Goal has been met</h3>
+                    <h3 *ngIf="need.quantity==0" class= "text-red-500 text-center" > Need Goal has been met</h3>
                     <img src="../assets/images/needs/{{need.id}}.jpg" alt="{{need.name}} Image" class="p-8 rounded-t-lg"> 
                     <div class="px-5 pb-5">
         
@@ -28,7 +28,8 @@
                             <span class="text-3xl font-bold text-gray-900 dark:text-white">
                             {{need.type === 'goods' ? 'Cost: $' + need.cost : (need.type === 'volunteer' ? 'Hours: ' + need.cost : '') }}
                             </span>
-                            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  [disabled]="need.quantity == 0" (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
+                            <button *ngIf="need.quantity!=0" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  (click)="functionAddNeed(need)" id="button" type="button" title ="add to basket">Add to Basket</button>
+                            <div *ngIf="need.quantity==0" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" >Needed Quantity reached!</div>
                         </div>
                     </div>
                 </div>

@@ -23,10 +23,8 @@ This is a summary of the project.
 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
-> important user group and user goals._
 
-The manager of the Ufund system can add, remove, and edit needs stored in their cupboard.
-The Helper can browse through a list of needs and select individuals needs to support.
+The manager of the Ufund system is able to add any needs which the shelter might require to a list of needs called the Cupboard. They can modify and remove any need they add to this cupboard. Along with this they can add all pets they have at the shelter to the website, with an individual profile and picture for each. Every other user is a helper, and can peruse and search through the list of needs put up, and can add them to a funding basket, which they can proceed to fund all needs they delagate. Along with this a helper is able to look through the list of available pets, inquire about a specific pet as well as see their adoption status.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -35,22 +33,25 @@ The Helper can browse through a list of needs and select individuals needs to su
 |------|------------|
 | SPA | Single Page |
 | Helper | A user using the application with intent to give support|
+|MVP | Minimum Viable Product|
 
 
 ## Requirements
 
 This section describes the features of the application.
 
-> The MIA Foundation U Fund website focuses on providing both helpers of the organizations and managers an 
+ The Mia Foundation U Fund website focuses on providing both helpers of the organizations and managers an 
 optimal way of collaborating for an important cause such us supporting animals in need.
-> In our website the Administrator of the Funding website will be able to:
-> Log in to the "Admin dashboard" to see the list of needs of their organization
->Add,remove, and edit the needs which are either goods or volunteer opportunities
-> The helper will be able to:
->Log in to their "Helper" Dashboard to access the cupboard of the organization
-> Search for a need by name
-> A personalized funding basket where they can add/delete the needs they want to checkout
-
+ In our website the Administrator of the Funding website will be able to:
+ Log in to the "Admin dashboard" to see the list of needs of their organization
+Add,remove, and edit the needs which are either goods or volunteer opportunities
+Add remove and edit all pets currently displayed
+The helper will be able to:
+Log in to their "Helper" Dashboard to access the cupboard of the organization
+Search for a need by name
+have A personalized funding basket where they can add/delete the needs they want to checkout
+View all pets available in the shelter.
+Add individual pets to a favorites list, with all pets they like in the list
 ### Definition of MVP
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
@@ -70,13 +71,21 @@ The manager can add, remove and change needs stored in their cupboard and a help
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
+Added onto the MVP features is the admin's ability to track all pets currently in the shelter on the website. 
+The admin can update and remova any of these pets.
+An image can be uploaded to represent the pet.
+A helper is able to view this list of pets, and can add pets to their individual list of favorite pets. 
+When visiting the website for the first time, you are brought to a welcome page
+A helper can also inquirea about any pets currenlty avialable
+From the welcome page you can continue to either login or signup, creating a new account with the website.
+
 
 
 ## Application Domain
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](DomainAnalysis.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -92,7 +101,7 @@ This section describes the application architecture.
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document. (_When requested, replace this diagram with your **own** rendition and representations of sample classes of your system_.) 
 
-![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
+![The Tiers & Layers of the Architecture](ArchitectureDiagram.png)
 
 The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
@@ -102,6 +111,8 @@ The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeS
 
 Both the ViewModel and Model are built using Java and Spring Framework. Details of the components within these tiers are supplied below.
 
+The ViewModel and Model steps are implemented for each individual part of the system, so there is a seperate Models and controllers for Users, Pets, Needs, FundingBaskets and FavoritePet lists.
+
 
 ### Overview of User Interface
 
@@ -109,10 +120,12 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
-> Our web application's user interface offers a clear and structured  for the user roles of Manager and Helper. All users can log in and access their personal "dashboard". If the user decides to have the role of "Helper", their personal page or dahsboard will display a list of available needs in the organization. Furthermore, they will be able to view and manage their Funding Basket ,which includes adding and removing needs. The Helper view also contains a feature which allows users to search needs by a specific name type and access a detail description of said need. 
+ Our web application's user interface offers a clear and structured  for the user roles of Manager and Helper. All users can log in and access their personal "dashboard". If the user decides to have the role of "Helper", their personal page or dahsboard will display a list of available needs in the organization. Furthermore, they will be able to view and manage their Funding Basket ,which includes adding and removing needs. The Helper view also contains a feature which allows users to search needs by a specific name type and access a detail description of said need. There are also buttons on the navigation bar at the top of the screen to redirect to the helper's funding basket, the list of all pets, and the user's favorite pet list.
 
-> On the other, the 'admin" or " U-fund manager, logs in to an administrative dashboard where they can oversee and and modify the needs in their cupboard. 
-> Both user roles have the opportunity to log out of the site whenever it is convenient.
+On the other, the 'admin" or " U-fund manager, logs in to an administrative dashboard where they can oversee and and modify the needs in their cupboard, as well as the pets in the shelter. They can freely navigate to pages to update both needs and pets, and have simple and obvious bottons for removing. 
+ Both user roles have the opportunity to log out of the site whenever it is convenient, and both have to login through the same page.
+ A helper can also sign up if they havent been to the site before, there is an obvious marker to redirect to the signup page.
+ When first visiting the site you are brought to a welcome page with basic information from which you can proceed to login or signup pages. 
 
 
 ### View Tier
@@ -148,15 +161,19 @@ This section describes the web interface flow; this is how the user views and in
 > section will follow the same instructions that are given for the View
 > Tier above._
 
-> The model tier of our application contains three main entities:
+> The model tier of our application contains five main entities:
 - Need
 - Funding Basket
 - User
+- Pet
+- Favorite Pet List
 Each on of them has a specific function within the application.
 The Need entity represents a good/volunteer opportunity that admin users can create and modify and that helper users can checkout to support the organization
 Funding Basket entity represent a unique basket that associated to a a particular username.
 User entity represents a helper user that logs in to the application. User are identified by a unique username. 
-The model tier forms the backbone of our application's architecture with the Need, Funding Basket and User entities playing distinct but interconnected roles. 
+The pet represents a pet in the shelter, with all information including adoption status and the ability to inquire about the pet.
+The Favorite list keep track of, for each user, what that user's favorite pets are, which they can add/removve any available pets from this list.
+The model tier forms the backbone of our application's architecture with the Need, Funding Basket, Pet, Favorite Pets, and User entities playing distinct but interconnected roles. 
 
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
@@ -169,10 +186,12 @@ The model tier forms the backbone of our application's architecture with the Nee
 
 The MIA Foundation U Fund website has been thoughtfully designed to align with two fundamental Object-Oriented (OO) design principles: High Cohesion and the Single Responsibility Principle (SRP). These principles are reflected in both the frontend (Angular) and backend (Java) components and modules. 
 
+High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
 
-> High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
+The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
 
-> The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
+Information Expert is implemented such that little to none work has to be done after calling a function. That is to say functions are implemented to return usable values, rather than returning something which has to modified or checked against another set of requirements. An example of this is with a function implemented to check if a user is new or not, simple returning a boolean rather than using a previously implemented function to return all users, then checking that for duplicate upon returning.
+
 
 By following these OO design principles, the MIA Foundation U Fund website has a maintainable and extensible code, enhancing the overall quality of the project.
 

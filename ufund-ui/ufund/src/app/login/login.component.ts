@@ -91,13 +91,15 @@ export class LoginComponent{
         });
       }
   }else{
+
+
     if(username  && typeof username === 'string'){
       await this.userExists(username);
       if(this.exists){
           this.user = new User(username);
           this.currentUser.setCurrentUser(this.user);
           this.changeRoute('/helperDashboard');
-      } else {
+      }else {
         Swal.fire({
           title: "Account doesn't exist",
           text:"Please create a new account or enter a valid username",
@@ -109,6 +111,10 @@ export class LoginComponent{
   }
   
   }
+
+
+
+
   signUpRedirect(){
     this.changeRoute('/signup')
   }

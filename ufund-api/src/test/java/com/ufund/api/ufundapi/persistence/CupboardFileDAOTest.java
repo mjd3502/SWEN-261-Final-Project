@@ -331,6 +331,22 @@ public class CupboardFileDAOTest {
     }
 
     @Test
+    public void helperSurplusUpdateNeedInvalid() throws IOException{
+        try{
+        // Setup
+        
+        // Invoke
+        Need result = cupboardFileDAO.helperSurplusUpdateNeed(30, 10);
+
+        // Analyze
+        assertNull(result);
+        } catch (IOException e) {
+            //if error was thrown assert false, test failed
+            assertFalse(true);
+        }
+    }
+
+    @Test
     public void helperSurplusUpdateNeedDonationLessThanQuantity() throws IOException{
         try{
         // Setup

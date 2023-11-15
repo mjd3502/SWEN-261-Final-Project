@@ -21,6 +21,7 @@ export class SignupComponent {
   user!:User;
   fundingBasket:FundingBasket = new FundingBasket();
   favoriteList:FavoritePets = new FavoritePets();
+  exists!:Boolean | undefined;
 
   signUpSection = new FormGroup(
     {username: new FormControl('',[Validators.required])}
@@ -39,32 +40,51 @@ export class SignupComponent {
     this.router.navigate([url])
   }
 
+  async userExists(username:string): Promise<void>{
+    const userexist = await this.userService.doesUserExist(username).toPromise()
+    this.exists =userexist;
+    console.log(this.exists)
+  }
 
 
-  signup(){
+  async signup(){
     const username = this.signUpSection.get("username")?.value;
     console.log(username);
     if(username && typeof username === 'string'){
-        this.user = new User(username);
-        console.log("hellooooo")
-        this.userService.createUser(this.user).subscribe(us=>{
-          this.currentUser.setCurrentUser(this.user);
-          console.log("creating user")
-      })
-        this.fundingBasket.setUsername(username);
-        this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
-        console.log(basket);
-        })
-        this.favoriteList.setUsername(username);
-        this.favoritePets.createFavoritePets(this.favoriteList).subscribe(favoriteList =>{
-          console.log(favoriteList)
-        })
-        Swal.fire({
-          title: "Account created",
-          text:"Log into your account now",
-          icon: "success"
-        });
+        await this.userExists(username);
+        console.log(this.exists)
+
+        if(this.exists){
+            Swal.fire({
+                  title: "Username is already taken",
+                  text:"Please choose a new username",
+                  icon: "error"
+            });
+        }else{
+
+          this.user = new User(username);
+          this.userService.createUser(this.user).subscribe(us=>{
+            this.currentUser.setCurrentUser(this.user);
+            console.log("creat user")
+            
+          })
+          this.fundingBasket.setUsername(username);
+          this.fundingBasketService.createFundingBasket(this.fundingBasket).subscribe(basket =>{
+          console.log(basket);
+          })
+          this.favoriteList.setUsername(username);
+          this.favoritePets.createFavoritePets(this.favoriteList).subscribe(favoriteList =>{
+            console.log(favoriteList)
+          })
+
+          Swal.fire({
+            title: "Account created",
+            text:"Log into your account now",
+            icon: "success"
+          });
+
         this.changeRoute('/login')
+        }
     }
   }
 }

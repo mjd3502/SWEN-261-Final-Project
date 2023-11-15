@@ -22,7 +22,7 @@ export class FundingBasketComponent implements OnInit{
   donationValues: { [key: string]: number } = {};
   needIndividualCost: { [key: string]: number } = {};
   p:number = 1;
-  needsToCheckout: Map<string,number> = new Map<string, number>();
+  needsToCheckout: Map<string,Need> = new Map<string, Need>();
   totalAmount = 0;
 
   constructor(
@@ -62,7 +62,7 @@ export class FundingBasketComponent implements OnInit{
     let needKey = String(Need.id);
     if (event.target instanceof HTMLInputElement) {
       this.donationValues[needKey] = Number(event.target.value);
-      this.needsToCheckout.set(needKey,Need.cost);
+      this.needsToCheckout.set(needKey,Need);
     }
 
     this.calculateIndividualTotal(Need.cost,needKey);

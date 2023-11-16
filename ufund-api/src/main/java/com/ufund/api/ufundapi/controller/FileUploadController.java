@@ -89,4 +89,20 @@ public class FileUploadController {
         }
         
     }
+
+    @DeleteMapping("/imageDelete/pets/{id}")
+    public ResponseEntity<Boolean> deletePetImage(@PathVariable String id){
+        
+        LOG.info("DELETE /imageDelete/pets/" + id);
+        try {
+            fileDao.deleteImage("pets",id);
+            System.out.println("pet deleted");
+            
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (IOException e) {
+            System.out.println("This did not work ;-;");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+    }
 }

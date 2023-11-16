@@ -18,12 +18,12 @@
             </div>
 
             <div class="mb-4 formGroup">
-                <label class="block text-sm font-normal">Pet Availability:</label>
+                <label class="block text-sm font-normal">Pet Availability (true for available and false otherwise):</label>
                 <input type="text" class="form-input mt-1 p-2 w-full border rounded-md focus:outline-none focus:border-gray-600 bg-gray-700 text-white" id="quantity"
                     [(ngModel)]="pet.available" name="quantity" ng-required="true">
             </div>
             <!-- <div *ngIf="errorMesage" class="text-red-500 mb-4">{{errorMesage}}</div> -->
-            <button type="submit" class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button">Create Need!</button>
+            <button type="submit" class="update-button bg-gray-700 text-white p-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:border-gray-500 update-button">Create Pet!</button>
 
         </form>
     </div>

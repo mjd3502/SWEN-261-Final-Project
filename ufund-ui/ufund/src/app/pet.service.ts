@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Observable, catchError, of, tap, throwError } from 'rxjs';
-
+import { forkJoin } from 'rxjs';
 import { Pet } from './Pet';
 
 @Injectable({ providedIn: 'root' })
@@ -49,8 +49,19 @@ export class PetService {
 
     deletePetbyId(id:number):Observable<Pet>{
       const url = `${this.URL}/${id}`
-      return this.http.delete<Pet>(url,this.httpOptions).pipe(
-        catchError(this.handleError<Pet>('deletePetbyId')))
+      const $delpet = this.http.delete<Pet>(url,this.httpOptions);
+
+      const imgUrl = 'http://localhost:8080/imageDelete/pets'
+      const imgLocation = `${imgUrl}/${id}`
+      const $delImage = this.http.delete<Boolean>(imgLocation,this.httpOptions);
+      
+      //runs both calls at once to delete image and the need
+      return forkJoin([$delpet,$delImage]).pipe(
+        catchError(this.handleError<any>("deletePetandImage"))
+      )
+
+      // return this.http.delete<Pet>(url,this.httpOptions).pipe(
+      //   catchError(this.handleError<Pet>('deletePetbyId')))
     }
 
     getAllPets():Observable<Pet[]>{

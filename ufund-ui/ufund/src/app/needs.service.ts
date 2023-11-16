@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, catchError, of, tap, throwError } from 'rxjs';
-
+import { forkJoin } from 'rxjs';
 import { Need } from './Need';
 
 @Injectable({ providedIn: 'root' })
@@ -48,20 +48,28 @@ export class NeedsService {
 
     deleteNeedbyId(id:number):Observable<Need>{
       const url = `${this.cupBoardURL}/${id}`
-      
-      this.deleteImage(id);
-      
-      return this.http.delete<Need>(url,this.httpOptions).pipe(
-        catchError(this.handleError<Need>('deleteNeedbyId')))
-    }
+      const $delNeed = this.http.delete<Need>(url,this.httpOptions);
 
-    deleteImage(id:number):Observable<Boolean>{
       const imgUrl = 'http://localhost:8080/imageDelete/needs'
-      const url = `${imgUrl}/${id}`
+      const imgLocation = `${imgUrl}/${id}`
+      const $delImage = this.http.delete<Boolean>(imgLocation,this.httpOptions);
+      
+      //runs both calls at once to delete image and the need
+      return forkJoin([$delNeed,$delImage]).pipe(
+        catchError(this.handleError<any>("deleteNeedandImage"))
+      )
 
-      return this.http.delete<Boolean>(url,this.httpOptions).pipe(
-        catchError(this.handleError<Boolean>('deleteNeedbyId')))
+      // return this.http.delete<Need>(url,this.httpOptions).pipe(
+      //   catchError(this.handleError<Need>('deleteNeedbyId')))
     }
+
+    // deleteImage(id:number):Observable<Boolean>{
+    //   const imgUrl = 'http://localhost:8080/imageDelete/needs'
+    //   const url = `${imgUrl}/${id}`
+
+    //   return this.http.delete<Boolean>(url,this.httpOptions).pipe(
+    //     catchError(this.handleError<Boolean>('deleteNeedbyId')))
+    // }
 
     getEntireNeedsCupboard():Observable<Need[]>{
       return this.http.get<Need[]>(this.cupBoardURL,this.httpOptions)

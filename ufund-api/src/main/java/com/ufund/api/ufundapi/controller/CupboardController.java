@@ -232,17 +232,15 @@ public class CupboardController {
         LOG.info("PUT /need " + need);
 
         if(validateStringFields(need.getName()) || validateStringFields(need.getDescription()) || validateStringFields(need.getType()) ){
-            LOG.info("wrooooonggg input");
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         
         if(validateIntegerFields(need.getCost()) || validateIntegerFields(need.getQuantity())){
-            LOG.info("wrooooonggg input");
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
 
         if(!validateTypeField(need.getType())){
-            LOG.info("wrooooonggg input");
+            
              return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         

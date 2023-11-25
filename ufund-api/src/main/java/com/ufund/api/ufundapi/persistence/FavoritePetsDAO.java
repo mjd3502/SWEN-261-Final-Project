@@ -1,12 +1,11 @@
 package com.ufund.api.ufundapi.persistence;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import com.ufund.api.ufundapi.model.FavoritePets;
 import com.ufund.api.ufundapi.model.Pet;
-import com.ufund.api.ufundapi.model.User;
+
 /**
  * Defines the interface for Favorite pets object persistence
  * 
@@ -19,7 +18,7 @@ public interface FavoritePetsDAO {
      * @return created favorite pet
      * @throws IOException if issue in storage
      */
-    FavoritePets createFavoritePets(FavoritePets FavoritePets) throws IOException;
+    FavoritePets createFavoritePets(FavoritePets favoritePets) throws IOException;
 
     /**
      * adds a pet to a user's list of favorite pets

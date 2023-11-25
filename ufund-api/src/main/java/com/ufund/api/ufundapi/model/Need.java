@@ -1,6 +1,5 @@
 package com.ufund.api.ufundapi.model;
 
-import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,7 +35,7 @@ public class Need {
         this.id=id;
         this.name = name;
         this.quantity = quantity;
-        this.surplus = this.surplus = (surplus != 0) ? surplus : 0;
+        this.surplus = (surplus != 0) ? surplus : 0;
         this.description = description;
         this.cost = cost;
         this.type = type;

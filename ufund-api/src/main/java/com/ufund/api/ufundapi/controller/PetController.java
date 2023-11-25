@@ -89,9 +89,7 @@ public class PetController {
 
     }
 
-    private boolean validateIntegerFields(int  value){
-        return value <= 0;
-    }
+    
 
     @PostMapping("")
     public ResponseEntity<Pet> createPet(@RequestBody Pet pet) {
@@ -131,7 +129,7 @@ public class PetController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Pet> deletePet(@PathVariable int id) {
-        LOG.info("DELETE /pet/" + id);
+       
 
         try {
             boolean didit = petDao.deletePet(id);
@@ -160,7 +158,7 @@ public class PetController {
      */
     @DeleteMapping("/petName/{name}")
     public ResponseEntity<Pet> deletePetbyName(@PathVariable String name) {
-        LOG.info("DELETE /pet/" + name);
+        // LOG.info("DELETE /pet/" + name);
 
         try {
             boolean didit = petDao.deletePetbyName(name);
@@ -185,16 +183,13 @@ public class PetController {
      */
     @GetMapping(" ")
     public ResponseEntity<List<Pet>> getPetList(){
-        LOG.info("GET /pet/" );
+       
        List<Pet> responseEntity = new ArrayList<>();
 
         try {
             responseEntity = petDao.getAllPets();
-            if(!responseEntity.isEmpty()){
-                return new ResponseEntity<List<Pet>>(responseEntity,HttpStatus.OK);
-            }else{
-                return new ResponseEntity<List<Pet>>(responseEntity,HttpStatus.OK);
-            }
+            return new ResponseEntity<List<Pet>>(responseEntity,HttpStatus.OK);
+           
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -212,7 +207,7 @@ public class PetController {
      */
     @PutMapping("")
     public ResponseEntity<Pet> updatePet(@RequestBody Pet pet) {
-        LOG.info("PUT /pet " + pet);
+       
 
         try {
             Pet checkPet = petDao.updatePet(pet);
@@ -240,7 +235,7 @@ public class PetController {
      */
     @GetMapping("/pets")
     public ResponseEntity<Pet[]> searchPet(@RequestParam String name){
-        LOG.info("GET /pet/?name="+name);
+        
 
         Pet[] pet;
 

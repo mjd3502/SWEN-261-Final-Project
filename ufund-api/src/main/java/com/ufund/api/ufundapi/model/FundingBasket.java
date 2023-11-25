@@ -1,8 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +16,7 @@ public class FundingBasket {
 
     public FundingBasket(@JsonProperty("userName") String userName, @JsonProperty("fundingBasket") Map<Integer,Need> listOfNeeds){
         this.userName = userName;
-        this.listOfNeeds = this.listOfNeeds = (listOfNeeds != null) ? listOfNeeds : new HashMap<>();
+        this.listOfNeeds  = (listOfNeeds != null) ? listOfNeeds : new HashMap<>();
     }
 
     

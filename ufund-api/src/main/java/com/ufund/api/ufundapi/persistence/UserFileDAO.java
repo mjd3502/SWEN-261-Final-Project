@@ -3,8 +3,7 @@ package com.ufund.api.ufundapi.persistence;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -18,13 +17,11 @@ import com.ufund.api.ufundapi.model.User;
 
 @Component
 public class UserFileDAO implements UserDAO{
-     private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
 
     Map<String,User> users;
 
     private ObjectMapper objectMapper;
 
-    private static String nextUserName;
 
     private  String filename;
 
@@ -97,8 +94,8 @@ public class UserFileDAO implements UserDAO{
     public User getUserByName(String username) throws IOException{
         synchronized(users){
             if(users.containsKey(username)){
-                User user = users.get(username);
-                return user;
+               return users.get(username);
+                
             }
             return null;
         }

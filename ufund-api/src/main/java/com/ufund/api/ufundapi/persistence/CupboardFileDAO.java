@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,7 +19,7 @@ import com.ufund.api.ufundapi.model.Need;
 @Component
 public class CupboardFileDAO implements CupboardDAO{
 
-    private static final Logger LOG = Logger.getLogger(CupboardFileDAO.class.getName());
+    
 
     Map<Integer,Need> cupboard;   // Provides a local cache of the Cupbaord objects
                                 // so that we don't need to read from the file

@@ -194,7 +194,6 @@ The Single Responsibility Principle (SRP) is well implemented, ensuring that eac
 
 High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
 
-The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
 
 The Law of Demeter is the principal to not have any of your implementations reach over through other classes implementet. So each object is only allowed to interact with a specific set of neighbor classes. This protects against any unintended coupling from occuring throughout the system. This is in tandem with another principal of low cohesion. If the program starts violating the Law of Demeter is affects the amount of coupling you have even if you dont directly import more classes. This is shown in the design with the creation of more helper methods rather than continuing to instantiate upon previous methods. One example is in the funding basket Data access object, there is a function to return all funding baskets which could be used to fetch an individual user's basket from, but instead a new method was implemented to return a specific basket you would be looking for.
 
@@ -208,17 +207,20 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
-## Static Code Analysis/Future Design Improvements
+## Static Code Analysis
 > _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
 > **Identify 3-4** areas within your code that have been flagged by the Static Code 
 > Analysis Tool (SonarQube) and provide your analysis and recommendations.  
 > Include any relevant screenshot(s) with each area._
 
+## Future Design Improvements
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+
 
 ## Testing
 > _This section will provide information about the testing performed
 > and the results of the testing._
+
 ### Acceptance Testing
 > _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
 > acceptance criteria tests, the number that have some acceptance

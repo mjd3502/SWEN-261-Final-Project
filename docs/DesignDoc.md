@@ -54,6 +54,7 @@ have A personalized funding basket where they can add/delete the needs they want
 View all pets available in the shelter.
 Add individual pets to a favorites list, with all pets they like in the list
 ### Definition of MVP
+
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
 Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
@@ -206,15 +207,57 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
-
 ## Static Code Analysis
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
-> Include any relevant screenshot(s) with each area._
+
+Sonar Qube highlighted several areas within our codebase that need improvements and/or changes. The main categories  flagged were:
+> Clean code attribute
+> Software Quality
+> Type
+
+### Clean code attribute
+
+Within the clean code attribute, the Sonar Qube reported that we had issues regarding the intentionality,consistency, and adaptability of our codebase. 
+
+> Consistency: One persistent error identified was related to the naming convention of our constant variables. SonarQube flagged that our constant names did not adhere to the defined regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$. This rule aims to ensure that all constant names match the provided regular expression.
+We consistently failed to meet this standard, which has repercussions for the readability and maintainability of our codebase. Adhering to the specified naming convention for constants is crucial, as it significantly impacts code comprehension and standardization.
+![consistency Screenshot](intentionality.png)
+
+> Intentionality:
+- Unused Imports: A persistent issue identified in the codebase was the presence of unused imports. These unnecessary imports clutter the code and can negatively impact its readability. It's important to regularly remove unused imports to maintain a clean and efficient codebase.
+![Intentionality Screenshot](intentionality.png)
+- Unit Testing Assertions: In unit testing scenarios, there's a noted recommendation to swap the arguments during assertions. This practice aligns with standard assertion library methods where the first argument is the expected outcome and the second argument is the actual value being tested. Despite not impacting the outcome of the test, adhering to this convention aligns our unit tests with the correct practices.
+![Intentionality Screenshot](intentionality.png)
+
+> Adaptablity
+- The most common adaptability error in our codebase is regarding not having assertion tests cases within our unit tests. Sonar Qube says that: "A test case without assertions ensures only that no exceptions are thrown. Beyond basic runnability, it ensures nothing about the behavior of the code under test."  Notably, the FileUpload Controller Test class prominently exhibits this issue. The complexity of the FileUpload Controller Test class posed challenges for our team regarding testing strategies. As a team, we didn't know how to appropriately test it. In the future, our team aims to reach out for help or investigate how to test a code that contains a file upload functionality
+![adaptability Screenshot](intentionality.png)
+
+### Software Quality
+
+Within the software quality attribute, the Sonar Qube reported that we had issues regarding the maintainability and reliability
+
+
+> Maintainability:
+> Reliability:
+
+
+### Type
+
+Within the type attribute, the Sonar Qube reported that we had issues regarding the Maintainability and Reliability
+
+
+> Code Smells
+> Bugs 
+
+
 
 ## Future Design Improvements
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+
+
+
+
+
 
 
 ## Testing
@@ -233,7 +276,7 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
 > achieved from unit testing of the code base. Discuss the team's
 > coverage targets, why you selected those values, and how well your
-> code coverage met your targets._
+> code coverage met your targets.
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._

@@ -220,35 +220,33 @@ Within the clean code attribute, the Sonar Qube reported that we had issues rega
 
 > Consistency: One persistent error identified was related to the naming convention of our constant variables. SonarQube flagged that our constant names did not adhere to the defined regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$. This rule aims to ensure that all constant names match the provided regular expression.
 We consistently failed to meet this standard, which has repercussions for the readability and maintainability of our codebase. Adhering to the specified naming convention for constants is crucial, as it significantly impacts code comprehension and standardization.
-![consistency Screenshot](intentionality.png)
+![consistency Screenshot](consistency.png)
 
 > Intentionality:
 - Unused Imports: A persistent issue identified in the codebase was the presence of unused imports. These unnecessary imports clutter the code and can negatively impact its readability. It's important to regularly remove unused imports to maintain a clean and efficient codebase.
-![Intentionality Screenshot](intentionality.png)
+![Intentionality Screenshot](int1.png)
+
 - Unit Testing Assertions: In unit testing scenarios, there's a noted recommendation to swap the arguments during assertions. This practice aligns with standard assertion library methods where the first argument is the expected outcome and the second argument is the actual value being tested. Despite not impacting the outcome of the test, adhering to this convention aligns our unit tests with the correct practices.
 ![Intentionality Screenshot](intentionality.png)
 
 > Adaptablity
 - The most common adaptability error in our codebase is regarding not having assertion tests cases within our unit tests. Sonar Qube says that: "A test case without assertions ensures only that no exceptions are thrown. Beyond basic runnability, it ensures nothing about the behavior of the code under test."  Notably, the FileUpload Controller Test class prominently exhibits this issue. The complexity of the FileUpload Controller Test class posed challenges for our team regarding testing strategies. As a team, we didn't know how to appropriately test it. In the future, our team aims to reach out for help or investigate how to test a code that contains a file upload functionality
-![adaptability Screenshot](intentionality.png)
+![adaptability Screenshot](adaptability.png)
 
 ### Software Quality
 
 Within the software quality attribute, the Sonar Qube reported that we had issues regarding the maintainability and reliability
 
 
-> Maintainability:
-> Reliability:
-
-
+> Maintainability: Issues related to maintainability are similar to those highlighted under the Intentionality section of the Clean Code attribute, focusing on unused imports and unit testing assertions. The presence of unused imports impacts maintainability by cluttering the codebase, while the improper use of unit testing assertions complicates future maintenance efforts.
+> Reliability:  Regarding reliability, a persistent issue encountered within our codebase is having unexpected duplicates of the same CSS properties when styling. It's crucial to note that CSS permits duplicate property names, yet only the last instance of a duplicated name dictates the actual value that will be applied. Therefore, changing values of other occurrences of a duplicated name will have no effect and may cause misunderstandings and bugs.
+![Reliability Screenshot](reliability.png)
 ### Type
 
-Within the type attribute, the Sonar Qube reported that we had issues regarding the Maintainability and Reliability
+Within the type attribute, the Sonar Qube reported that we had issues regarding Bugs within our codebase.
 
-
-> Code Smells
-> Bugs 
-
+>Bugs: : Issues related to maintainability are similar to those highlighted under the Reliability section of the Software Quality attribute. CSS duplications can cause bugs within the styling of our code. Furthermore, an additional issue encountered is having if statements that contain the same implementation Sonar qube recommends to edit the code block so what happends inside the if statemnt isn't the same as what happens outside of it.
+![type Screenshot](bugs.png)
 
 
 ## Future Design Improvements

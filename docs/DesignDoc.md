@@ -20,7 +20,11 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+Organization:      |  The organization we chose is the MIA foundation for disabled animals. 
+
+Purpose:           |  The purpose of our project was to provide a funding website for this  foundation so that people can fund needs for the dogs in the shelter, whether they are goods or volunteer. 
+
+Added Features:    |  The two features we added are a list of adoptable dogs with contact information that the u-fund manager can edit, a favorites list of adoptable pets that individual helpers can edit. The u-fund manager also has the new feature of uploading images of the adoptable pets.
 
 ### Purpose
 
@@ -156,11 +160,7 @@ On the other, the 'admin" or " U-fund manager, logs in to an administrative dash
 
 ![Alt text](image-6.png)
 
-> _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
-
-> The model tier of our application contains 5 main entities:
+- The model tier of our application contains 5 main entities:
 
 - Need
 - Funding Basket

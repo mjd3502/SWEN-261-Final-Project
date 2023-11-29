@@ -246,6 +246,7 @@ Within the software quality attribute, the Sonar Qube reported that we had issue
 Within the type attribute, the Sonar Qube reported that we had issues regarding Bugs within our codebase.
 
 >Bugs: : Issues related to maintainability are similar to those highlighted under the Reliability section of the Software Quality attribute. CSS duplications can cause bugs within the styling of our code. Furthermore, an additional issue encountered is having if statements that contain the same implementation Sonar qube recommends to edit the code block so what happends inside the if statemnt isn't the same as what happens outside of it.
+
 ![type Screenshot](bugs.png)
 
 

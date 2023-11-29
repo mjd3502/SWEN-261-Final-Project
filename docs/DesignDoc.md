@@ -216,24 +216,40 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
 
 ## Testing
-> _This section will provide information about the testing performed
-> and the results of the testing._
+
+The code for the ufund API was tested using "mvn clean test jacoco:report" from the terminal, which gives the code coverage for each tier, calculated from how much of the code is tested using unit tests. The overall code coverage is 93%. Unit tests determine which individual functions work properly. All unit tests created were passed. 
+
+The functionality of the program for the overall ufund project was tested using acceptance testing, meaning the Sultans of Scrum team ran through the program testing each user story to make sure it met the acceptance criteria. To re-inforce tesing accuracy, another team cross-validated the data by doing acceptance testing on our program also. Both times acceptance testing was completed, all user stories and epics passed and all acceptance criteria was met.
+
+Overall, the code did very well in both types of testing. It can always be inproved by adding more unit tests and improving user stories, but the current state of testing is very good. The code performed well during testing, meeting the specified criteria and even exceeding some criteria such as styling and usability.
+
 ### Acceptance Testing
-> _**[Sprint 2 & 4]** Report on the number of user stories that have passed all their
-> acceptance criteria tests, the number that have some acceptance
-> criteria tests failing, and the number of user stories that
-> have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
-19 user stories will be finished.
+
+All user stories and epics have been through acceptance testing and 19 out of 19 user stories have passed acceptance testing. User stories were tested by our team the Sultans of Scrum, as well as tested by the other team. No user stories have currently failed acceptance testing by either team. All acceptance criteria listed in the acceptance test plan was met. 
 
 ### Unit Testing and Code Coverage
-> _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
-> achieved from unit testing of the code base. Discuss the team's
-> coverage targets, why you selected those values, and how well your
-> code coverage met your targets._
 
->_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those._
+Unit testing was performed on the coverage targets of the three main tiers of the ufund api program, persistence, controller, and model. These three targets were chosen because they make up the model, view, and model-view tiers and are where the basis of the entire ufund program is kept. Overall, the unit testing has code coverage of 93%, so the code is thoroughly tested.
+
+Persistence: The persistence tier includes the file DAO classes. It has 92% code coverage overall, meaning it is very well tested, but a few more tests could be added. This is one of the hardest tiers to test due to the complexity of the file DAOs. All tests created for this tier passed.
+
+Persistence Tier Code Coverage Report Image:
+![Alt text](image-1.png)
+
+Controller: The controller tier modifies data in the backend and holds the controller classes such as UserController, CupboardController and others. It has 92% code coverage overall, meaning it is very well tested. All tests created for this tier passed.
+
+Controller Tier Code Coverage Report Image:
+![Alt text](image-2.png)
+
+Model: The model tier holds the building blocks of the other classes including defining a Need, User, FundingBasket, etc. It has 99% code coverage overall, meaning it is very well tested. All tests created for this tier passed.
+
+Model Tier Code Coverage Report Image:
+![Alt text](image-3.png)
+
+U-fund API Code Coverage Image:
+![Alt text](image.png)
+
+
 
 
 ## Use of Postman API Platform for Sprint 1 RestAPI Demo

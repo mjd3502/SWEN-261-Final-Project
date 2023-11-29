@@ -1,8 +1,7 @@
 package com.ufund.api.ufundapi.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +12,7 @@ public class FavoritePets {
 
  
     @JsonProperty("username") private String username;
-    @JsonProperty("favoritePets") private Map<Integer,Pet> favoritePets;
+    @JsonProperty("favoritePets") private Map<Integer,Pet> favPets;
     /**
      * class to track a list of favorite pets for a user
      * @author Garrett Geyer, Carla Lopez, Cheyyene, Rachel, Micheal
@@ -23,7 +22,7 @@ public class FavoritePets {
 
     public FavoritePets(@JsonProperty("username") String username, @JsonProperty("favoritePets") Map<Integer,Pet> favoritePets){
         this.username = username;
-        this.favoritePets = this.favoritePets = (favoritePets != null) ? favoritePets : new HashMap<>();
+        this.favPets = (favoritePets != null) ? favoritePets : new HashMap<>();
     }
 
     
@@ -39,21 +38,21 @@ public class FavoritePets {
      * @return list of favorite pets
      */
     public Map<Integer,Pet> getFavoritePets() {
-        return this.favoritePets;
+        return this.favPets;
     }
     public void setFavoritePets(Pet pet) {
-        this.favoritePets.put(pet.getId(),pet);
+        this.favPets.put(pet.getId(),pet);
     }
 
     @Override
     public String toString() {
         StringBuilder pets = new StringBuilder();
         
-        if (!favoritePets.isEmpty()) {
-            for (int i = 0; i < favoritePets.size(); i++) {
-                Pet item = favoritePets.get(i);
+        if (!favPets.isEmpty()) {
+            for (int i = 0; i < favPets.size(); i++) {
+                Pet item = favPets.get(i);
                 pets.append(item.toString());
-                if (i < favoritePets.size() - 1) {
+                if (i < favPets.size() - 1) {
                     pets.append(", ");
                 }
             }

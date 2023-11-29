@@ -350,22 +350,7 @@ public class CupboardControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
     }
 
-// @Test
-//     public void deleteNeedbyId() throws IOException{
 
-//         int needId = 99;
-//         when(mockcupboardDAO.deleteNeed(needId)).thenReturn(true);
-        
-//         ResponseEntity<Need> responseEntity = cupboardController.deleteNeed(needId);
-//         assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
-// }
-//     /**
-//      * Tests: deleteNeed (fail case)
-//      * 
-//      * Attempts to delete a need by ID. Checks if need exists, and that resulting status code is 
-//      * NOT FOUND because the need to delete does not exist. 
-//      * @throws IOException
-//      */
 
 
     @Test

@@ -156,7 +156,7 @@ public class FundingBasketControllerTest {
         Map<Integer,Need> mapOfNeeds = new HashMap<>();
         mapOfNeeds.put(need.getId(),need);
         mapOfNeeds.put(need1.getId(),need1);
-        FundingBasket fundingBasket = new FundingBasket("helper", mapOfNeeds);
+        
         when(mockFundingBasketDAO.removeNeedFromFundingBasket("helper", 2)).thenReturn(false);
 
         //Invoke

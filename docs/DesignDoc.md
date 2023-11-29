@@ -54,6 +54,7 @@ have A personalized funding basket where they can add/delete the needs they want
 View all pets available in the shelter.
 Add individual pets to a favorites list, with all pets they like in the list
 ### Definition of MVP
+
 >  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
 Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
@@ -61,14 +62,14 @@ The manager can add, remove and change needs stored in their cupboard and a help
 
 
 ### MVP Features
->  A user logs in with a username, going to their page
->  A U-fund Manager logs in with username 'admin'
->  A Helper can see a list of needs
->  A Helper can search through the list of needs
->  A Helper can add/remove a need from their Funding Basket
->  A Helper can Check-out and fund all needs in their Funding Basket
->  A U-fund Manager can add, remove, and edit the list of needs
->  A U-fund manager cannot see each user's funding basket
+  A user logs in with a username, going to their page
+  A U-fund Manager logs in with username 'admin'
+  A Helper can see a list of needs
+  A Helper can search through the list of needs
+  A Helper can add/remove a need from their Funding Basket
+  A Helper can Check-out and fund all needs in their Funding Basket
+  A U-fund Manager can add, remove, and edit the list of needs
+  A U-fund manager cannot see each user's funding basket
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
@@ -86,7 +87,7 @@ From the welcome page you can continue to either login or signup, creating a new
 
 This section describes the application domain.
 
-![Domain Model](DomainAnalysis.png)
+![Domain Model](CopofDomainanalysis.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -189,14 +190,14 @@ The model tier forms the backbone of our application's architecture with the Nee
 
 The MIA Foundation U Fund website has been thoughtfully designed to align with two fundamental Object-Oriented (OO) design principles: High Cohesion and the Single Responsibility Principle (SRP). These principles are reflected in both the frontend (Angular) and backend (Java) components and modules. 
 
-High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
-
 The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
 
 
 High Cohesion is evident in the design, where related responsibilities are grouped together within modules. For instance, in the Angular frontend, the navigation bar component has a specific purpose: facilitating user navigation. Initially, this navigation was included in various modules, but the team recognized that it deserved a module of its own. With this implementatin ,the navbar can be implemented in different components of the applicatin avoiding repetition.
 
-The Single Responsibility Principle (SRP) is well implemented, ensuring that each class or module has a single, well-defined responsibility. In the frontend, different components are dedicated to specific views or tasks. For example, the navigation bar component focuses solely on navigation, avoiding mixed responsibilities. This design principle is also evident in the backend, where user management and funding basket functionalities are separated into different controllers. Users are isolated in their primary task of logging in, while the Funding Basket Controller exclusively handles operations related to the basket, such as adding and removing needs.
+
+The Law of Demeter is the principal to not have any of your implementations reach over through other classes implementet. So each object is only allowed to interact with a specific set of neighbor classes. This protects against any unintended coupling from occuring throughout the system. This is in tandem with another principal of low cohesion. If the program starts violating the Law of Demeter is affects the amount of coupling you have even if you dont directly import more classes. This is shown in the design with the creation of more helper methods rather than continuing to instantiate upon previous methods. One example is in the funding basket Data access object, there is a function to return all funding baskets which could be used to fetch an individual user's basket from, but instead a new method was implemented to return a specific basket you would be looking for.
+
 Information Expert is implemented such that little to none work has to be done after calling a function. That is to say functions are implemented to return usable values, rather than returning something which has to modified or checked against another set of requirements. An example of this is with a function implemented to check if a user is new or not, simple returning a boolean rather than using a previously implemented function to return all users, then checking that for duplicate upon returning.
 
 Open/Closed is the principle of using instantiation and inheritance in the design. This is seen mainly in our DAO implementations, which all have an abstraction form a seperate class in their implementation. Many of our systems contain very individual functionaliy and prevent a significant quantity of instantiation from occuring.
@@ -206,14 +207,57 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
+## Static Code Analysis
 
-## Static Code Analysis/Future Design Improvements
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
-> Include any relevant screenshot(s) with each area._
+Sonar Qube highlighted several areas within our codebase that need improvements and/or changes. The main categories  flagged were:
+> Clean code attribute
+> Software Quality
+> Type
 
+### Clean code attribute
+
+Within the clean code attribute, the Sonar Qube reported that we had issues regarding the intentionality,consistency, and adaptability of our codebase. 
+
+> Consistency: One persistent error identified was related to the naming convention of our constant variables. SonarQube flagged that our constant names did not adhere to the defined regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$. This rule aims to ensure that all constant names match the provided regular expression.
+We consistently failed to meet this standard, which has repercussions for the readability and maintainability of our codebase. Adhering to the specified naming convention for constants is crucial, as it significantly impacts code comprehension and standardization.
+![consistency Screenshot](consistency.png)
+
+> Intentionality:
+- Unused Imports: A persistent issue identified in the codebase was the presence of unused imports. These unnecessary imports clutter the code and can negatively impact its readability. It's important to regularly remove unused imports to maintain a clean and efficient codebase.
+![Intentionality Screenshot](int1.png)
+
+- Unit Testing Assertions: In unit testing scenarios, there's a noted recommendation to swap the arguments during assertions. This practice aligns with standard assertion library methods where the first argument is the expected outcome and the second argument is the actual value being tested. Despite not impacting the outcome of the test, adhering to this convention aligns our unit tests with the correct practices.
+![Intentionality Screenshot](intentionality.png)
+
+> Adaptablity
+- The most common adaptability error in our codebase is regarding not having assertion tests cases within our unit tests. Sonar Qube says that: "A test case without assertions ensures only that no exceptions are thrown. Beyond basic runnability, it ensures nothing about the behavior of the code under test."  Notably, the FileUpload Controller Test class prominently exhibits this issue. The complexity of the FileUpload Controller Test class posed challenges for our team regarding testing strategies. As a team, we didn't know how to appropriately test it. In the future, our team aims to reach out for help or investigate how to test a code that contains a file upload functionality
+![adaptability Screenshot](adaptability.png)
+
+### Software Quality
+
+Within the software quality attribute, the Sonar Qube reported that we had issues regarding the maintainability and reliability
+
+
+> Maintainability: Issues related to maintainability are similar to those highlighted under the Intentionality section of the Clean Code attribute, focusing on unused imports and unit testing assertions. The presence of unused imports impacts maintainability by cluttering the codebase, while the improper use of unit testing assertions complicates future maintenance efforts.
+> Reliability:  Regarding reliability, a persistent issue encountered within our codebase is having unexpected duplicates of the same CSS properties when styling. It's crucial to note that CSS permits duplicate property names, yet only the last instance of a duplicated name dictates the actual value that will be applied. Therefore, changing values of other occurrences of a duplicated name will have no effect and may cause misunderstandings and bugs.
+![Reliability Screenshot](reliability.png)
+### Type
+
+Within the type attribute, the Sonar Qube reported that we had issues regarding Bugs within our codebase.
+
+>Bugs: : Issues related to maintainability are similar to those highlighted under the Reliability section of the Software Quality attribute. CSS duplications can cause bugs within the styling of our code. Furthermore, an additional issue encountered is having if statements that contain the same implementation Sonar qube recommends to edit the code block so what happends inside the if statemnt isn't the same as what happens outside of it.
+
+![type Screenshot](bugs.png)
+
+
+## Future Design Improvements
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+
+
+
+
+
+
 
 ## Testing
 

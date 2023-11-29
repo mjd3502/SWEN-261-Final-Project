@@ -39,6 +39,10 @@ Sprint 2 Bugs
 > If the user adds a need to the funding basket twice but then decides to delete only one of those needs, both will be deleted. This occurs because our FundingBasket in the backend is a List of needs and deletes a need by id. Therefore, it will delete all the needs with the same id. This bug will be tackled on Sprint 3
 > If a user logs in with the same username, our website doesn't logged them into their account. It creates a new user and overrides the previous one associated with that username.
 
+Sprint 3
+
+> Our current login feature requires a user to log in and sign up with only their username. It may be beneficial to implement a password 
+in order to protect user privacy.
 
 ## How to test it
 

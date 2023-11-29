@@ -1,6 +1,6 @@
 package com.ufund.api.ufundapi.controller;
 
-import java.util.List;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ufund.api.ufundapi.model.Need;
 import com.ufund.api.ufundapi.persistence.FundingBasketDAO;
 import com.ufund.api.ufundapi.model.FundingBasket;
-// import com.ufund.api.ufundapi.persistence.fundingBasketDAO;
 
 @RestController
 @RequestMapping("/fundingBasket")
@@ -109,11 +108,11 @@ public class FundingBasketController {
             
             boolean clearbasket = fundingBasketDao.clearFundingBasket(username);
             if(clearbasket){
-                LOG.info("clear basket");
+                
                  Map<Integer,Need> basket = fundingBasketDao.getFundingBasket(username);
                 return new ResponseEntity<Map<Integer,Need>>(basket,HttpStatus.OK);
             }else{
-                 LOG.info("nooooooooo");
+                
                  return new ResponseEntity<Map<Integer,Need>>(HttpStatus.NOT_ACCEPTABLE);
             }
         } catch (Exception e) {

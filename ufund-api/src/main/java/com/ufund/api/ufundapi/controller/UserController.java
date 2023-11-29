@@ -2,7 +2,6 @@ package com.ufund.api.ufundapi.controller;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ufund.api.ufundapi.model.FundingBasket;
 import com.ufund.api.ufundapi.model.User;
-import com.ufund.api.ufundapi.persistence.FundingBasketDAO;
+
 import com.ufund.api.ufundapi.persistence.UserDAO;
 
 @RestController
@@ -42,11 +40,9 @@ public class UserController {
     
     @PostMapping(" ")
     public ResponseEntity<User> createUser(@RequestBody User user){
-        LOG.info("POST /user " + user);
+        
 
-        // if(validateHelperLogin(user.getUsername())){
-        //     return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        // }
+    
         boolean containsOnlyLettersOrNumbers = checkLettersOrNumbers(user.getUsername());
 
     
@@ -56,7 +52,7 @@ public class UserController {
         }
 
         try {
-            LOG.info("coooollll");
+          
             User newUser = userDAO.createUser(user);
             return new ResponseEntity<User>(newUser,HttpStatus.CREATED);
         } catch (Exception e) {
@@ -85,7 +81,7 @@ public class UserController {
     public ResponseEntity<Boolean> doesUserExist(@PathVariable String username){
         try{
             Boolean exists = userDAO.doesUserExist(username);
-            LOG.info("DONEEEE");
+            
             
             return new ResponseEntity<Boolean>(exists,HttpStatus.OK);
         } catch (Exception e) {

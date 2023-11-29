@@ -1,6 +1,6 @@
 package com.ufund.api.ufundapi.controller;
 
-import java.util.List;
+
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ufund.api.ufundapi.model.Pet;
 import com.ufund.api.ufundapi.persistence.FavoritePetsDAO;
 import com.ufund.api.ufundapi.model.FavoritePets;
-// import com.ufund.api.ufundapi.persistence.favoritePetsDAO;
-import com.ufund.api.ufundapi.model.Need;
 
 @RestController
 @RequestMapping("/favoritePets")

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -14,8 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.FavoritePets;
-import com.ufund.api.ufundapi.model.FundingBasket;
-import com.ufund.api.ufundapi.model.Need;
+
 import com.ufund.api.ufundapi.model.Pet;
 
 
@@ -91,9 +90,9 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
             if(favoritePets != null){
                 favoritePets.setFavoritePets(pet);
                 save();
-                LOG.info("added to file");
+                
             }else{
-                 LOG.info("not added >:( ");
+                
             }
             return favoritePets;
         }
@@ -106,12 +105,12 @@ public class FavoritePetsFileDAO implements FavoritePetsDAO{
        synchronized(favoritePetss){
         FavoritePets favoritePets = favoritePetss.get(userName);
         if(favoritePets != null){
-            LOG.info("user is not null");
+            
             Map<Integer,Pet> basket = favoritePets.getFavoritePets();
             for(Pet pet: basket.values()){
                 if(pet.getId() == id){
                     basket.remove(pet.getId());
-                    LOG.info("delteeeeeeed");
+                    
                     return save();
                 }
             }

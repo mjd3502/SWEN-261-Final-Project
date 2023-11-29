@@ -146,14 +146,47 @@ On the other, the 'admin" or " U-fund manager, logs in to an administrative dash
 ### ViewModel Tier
 
 ![Alt text](image-5.png)
+In our application's architecture, the View-Model tier plays a pivotal role in facilitating interactions between the View (UI) and the underlying Model. We've identified six controller classes, each tasked with managing specific functionalities within our application:
 
-> _**[Sprint 4]** Provide a summary of this tier of your architecture. This
-> section will follow the same instructions that are given for the View
-> Tier above._
 
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+#### User Controller
+   - Accepts and manages requests from the View related to user functionality.
+   - Handles CRUD operations concerning the creation and retrieval of users within the system.
+   - Updates the Model tier while maintaining a clear separation between the View tier and User model tier.
+
+### Cupboard Controller
+
+  - Manages HTTP requests originating from the View that pertain to the needs and cupboard functionality.
+  - Handles CRUD operations for Need objects within the Model Tier.
+  - Isolates the Need model classes, ensuring their independence from direct View tier requests while providing necessary data.
+
+### Funding Basket Controller
+
+- Handles HTTP requests originating from the View only related to the user's funding basket functionality.
+- Creates, updates, deletes, and retrieves funding basket objects in the Model tier.
+- Separates the Funding Basket Model, enabling it to operate independently without direct involvement from the View tier.
+
+### FileUpload Controller
+
+   - Manages CRUD operations associated with image creation and deletion within the system.
+   - Accepts requests from the View tier and facilitates data transmission to the View.
+   - Updates the Model and receives notifications from the Model tier, ensuring that there's no direct communication between the View and the FileUpload model tiers.
+
+
+### Pet Controller
+
+   - Handles HTTP operations related to the pet adoption feature from the View.
+   - Manages CRUD operations for pet objects in the Model tier, including creating, updating, deleting, and retrieving pet data.
+   - Isolates the Pet model classes from direct requests of the View while providing necessary data to the View tier.
+
+### Favorite Pets Controller
+
+- Manages HTTP requests coming from the View regarding only the user's favorite pets functionality.
+- Creates, updates(by adding/deleting a Pet object), deletes, and retrieves favorite pets objects in the Model tier.
+- Separates the Favorite Pets Model, allowing it to function independently without direct involvement from the View tier.
+
+
+
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier

@@ -172,8 +172,6 @@ In our application's architecture, the View-Model tier plays a pivotal role in f
 
 
 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
-
 ### Model Tier
 
 ![Alt text](image-6.png)
@@ -195,13 +193,6 @@ The Favorite list keep track of, for each user, what that user's favorite pets a
 ![Alt text](ClassDiagram1.png)
 The model tier forms the backbone of our application's architecture with the Need, Funding Basket, Pet, Favorite Pets, and User entities playing distinct but interconnected roles. 
 
-
-
-> _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
-> static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
-
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 
 ## OO Design Principles

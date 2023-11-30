@@ -284,8 +284,7 @@ We have not made changes to the code due to Sprint 4 being a "no coding" sprint.
 - Password authentication: Our current login feature requires a user to log in and sign up with only their username. In order to address this potential security issue, it would be helpful implement a password
 in order to protect user privacy.
 
-- Colorblind-user friendly styling: Although we have a universal color scheme, it may present issues to those who may experience color blindness to certain colors. Another possible improvement to address this would be to choose a color palette that would  be more user friendly.
-
+- Colorblind-user friendly styling: Although we have a universal color scheme, it may present issues to those who may experience color blindness to certain colors. Another possible improvement to address this would be to choose a color palette that would  be more user friendly. 
 
 ## Testing
 

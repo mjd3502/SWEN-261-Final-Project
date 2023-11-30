@@ -89,6 +89,7 @@ This section describes the application domain.
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
 > to each other._
+The domain has a handful of important entities. The Need and Pet objects are the main heart of the site, being interacted with by all users of the site. The admin can update all the needs and pets, which the list of all needs are stored in the cupboard, and the pets have a list of all pets. The helpers aren't able to edit any of these objects, but they have the ability to look through all the pets and needs, and can search for specific needs. After seeing these, each helper has two lists, one for Pets and one for Needs, their Favorite pets list and funding basket and can feely add any displayed entites to its respective list. 
 
 
 ## Architecture and Design
@@ -204,8 +205,10 @@ Each on of them has a specific function within the application.
 The Need entity represents a good/volunteer opportunity that admin users can create and modify and that helper users can checkout to support the organization
 Funding Basket entity represent a unique basket that associated to a a particular username.
 User entity represents a helper user that logs in to the application. User are identified by a unique username. 
+![Alt text](ClassDiagram2.png)
 The pet represents a pet in the shelter, with all information including adoption status and the ability to inquire about the pet.
 The Favorite list keep track of, for each user, what that user's favorite pets are, which they can add/removve any available pets from this list.
+![Alt text](ClassDiagram1.png)
 The model tier forms the backbone of our application's architecture with the Need, Funding Basket, Pet, Favorite Pets, and User entities playing distinct but interconnected roles. 
 
 

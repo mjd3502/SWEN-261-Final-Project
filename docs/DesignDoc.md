@@ -82,7 +82,7 @@ From the welcome page you can continue to either login or signup, creating a new
 
 This section describes the application domain.
 
-![Domain Model](CopofDomainanalysis.png)
+![Alt text](image-7.png)
 
 The domain has a handful of important entities. The Need and Pet objects are the main heart of the site, being interacted with by all users of the site. The admin can update all the needs and pets, which the list of all needs are stored in the cupboard, and the pets have a list of all pets. The helpers aren't able to edit any of these objects, but they have the ability to look through all the pets and needs, and can search for specific needs. After seeing these, each helper has two lists, one for Pets and one for Needs, their Favorite pets list and funding basket and can feely add any displayed entites to its respective list. 
 

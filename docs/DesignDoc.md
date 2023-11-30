@@ -274,9 +274,16 @@ Within the type attribute, the Sonar Qube reported that we had issues regarding 
 
 ![type Screenshot](bugs.png)
 
+## Improvements Since Sprint 3
+
+We have not made changes to the code due to Sprint 4 being a "no coding" sprint. However, we have reflected on our software design and considered the strong and weak points. We also took suggections during the Cross Team Design Document Review and further assessed possible improvements that would benefit the software if given more time.
 
 ## Future Design Improvements
-> _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+
+- Password authentication: Our current login feature requires a user to log in and sign up with only their username. In order to address this potential security issue, it would be helpful implement a password
+in order to protect user privacy.
+
+- Colorblind-user friendly styling: Although we have a universal color scheme, it may present issues to those who may experience color blindness to certain colors. Another possible improvement to address this would be to choose a color palette that would  be more user friendly.
 
 
 ## Testing

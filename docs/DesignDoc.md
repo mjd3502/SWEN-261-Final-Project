@@ -55,8 +55,6 @@ Add individual pets to a favorites list, with all pets they like in the list
 
 ### Definition of MVP
 
->  _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
-
 Each user logs in with their username, the Ufund manager can log in with the username 'admin'.
 The manager can add, remove and change needs stored in their cupboard and a helper can view that cupboard and select needs to add to their funding basket, and checkout, funding their selected needs. 
 
@@ -84,11 +82,9 @@ From the welcome page you can continue to either login or signup, creating a new
 
 This section describes the application domain.
 
-![Domain Model](CopofDomainanalysis.png)
+![Alt text](image-7.png)
 
-> _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
+The domain has a handful of important entities. The Need and Pet objects are the main heart of the site, being interacted with by all users of the site. The admin can update all the needs and pets, which the list of all needs are stored in the cupboard, and the pets have a list of all pets. The helpers aren't able to edit any of these objects, but they have the ability to look through all the pets and needs, and can search for specific needs. After seeing these, each helper has two lists, one for Pets and one for Needs, their Favorite pets list and funding basket and can feely add any displayed entites to its respective list. 
 
 
 ## Architecture and Design
@@ -197,8 +193,10 @@ Each on of them has a specific function within the application.
 The Need entity represents a good/volunteer opportunity that admin users can create and modify and that helper users can checkout to support the organization
 Funding Basket entity represent a unique basket that associated to a a particular username.
 User entity represents a helper user that logs in to the application. User are identified by a unique username. 
+![Alt text](ClassDiagram2.png)
 The pet represents a pet in the shelter, with all information including adoption status and the ability to inquire about the pet.
 The Favorite list keep track of, for each user, what that user's favorite pets are, which they can add/removve any available pets from this list.
+![Alt text](ClassDiagram1.png)
 The model tier forms the backbone of our application's architecture with the Need, Funding Basket, Pet, Favorite Pets, and User entities playing distinct but interconnected roles. 
 
 
@@ -206,6 +204,7 @@ The model tier forms the backbone of our application's architecture with the Nee
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
+
 ![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 
@@ -230,6 +229,8 @@ By following these OO design principles, the MIA Foundation U Fund website has a
 
 ## Static Code Analysis
 
+The open source platform Sonar Qube was used to analyze and review our codebase.
+
 Sonar Qube highlighted several areas within our codebase that need improvements and/or changes. The main categories  flagged were:
 - Clean code attribute
 - Software Quality
@@ -242,7 +243,7 @@ Within the clean code attribute, the Sonar Qube reported that we had issues rega
 Consistency: 
 - One persistent error identified was related to the naming convention of our constant variables. SonarQube flagged that our constant names did not adhere to the defined regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$. This rule aims to ensure that all constant names match the provided regular expression.
 
-We consistently failed to meet this standard, which has repercussions for the readability and maintainability of our codebase. Adhering to the specified naming convention for constants is crucial, as it significantly impacts code comprehension and standardization.
+We  failed to meet this standard, which has repercussions for the readability and maintainability of our codebase. Adhering to the specified naming convention for constants is crucial, as it significantly impacts code comprehension.
 ![consistency Screenshot](consistency.png)
 
 Intentionality:

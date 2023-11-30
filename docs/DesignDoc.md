@@ -84,7 +84,7 @@ From the welcome page you can continue to either login or signup, creating a new
 
 This section describes the application domain.
 
-![Domain Model](CopofDomainanalysis.png)
+![Alt text](image-7.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
